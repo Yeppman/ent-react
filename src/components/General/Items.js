@@ -18,8 +18,8 @@ const formItemLayout = {
   wrapperCol: { span: 12, offset: 6 }
 };
 
-const category_url = 'http://127.0.0.1:8000/core_api/category_list/'
-const post_list_url = 'http://127.0.0.1:8000/core_api/post_list/'
+const category_url = 'https://theebs.pythonanywhere.com/core_api/category_list/'
+const post_list_url = 'https://theebs.pythonanywhere.com/core_api/post_list/'
 const { Search } = Input;
 
     

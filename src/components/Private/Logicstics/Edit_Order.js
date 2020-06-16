@@ -31,7 +31,7 @@ class Edit_Order extends React.Component{
       "Content-Type": "application/json",
       Authorization: `Token ${token}`
     };
-   await axios.get(`http://127.0.0.1:8000/stream/view_post`)
+   await axios.get(`https://theebs.pythonanywhere.com/stream/view_post`)
     .then(res =>{
             this.setState({
                   post_list:res.data
@@ -79,7 +79,7 @@ class Edit_Order extends React.Component{
                 ,city ,country, code,  
             
             )
-            axios.get(`http://127.0.0.1:8000/management/edit_channel/${this.channel_id}/`,
+            axios.get(`https://theebs.pythonanywhere.com/management/edit_channel/${this.channel_id}/`,
              {
               params: {
                 Post, name, email ,  phone, phone2 ,address, address2

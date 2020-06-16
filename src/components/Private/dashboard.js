@@ -10,13 +10,13 @@ import {notification,message} from 'antd'
 import TemporaryDrawer from './Sidebar/SideNav'
 import { getMembership } from '../../store/actions/membership';
 
-const Profile_id_url  = 'http://127.0.0.1:8000/stream/get_profile_id/'
-const Profile_url = 'http://127.0.0.1:8000/stream/profile_view/'
-const UserMembership_url  = 'http://127.0.0.1:8000/stream/user_membership' 
-const Membership_url = 'http://127.0.0.1:8000/stream/list_membership'
-const Post_Analytics_url = 'http://127.0.0.1:8000/analytics/rankings/'
+const Profile_id_url  = 'https://theebs.pythonanywhere.com/stream/get_profile_id/'
+const Profile_url = 'https://theebs.pythonanywhere.com/stream/profile_view/'
+const UserMembership_url  = 'https://theebs.pythonanywhere.com/stream/user_membership' 
+const Membership_url = 'https://theebs.pythonanywhere.com/stream/list_membership'
+const Post_Analytics_url = 'https://theebs.pythonanywhere.com/analytics/rankings/'
 
-const UserPost_url = 'http://127.0.0.1:8000/stream/view_post/'
+const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
 
 const openNotification = (msg) => {
   notification.open({
@@ -92,7 +92,7 @@ class ProfileDashboard extends Component {
             Authorization: `Token ${token}`
           };
           
-          axios.get(`http://127.0.0.1:8000/stream/profile_view/${profile_id}/`)
+          axios.get(`https://theebs.pythonanywhere.com/stream/profile_view/${profile_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data

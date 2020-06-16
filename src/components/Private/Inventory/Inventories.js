@@ -35,7 +35,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get('http://127.0.0.1:8000/management/view_inventory/')
+      await axios.get('https://theebs.pythonanywhere.com/management/view_inventory/')
       .then(res =>{
         this.setState({
           inventory_objects : res.data,
@@ -51,7 +51,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get('http://127.0.0.1:8000/management/inventory_data/')
+      await axios.get('https://theebs.pythonanywhere.com/management/inventory_data/')
       .then(res=>{
         this.setState({
           Price : res.data.Price ,
@@ -65,7 +65,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-       axios.post(`http://127.0.0.1:8000/management/delete_inventory_record/${item_id}/`)
+       axios.post(`https://theebs.pythonanywhere.com/management/delete_inventory_record/${item_id}/`)
       .then(res=>{
 
           openNotification(res.data['Message'])
@@ -77,7 +77,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-      await axios.get('http://127.0.0.1:8000/management/inventory_data/')
+      await axios.get('https://theebs.pythonanywhere.com/management/inventory_data/')
       .then(res=>{
         
       })

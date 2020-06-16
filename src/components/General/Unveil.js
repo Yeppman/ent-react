@@ -16,7 +16,7 @@ const Search = Input.Search;
 
 
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://theebs.pythonanywhere.com'
 
 const MyItem = ({ children }) => (
   <div className="category-box">
@@ -39,7 +39,7 @@ const MyItem = ({ children }) => (
 );
 
 class Enterprise_Showcase extends Component{
-  search_url = 'http://127.0.0.1:8000/core_api/post_filter/'
+  search_url = 'https://theebs.pythonanywhere.com/core_api/post_filter/'
   state = {
     results: [],
     loading: false,

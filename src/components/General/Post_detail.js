@@ -31,7 +31,7 @@ class PostDetail extends React.Component{
 
     Get_Vendor_Profile = async(Vendor_id) =>{
       
-      await axios.get(`http://127.0.0.1:8000/core_api/vendors_profile_public/${Vendor_id}/`)
+      await axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_profile_public/${Vendor_id}/`)
       .then(res =>{
         this.setState({
           vendor_profile: res.data
@@ -43,7 +43,7 @@ class PostDetail extends React.Component{
     model_id = this.props.match.params.PostDetailID
     Get_reverse_url_id = async() => {
         const model_id = this.props.match.params.PostDetailID
-        await axios.get(`http://127.0.0.1:8000/core_api/post_detail/${model_id}/`)
+        await axios.get(`https://theebs.pythonanywhere.com/core_api/post_detail/${model_id}/`)
         .then(res =>{
             this.setState({
                 post_detail : res.data ,
@@ -63,7 +63,7 @@ class PostDetail extends React.Component{
     //Fetches commetn
     Get_Comments = () =>{
         const model_id = this.props.match.params.PostDetailID
-         axios.get(`http://127.0.0.1:8000/core_api/comment_list/${model_id}/`)
+         axios.get(`https://theebs.pythonanywhere.com/core_api/comment_list/${model_id}/`)
         .then(res =>{
             this.setState({
                 comments_made : res.data ,
@@ -78,7 +78,7 @@ class PostDetail extends React.Component{
     
       Ratings = async()=>{
         const parse_id= this.model_id;
-        await axios.get(`http://127.0.0.1:8000/core_api/post_rating/${parse_id}/`)
+        await axios.get(`https://theebs.pythonanywhere.com/core_api/post_rating/${parse_id}/`)
         .then( res =>{
           this.setState({
             rating: Math.round(res.data)

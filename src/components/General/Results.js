@@ -21,7 +21,7 @@ class Search_Results extends React.Component{
     Recieve_Query = async()=>{
         const title = this.props.match.params.Title
         alert(title ,'oo')
-        axios.get('http://127.0.0.1:8000/core_api/post_filter/', {
+        axios.get('https://theebs.pythonanywhere.com/core_api/post_filter/', {
             params:{
                 title
             }

@@ -31,7 +31,7 @@ class Contact_Field extends Component{
                 "Content-Type": "application/json",
                 Authorization: `Token ${token}`
               };
-        await axios.get('http://127.0.0.1:8000/management/contact_list/')
+        await axios.get('https://theebs.pythonanywhere.com/management/contact_list/')
         .then(res =>{
             this.setState({
                 contacts : res.data,
@@ -47,7 +47,7 @@ class Contact_Field extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-        await axios.get(`http://127.0.0.1:8000/management/delete_contact/${id}/`)
+        await axios.get(`https://theebs.pythonanywhere.com/management/delete_contact/${id}/`)
         .then(res =>{
           this.openNotification(res.data['Message'])
         })
@@ -92,7 +92,7 @@ class Contact_Field extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`http://127.0.0.1:8000/management/save_contact/`,
+              axios.get(`https://theebs.pythonanywhere.com/management/save_contact/`,
                {
                 params: {
                    Name, Email ,  Phone ,Address

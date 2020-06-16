@@ -1,5 +1,5 @@
 body{
-  background: #BFBFBF;
+  background: #ffffff;
 }
 
 /* Navbar Components */
@@ -42,7 +42,7 @@ body{
 
 
 .introduction-section {
-    background-color: tomato;
+    background-color: #006CFF;
     height: 400px;
    /* background-image:url("https://cdn.pixabay.com/photo/2017/06/21/07/33/background-2426328__340.jpg"); */
 
@@ -80,7 +80,7 @@ body{
 .introduction-section-search-button{
     display: block;
     padding: 5px 20px 0px 30px;
-    color: #d10034;
+    color: #006CFF;
     border: 0px solid white ;
     font-size: 15px;
     font-weight: bold;

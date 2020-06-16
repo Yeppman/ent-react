@@ -6,10 +6,8 @@ import axios from "axios";
 
 import User_Uploaded_Post from './uploaded_items'
 
-import { notification } from 'antd';
-import Home_App_Items from "../../General/SubCategories/Home_Appliances/Home_list";
-import Fashion_Items from "../../General/SubCategories/Fashion/Fashion_list";
-
+import { notification , } from 'antd';
+import {PlusCircleOutlined} from '@ant-design/icons'
 
 const openNotification = (msg) => {
     notification.open({
@@ -65,6 +63,11 @@ class User_Posts_Items extends Component {
         })
     }
 
+    redirect_page=()=>{
+    
+      const endpoint = '/create/portal/'
+      window.location.replace(endpoint)
+     }
 
     componentDidMount(){
         this.User_Data(this.props.token)
@@ -85,6 +88,19 @@ class User_Posts_Items extends Component {
         const {Electronics, Property, HomeApp, Fashion} = this.state
         return(
             <>
+
+            <div className="container">
+                <div className="grid grid-cols-4 gap-4">
+                    <div className="col-span-4">
+                    <p onClick={this.redirect_page}>
+                    <PlusCircleOutlined 
+                       style={{ fontSize: '30px' }} 
+                    /> Create 
+                    </p>
+                    </div>
+
+                </div>
+            </div>
 
             <div className="container">
                 <div className="grid grid-cols-4 gap-4">

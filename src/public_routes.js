@@ -35,10 +35,20 @@ import Property_Item_Detail from './components/General/SubCategories/Properties/
 
 // User Admninstration
 import AdminLayout from './components/Private/AdminLayout'
+
+//Creating Post
+import Create_Post_Portal from './components/Private/Create/Portal'
+import Electronics_Item_Create from './components/Private/Create/Electronics'
+import Property_Item_Create from './components/Private/Create/Property'
+import Services_Item_Create from './components/Private/Create/Services'
+import HomeApp_Item_Create from './components/Private/Create/HomeApp'
+import Vehicles_Item_Create from './components/Private/Create/Vehicles'
+
+
 import User_Post_Conent from './components/Private/User_Post_Content'
 import Load_User_Post from './components/Private/UserPost'
 
-///All Uploads 
+///Every User Uploads 
 import User_Posts_Items from './components/Private/Uploads/User_Uploads'
 //ends here
 
@@ -48,6 +58,7 @@ import User_Analysis from './components/Private/Analytics/Analytics'
 
 import Quotes_listing from './components/Private/Quotations/Quotes_List'
 
+//Implementsation 
 import Logicstics_Channel from  './components/Private/Logicstics/Logicstics'
 import Logicstics_Details from './components/Private/Logicstics/Logicstics_Content'
 import Create_New_Order from './components/Private/Logicstics/Create_Order'
@@ -109,6 +120,16 @@ const GeneralRouter = () =>(
     
     <Route exact path = "/categories/property/" component = {Property_Items} /> {" "}
     <Route exact path = "/categories/property/:ItemDetailID/" component = {Property_Item_Detail} /> {" "}    
+
+    {/*Creatting Portals */}
+    <Route exact path = "/create/portal/" component = {Create_Post_Portal} /> {" "}   
+    <Route exact path = "/create/portal/electronics/" component = {Electronics_Item_Create} /> {" "} 
+
+
+    {/*Creatting Portals */}
+
+
+
 
     <Route exact path = "/make_order/" component = {Request_Order_url} /> {" "} 
      

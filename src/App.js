@@ -9,6 +9,8 @@ import './assets/payment.css'
 import './assets/logicstics.css'
 import './assets/inventory.css'
 import './assets/post_item_cards.css'
+import './assets/post_create.css'
+
 //import './assets/payplan.scss'
 
 //import './assets/sidebar.css'

@@ -7,10 +7,8 @@ import moment from 'moment';
 import Load_Comments from '../General/Comments'
 import CommentForm from '../containers/Comment_Form'
 
-import {Row, Col , Button , 
-    Carousel ,Skeleton, Switch,
-     Card, Avatar , Comment, Tooltip,
-      Form, Input, Rate , InputNumber, Tabs , notification } from 'antd';
+import {Button , 
+     Card, Avatar , Comment, Tooltip, Rate ,  Tabs , notification } from 'antd';
 
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 const { Meta } = Card; 

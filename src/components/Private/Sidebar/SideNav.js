@@ -66,14 +66,9 @@ export default function TemporaryDrawer() {
             Analysis
             </MenuItem>
 
-            <MenuItem component={Link} to="/user_post/" >
-              Uploads 
-            </MenuItem>
-
-            
 
             <MenuItem component={Link} to="/user_uploads/" >
-             All Uploads 
+              Uploads 
             </MenuItem>
 
 

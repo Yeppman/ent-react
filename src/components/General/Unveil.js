@@ -7,10 +7,8 @@ import {
 } from "antd";
 import {  ToolOutlined } from '@ant-design/icons';
 import axios from "axios";
-import Results from './Filter_results'
 
-import Posts from './Post_list'
-import uploaded_post from './Items'
+import { SnapList, SnapItem } from 'react-snaplist-carousel';
 
 //import Results from "./Results";
 
@@ -19,6 +17,26 @@ const Search = Input.Search;
 
 
 const host = 'http://127.0.0.1:8000'
+
+const MyItem = ({ children }) => (
+  <div className="category-box">
+                            <div 
+                             className="category-box-content">
+                                <div 
+                               
+                                className="category-box-content-icon">
+                                
+                                </div>
+                            </div>
+                            <div className="category-box-heading-section">
+                                <p
+                                
+                                 className="category-title">
+                                   3frnim
+                                </p>
+                            </div>
+        </div>  
+);
 
 class Enterprise_Showcase extends Component{
   search_url = 'http://127.0.0.1:8000/core_api/post_filter/'
@@ -49,10 +67,11 @@ class Enterprise_Showcase extends Component{
     window.location.replace(endpoint)
    }
    
-   Search_Products(e){
+   Search_Products(e,){
      e.preventDefault()
      const take = e.target.elements.searching_box.value;
-     
+     const endpoint = `/search/`
+    //window.location.replace(endpoint)
    }
 
   componentWillMount = ()=>{
@@ -145,6 +164,7 @@ class Enterprise_Showcase extends Component{
                     ))
                 }
                         
+                
               
             </div>
         </div>

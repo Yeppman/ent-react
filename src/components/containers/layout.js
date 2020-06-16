@@ -43,7 +43,7 @@ class CustomLayout extends Component{
             <ul className ="navblock">
               <li className ="navlist">
               <Link to="/">
-                Kayaki
+                Enterprise
               </Link>
               </li>
                <li className ="navlist">

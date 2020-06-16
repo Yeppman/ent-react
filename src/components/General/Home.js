@@ -87,15 +87,15 @@ class All_Uploads extends Component{
                 <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-4 xl:col-span-4">
                   <div className="">
                   <h3 className="intro_header">
-                      Welcome to  Kayaki <br/>
+                      Welcome to  Enterprise <br/>
                       
                   </h3>
                 <p className="intro_text">
-                       Kayaki is a virtual market place for small 
+                       Enterprise is a virtual market place for small 
                       and medium business owners. The advantage of the  marketplace
                       has to do with marketing and 
                     branding which have a compelling attraction to buyers and users.
-               Kayaki is to create a virtual market place for businesses and 
+               Enterprise is to create a virtual market place for businesses and 
               sustainably capturing data and insights on the Market
                       </p>
                   </div> 
@@ -118,7 +118,7 @@ class All_Uploads extends Component{
                         Our Aim
                     </h3>
                   <p className="intro_text2">
-                  Kayaki aims at providing a set of tools to develop and deepen
+                  Enterprise aims at providing a set of tools to develop and deepen
                    markets for micro/small and medium businesses, providing entrepreneurs 
                    across the sectors an opportunity to reach consumers –  boosting
                     brand names, sales, competitiveness and improving services
@@ -131,7 +131,7 @@ class All_Uploads extends Component{
                         Made for medium and small business
                     </h3>
                   <p className="intro_text2">
-                              Kayaki provides  aggregate solutions that Unlock Opportunities
+                              Enterprise provides  aggregate solutions that Unlock Opportunities
           for Small Businesses and delivers growth of their product and services
                     </p> 
                     </div>
@@ -178,7 +178,7 @@ class All_Uploads extends Component{
                 Branding
               </h5>
               <p class="mt-2 text- leading-6 text-gray-500">
-                Kayaki  helps brand business assuring growth for registered businesses 
+                Enterprise  helps brand business assuring growth for registered businesses 
                 on the platform
               </p>
             </div>
@@ -198,7 +198,7 @@ class All_Uploads extends Component{
               Content development
               </h5>
               <p class="mt-2 text- leading-6 text-gray-500">
-                 Kayaki comes with content development to enable 
+                 Enterprise comes with content development to enable 
                 growth for business registered on the platform
               </p>
             </div>
@@ -219,7 +219,7 @@ class All_Uploads extends Component{
               Digital marketing
               </h5>
               <p class="mt-2 text- leading-6 text-gray-500">
-                  The advantage of the Kayaki marketplace has to do with marketing
+                  The advantage of the Enterprise marketplace has to do with marketing
                   and branding which have a compelling attraction to buyers and users
               </p>
             </div>
@@ -240,7 +240,7 @@ class All_Uploads extends Component{
               Data and analytics
               </h5>
               <p class="mt-2 text- leading-6 text-gray-500">
-                Kayaki provides data and analytics for users
+                Enterprise provides data and analytics for users
                 to the  monitor growth of their products and services
               </p>
             </div>

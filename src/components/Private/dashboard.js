@@ -310,7 +310,7 @@ return (
                             </h3>
                         </div>
                           <div className="top-card-text">
-                          <a href={`/user_post`}>
+                          <a href={`/user_uploads`}>
                           View Your Post 
                           </a>
                           </div>

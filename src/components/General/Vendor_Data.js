@@ -13,7 +13,7 @@ const IconText = ({ icon, text }) => (
     </span>
   );
  
-const host = 'https://ent-react.vercel.app'
+const host = 'https://theebs.pythonanywhere.com'
 
 const vendor_post_url = host + `/vendors_post/`
 class Vendor_View extends Component{
@@ -27,7 +27,7 @@ class Vendor_View extends Component{
 
     vendor_id = this.props.match.params.VendorID
     Vendor_Post = async()=>{
-        axios.get(`https://ent-react.vercel.app/core_api/vendors_post/${this.vendor_id}/`)
+        axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_post/${this.vendor_id}/`)
         .then(res =>{
             this.setState({
                 vendor_post : res.data ,

@@ -19,7 +19,7 @@ const openNotification = (msg) => {
     });
   }
 
-const host = 'https://ent-react.vercel.app';
+const host = 'https://theebs.pythonanywhere.com';
 const users_uploads_endpoint = host + `/retail/all_uploads/`
 const Post_Array = new Array()
 class User_Posts_Items extends Component {

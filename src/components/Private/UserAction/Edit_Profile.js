@@ -77,7 +77,7 @@ class Profile_Edit extends Component{
 
               axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
               axios.defaults.xsrfCookieName = "csrftoken";
-              axios.post(`https://ent-react.vercel.app/stream/edit_profile/`,fd, {
+              axios.post(`https://theebs.pythonanywhere.com/stream/edit_profile/`,fd, {
                 headers : {
                   "Content-Type": "multitype/form-data",
                   Authorization: `Token ${this.props.token}`

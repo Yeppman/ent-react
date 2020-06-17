@@ -13,10 +13,10 @@ import axios from "axios";
 //import Results from "./Results";
 
 
-const host = 'https://ent-react.vercel.app'
+const host = 'https://theebs.pythonanywhere.com'
 
 class Enterprise_Showcase extends Component{
-  search_url = 'https://ent-react.vercel.app/core_api/post_filter/'
+  search_url = 'https://theebs.pythonanywhere.com/core_api/post_filter/'
   state = {
     results: [],
     loading: false,

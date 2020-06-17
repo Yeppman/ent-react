@@ -5,7 +5,7 @@ import { Form,Select, Input} from 'antd';
 import Query_Results from '../../Queried_Results'
 
 
-const host = 'https://ent-react.vercel.app'
+const host = 'https://theebs.pythonanywhere.com'
 class Jobs_Items extends Component{
     state = {
         items : [],

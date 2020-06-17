@@ -19,7 +19,7 @@ const { Option } = Select;
 
 
 
-const host = 'https://ent-react.vercel.app';
+const host = 'https://theebs.pythonanywhere.com';
 const slug = 'services'
 
 const Brands = ['LG','Samsung','Sony', 'Hi-Sense']

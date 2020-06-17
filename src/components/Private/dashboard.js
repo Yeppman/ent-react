@@ -10,13 +10,13 @@ import {notification,message} from 'antd'
 import TemporaryDrawer from './Sidebar/SideNav'
 import { getMembership } from '../../store/actions/membership';
 
-const Profile_id_url  = 'https://ent-react.vercel.app/stream/get_profile_id/'
-const Profile_url = 'https://ent-react.vercel.app/stream/profile_view/'
-const UserMembership_url  = 'https://ent-react.vercel.app/stream/user_membership' 
-const Membership_url = 'https://ent-react.vercel.app/stream/list_membership'
-const Post_Analytics_url = 'https://ent-react.vercel.app/analytics/rankings/'
+const Profile_id_url  = 'https://theebs.pythonanywhere.com/stream/get_profile_id/'
+const Profile_url = 'https://theebs.pythonanywhere.com/stream/profile_view/'
+const UserMembership_url  = 'https://theebs.pythonanywhere.com/stream/user_membership' 
+const Membership_url = 'https://theebs.pythonanywhere.com/stream/list_membership'
+const Post_Analytics_url = 'https://theebs.pythonanywhere.com/analytics/rankings/'
 
-const UserPost_url = 'https://ent-react.vercel.app/stream/view_post/'
+const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
 
 const openNotification = (msg) => {
   notification.open({
@@ -92,7 +92,7 @@ class ProfileDashboard extends Component {
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://ent-react.vercel.app/stream/profile_view/${profile_id}/`)
+          axios.get(`https://theebs.pythonanywhere.com/stream/profile_view/${profile_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data

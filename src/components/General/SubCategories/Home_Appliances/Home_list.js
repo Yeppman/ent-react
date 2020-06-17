@@ -17,7 +17,7 @@ import uploaded_post from '../../Items'
 const Search = Input.Search;
 const { Option } = Select;
 
-const host = 'https://ent-react.vercel.app';
+const host = 'https://theebs.pythonanywhere.com';
 const slug = 'home_applicances'
 
 const Brands = ['LG','Samsung','Sony', 'Hi-Sense']

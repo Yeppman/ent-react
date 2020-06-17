@@ -30,7 +30,7 @@ class Logicstics_Details extends React.Component{
             "Content-Type": "application/json",
             Authorization: `Token ${token}`
           };
-        axios.get(`https://ent-react.vercel.app/management/view_channel_content/${this.order_id}/`)
+        axios.get(`https://theebs.pythonanywhere.com/management/view_channel_content/${this.order_id}/`)
         .then(res =>{
            this.setState({
                order_contents: res.data,
@@ -47,7 +47,7 @@ class Logicstics_Details extends React.Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-      await axios.post(`https://ent-react.vercel.app/management/change_delivery_status/${this.order_id}/`)  
+      await axios.post(`https://theebs.pythonanywhere.com/management/change_delivery_status/${this.order_id}/`)  
       .then(res =>{
         openNotification(res.data['Message'])
       })
@@ -59,7 +59,7 @@ class Logicstics_Details extends React.Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-      await axios.post(`https://ent-react.vercel.app/management/delete_logicstics/${this.order_id}/`)
+      await axios.post(`https://theebs.pythonanywhere.com/management/delete_logicstics/${this.order_id}/`)
       .then(res =>{
           openNotification(res.data['Message'])
       })

@@ -10,7 +10,7 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined  , UploadOutlined } fro
 import renderEmpty from "antd/lib/config-provider/renderEmpty";
 const { Meta } = Card; 
 
-const Quotes_url = 'https://ent-react.vercel.app/stream/quotes_list/'
+const Quotes_url = 'https://theebs.pythonanywhere.com/stream/quotes_list/'
 class Quotes_listing extends Component{
     state = {
         list: [] ,

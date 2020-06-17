@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'https://ent-react.vercel.app/stream/view_post/'
+const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -23,7 +23,7 @@ const IconText = ({ icon, text }) => (
   </span>
 );
 
-const host = 'https://ent-react.vercel.app'
+const host = 'https://theebs.pythonanywhere.com'
 
 
 class HomeApp_Item_Create extends Component{

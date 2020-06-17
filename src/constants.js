@@ -1,4 +1,4 @@
-const localhost = "https://ent-react.vercel.app";
+const localhost = "https://theebs.pythonanywhere.com";
 //const localhost = "https://tradeprev.pythonanywhere.com";
 const apiURL = "/api";
 

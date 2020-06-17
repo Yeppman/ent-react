@@ -4,7 +4,7 @@ import * as actionTypes from "./actionTypes";
 
 
 import {notification , message} from 'antd'
-const UserMembership_url  = 'https://ent-react.vercel.app/stream/user_membership/' 
+const UserMembership_url  = 'https://theebs.pythonanywhere.com/stream/user_membership/' 
 
 
 export const getMembershipStart = () => {

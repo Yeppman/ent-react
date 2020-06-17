@@ -21,7 +21,7 @@ class Message_Contact extends Component{
             "Content-Type": "application/json",
             Authorization: `Token ${token}`
           };
-        await axios.get(`https://ent-react.vercel.app/management/contact_detail/${this.contact_id}/`)
+        await axios.get(`https://theebs.pythonanywhere.com/management/contact_detail/${this.contact_id}/`)
         .then(res =>{
             this.setState(
                 {
@@ -69,7 +69,7 @@ class Message_Contact extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`https://ent-react.vercel.app/management/broadcast/`,
+              axios.get(`https://theebs.pythonanywhere.com/management/broadcast/`,
                {
                 params: {
                    Heading, Email ,  Phone ,Message

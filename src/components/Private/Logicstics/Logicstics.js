@@ -67,7 +67,7 @@ class Logicstics_Channel extends Component{
                "Content-Type": "application/json",
                Authorization: `Token ${token}`
              };
-          axios.get('https://theebs.pythonanywhere.com/management/view_logicstics/')
+          axios.get('http://127.0.0.1:8000/management/view_logicstics/')
           .then(res =>{
                this.setState({
                     channels : res.data
@@ -84,7 +84,7 @@ class Logicstics_Channel extends Component{
                "Content-Type": "application/json",
                Authorization: `Token ${token}`
              }
-          await axios.get(`https://theebs.pythonanywhere.com/management/order_counter/`)
+          await axios.get(`http://127.0.0.1:8000/management/order_counter/`)
           .then(res =>{
                this.setState({
                     delivered : res.data.Delivered,
@@ -100,7 +100,7 @@ class Logicstics_Channel extends Component{
             "Content-Type": "application/json",
             Authorization: `Token ${this.props.token}`
           };
-          await axios.post(`https://theebs.pythonanywhere.com/management/delete_logicstics/${order_id}/`)
+          await axios.post(`http://127.0.0.1:8000/management/delete_logicstics/${order_id}/`)
           .then(res =>{
               openNotification(res.data['Message'])
           })
@@ -184,47 +184,26 @@ class Logicstics_Channel extends Component{
                       </div>
                   </div> 
 
-                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                      <div className="top-card">
-                          
-                      <div className="top-card-title">
-                          <h3 className="top-card-title">
-                            Create A Order
-                          </h3>
-                      </div>
-                        <div className="top-card-text">
-                              <Link to="/create_order">
-                                   New Order
-                              </Link>
-                        </div>
-                      </div>
-                  </div> 
+                 
 
             </div>
             </div>
 
 
-                       
-
-               <div className="container mx-auto">
-                         <div className="grid grid-cols-6">
-                         <h3 style={{fontSize:30}}>
-                              Orders
-                         </h3>
-                         </div>
+            <div className="container">
+                    <div className="grid grid-cols-8 gap-4">
                     {
                          
                          channels.map((c)=>(
-                              <div className="col-span-3 sm:col-span-3 md:col-span-3
-                               lg:col-span-2 xl:col-span-2">
+                              <div className=" col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-4 xl:col-span-4">
                          <div className="orders-card">
                               <div className="card-container">
 
-                              <div className="">
+                              <div className="card-text">
                                      Order ID:   {c.Order_id}
                                    </div>
 
-                                   <div className="">
+                                   <div className="card-text">
                                      Client Name:   {c.Client_Name}
                                    </div>
                                    <div className="card-text">
@@ -233,11 +212,24 @@ class Logicstics_Channel extends Component{
                                    <div className="card-text">
                                      Location :{c.Client_Adress}
                                    </div>
-                                  
+
+                                   <div className="card-text">
+                                     {
+                                          c.Delivered?(
+                                               <p>
+                                               Success
+                                               </p>
+                                          ):(
+                                               <p>
+                                                    Pending
+                                               </p>
+                                          )
+                                     }
+                                   </div>
                                    
                                    <div className="grid grid-cols-4">
                                    <div className ="col-span-2">
-                                        <a class="card-button_view" 
+                                        <a class="open-button_view" 
                                         href={`/view_order/${c.id}`}>
                                         Open
                                         <FontAwesomeIcon icon={faBoxOpen} />
@@ -245,7 +237,7 @@ class Logicstics_Channel extends Component{
                                    </div>
                                    <div className="col-span-2">
                                        
-                                        <a class="card-button_view" onClick={()=>{this.delete_order(c.id)}}>
+                                        <a class="delete-button_view" onClick={()=>{this.delete_order(c.id)}}>
                                         Delete
                                         <FontAwesomeIcon icon={faTrash} />
                                         </a>
@@ -257,8 +249,10 @@ class Logicstics_Channel extends Component{
                     </div>
                          ))
                     }
-               </div> 
+                    </div>
+                </div>
 
+             
             </>
                   ):
                   (

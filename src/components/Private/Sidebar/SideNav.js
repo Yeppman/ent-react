@@ -68,7 +68,7 @@ export default function TemporaryDrawer() {
 
 
             <MenuItem component={Link} to="/user_uploads/" >
-              Uploads 
+              Products 
             </MenuItem>
 
 
@@ -83,7 +83,7 @@ export default function TemporaryDrawer() {
             </MenuItem>
 
             <MenuItem component={Link} to="/contacts/">
-            Customer Management
+            Email Marketing
             </MenuItem>
             
           </MenuList>

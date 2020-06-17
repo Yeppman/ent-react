@@ -3,7 +3,7 @@ import {Rate} from 'antd'
 //import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios'
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'http://127.0.0.1:8000'
 
 class Create_Post_Portal extends Component{
     state ={
@@ -22,9 +22,9 @@ class Create_Post_Portal extends Component{
                 });  
        };
 
-    redirect_page=(create_slug)=>{
+    redirect_page=(create_slug, category_id)=>{
     
-        const endpoint = `/create/portal/${create_slug}/`
+        const endpoint = `/create/portal/${create_slug}/${category_id}/`
         window.location.replace(endpoint)
        }
        
@@ -58,7 +58,7 @@ class Create_Post_Portal extends Component{
                                         <div className="create-post-box-content-icon">
                                         </div>
                                         <div className="create-post-box-title">
-                                        <p onClick={()=>{this.redirect_page(c.CategoryKey)}}>
+                                        <p onClick={()=>{this.redirect_page(c.CategoryKey, c.id)}}>
                                         {c.CategoryName}
                                         </p>
                                             

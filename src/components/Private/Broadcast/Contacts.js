@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom';
-import {Row, Statistic,Col ,Calendar , List, Avatar ,Rate,Input ,
-     Spin ,Card , Form, Button ,Select, notification } from 'antd';
+import {Input , Form, Button ,Select, notification } from 'antd';
 
-import { MessageOutlined, LikeOutlined, StarOutlined, LoadingOutlined , ArrowUpOutlined, ArrowDownOutlined,
-     EditOutlined, EllipsisOutlined, SettingOutlined ,FolderOpenOutlined } from '@ant-design/icons'
-import {Bar} from 'react-chartjs-2';
 
 import axios from "axios";
 import { connect } from "react-redux";
 
 import TemporaryDrawer from '../Sidebar/SideNav'
-import { faTrash, faMailBulk,faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+
+
+import { faTrash, faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const {Meta} = Card
-const Search = Input.Search;
-const { Option } = Select; 
+const { Option } = Select;
+const { TextArea } = Input; 
+
+const formItemLayout = {
+  wrapperCol: { span: 12, offset: 6 }
+};
+
+
 class Contact_Field extends Component{
     state = {
         contacts : [],
@@ -31,7 +34,7 @@ class Contact_Field extends Component{
                 "Content-Type": "application/json",
                 Authorization: `Token ${token}`
               };
-        await axios.get('https://theebs.pythonanywhere.com/management/contact_list/')
+        await axios.get('http://127.0.0.1:8000/management/contact_list/')
         .then(res =>{
             this.setState({
                 contacts : res.data,
@@ -47,7 +50,7 @@ class Contact_Field extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-        await axios.get(`https://theebs.pythonanywhere.com/management/delete_contact/${id}/`)
+        await axios.get(`http://127.0.0.1:8000/management/delete_contact/${id}/`)
         .then(res =>{
           this.openNotification(res.data['Message'])
         })
@@ -63,6 +66,51 @@ class Contact_Field extends Component{
           },
         });
       }
+
+      Mail_Clients = (values,err) =>{
+
+        const Heading =  
+             values["Heading"] === undefined ? null : values["Heading"] ;
+        const Contacts = 
+             values['Contacts'] === undefined ? null : values['Contacts'] ;
+       
+         const Phone = 
+           values['Phone'] === undefined ? null : values['Phone'] ;
+           const Message = 
+           values['Mail_Message'] === undefined ? null : values['Mail_Message'] ; 
+        const Email = String(Contacts)
+        console.log(Email, Phone)
+     
+           this.setState({
+             loading: false
+           });
+     
+           if(!err){
+             axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+         axios.defaults.xsrfCookieName = "csrftoken";
+             axios.defaults.headers = {
+               "Content-Type": "application/json",
+               Authorization: `Token ${this.props.token}`
+             };
+             
+             axios.get(`http://127.0.0.1:8000/management/broadcast/`,
+              {
+               params: {
+                  Heading,  Phone ,Message, Email
+                 
+               }
+             }).then(res =>{
+                 console.log(res.data)
+                 const take_response = res.data['Message']
+                 this.openNotification(take_response)            
+             }).catch(e =>{
+                 console.log(e)
+             })
+           }
+           
+           //process query contents ends here
+       }
+   
 
     process_query = (values,err) =>{
 
@@ -92,7 +140,7 @@ class Contact_Field extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`https://theebs.pythonanywhere.com/management/save_contact/`,
+              axios.get(`http://127.0.0.1:8000/management/save_contact/`,
                {
                 params: {
                    Name, Email ,  Phone ,Address
@@ -133,11 +181,10 @@ class Contact_Field extends Component{
             <>
 
               <TemporaryDrawer />
-            
-                <div className="container">
-            <div className="grid grid-cols-6">
-            
-                    <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+
+                    <div className="container">
+                        <div className="grid grid-cols-12 gap-3">
+                        <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
                           <div className="base-card">
 
                         <table>
@@ -145,10 +192,7 @@ class Contact_Field extends Component{
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th> Address </th>
-                                <th>City</th>
-                                <th>Country</th>
-                                <th>Message</th>
+
                                 <th>Remove</th>
                                 </tr>
                                 {
@@ -157,15 +201,8 @@ class Contact_Field extends Component{
                                 <td>{i.ClientName}</td>
                                 <td>{i.ClientEmail}</td>
                                 <td>{i.ClientPhone}</td>
-                                <td>{i.ClientAdress}</td>
-                                <td> {i.City}</td>
-                                <td>{i.Country} </td>
-                                <td> 
-                                <Link to={`/message_contact/${i.id}`}>
                                 
-                                  <FontAwesomeIcon icon={faMailBulk} />
-                                </Link>
-                                </td>
+                               
                                 <td>
                                 <p onClick={()=>{this.delete_contact(i.id)}}>
                                     <FontAwesomeIcon icon={faTrash} />
@@ -180,14 +217,9 @@ class Contact_Field extends Component{
                         </div>
                     </div>
 
-            </div>
-              </div>
-
-                    <div className="container">
-                      <div className="grid grid-cols-6 gap-3">
-                      <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-2  xl:col-span-2">
+                      <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-6  xl:col-span-6">
                             
-                            <div className="base-card">
+                            <div className="">
                             <Form  onFinish={this.process_query}>
                                 <Form.Item>
                                 <h1 className="ant-form-text">Create Contact</h1>
@@ -198,70 +230,26 @@ class Contact_Field extends Component{
                                 
                                     <Input
                                     placeholder="Client Name"
-                                    
+                                     
                                     enterButton
                                     />
                                 
                                 </Form.Item>
                                 <Form.Item name ='Email'> 
-                                
                                     <Input
                                     placeholder="Email"
-                                    
                                     enterButton
                                     />
-                                
                                 </Form.Item>
     
                                 <Form.Item name ='Phone'> 
-                                
                                     <Input
                                     placeholder="Phone Number"
-                                    
                                     enterButton
                                     />
-                                
                                 </Form.Item>
                                 
-                                
-                                <Form.Item name ='Address'>                           
-                                <Input
-                                placeholder="Address"
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-    
-                        
-    
-                            <Form.Item name = "City">
-                                    <Select placeholder ="select a location">
-                                    <Option value="Sport">Lagos</Option>
-                                    <Option value="Sport">Calabar</Option>
-                                    <Option value="Sport">Uyo</Option>
-                                    </Select>
-                            </Form.Item>
-                            
-                            <Form.Item name ='Country'> 
-                                
-                                <Input
-                                placeholder="Country"
-                                
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-    
-                            <Form.Item name ='Code'> 
-                                
-                                <Input
-                                placeholder="Postal Code"
-                                
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-                            
+                       
                             <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
                                 <Button type="primary" htmlType="submit">
                                     Submit
@@ -275,6 +263,105 @@ class Contact_Field extends Component{
                             </div>
                       </div>
                     </div>
+
+
+                    <div className="container">
+              <div className="grid grid-cols-6">
+                <div className="login-section col-span-6 
+                sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
+
+                  <h4 
+                  style={{fontSize:20}}
+                  className="text-center">
+                    Send Mail
+                  </h4>
+
+               <Form 
+               
+               onFinish={this.Mail_Clients}>
+              
+
+                <Form.Item name="Contacts">
+                <Select
+                  mode="multiple"
+                      style={{ width: '100%' }}
+                      placeholder="Select Email Recipients"
+                    
+                      optionLabelProp="label"
+                    >
+                  {
+                    contacts.map((c)=>(
+                      <Option value={c.id} label={c.ClientEmail}>
+                    <div className="demo-option-label-item">
+                      <span role="img" aria-label="China">
+                        🇨🇳
+                      </span>
+                      {c.ClientEmail}
+                    </div>
+                      </Option>
+                        ))
+                      }
+                </Select>
+                </Form.Item>
+
+                <Form.Item name="Phone">
+                <Select
+                  mode="multiple"
+                      style={{ width: '100%' }}
+                      placeholder="Select Phone Recipients"
+                     
+                      optionLabelProp="label"
+                    >
+                  {
+                    contacts.map((c)=>(
+                      <Option value={c.id} label={c.ClientPhone}>
+                    <div className="demo-option-label-item">
+                      <span role="img" aria-label="China">
+                      <FontAwesomeIcon icon={faMailBulk} />
+                      </span>
+                      {c.ClientPhone}
+                    </div>
+                      </Option>
+                        ))
+                      }
+                </Select>
+                </Form.Item>
+
+                <Form.Item name ="Heading">
+                                
+                      <Input
+                      placeholder="Heading"
+                      enterButton
+                      />
+                  
+                  </Form.Item>
+
+                  <Form.Item
+                        rules={[{ required: true }]}
+                        name="Mail_Message">
+                      <TextArea 
+                      placeholder ="Your text here"
+                      rows={4} />
+                      
+                    </Form.Item>
+                      
+                    <Form.Item >
+                          <button
+                            class="login-button"
+                          htmlType="submit">
+                            Send
+                          </button>
+                        </Form.Item>
+
+               </Form>
+                </div>
+
+                <div className="login-section col-span-6 
+                sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                </div>        
+                      </div>
+
+          </div>
                 
 
             </>

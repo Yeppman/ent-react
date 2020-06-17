@@ -5,11 +5,11 @@ table {
   }
   
   td, th {
-    border: 1px solid #fff9f9;
+    border: 0px solid ;
     text-align: left;
     padding: 8px;
   }
   
   tr:nth-child(even) {
-    background-color: #fff4f4;
+    background-color: #F3F3F3;
   }

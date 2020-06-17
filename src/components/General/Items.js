@@ -4,24 +4,7 @@ import React , { useState, Component }from 'react';
 import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom';
 
-import { List, Avatar, Space , Input, Rate} from 'antd';
-
-  
-const IconText = ({ icon, text }) => (
-  <span>
-    {React.createElement(icon, { style: { marginRight: 8 } })}
-    {text}
-  </span>
-);
-
-const formItemLayout = {
-  wrapperCol: { span: 12, offset: 6 }
-};
-
-const category_url = 'https://theebs.pythonanywhere.com/core_api/category_list/'
-const post_list_url = 'https://theebs.pythonanywhere.com/core_api/post_list/'
-const { Search } = Input;
-
+import {  Rate} from 'antd';
     
 const Uploaded_Post = props =>{
   const items_props = props.Items

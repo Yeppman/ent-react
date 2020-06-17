@@ -19,7 +19,7 @@ const { Option } = Select;
 
 
 
-const host = 'https://theebs.pythonanywhere.com';
+const host = 'http://127.0.0.1:8000';
 const slug = 'fashion'
 
 const Brands = ['Gucci','D&G','Fendi']

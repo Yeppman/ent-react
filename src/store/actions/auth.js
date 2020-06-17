@@ -31,8 +31,9 @@ export const authFail = error => {
 
 export const logout = () => {
   localStorage.removeItem("user");
-  //this.props.history.push('login')
-  message.success('Logout successfull')
+  
+  //message.success('Logout successfull')
+  //window.location.replace('/login')
   return {
     type: actionTypes.AUTH_LOGOUT
   };
@@ -50,7 +51,7 @@ export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("https://theebs.pythonanywhere.com/rest-auth/login/", {
+      .post("http://127.0.0.1:8000/rest-auth/login/", {
         username: username,
         password: password
       })
@@ -91,7 +92,7 @@ export const authSignup = (
       is_seller: !is_buyer
     };
     axios
-      .post("https://theebs.pythonanywhere.com/rest-auth/registration/", user)
+      .post("http://127.0.0.1:8000/rest-auth/registration/", user)
       .then(res => {
         const user = {
           token: res.data.key,

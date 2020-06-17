@@ -4,6 +4,8 @@ import { Route } from "react-router";
 import All_Uploads from './components/General/Home'
 import All_Post from './components/General/Market'
 import Enterprise_Showcase from './components/General/Unveil'
+import Basic_Query from './components/General/Simple_Query'
+
 import Search_Results from './components/General/Results'
 
 import PostDetail from './components/General/Post_detail'
@@ -97,6 +99,9 @@ const GeneralRouter = () =>(
     <Route exact path="/" component={All_Uploads} />{" "}
     <Route exact path="/market/" component={All_Post} />{" "}
     <Route exact path="/showcase/" component={Enterprise_Showcase} />{" "}
+    
+    <Route exact path="/search_query/:Title/" component={Basic_Query} />{" "}
+
     <Route exact path="/search/:Title/" component={Search_Results} />{" "}
     <Route exact path = "/services_list" component = {Category_Links} /> {" "}
 
@@ -123,7 +128,7 @@ const GeneralRouter = () =>(
 
     {/*Creatting Portals */}
     <Route exact path = "/create/portal/" component = {Create_Post_Portal} /> {" "}   
-    <Route exact path = "/create/portal/electronics/" component = {Electronics_Item_Create} /> {" "} 
+    <Route exact path = "/create/portal/electronics/:categoryID/" component = {Electronics_Item_Create} /> {" "} 
 
 
     {/*Creatting Portals */}
@@ -135,7 +140,8 @@ const GeneralRouter = () =>(
      
     <Route exact path = "/filter_post" component = {Filter_Post_Form} /> {" "}
     <Route exact path = "/Vendor_Profile/:VendorID/" component = {Vendor_View} /> {" "}
-
+    
+    {/*Dashboard Portals */}
     <Route exact path = "/dashboard/" component = {AdminLayout} />{""}
     <Route exact path = "/profile/" component = {User_Profile} />{""}
 
@@ -153,7 +159,7 @@ const GeneralRouter = () =>(
 
     <Route exact path = "/vendor_quotes/" component = {Quotes_listing} />{""}
     <Route exact path = "/membership_select/" component ={Membership_Select} /> {""}
-
+     {/*Dashboard Portals */}
 
     <Route exact path = "/logicstics/" component ={Logicstics_Channel} /> {""}
     <Route exact path = "/create_order/" component ={Create_New_Order} /> {""}

@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
+const UserPost_url = 'http://127.0.0.1:8000/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -23,8 +23,30 @@ const IconText = ({ icon, text }) => (
   </span>
 );
 
-const host = 'https://theebs.pythonanywhere.com'
+const formItemLayout = {
+  wrapperCol: { span: 12, offset: 6 }
+};
 
+
+const openNotification = (msg) => {
+  notification.open({
+    message: 'Alert!',
+    description:msg,
+    onClick: () => {
+      console.log('Notification Clicked!');
+    },
+  });
+}
+
+
+const Electronic_Category = ['Audio','Video']
+//const  Electronic_Type = ['']
+const Color = ['Blue','Black', 'Red']
+const Size = ['Large','Medium','Small']
+const Brand = ['Hi-Sense', 'O`Riely', 'LG', 'Samsung']
+const Condition = ['New', 'Foriegn Used']
+
+const host = 'http://127.0.0.1:8000'
 
 class Electronics_Item_Create extends Component{
     state = {
@@ -40,24 +62,44 @@ class Electronics_Item_Create extends Component{
         Description : '',
         Location : '',
         Price : '',
-        The_Image_1:'',
+        Image_Post:'',
     }
+
+    handleImageChange = (e) => {
+      this.setState({
+        Image_Post: e.target.files[0]
+      })
+    };
+
+    Category_ID= this.props.match.params.categoryID
 
     Create_Query = async(values, err)=>{
         const Title =  
           values["Title"] === undefined ? null : values["Title"] ;
-        const Category =  
-          values["Category"] === undefined ? null : values["Category"] ; 
+        const Category = parseInt(this.Category_ID)
         const Price =  
           values["Price"] === undefined ? null : values["Price"] ; 
         const Location = 
            values["Location"] === undefined ? null : values["Location"] ; 
         const Description =
           values["Description"] === undefined ? null : values["Description"] ;
+      const  Color =
+          values["Color"] === undefined ? null : values["Color"] ;
+        const  Brand =
+          values["Brand"] === undefined ? null : values["Brand"] ;
+        const  Size =
+          values["Size"] === undefined ? null : values["Size"] ;
+       const  State =
+          values["State"] === undefined ? null : values["State"] ;
+      const  Country =
+          values["Country"] === undefined ? null : values["Country"] ;
+          
+       const  Electronic_Category =
+          values["Electronic_Category"] === undefined ? null : values["Electronic_Category"] ;
+
         
-  
           const Original_User_id = this.state.Owner
-          const Original_form_image = this.state.The_Image_1
+          const Image_Post = this.state.Image_Post
           //Assigns New Form Data
           let form_data =  new FormData()
           form_data.append('Title',Title);
@@ -65,15 +107,25 @@ class Electronics_Item_Create extends Component{
           form_data.append('Description',Description);
           form_data.append('Location',Location);
           form_data.append('Price', Price);
-          form_data.append('Owner', Original_User_id);
-          form_data.append('Image_Post',Original_form_image);
+          //form_data.append('Owner', Original_User_id);
+          form_data.append('Electronic_Category', Electronic_Category)
+
+          form_data.append('Image_Post',Image_Post);
+          form_data.append('Color',Color);
+          form_data.append('Brand',Brand);
+          form_data.append('Size',Size);
+          form_data.append('Condition',Condition);
+
+          form_data.append('Country',Country)
+          form_data.append('State', State)
+
   
           
               axios.defaults.headers = {
                 "Content-Type": "multitype/form-data",
                 Authorization: `Token ${this.props.token}`
               };
-            const upload_url= host + `/retail/create_property/`
+            const upload_url= host + `/retail/create_electronics/`
             axios.post(upload_url,form_data, {
               headers : {
                 "Content-Type": "multitype/form-data",
@@ -81,9 +133,11 @@ class Electronics_Item_Create extends Component{
               }
             } )
             .then(res =>{
-                console.log(res.data)
-                const take_response = res.data['Message']
-                this.openNotification(take_response)            
+                if (res.status == 200){
+                  console.log(res.data)
+                  const take_response = res.data['Message']
+                  openNotification(take_response)     
+                }  
             })
             .catch(e =>{
                 console.log(e)
@@ -104,15 +158,27 @@ class Electronics_Item_Create extends Component{
             }
   
             render(){
-                const {user_post, loading, error, categories ,Title, Price,Location,Description,The_Image_1 } = this.state
+                const {user_post, loading, error, categories ,Title, Price,Location,Description,Image_Post } = this.state
                 return(
                     <>
                     <div className ="container mx-auto">
-                    <div className = "grid grid-cols-10">
+                    <div className = "grid grid-cols-6">
 
-                    <div className="col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-3 xl:col-span-3">
-                    <div className="base-card">
-                        <Form  onFinish={this.Create_Query}>
+                    <div className="login-section col-span-6 
+                sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                    <h4 
+                      style={{fontSize:30}}
+                    className="text-center">
+                      Create A New Product
+                    </h4>
+                </div>
+
+                    <div className="login-section col-span-6 
+                sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                    <div className="">
+                        <Form 
+                        {...formItemLayout}
+                         onFinish={this.Create_Query}>
                             
                 
                             <Form.Item 
@@ -120,22 +186,42 @@ class Electronics_Item_Create extends Component{
                             name ="Title">
                             
                                 <Input
-                                placeholder="Product or Service name"
+                                placeholder="Product Name"
                                 enterButton
                                 />
                             
                             </Form.Item>
 
-                            <Form.Item
+                            
+                            <Form.Item 
                              rules={[{ required: true }]}
-                             name ="Category" >
+                            name ='Price'> 
+                            
+                                <Input
+                                value={Price}
+                                placeholder="Price" 
+                                enterButton
+                                />
+                            
+                            </Form.Item>
+
+
+                            <Form.Item 
+                             rules={[{ required: true }]}
+                            name="Description">
+                          <TextArea 
+                            placeholder="Description" rows={4} />
+                          </Form.Item>
+
+                          <Form.Item
+                             rules={[{ required: true }]}
+                             name ="Electronic_Category" >
                                 
-                                <Select placeholder="Select a category">
+                                <Select placeholder="Select Electronic Category ">
                                 {
-                                  categories.map((c)=>(
+                                  Electronic_Category.map((c)=>(
                                     <Option 
-                                    onChange={this.handleChange}
-                                    value={c.id}>{c.CategoryName}</Option>
+                                    value={c}>{c}</Option>
                                   ))
                               }
                               
@@ -143,26 +229,71 @@ class Electronics_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
+                            <Form.Item
                              rules={[{ required: true }]}
-                            name="Description">
-                          <TextArea onChange={this.handleChange}
-                            placeholder="Description" rows={4} />
-                          </Form.Item>
-
+                             name ="Color" >
+                                
+                                <Select placeholder="Select Color">
+                                {
+                                  Color.map((c)=>(
+                                    <Option 
+                                    value={c}>{c}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
 
                             <Form.Item
                              rules={[{ required: true }]}
-                             
-                             name ='Location' hasFeedback>
+                             name ="Size" >
                                 
-                                <Select placeholder="Select a Location">
-                                <Option value="Lagos">Nigeria</Option>
-                                <Option   value="Ibadan">Ghana</Option>
-                                <Option  value="Osun">Cameroon</Option>
-                                </Select>
+                                <Select placeholder="Select Size ">
+                                {
+                                  Size.map((c)=>(
+                                    <Option 
+                                    value={c}>{c}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
                               
                             </Form.Item>
+
+                            <Form.Item
+                             rules={[{ required: true }]}
+                             name ="Brand" >
+                                
+                                <Select placeholder="Select Brand">
+                                {
+                                  Brand.map((c)=>(
+                                    <Option 
+                                    value={c}>{c}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
+
+                            <Form.Item
+                             rules={[{ required: true }]}
+                             name ="Condition" >
+                                
+                                <Select placeholder="Select Condition">
+                                {
+                                  Condition.map((c)=>(
+                                    <Option 
+                                    value={c}>{c}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
+
+                            
 
                             <Form.Item
                              rules={[{ required: true }]}
@@ -182,7 +313,7 @@ class Electronics_Item_Create extends Component{
                              
                              name ='Country' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Selec Country">
                                 <Option value="Lagos">Nigeria</Option>
                                 <Option   value="Ibadan">Ghana</Option>
                                 <Option  value="Osun">Cameroon</Option>
@@ -190,73 +321,38 @@ class Electronics_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Address'> 
-                            
-                                <Input
-                                placeholder="Address" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Land_Area'> 
-                            
-                                <Input
-                                placeholder="Land Are" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-                          
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Price'> 
-                            
-                                <Input
-                                value={Price}
-                                onChange={this.handleChange}
-                                placeholder="Price" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-                        
                             <Form.Item
                              rules={[{ required: true }]}
-                             
-                             name ='Bathrooms' hasFeedback>
-                                
-                                <Select placeholder="How Many Bathroona">
-                                <Option value="0">0</Option>
-                                <Option   value="1">1</Option>
-                                <Option  value="2">2</Option>
-                                <Option  value="3">3</Option>
-                                </Select>
+                             name ='Location' hasFeedback>
+
+                               <Input
+                                placeholder="Location"
+                                enterButton
+                                />
                               
                             </Form.Item>
 
+
                           <Form.Item 
                            rules={[{ required: true }]}
-                          name="Post_Image1">
+                          name="Image_Post">
 
                           <Input  type="file"
-                          value = {The_Image_1}
-                         
+                          value = {Image_Post}
+                            onChange={this.handleImageChange}
                           name="Post_Image1" />
 
                           </Form.Item>
 
                          
 
-                        <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-                            <Button type="primary" htmlType="submit">
-                                Submit
-                            </Button>
-                            </Form.Item>
+                          <Form.Item >
+                          <button
+                            class="login-button"
+                          htmlType="submit">
+                            Create
+                          </button>
+                        </Form.Item>
 
                        </Form>
                     

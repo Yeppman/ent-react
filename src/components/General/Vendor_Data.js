@@ -13,7 +13,7 @@ const IconText = ({ icon, text }) => (
     </span>
   );
  
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'http://127.0.0.1:8000'
 
 const vendor_post_url = host + `/vendors_post/`
 class Vendor_View extends Component{
@@ -27,7 +27,7 @@ class Vendor_View extends Component{
 
     vendor_id = this.props.match.params.VendorID
     Vendor_Post = async()=>{
-        axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_post/${this.vendor_id}/`)
+        axios.get(`http://127.0.0.1:8000/core_api/vendors_post/${this.vendor_id}/`)
         .then(res =>{
             this.setState({
                 vendor_post : res.data ,

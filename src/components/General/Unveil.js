@@ -8,38 +8,15 @@ import {
 import {  ToolOutlined } from '@ant-design/icons';
 import axios from "axios";
 
-import { SnapList, SnapItem } from 'react-snaplist-carousel';
+//import { SnapList, SnapItem } from 'react-snaplist-carousel';
 
 //import Results from "./Results";
 
-const Search = Input.Search;
 
-
-
-const host = 'https://theebs.pythonanywhere.com'
-
-const MyItem = ({ children }) => (
-  <div className="category-box">
-                            <div 
-                             className="category-box-content">
-                                <div 
-                               
-                                className="category-box-content-icon">
-                                
-                                </div>
-                            </div>
-                            <div className="category-box-heading-section">
-                                <p
-                                
-                                 className="category-title">
-                                   3frnim
-                                </p>
-                            </div>
-        </div>  
-);
+const host = 'http://127.0.0.1:8000'
 
 class Enterprise_Showcase extends Component{
-  search_url = 'https://theebs.pythonanywhere.com/core_api/post_filter/'
+  search_url = 'http://127.0.0.1:8000/core_api/post_filter/'
   state = {
     results: [],
     loading: false,
@@ -67,11 +44,12 @@ class Enterprise_Showcase extends Component{
     window.location.replace(endpoint)
    }
    
-   Search_Products(e,){
+   Search_Products(e){
      e.preventDefault()
-     const take = e.target.elements.searching_box.value;
-     const endpoint = `/search/`
-    //window.location.replace(endpoint)
+    
+     const search_input = e.target.elements.searching_box.value;
+     const endpoint = `/search_query/${search_input}/`
+    window.location.replace(endpoint)
    }
 
   componentWillMount = ()=>{
@@ -112,13 +90,10 @@ class Enterprise_Showcase extends Component{
 
                         </div>
                           <div className="">
-                          <button 
-                           className="introduction-section-search-button">
-                           Search
+                            <button className="introduction-section-search-button">
+                            Search
                            </button>
                           </div>
-
-
                      </form>
                         
                       </div>
@@ -131,7 +106,7 @@ class Enterprise_Showcase extends Component{
        </div>
 
    <div
-            style={{paddingTop:50}}
+            style={{paddingTop:30}}
             className="container mx-auto category-section ">
             <div className="grid grid-cols-8  mx-auto">
 

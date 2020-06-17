@@ -4,7 +4,7 @@ import 'react-alice-carousel/lib/alice-carousel.css'
  
 
 
-const post_list_url = 'https://theebs.pythonanywhere.com/core_api/post_list/'
+const post_list_url = 'http://127.0.0.1:8000/core_api/post_list/'
 class  Gallery extends React.Component{
   handleOnDragStart = (e) => e.preventDefault()
 

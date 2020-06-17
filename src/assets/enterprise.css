@@ -2,6 +2,9 @@ body{
   background: #ffffff;
 }
 
+.demo-option-label-item > span {
+  margin-right: 6px;
+}
 /* Navbar Components */
 
 .navblock {

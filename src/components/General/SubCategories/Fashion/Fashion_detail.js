@@ -8,7 +8,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'http://127.0.0.1:8000'
 
 const item_type = 'fashion'
 
@@ -25,7 +25,7 @@ class Fashion_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`http://127.0.0.1:8000/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data
@@ -137,10 +137,17 @@ class Fashion_Item_Detail extends Component{
                         
                          <div className="grid grid-cols-4 gap-4">
 
+                         <div className=" col-span-2" >
+                              <Make_Order_Form 
+                              item_class = {item_type}
+                               share_vendor_email ={vendor_profile.email}
+                              vendor_id = {vendor_profile.id} post_id = {model_id} /> 
+                          </div> 
 
 
-                          <div className="col-span-4 ">
+                          <div className="col-span-2 ">
                                 <Order_Form
+                                
                                 vendor_email ={vendor_profile.email}
                                 vendor_id = {vendor_profile.id} post_id = {model_id} /> 
 

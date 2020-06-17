@@ -54,7 +54,7 @@ class RegistrationForm extends React.Component {
               is_buyer
             );
             openNotification('Account created successfully')
-            this.props.history.push("/market");
+            this.props.history.push("/showcase");
           }else{
             //Email validation verifies its wrong
             message.error('Please enter a valid email adress')

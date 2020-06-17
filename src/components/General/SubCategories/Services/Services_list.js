@@ -11,7 +11,7 @@ import {
 
 import Query_Results from '../../Queried_Results'
 
-import uploaded_post from '../../Items'
+import Uploaded_post from '../../Items'
 
  
 const Search = Input.Search;
@@ -189,7 +189,7 @@ class Services_Item extends Component{
                 md:col-span-8 lg:col-span-6 xl:col-span-6 gap-3">
                   {
                   show_results ?(
-                    <uploaded_post slug_class={slug}  Items={items}/>
+                    <Uploaded_post slug_class={slug}  Items={items}/>
                   ):(
                    <Query_Results Results={search_results}/>
                   )

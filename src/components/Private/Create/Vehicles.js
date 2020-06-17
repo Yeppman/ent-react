@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'http://127.0.0.1:8000/stream/view_post/'
+const UserPost_url = 'https://ent-react.vercel.app/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -34,7 +34,7 @@ const Condition = ['New', 'Foriegn Used']
 const Transmission = ['Manual', 'Automatic']
 const Fuel_Type = ['Disel', 'Petrol', 'Electric','Hybrid']
 const Body_Type  = ['Metal','Carbon-Fibre']
-const host = 'http://127.0.0.1:8000'
+const host = 'https://ent-react.vercel.app'
 
 
 class Vehicles_Item_Create extends Component{

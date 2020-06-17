@@ -13,10 +13,10 @@ import axios from "axios";
 //import Results from "./Results";
 
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://ent-react.vercel.app'
 
 class Enterprise_Showcase extends Component{
-  search_url = 'http://127.0.0.1:8000/core_api/post_filter/'
+  search_url = 'https://ent-react.vercel.app/core_api/post_filter/'
   state = {
     results: [],
     loading: false,

@@ -42,7 +42,7 @@ class Create_Inventory extends React.Component{
       "Content-Type": "application/json",
       Authorization: `Token ${token}`
     };
-   await axios.get(`http://127.0.0.1:8000/stream/view_post`)
+   await axios.get(`https://ent-react.vercel.app/stream/view_post`)
     .then(res =>{
             this.setState({
                   post_list:res.data
@@ -74,7 +74,7 @@ class Create_Inventory extends React.Component{
               Authorization: `Token ${this.props.token}`
             };
             
-            axios.get("http://127.0.0.1:8000/management/create_inventory/",
+            axios.get("https://ent-react.vercel.app/management/create_inventory/",
              {
               params: {
                 Post, Name, Quantity  ,Price

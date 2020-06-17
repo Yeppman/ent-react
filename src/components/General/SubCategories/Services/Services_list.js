@@ -19,7 +19,7 @@ const { Option } = Select;
 
 
 
-const host = 'http://127.0.0.1:8000';
+const host = 'https://ent-react.vercel.app';
 const slug = 'services'
 
 const Brands = ['LG','Samsung','Sony', 'Hi-Sense']

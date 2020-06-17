@@ -67,7 +67,7 @@ class Logicstics_Channel extends Component{
                "Content-Type": "application/json",
                Authorization: `Token ${token}`
              };
-          axios.get('http://127.0.0.1:8000/management/view_logicstics/')
+          axios.get('https://ent-react.vercel.app/management/view_logicstics/')
           .then(res =>{
                this.setState({
                     channels : res.data
@@ -84,7 +84,7 @@ class Logicstics_Channel extends Component{
                "Content-Type": "application/json",
                Authorization: `Token ${token}`
              }
-          await axios.get(`http://127.0.0.1:8000/management/order_counter/`)
+          await axios.get(`https://ent-react.vercel.app/management/order_counter/`)
           .then(res =>{
                this.setState({
                     delivered : res.data.Delivered,
@@ -100,7 +100,7 @@ class Logicstics_Channel extends Component{
             "Content-Type": "application/json",
             Authorization: `Token ${this.props.token}`
           };
-          await axios.post(`http://127.0.0.1:8000/management/delete_logicstics/${order_id}/`)
+          await axios.post(`https://ent-react.vercel.app/management/delete_logicstics/${order_id}/`)
           .then(res =>{
               openNotification(res.data['Message'])
           })

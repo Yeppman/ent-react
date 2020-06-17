@@ -1,4 +1,4 @@
-const localhost = "http://127.0.0.1:8000";
+const localhost = "https://ent-react.vercel.app";
 //const localhost = "https://tradeprev.pythonanywhere.com";
 const apiURL = "/api";
 

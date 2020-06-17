@@ -12,7 +12,7 @@ import {Row, Col,
 } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 
-const categories_url = 'http://127.0.0.1:8000/category_list/'
+const categories_url = 'https://ent-react.vercel.app/category_list/'
 class Category_Links extends Component{
     state= {
         Categories : [],

@@ -30,9 +30,9 @@ const formItemLayout = {
 const { Option } = Select; 
 const {TextArea} = Input
 
-const Request_Order_url = 'http://127.0.0.1:8000/management/new_order/'
+const Request_Order_url = 'https://ent-react.vercel.app/management/new_order/'
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://ent-react.vercel.app'
 
 class Make_Order_Form extends React.Component{
    

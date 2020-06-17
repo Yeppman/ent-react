@@ -3,7 +3,7 @@ import {Rate} from 'antd'
 //import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios'
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://ent-react.vercel.app'
 
 class Create_Post_Portal extends Component{
     state ={

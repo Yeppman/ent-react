@@ -25,6 +25,8 @@ class Contact_Field extends Component{
         contacts : [],
         loading : true,
         error : null ,
+
+        emails :null ,
     }
  
     Contact_List  = async(token) =>{
@@ -67,6 +69,15 @@ class Contact_Field extends Component{
         });
       }
 
+      Allocate_Email = async(email_val)=>{
+        const Email_list = []
+        Email_list.push(email_val)
+        this.setState({
+          emails : Email_list
+        })
+        alert(email_val)
+      }
+
       Mail_Clients = (values,err) =>{
 
         const Heading =  
@@ -74,11 +85,12 @@ class Contact_Field extends Component{
         const Contacts = 
              values['Contacts'] === undefined ? null : values['Contacts'] ;
        
-         const Phone = 
+         const Phone_Number = 
            values['Phone'] === undefined ? null : values['Phone'] ;
            const Message = 
            values['Mail_Message'] === undefined ? null : values['Mail_Message'] ; 
         const Email = String(Contacts)
+        const Phone  = String(Phone_Number)
         console.log(Email, Phone)
      
            this.setState({
@@ -277,7 +289,6 @@ class Contact_Field extends Component{
                   </h4>
 
                <Form 
-               
                onFinish={this.Mail_Clients}>
               
 
@@ -291,7 +302,9 @@ class Contact_Field extends Component{
                     >
                   {
                     contacts.map((c)=>(
-                      <Option value={c.id} label={c.ClientEmail}>
+                      <Option value={c.ClientEmail}
+                      onClick={()=>{this.Allocate_Email(c.ClientEmail)}}
+                       label={c.ClientEmail}>
                     <div className="demo-option-label-item">
                       <span role="img" aria-label="China">
                         🇨🇳

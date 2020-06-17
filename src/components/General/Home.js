@@ -161,15 +161,7 @@ class All_Uploads extends Component{
         <li>
           <div class="flex">
             <div class="flex-shrink-0">
-              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                
-                <img 
-                   class="h-6 w-6 rounded"
-                    stroke="" fill="none"
-                     viewBox="0 0 30 30"
-                 src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg" />
-                  
-              </div>
+              
             </div>
             <div class="ml-4">
               <h5
@@ -186,13 +178,7 @@ class All_Uploads extends Component{
         </li>
         <li class="mt-10 md:mt-0">
           <div class="flex">
-            <div class="flex-shrink-0">
-              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                <img 
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
-                 />
-              </div>
-            </div>
+            
             <div class="ml-4">
               <h5 class="text-lg explore-text  leading-6 font-medium text-gray-900">
               Content development
@@ -208,11 +194,7 @@ class All_Uploads extends Component{
         <li class="mt-10 md:mt-0">
           <div class="flex">
             <div class="flex-shrink-0">
-              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                <img 
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
-                 />
-              </div>
+              
             </div>
             <div class="ml-4">
               <h5 class="text-lg explore-text leading-6 font-medium text-gray-900">
@@ -229,11 +211,7 @@ class All_Uploads extends Component{
         <li class="mt-10 md:mt-0">
           <div class="flex">
             <div class="flex-shrink-0">
-              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                <img 
-                src="https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg"
-                 />
-              </div>
+              
             </div>
             <div class="ml-4">
               <h5 class="text-lg explore-text leading-6 font-medium text-gray-900">

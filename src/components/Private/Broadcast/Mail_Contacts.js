@@ -87,7 +87,7 @@ class Message_Contact extends Component{
             //process query contents ends here
         }
     
-  
+   
         // Recieve Incoming token
         componentWillReceiveProps(newProps) {
           if (newProps.token !== this.props.token) {

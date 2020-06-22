@@ -8,7 +8,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'http://127.0.0.1:8000'
 const item_type = 'electronics'
 
 class Electronics_Item_Detail extends Component{
@@ -19,12 +19,15 @@ class Electronics_Item_Detail extends Component{
         vendor_profile :[],
         comments:[],
         loaded_comments: false,
+
+        buyer_id : null,
     }
 
-    
+     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        const vendor_profile_endpoint = host + `/core_api/vendors_profile_public/${Vendor_id}/`
+        await axios.get(vendor_profile_endpoint)
         .then(res =>{
           this.setState({
             vendor_profile: res.data
@@ -33,6 +36,26 @@ class Electronics_Item_Detail extends Component{
        })
       }
 
+
+    Buyer_Data = async(token)=>{
+      const user_id_endpoint = host + `stream/get_my_user_id/`
+      let user_id = null 
+      
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      axios.get(user_id_endpoint)
+      .then(res=>{
+
+        alert('this is the user id')
+        this.setState({
+          buyer_id:res.data.userID,
+        })
+       
+      })
+      
+    }
       
     Item_Data = async() => {
         const model_id = this.props.match.params.ItemDetailID
@@ -76,11 +99,21 @@ class Electronics_Item_Detail extends Component{
     comment_endpoint = host + this.item_comment_endpoint
 
     componentDidMount(){
+      
         this.Item_Data()
         this.Comments()
-        
+        this.Buyer_Data(this.props.token)
         
     }
+
+    componentWillReceiveProps(newProps) {
+      if (newProps.token !== this.props.token) {
+        if (newProps.token !== undefined && newProps.token !== null) {
+          this.Buyer_Data(newProps.token)         
+        }
+      }
+    }
+
 
     render(){
         const { item_details ,vendor_profile, loaded_comments ,
@@ -104,10 +137,7 @@ class Electronics_Item_Detail extends Component{
                 
                   className="contact-card">
                     <div className="card-container">
-                    <span>
-                          <img 
-                  src="https://az742041.vo.msecnd.net/vcsites/vcimages/resource/uploads/CompanyLogo/thumbs/636946622002390653_1.jpg" />
-                    </span>
+                    
                     <span>
                      <h4>
                      <a 

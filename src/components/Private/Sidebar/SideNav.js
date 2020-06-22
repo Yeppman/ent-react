@@ -76,6 +76,11 @@ export default function TemporaryDrawer() {
             Logicstics
             </MenuItem>
 
+
+            <MenuItem component={Link} to="/book_keeping/">
+            Book Keeping
+            </MenuItem>
+            
             
             
             <MenuItem component={Link} to="/inventories/">

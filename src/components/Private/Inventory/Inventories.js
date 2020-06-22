@@ -20,6 +20,8 @@ const  openNotification = (msg) => {
   });
   }
 
+const host = "http://127.0.0.1:8000"
+
 class Inventory_Store extends Component{
     state ={
       inventory_objects : [],
@@ -35,7 +37,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get('https://theebs.pythonanywhere.com/management/view_inventory/')
+      await axios.get('http://127.0.0.1:8000/management/view_inventory/')
       .then(res =>{
         this.setState({
           inventory_objects : res.data,
@@ -51,7 +53,8 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get('https://theebs.pythonanywhere.com/management/inventory_data/')
+      const endpoint = host + "/management/inventory_data/"
+      await axios.get(endpoint)
       .then(res=>{
         this.setState({
           Price : res.data.Price ,
@@ -65,21 +68,27 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-       axios.post(`https://theebs.pythonanywhere.com/management/delete_inventory_record/${item_id}/`)
+      const endpoint = host + '/management/delete_inventory_record/${item_id}/'
+       axios.post(endpoint)
       .then(res=>{
 
           openNotification(res.data['Message'])
       })
     }
 
-    QuantityChanger = async()=>{
+    QuantityChanger = async(Quantity_needed)=>{
       axios.defaults.headers = {
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-      await axios.get('https://theebs.pythonanywhere.com/management/inventory_data/')
+      const endpoint = host + "/management/inventory_data/"
+      await axios.get(endpoint, {
+        params:{
+          Quantity_needed
+        }
+      })
       .then(res=>{
-        
+          console.log(res.data)
       })
     } 
 
@@ -164,7 +173,7 @@ class Inventory_Store extends Component{
                   className=" col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
                   <table>
                             <tr>
-                              <th>Item</th>
+                             
                               <th>Name</th>
                               <th>Quantity</th>
                               <th> Created </th>
@@ -175,11 +184,12 @@ class Inventory_Store extends Component{
                             {
                               inventory_objects.map((i) =>(
                                 <tr>
-                              <td>{i.The_Post}</td>
+                              
                               <td>{i.Name}</td>
                               <td> <InputNumber min={1} max={100}
                                defaultValue={i.Quantity}  
-                               onChange={this.QuantityChanger} />
+                               
+                               onChange={()=>{this.QuantityChanger(i.Quantity)}} />
                                 </td>
                               <td>{i.Date_Created}</td>
                               <td> {i.Price}</td>

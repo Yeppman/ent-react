@@ -6,20 +6,11 @@ import axios from "axios";
 
 import User_Uploaded_Post from './uploaded_items'
 
-import { notification , } from 'antd';
+
 import {PlusCircleOutlined} from '@ant-design/icons'
 
-const openNotification = (msg) => {
-    notification.open({
-      message: 'Notification Title',
-      description:msg,
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
-    });
-  }
 
-const host = 'https://theebs.pythonanywhere.com';
+const host = 'http://127.0.0.1:8000';
 const users_uploads_endpoint = host + `/retail/all_uploads/`
 const Post_Array = new Array()
 class User_Posts_Items extends Component {

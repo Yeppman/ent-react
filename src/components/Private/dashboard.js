@@ -10,14 +10,6 @@ import {notification,message} from 'antd'
 import TemporaryDrawer from './Sidebar/SideNav'
 import { getMembership } from '../../store/actions/membership';
 
-const Profile_id_url  = 'https://theebs.pythonanywhere.com/stream/get_profile_id/'
-const Profile_url = 'https://theebs.pythonanywhere.com/stream/profile_view/'
-const UserMembership_url  = 'https://theebs.pythonanywhere.com/stream/user_membership' 
-const Membership_url = 'https://theebs.pythonanywhere.com/stream/list_membership'
-const Post_Analytics_url = 'https://theebs.pythonanywhere.com/analytics/rankings/'
-
-const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
-
 const openNotification = (msg) => {
   notification.open({
     message: 'Notification Title',
@@ -27,6 +19,20 @@ const openNotification = (msg) => {
     },
   });
 }
+const host = 'http://127.0.0.1:8000'
+
+const Profile_id_url  = host + `/stream/get_profile_id/`
+const Profile_url = host + `/stream/profile_view/`
+const UserMembership_url  = host + '/stream/user_membership/'
+const Membership_url = host + '/stream/list_membership/'
+const Post_Analytics_url = host + '/analytics/rankings/'
+
+const UserPost_url = host + '/stream/view_post/'
+
+const products_analysis_endpoint = host + `/analytics/product_views/`
+
+var Main = []
+
 
 class ProfileDashboard extends Component {
 
@@ -43,12 +49,221 @@ class ProfileDashboard extends Component {
         post_name_y :[] ,
         average_views : [],
         user_post : [], 
+
+        mini_products_data: []
           }
     
     //Check User Authenticated State
      
-      temp_props = this.props
+    temp_props = this.props
 
+      //Mini Analysis
+      Products_Analysis = async(token)=>{
+      
+        axios.defaults.headers = {
+          "Content-Type": "application/json",
+          Authorization: `Token ${token}`
+        };
+        await axios.get(products_analysis_endpoint)
+        .then(res=>{
+          this.setState({
+            results : res.data
+          })
+        })
+  
+        //Conditions and Mapping starts here
+        if (this.state.results.Electronics.length > 0){
+          var electronics_data = this.state.results.Electronics
+          
+          electronics_data.map((i)=>{
+              var a = {
+                  id : i['id'] ,
+              category : i['Category'],
+              Title : i['Title'], Views : i['Views']
+             }
+             JSON.stringify(a)
+             Main.push(a)
+             
+          })
+          this.setState({
+              mini_products_data:Main
+          })
+         
+      }
+  
+      if (this.state.results.Fashion.length > 0){
+          var fashion_data = this.state.results.Fashion
+          
+          
+          fashion_data.map((i)=>{
+              var a = {
+                  id : i['id'] ,
+              category : i['Category'],
+              Title : i['Title'], 
+              Views : i['Views']
+             }
+             JSON.stringify(a)
+             Main.push(a)
+             
+          })
+          this.setState({
+              mini_products_data:Main
+          })
+  
+      }
+  
+      if (this.state.results.Services.length > 0){
+          var services_data = this.state.results.Services
+          
+          
+          services_data.map((i)=>{
+              var a = {
+                  id : i['id'] ,
+              category : i['Category'],
+              Title : i['Title'], Views : i['Views']
+             }
+             JSON.stringify(a)
+             Main.push(a)
+             
+          })
+          this.setState({
+              mini_products_data:Main
+          })
+  
+      }
+  
+      if (this.state.results.HomeAppliances.length > 0){
+          var home_app = this.state.results.HomeAppliances
+         
+          home_app.map((i)=>{
+              var a = {
+                  id : i['id'] ,
+              category : i['Category'],
+              Title : i['Title'], Views : i['Views']
+             }
+             JSON.stringify(a)
+             Main.push(a)
+             
+          })
+          this.setState({
+              mini_products_data:Main
+          })
+  
+  
+      }
+      
+      if (this.state.results.Phones.length > 0){
+          var phone_data = this.state.results.Phones
+     
+          phone_data.map((i)=>{
+              var a = {
+                  id : i['id'] ,
+              category : i['Category'],
+              Title : i['Title'], Views : i['Views']
+             }
+             JSON.stringify(a)
+             Main.push(a)
+             
+          })
+          this.setState({
+              mini_products_data:Main
+          })
+  
+      }
+  
+      if (this.state.results.Property.length > 0){
+          var property_data = this.state.results.Property
+   
+          property_data.map((i)=>{
+              var a = {
+                  id : i['id'] ,
+              category : i['Category'],
+              Title : i['Title'], Views : i['Views']
+             }
+             JSON.stringify(a)
+             Main.push(a)
+             
+          })
+          this.setState({
+              mini_products_data:Main
+          })
+  
+          
+      }
+      
+      if (this.state.results.Vehicles.length > 0){
+          var vehicle_data = this.state.results.Vehicles
+    
+          
+          vehicle_data.map((i)=>{
+              var a = {
+                  id : i['id'] ,
+              category : i['Category'],
+              Title : i['Title'], Views : i['Views']
+             }
+             JSON.stringify(a)
+             Main.push(a)
+             
+          })
+          this.setState({
+              mini_products_data:Main
+          })
+  
+          
+      }
+      //Conditions and Mapping ends here
+  
+      //Assign Gotten Data into Chart.js for Processing and Visualization
+      var Labels = []
+      var DataPoints = []
+      var Products_for_charts = this.state.mini_products_data;
+      
+      //Maps Data to assigns data point and labels
+       Products_for_charts.map((i)=>{
+         var a = i['Title']
+          var b = i['Views']
+        Labels.push(a)
+        DataPoints.push(b)
+        console.log('The Labels',Labels)
+       })
+  
+      this.setState({
+          chartData:{
+            labels: Labels,
+            datasets:[
+              {
+                label:'Impressions',
+                data: DataPoints,
+                backgroundColor:[
+                  'rgb(148,0,211)'
+                ]
+              }
+            ]
+          }
+      })
+      console.log('Products Data',Main)
+      console.log('Chart Labels', this.state.mini_products_data)
+  
+      //Caculates Average and Total Impressions
+      Products_for_charts.map((i)=>{
+         var b = i['Views']
+       DataPoints.push(b)
+       console.log('The Labels',Labels)
+      })
+      var Average_Impression = DataPoints / DataPoints.length
+      var Total_Impression  = 100
+      console.log('Impressions Here',Average_Impression,Total_Impression)
+      this.setState({
+        average_views :Average_Impression,
+        total_views:Total_Impression
+      })
+  
+      //Products Analysis Functions ends here
+      }
+
+
+
+    //Mini Analysis Ends here
      Analysis = async(token) =>{
       const Data_Labels = []
       const Data_Points = []
@@ -81,7 +296,7 @@ class ProfileDashboard extends Component {
               }
             })
              console.log('Analysis',New_Data)
-          } )
+          } ) 
       
       }
 
@@ -92,7 +307,7 @@ class ProfileDashboard extends Component {
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://theebs.pythonanywhere.com/stream/profile_view/${profile_id}/`)
+          axios.get(`http://127.0.0.1:8000/stream/profile_view/${profile_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data
@@ -202,7 +417,11 @@ class ProfileDashboard extends Component {
       //   openNotification('You`re Authorized')
       // }
       console.log("auth", this.props.is_seller);
-      console.log(is_seller);
+      if (is_seller==true){
+        console.log('user is a seller', is_seller);
+      }else{
+        console.log('user is a buyer', is_seller);
+      }
       
     }
 
@@ -214,7 +433,8 @@ class ProfileDashboard extends Component {
         this.Get_User_Membership(this.props.token)
         this.Get_Post_Views(this.props.token)
       this.Get_User_post(this.props.token)
-        this.Analysis(this.props.token)
+       // this.Analysis(this.props.token)
+       this.Products_Analysis(this.props.token)
        }
     
    
@@ -224,12 +444,12 @@ class ProfileDashboard extends Component {
           if (newProps.token !== undefined && newProps.token !== null) {
             this.props.member()
 
-            
             this.Profile_ID(newProps.token)
             this.Get_User_Membership(newProps.token)
             this.Get_Post_Views(newProps.token)
           this.Get_User_post(newProps.token)
-            this.Analysis(newProps.token)
+           // this.Analysis(newProps.token)
+           this.Products_Analysis(newProps.token)
             
           }
         }

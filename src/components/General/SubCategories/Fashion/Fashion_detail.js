@@ -8,7 +8,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'http://127.0.0.1:8000'
 
 const item_type = 'fashion'
 
@@ -25,7 +25,7 @@ class Fashion_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`http://127.0.0.1:8000/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data
@@ -105,10 +105,7 @@ class Fashion_Item_Detail extends Component{
                 
                   className="contact-card">
                     <div className="card-container">
-                    <span>
-                          <img 
-                  src="https://az742041.vo.msecnd.net/vcsites/vcimages/resource/uploads/CompanyLogo/thumbs/636946622002390653_1.jpg" />
-                    </span>
+                    
                     <span>
                      <h4>
                      <a 

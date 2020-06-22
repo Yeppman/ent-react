@@ -42,7 +42,7 @@ class Create_Inventory extends React.Component{
       "Content-Type": "application/json",
       Authorization: `Token ${token}`
     };
-   await axios.get(`https://theebs.pythonanywhere.com/stream/view_post`)
+   await axios.get(`http://127.0.0.1:8000/stream/view_post`)
     .then(res =>{
             this.setState({
                   post_list:res.data
@@ -53,31 +53,30 @@ class Create_Inventory extends React.Component{
     
     process_query = (values,err) =>{
       
-      const Post =  
-          values["Post"] === undefined ? null : values["Post"] ;
+      
       const Name =  
             values["Name"] === undefined ? null : values["Name"] ;
       const Quantity =  
             values["Quantity"] === undefined ? null : values["Quantity"] ;
       const Price =  
             values["Price"] === undefined ? null : values["Price"] ;
-      console.log('THIA IS THE ID', Post)
+      
           this.setState({
             loading: true
           })
     
           if(!err){
-            axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-        axios.defaults.xsrfCookieName = "csrftoken";
+           
             axios.defaults.headers = {
               "Content-Type": "application/json",
               Authorization: `Token ${this.props.token}`
             };
-            
-            axios.get("https://theebs.pythonanywhere.com/management/create_inventory/",
+            const host = "http://127.0.0.1:8000"
+           const endpoint = host + '/management/create_inventory/'
+            axios.get(endpoint,
              {
               params: {
-                Post, Name, Quantity  ,Price
+                Name, Quantity  ,Price
               }
             }).then(res =>{
                 this.props.history.push('/inventories/')
@@ -130,20 +129,7 @@ class Create_Inventory extends React.Component{
         className="ant-form-text">Create a new item</h1>
       </Form.Item>
 
-      <Form.Item 
-      rules={[{ required: true }]}
-      name ='Post' hasFeedback>
-
-      <Select placeholder="Select The Post ">
-      {
-          post_list.map((p)=>(
-              <Option value={p.id}>{p.GigTitle}</Option>
-          ))
-      }
       
-        </Select>
-
-      </Form.Item>
 
       <Form.Item 
       rules={[{ required: true }]}

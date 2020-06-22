@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
+const UserPost_url = 'http://127.0.0.1:8000/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -46,7 +46,7 @@ const Size = ['Large','Medium','Small']
 const Brand = ['Hi-Sense', 'O`Riely', 'LG', 'Samsung']
 const Condition = ['New', 'Foriegn Used']
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'http://127.0.0.1:8000'
 
 class Electronics_Item_Create extends Component{
     state = {
@@ -70,13 +70,13 @@ class Electronics_Item_Create extends Component{
         Image_Post: e.target.files[0]
       })
     };
-
+ 
     Category_ID= this.props.match.params.categoryID
 
     Create_Query = async(values, err)=>{
         const Title =  
           values["Title"] === undefined ? null : values["Title"] ;
-        const Category = parseInt(this.Category_ID)
+        
         const Price =  
           values["Price"] === undefined ? null : values["Price"] ; 
         const Location = 
@@ -99,7 +99,10 @@ class Electronics_Item_Create extends Component{
 
         
           const Original_User_id = this.state.Owner
+          const Category = parseInt(this.Category_ID)
           const Image_Post = this.state.Image_Post
+
+
           //Assigns New Form Data
           let form_data =  new FormData()
           form_data.append('Title',Title);
@@ -158,7 +161,7 @@ class Electronics_Item_Create extends Component{
             }
   
             render(){
-                const {user_post, loading, error, categories ,Title, Price,Location,Description,Image_Post } = this.state
+                const { Price,Image_Post } = this.state
                 return(
                     <>
                     <div className ="container mx-auto">
@@ -198,7 +201,7 @@ class Electronics_Item_Create extends Component{
                             name ='Price'> 
                             
                                 <Input
-                                value={Price}
+                                
                                 placeholder="Price" 
                                 enterButton
                                 />
@@ -326,7 +329,7 @@ class Electronics_Item_Create extends Component{
                              name ='Location' hasFeedback>
 
                                <Input
-                                placeholder="Location"
+                                placeholder="Address"
                                 enterButton
                                 />
                               
@@ -344,7 +347,7 @@ class Electronics_Item_Create extends Component{
 
                           </Form.Item>
 
-                         
+                          
 
                           <Form.Item >
                           <button

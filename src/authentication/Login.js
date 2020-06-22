@@ -46,9 +46,7 @@ class LoginForm extends React.Component {
     notification.open({
       message: 'Alert!',
       description:msg,
-      onClick: () => {
-        console.log('Notification Clicked!');
-      },
+      
     });
   }
 
@@ -57,7 +55,7 @@ class LoginForm extends React.Component {
     const { username, password } = this.state;
     if (token) {
       this.openNotification('Login Successful')
-      return <Redirect to="/" />;
+      return <Redirect to="/showcase/" />;
     }
     const formItemLayout = {
       wrapperCol: { span: 12, offset: 6 }

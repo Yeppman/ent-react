@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import {Input ,  Spin ,Card , Form, Button ,
-  List, Avatar ,
-  Select , DatePicker , Upload, message,notification} from 'antd';
+import {Input ,  Form,   Select ,notification} from 'antd';
 
      
 import axios from "axios";
@@ -9,7 +7,21 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
+const formItemLayout = {
+  wrapperCol: { span: 12, offset: 6 }
+};
+
+
+const openNotification = (msg) => {
+  notification.open({
+    message: 'Alert!',
+    description:msg,
+    onClick: () => {
+      console.log('Notification Clicked!');
+    },
+  });
+}
+
 
 
 const TextArea = Input.TextArea
@@ -23,8 +35,11 @@ const IconText = ({ icon, text }) => (
   </span>
 );
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'http://127.0.0.1:8000'
 
+const Property_Type = ['House For Sale','House For Rent','House For Purchase','Land For Sale','Land For Purchase']
+const House_Quality = ['New','Old']
+const Bathrooms = [1,2,3,4,5,,6,7,8]
 
 class Property_Item_Create extends Component{
   state = {
@@ -38,52 +53,76 @@ class Property_Item_Create extends Component{
     Title : '',
     Category :'',
     Description : '',
-    Location : '',
+    Address : '',
     Price : '',
-    The_Image_1:'',
+    Image_Post:'',
 }
+
+  Category_ID= this.props.match.params.categoryID
+
+  handleImageChange = (e) => {
+    this.setState({
+      Image_Post: e.target.files[0]
+    })
+  };
 
     Create_Query = async(values, err)=>{
         const Title =  
           values["Title"] === undefined ? null : values["Title"] ;
-        const Category =  
-          values["Category"] === undefined ? null : values["Category"] ; 
+       
         const Price =  
           values["Price"] === undefined ? null : values["Price"] ; 
-        const Location = 
-           values["Location"] === undefined ? null : values["Location"] ; 
+        const Address = 
+           values["Address"] === undefined ? null : values["Address"] ; 
         const Description =
           values["Description"] === undefined ? null : values["Description"] ;
-        
-  
-          const Original_User_id = this.state.Owner
-          const Original_form_image = this.state.The_Image_1
+
+     
+      const  Land_Area =
+          values["Land_Area"] === undefined ? null : values["Land_Area"] ;
+     const  House_Quality =
+          values["House_Quality"] === undefined ? null : values["House_Quality"] ;
+      const  Bathrooms =
+          values["Bathrooms"] === undefined ? null : values["Bathrooms"] ;
+      const  Property_Type =
+          values["Property_Type"] === undefined ? null : values["Property_Type"] ;
+      
+      const  State =
+          values["State"] === undefined ? null : values["State"] ;
+      const  Country =
+          values["Country"] === undefined ? null : values["Country"] ;
+         
+          const Original_form_image = this.state.Image_Post
+          const Category = parseInt(this.Category_ID)
+
           //Assigns New Form Data
           let form_data =  new FormData()
           form_data.append('Title',Title);
           form_data.append('Category', Category);
           form_data.append('Description',Description);
-          form_data.append('Location',Location);
+          form_data.append('Address',Address);
           form_data.append('Price', Price);
-          form_data.append('Owner', Original_User_id);
+          form_data.append('Land_Area',Land_Area)
+          form_data.append('House_Quality',House_Quality)
+          form_data.append('Bathrooms',Bathrooms)
+          form_data.append('Property_Type', Property_Type)
+
           form_data.append('Image_Post',Original_form_image);
-  
+      
+          form_data.append('Country',Country)
+          form_data.append('State', State)
+
           
               axios.defaults.headers = {
-                "Content-Type": "multitype/form-data",
+                "Content-Type": "multitype/form-data", 
                 Authorization: `Token ${this.props.token}`
               };
             const upload_url= host + `/retail/create_property/`
-            axios.post(upload_url,form_data, {
-              headers : {
-                "Content-Type": "multitype/form-data",
-                Authorization: `Token ${this.props.token}`
-              }
-            } )
+            axios.post(upload_url,form_data )
             .then(res =>{
                 console.log(res.data)
                 const take_response = res.data['Message']
-                this.openNotification(take_response)            
+                openNotification(take_response)            
             })
             .catch(e =>{
                 console.log(e)
@@ -104,15 +143,18 @@ class Property_Item_Create extends Component{
             }
   
             render(){
-              const {user_post, loading, error, categories ,Title, Price,Location,Description,The_Image_1 } = this.state
+              const {Image_Post } = this.state
                 return(
                     <>
                     <div className ="container mx-auto">
-                    <div className = "grid grid-cols-10">
+                    <div className = "grid grid-cols-6">
 
-                    <div className="col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-3 xl:col-span-3">
-                    <div className="base-card">
-                        <Form  onFinish={this.Create_Query}>
+                    <div className="login-section  col-span-6 
+                sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                    <div className="">
+                        <Form 
+                        {...formItemLayout}
+                         onFinish={this.Create_Query}>
                             
                 
                             <Form.Item 
@@ -126,16 +168,24 @@ class Property_Item_Create extends Component{
                             
                             </Form.Item>
 
-                            <Form.Item
+                            
+
+                            <Form.Item 
                              rules={[{ required: true }]}
-                             name ="Category" >
+                            name="Description">
+                          <TextArea 
+                           placeholder="Description" rows={4} />
+                          </Form.Item>
+
+                          <Form.Item
+                             rules={[{ required: true }]}
+                             name ="House_Quality" >
                                 
-                                <Select placeholder="Select a category">
+                                <Select placeholder="House_Quality">
                                 {
-                                  categories.map((c)=>(
+                                  House_Quality.map((c)=>(
                                     <Option 
-                                    
-                                    value={c.id}>{c.CategoryName}</Option>
+                                    value={c}>{c}</Option>
                                   ))
                               }
                               
@@ -143,33 +193,39 @@ class Property_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
+                          <Form.Item
                              rules={[{ required: true }]}
-                            name="Description">
-                          <TextArea onChange={this.handleChange}
-                           value={Description} placeholder="Description" rows={4} />
-                          </Form.Item>
-
+                             name ="Bathrooms" >
+                                
+                                <Select placeholder="Bathrooms">
+                                {
+                                  Bathrooms.map((c)=>(
+                                    <Option 
+                                    value={c}>{c}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
 
                             <Form.Item
                              rules={[{ required: true }]}
-                             
-                             name ='Location' hasFeedback>
-                                
-                                <Select placeholder="Select a Location">
-                                <Option value="Lagos">Nigeria</Option>
-                                <Option   value="Ibadan">Ghana</Option>
-                                <Option  value="Osun">Cameroon</Option>
-                                </Select>
-                              
-                            </Form.Item>
+                             name ='Address' hasFeedback>
+
+                               <Input
+                                placeholder="Address"
+                                enterButton
+                                />
+                              </Form.Item>
+
 
                             <Form.Item
                              rules={[{ required: true }]}
                              
                              name ='State' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Select  State">
                                 <Option value="Lagos">Lagos</Option>
                                 <Option   value="Ibadan">Ibadan</Option>
                                 <Option  value="Osun">Osun</Option>
@@ -182,7 +238,7 @@ class Property_Item_Create extends Component{
                              
                              name ='Country' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Select Country">
                                 <Option value="Lagos">Nigeria</Option>
                                 <Option   value="Ibadan">Ghana</Option>
                                 <Option  value="Osun">Cameroon</Option>
@@ -190,23 +246,13 @@ class Property_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Address'> 
-                            
-                                <Input
-                                placeholder="Address" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
 
                             <Form.Item 
                              rules={[{ required: true }]}
                             name ='Land_Area'> 
                             
                                 <Input
-                                placeholder="Land Are" 
+                                placeholder="Land Area (Optional)" 
                                 enterButton
                                 />
                             
@@ -217,8 +263,6 @@ class Property_Item_Create extends Component{
                             name ='Price'> 
                             
                                 <Input
-                                value={Price}
-                                onChange={this.handleChange}
                                 placeholder="Price" 
                                 enterButton
                                 />
@@ -231,31 +275,33 @@ class Property_Item_Create extends Component{
                              name ='Bathrooms' hasFeedback>
                                 
                                 <Select placeholder="How Many Bathroona">
-                                <Option value="0">0</Option>
-                                <Option   value="1">1</Option>
-                                <Option  value="2">2</Option>
-                                <Option  value="3">3</Option>
+                                    <Option value="0">0</Option>
+                                    <Option   value="1">1</Option>
+                                    <Option  value="2">2</Option>
+                                    <Option  value="3">3</Option>
                                 </Select>
                               
                             </Form.Item>
 
                           <Form.Item 
                            rules={[{ required: true }]}
-                          name="Post_Image1">
+                          name="Image_Post">
 
                           <Input  type="file"
-                          value = {The_Image_1}
-                         
-                          name="Post_Image1" />
+                          value = {Image_Post}
+                          onChange={this.handleImageChange}
+                          name="Image_Post" />
 
                           </Form.Item>
 
                          
 
                         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-                            <Button type="primary" htmlType="submit">
+                            <button
+                             class="login-button"
+                             type="primary" htmlType="submit">
                                 Submit
-                            </Button>
+                            </button>
                             </Form.Item>
 
                        </Form>

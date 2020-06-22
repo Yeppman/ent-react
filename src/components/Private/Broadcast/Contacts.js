@@ -36,7 +36,7 @@ class Contact_Field extends Component{
                 "Content-Type": "application/json",
                 Authorization: `Token ${token}`
               };
-        await axios.get('https://theebs.pythonanywhere.com/management/contact_list/')
+        await axios.get('http://127.0.0.1:8000/management/contact_list/')
         .then(res =>{
             this.setState({
                 contacts : res.data,
@@ -52,7 +52,7 @@ class Contact_Field extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-        await axios.get(`https://theebs.pythonanywhere.com/management/delete_contact/${id}/`)
+        await axios.get(`http://127.0.0.1:8000/management/delete_contact/${id}/`)
         .then(res =>{
           this.openNotification(res.data['Message'])
         })
@@ -105,7 +105,7 @@ class Contact_Field extends Component{
                Authorization: `Token ${this.props.token}`
              };
              
-             axios.get(`https://theebs.pythonanywhere.com/management/broadcast/`,
+             axios.get(`http://127.0.0.1:8000/management/broadcast/`,
               {
                params: {
                   Heading,  Phone ,Message, Email
@@ -152,7 +152,7 @@ class Contact_Field extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`https://theebs.pythonanywhere.com/management/save_contact/`,
+              axios.get(`http://127.0.0.1:8000/management/save_contact/`,
                {
                 params: {
                    Name, Email ,  Phone ,Address
@@ -327,7 +327,7 @@ class Contact_Field extends Component{
                     >
                   {
                     contacts.map((c)=>(
-                      <Option value={c.id} label={c.ClientPhone}>
+                      <Option value={c.ClientPhone} label={c.ClientPhone}>
                     <div className="demo-option-label-item">
                       <span role="img" aria-label="China">
                       <FontAwesomeIcon icon={faMailBulk} />

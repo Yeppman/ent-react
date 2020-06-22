@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 import {notification,message} from 'antd'
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const Profile_id_url  = 'https://theebs.pythonanywhere.com/stream/get_profile_id/'
-const Profile_url = 'https://theebs.pythonanywhere.com/stream/profile_view/'
+const Profile_id_url  = 'http://127.0.0.1:8000/stream/get_profile_id/'
+const Profile_url = 'http://127.0.0.1:8000/stream/profile_view/'
 
-const Business_Profile_id_url = "https://theebs.pythonanywhere.com/stream/get_business_profile_id/"
-const Business_Profile_url = 'https://theebs.pythonanywhere.com/stream/business_profile/'
+const Business_Profile_id_url = "http://127.0.0.1:8000/stream/get_business_profile_id/"
+const Business_Profile_url = 'http://127.0.0.1:8000/stream/business_profile/'
 
-const My_User_id_url = "https://theebs.pythonanywhere.com/stream/get_my_user_id/"
+const My_User_id_url = "http://127.0.0.1:8000/stream/get_my_user_id/"
 
 
 class User_Profile extends React.Component{
@@ -52,7 +52,7 @@ class User_Profile extends React.Component{
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://theebs.pythonanywhere.com/stream/profile_view/${parse_user_id}/`)
+          axios.get(`http://127.0.0.1:8000/stream/profile_view/${parse_user_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data

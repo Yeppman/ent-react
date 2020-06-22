@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import {Input ,  Spin ,Card , Form, Button ,
-  List, Avatar ,
-  Select , DatePicker , Upload, message,notification} from 'antd';
+import {Input ,  Form, Button ,
+  Select , notification} from 'antd';
 
      
 import axios from "axios";
@@ -9,7 +8,6 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -23,8 +21,19 @@ const IconText = ({ icon, text }) => (
   </span>
 );
 
-const host = 'https://theebs.pythonanywhere.com'
+const openNotification = (msg) => {
+  notification.open({
+    message: 'Alert!',
+    description:msg,
+    
+  });
+}
 
+
+const host = 'http://127.0.0.1:8000'
+
+const Service_Type = ['Insurance','Mechanic','Pharmacy','Health','Law','Baking']
+const Payment_Type = ['Online','OnDelivery']
 
 class Services_Item_Create extends Component{
     state = {
@@ -38,52 +47,69 @@ class Services_Item_Create extends Component{
         Title : '',
         Category :'',
         Description : '',
-        Location : '',
+        Address : '',
         Price : '',
-        The_Image_1:'',
+        Image_Post:'',
+    }
+
+    Category_ID= this.props.match.params.categoryID
+
+    handleImageChange = (e) => {
+      this.setState({
+        Image_Post: e.target.files[0]
+      })
     }
 
     Create_Query = async(values, err)=>{
         const Title =  
           values["Title"] === undefined ? null : values["Title"] ;
-        const Category =  
-          values["Category"] === undefined ? null : values["Category"] ; 
+       
         const Price =  
           values["Price"] === undefined ? null : values["Price"] ; 
-        const Location = 
-           values["Location"] === undefined ? null : values["Location"] ; 
+        const Address = 
+           values["Address"] === undefined ? null : values["Address"] ; 
         const Description =
           values["Description"] === undefined ? null : values["Description"] ;
         
-  
-          const Original_User_id = this.state.Owner
-          const Original_form_image = this.state.The_Image_1
+        const Service_Type =
+          values["Service_Type"] === undefined ? null : values["Service_Type"] ;
+        const Payment_Type =
+          values["Payment_Type"] === undefined ? null : values["Payment_Type"] ;
+        
+          const  State =
+          values["State"] === undefined ? null : values["State"] ;
+      const  Country =
+          values["Country"] === undefined ? null : values["Country"] ;
+          
+          const Original_form_image = this.state.Image_Post
+          const Category = parseInt(this.Category_ID)
+
           //Assigns New Form Data
           let form_data =  new FormData()
           form_data.append('Title',Title);
           form_data.append('Category', Category);
           form_data.append('Description',Description);
-          form_data.append('Location',Location);
+          
           form_data.append('Price', Price);
-          form_data.append('Owner', Original_User_id);
+          
+          form_data.append('Service_Type',Service_Type);
+          form_data.append('Payment_Type',Payment_Type);
           form_data.append('Image_Post',Original_form_image);
   
-          
+          form_data.append('Country',Country)
+          form_data.append('State', State)
+          form_data.append('Address',Address);
+
               axios.defaults.headers = {
                 "Content-Type": "multitype/form-data",
                 Authorization: `Token ${this.props.token}`
               };
-            const upload_url= host + `/retail/create_property/`
-            axios.post(upload_url,form_data, {
-              headers : {
-                "Content-Type": "multitype/form-data",
-                Authorization: `Token ${this.props.token}`
-              }
-            } )
+            const upload_url= host + `/retail/create_services/`
+            axios.post(upload_url,form_data )
             .then(res =>{
                 console.log(res.data)
                 const take_response = res.data['Message']
-                this.openNotification(take_response)            
+                openNotification(take_response)            
             })
             .catch(e =>{
                 console.log(e)
@@ -104,14 +130,15 @@ class Services_Item_Create extends Component{
             }
   
             render(){
-                const {user_post, loading, error, categories ,Title, Price,Location,Description,The_Image_1 } = this.state
+                const {Price, Image_Post } = this.state
                 return(
                     <>
                     <div className ="container mx-auto">
-                    <div className = "grid grid-cols-10">
+                    <div className = "grid grid-cols-6">
 
-                    <div className="col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-3 xl:col-span-3">
-                    <div className="base-card">
+                    <div className="login-section col-span-6 
+                sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                    <div className="">
                         <Form  onFinish={this.Create_Query}>
                             
                 
@@ -126,16 +153,38 @@ class Services_Item_Create extends Component{
                             
                             </Form.Item>
 
+                            <Form.Item 
+                             rules={[{ required: true }]}
+                            name="Description">
+                          <TextArea 
+                            placeholder="Description" rows={4} />
+                          </Form.Item>
+
+                          
+                           
+                            <Form.Item 
+                             rules={[{ required: true }]}
+                            name ='Price'> 
+                            
+                                <Input
+                                value={Price}
+                                
+                                placeholder="Price" 
+                                enterButton
+                                />
+                            
+                            </Form.Item>
+                        
+
                             <Form.Item
                              rules={[{ required: true }]}
-                             name ="Category" >
+                             name ="Service_Type" >
                                 
-                                <Select placeholder="Select a category">
+                                <Select placeholder="Select Service ">
                                 {
-                                  categories.map((c)=>(
+                                  Service_Type.map((c)=>(
                                     <Option 
-                                    onChange={this.handleChange}
-                                    value={c.id}>{c.CategoryName}</Option>
+                                    value={c}>{c}</Option>
                                   ))
                               }
                               
@@ -143,24 +192,34 @@ class Services_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
+                            
+                            
+                            
+                            <Form.Item
                              rules={[{ required: true }]}
-                            name="Description">
-                          <TextArea onChange={this.handleChange}
-                           value={Description} placeholder="Description" rows={4} />
-                          </Form.Item>
+                             name ="Size" >
+                                
+                                <Select placeholder="Select Payment ">
+                                {
+                                  Payment_Type.map((c)=>(
+                                    <Option 
+                                    value={c}>{c}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
 
 
                             <Form.Item
                              rules={[{ required: true }]}
-                             
                              name ='Location' hasFeedback>
-                                
-                                <Select placeholder="Select a Location">
-                                <Option value="Lagos">Nigeria</Option>
-                                <Option   value="Ibadan">Ghana</Option>
-                                <Option  value="Osun">Cameroon</Option>
-                                </Select>
+
+                               <Input
+                                placeholder="Address"
+                                enterButton
+                                />
                               
                             </Form.Item>
 
@@ -182,7 +241,7 @@ class Services_Item_Create extends Component{
                              
                              name ='Country' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Selec Country">
                                 <Option value="Lagos">Nigeria</Option>
                                 <Option   value="Ibadan">Ghana</Option>
                                 <Option  value="Osun">Cameroon</Option>
@@ -190,61 +249,14 @@ class Services_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Address'> 
-                            
-                                <Input
-                                placeholder="Address" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
 
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Land_Area'> 
-                            
-                                <Input
-                                placeholder="Land Are" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-                          
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Price'> 
-                            
-                                <Input
-                                value={Price}
-                                onChange={this.handleChange}
-                                placeholder="Price" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-                        
-                            <Form.Item
-                             rules={[{ required: true }]}
-                             
-                             name ='Bathrooms' hasFeedback>
-                                
-                                <Select placeholder="How Many Bathroona">
-                                <Option value="0">0</Option>
-                                <Option   value="1">1</Option>
-                                <Option  value="2">2</Option>
-                                <Option  value="3">3</Option>
-                                </Select>
-                              
-                            </Form.Item>
 
                           <Form.Item 
                            rules={[{ required: true }]}
                           name="Post_Image1">
 
                           <Input  type="file"
-                          value = {The_Image_1}
+                          value = {Image_Post}
                          
                           name="Post_Image1" />
 

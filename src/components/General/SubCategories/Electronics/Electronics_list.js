@@ -19,10 +19,11 @@ const { Option } = Select;
 
 
 
-const host = 'https://theebs.pythonanywhere.com';
+const host = 'http://127.0.0.1:8000';
 const slug = 'electronics'
 
-const Brands = ['LG','Samsung','Sony', 'Hi-Sense']
+const Brands = ['','LG','Samsung','Sony', 'Hi-Sense']
+const electronic_type = ['','Audio', 'Video']
 
 class Electronics_Items extends Component{
     state = {
@@ -133,9 +134,15 @@ class Electronics_Items extends Component{
                 </Form.Item>
 
                 <Form.Item name ="electronic_type">
-                      <Select placeholder ="Electronic Type">
-                         <Option value="">None</Option>
-                         <Option value="Lagos">Audio</Option>
+                      <Select placeholder ="Electronic">
+                        {
+                            electronic_type.map((b)=>(
+                                <>
+                                
+                                <Option value={b}>{b}</Option>
+                                </>
+                            ))
+                        }
                       </Select>
                 </Form.Item>
                 
@@ -144,7 +151,8 @@ class Electronics_Items extends Component{
                         {
                             Brands.map((b)=>(
                                 <>
-                                <Option value="Lagos">{b}</Option>
+                                
+                                <Option value={b}>{b}</Option>
                                 </>
                             ))
                         }
@@ -187,9 +195,11 @@ class Electronics_Items extends Component{
                   </Form.Item>
 
                   <Form.Item >
-                    <Button type="primary" htmlType="submit">
+                  <Form.Item >
+                    <button className="login-button" type="primary" htmlType="submit">
                       Filter
-                    </Button>
+                    </button>
+                  </Form.Item>
                   </Form.Item>
                 </Form>
           

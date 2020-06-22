@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
+const UserPost_url = 'http://127.0.0.1:8000/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -23,52 +23,111 @@ const IconText = ({ icon, text }) => (
   </span>
 );
 
-const host = 'https://theebs.pythonanywhere.com'
+const openNotification = (msg) => {
+  notification.open({
+    message: 'Alert!',
+    description:msg,
+    
+  });
+}
 
+
+const formItemLayout = {
+  wrapperCol: { span: 12, offset: 6 }
+};
+
+const host = 'http://127.0.0.1:8000'
+
+
+const Color = ['Blue','Black', 'Red']
+const Size = ['S','M','L','XL']
+const Fashion_Type = ['Western', 'Native']
+const Brand = ['Bespoke','Gucci', 'Fendi','Ankara', 'Guniea']
+const Gender = ['Male', 'Female','Unisex']
 
 class Fashion_Item_Create extends Component{
+  
+  state = {
+
+    //Used for form conntrol
+    Owner : '',
+    Title : '',
+    Category :'',
+    Description : '',
+    Location : '',
+    Price : '',
+    Image_Post:'',
+}
+  Category_ID= this.props.match.params.categoryID
+
+    handleImageChange = (e) => {
+      this.setState({
+        Image_Post: e.target.files[0]
+      })
+    }
 
     Create_Query = async(values, err)=>{
         const Title =  
           values["Title"] === undefined ? null : values["Title"] ;
-        const Category =  
-          values["Category"] === undefined ? null : values["Category"] ; 
         const Price =  
           values["Price"] === undefined ? null : values["Price"] ; 
-        const Location = 
-           values["Location"] === undefined ? null : values["Location"] ; 
+        const Address = 
+           values["Address"] === undefined ? null : values["Address"] ; 
         const Description =
           values["Description"] === undefined ? null : values["Description"] ;
-        
-  
+        const Size =
+          values["Size"] === undefined ? null : values["Size"] ;
+        const Fashion_Type =
+          values["Fashion_Type"] === undefined ? null : values["Fashion_Type"] ;
+        const Color =
+          values["Color"] === undefined ? null : values["Color"] ;
+       const Gender =
+          values["Gender"] === undefined ? null : values["Gender"] ;
+
+        const Brand =
+          values["Brand"] === undefined ? null : values["Brand"] ;
+          
+       const  State =
+          values["State"] === undefined ? null : values["State"] ;
+      const  Country =
+          values["Country"] === undefined ? null : values["Country"] ;
+
           const Original_User_id = this.state.Owner
-          const Original_form_image = this.state.The_Image_1
+          const Original_form_image = this.state.Image_Post
+          const Category = parseInt(this.Category_ID)
+
+          
           //Assigns New Form Data
           let form_data =  new FormData()
           form_data.append('Title',Title);
           form_data.append('Category', Category);
           form_data.append('Description',Description);
-          form_data.append('Location',Location);
+          
           form_data.append('Price', Price);
           form_data.append('Owner', Original_User_id);
           form_data.append('Image_Post',Original_form_image);
-  
-          
+
+          form_data.append('Size',Size)
+          form_data.append('Address',Address)
+          form_data.append('Fashion_Type', Fashion_Type)
+          form_data.append('Color',Color)
+          form_data.append('Gender', Gender)
+          form_data.append('Brand', Brand)
+      
+          form_data.append('Country',Country)
+          form_data.append('State', State)
+           
               axios.defaults.headers = {
                 "Content-Type": "multitype/form-data",
                 Authorization: `Token ${this.props.token}`
               };
-            const upload_url= host + `/retail/create_property/`
-            axios.post(upload_url,form_data, {
-              headers : {
-                "Content-Type": "multitype/form-data",
-                Authorization: `Token ${this.props.token}`
-              }
-            } )
+            const upload_url= host + `/retail/create_fashion/`
+            axios.post(upload_url,form_data)
             .then(res =>{
                 console.log(res.data)
                 const take_response = res.data['Message']
-                this.openNotification(take_response)            
+                openNotification(take_response) 
+                this.props.history.push("/dashboard/")        
             })
             .catch(e =>{
                 console.log(e)
@@ -89,14 +148,24 @@ class Fashion_Item_Create extends Component{
             }
   
             render(){
+              const {user_post, loading, error,Title, Price,Location,Description,Image_Post } = this.state
                 return(
                     <>
                     <div className ="container mx-auto">
-                    <div className = "grid grid-cols-10">
+                    <div className = "grid grid-cols-6">
 
-                    <div className="col-span-10 sm:col-span-10 md:col-span-10 lg:col-span-3 xl:col-span-3">
-                    <div className="base-card">
-                        <Form  onFinish={this.Create_Query}>
+                    <div className="login-section col-span-6 
+                sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+
+                    <h4>
+                      New Fashion Item
+                    </h4>
+
+
+                    <div className="">
+                        <Form 
+                        {...formItemLayout}
+                         onFinish={this.Create_Query}>
                             
                 
                             <Form.Item 
@@ -110,16 +179,25 @@ class Fashion_Item_Create extends Component{
                             
                             </Form.Item>
 
-                            <Form.Item
+                          
+
+                            <Form.Item 
                              rules={[{ required: true }]}
-                             name ="Category" >
+                            name="Description">
+                          <TextArea
+                           value placeholder="Description" rows={4} />
+                          </Form.Item>
+
+
+                          <Form.Item
+                             rules={[{ required: true }]}
+                             name ="Fashion_Type" >
                                 
-                                <Select placeholder="Select a category">
+                                <Select placeholder="Select Fashion_Type ">
                                 {
-                                  categories.map((c)=>(
+                                  Fashion_Type.map((c)=>(
                                     <Option 
-                                    onChange={this.handleChange}
-                                    value={c.id}>{c.CategoryName}</Option>
+                                    value={c}>{c}</Option>
                                   ))
                               }
                               
@@ -127,33 +205,103 @@ class Fashion_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
+
+                            <Form.Item
                              rules={[{ required: true }]}
-                            name="Description">
-                          <TextArea onChange={this.handleChange}
-                           value={Description} placeholder="Description" rows={4} />
-                          </Form.Item>
+                             name ="Brand" >
+                                
+                                <Select placeholder="Select Brand ">
+                                {
+                                  Brand.map((b)=>(
+                                    <Option 
+                                    value={b}>{b}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
 
 
                             <Form.Item
                              rules={[{ required: true }]}
-                             
-                             name ='Location' hasFeedback>
+                             name ="Color" >
                                 
-                                <Select placeholder="Select a Location">
-                                <Option value="Lagos">Nigeria</Option>
-                                <Option   value="Ibadan">Ghana</Option>
-                                <Option  value="Osun">Cameroon</Option>
-                                </Select>
+                                <Select placeholder="Select Color ">
+                                {
+                                  Color.map((b)=>(
+                                    <Option 
+                                    value={b}>{b}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
                               
                             </Form.Item>
+
+                            <Form.Item
+                             rules={[{ required: true }]}
+                             name ="Size" >
+                                
+                                <Select placeholder="Select Size ">
+                                {
+                                  Size.map((b)=>(
+                                    <Option 
+                                    value={b}>{b}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
+
+                            
+                            <Form.Item
+                             rules={[{ required: true }]}
+                             name ="Gender" >
+                                
+                                <Select placeholder="Select Brand ">
+                                {
+                                  Gender.map((b)=>(
+                                    <Option 
+                                    value={b}>{b}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
+
+                            
+                            
+                            <Form.Item 
+                             rules={[{ required: true }]}
+                            name ='Price'> 
+                            
+                                <Input
+                                placeholder="Price" 
+                                enterButton
+                                />
+                            
+                            </Form.Item>
+                      
+                            <Form.Item
+                             rules={[{ required: true }]}
+                             name ='Address' hasFeedback>
+
+                               <Input
+                                placeholder="Address"
+                                enterButton
+                                />
+                              </Form.Item>
+
 
                             <Form.Item
                              rules={[{ required: true }]}
                              
                              name ='State' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Select  State">
                                 <Option value="Lagos">Lagos</Option>
                                 <Option   value="Ibadan">Ibadan</Option>
                                 <Option  value="Osun">Osun</Option>
@@ -166,7 +314,7 @@ class Fashion_Item_Create extends Component{
                              
                              name ='Country' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Selec Country">
                                 <Option value="Lagos">Nigeria</Option>
                                 <Option   value="Ibadan">Ghana</Option>
                                 <Option  value="Osun">Cameroon</Option>
@@ -174,62 +322,14 @@ class Fashion_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Address'> 
                             
-                                <Input
-                                placeholder="Address" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Land_Area'> 
-                            
-                                <Input
-                                placeholder="Land Are" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-                          
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ='Price'> 
-                            
-                                <Input
-                                value={Price}
-                                onChange={this.handleChange}
-                                placeholder="Price" 
-                                enterButton
-                                />
-                            
-                            </Form.Item>
-                        
-                            <Form.Item
-                             rules={[{ required: true }]}
-                             
-                             name ='Bathrooms' hasFeedback>
-                                
-                                <Select placeholder="How Many Bathroona">
-                                <Option value="0">0</Option>
-                                <Option   value="1">1</Option>
-                                <Option  value="2">2</Option>
-                                <Option  value="3">3</Option>
-                                </Select>
-                              
-                            </Form.Item>
-
                           <Form.Item 
                            rules={[{ required: true }]}
                           name="Post_Image1">
 
                           <Input  type="file"
-                          value = {The_Image_1}
-                         
+                          value = {Image_Post}
+                          onChange={this.handleImageChange}
                           name="Post_Image1" />
 
                           </Form.Item>

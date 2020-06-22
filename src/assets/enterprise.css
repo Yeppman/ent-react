@@ -41,7 +41,7 @@ body{
 
 
 
-/* Intro Section  Here */
+/* Intro Section for Products and Services  Here */
 
 
 .introduction-section {
@@ -107,7 +107,7 @@ body{
     }
   }
   
-/* Intro Section  ends here */
+/* Intro Section for home page ends here */
 .inside{
     flex:50% ;
     padding-top: 20px;
@@ -123,6 +123,12 @@ justify-content: center;
    
 }
    
+.intro_section{
+  padding: 60px 0 100px;
+    max-width: 56rem;
+    position: relative;
+    z-index: 4;
+}
 
 .intro_header{
    padding-top: 5px;
@@ -133,9 +139,22 @@ justify-content: center;
     text-align: left;
     color: black;
     font-weight:bold;
-
+ 
 }
 
+.intro_right{
+  padding: 0px 0 10px;
+  max-width: 56rem;
+  position: relative;
+  z-index: 4;
+}
+
+.intro_left{
+  padding: 0px 0 10px;
+  max-width: 56rem;
+  position: relative;
+  z-index: 4;
+}
 
 .intro_text{
     font-size: 16px;
@@ -159,17 +178,168 @@ justify-content: center;
 
 }
 
-.second_section{
-    flex:100%;
-    padding: 20px 20px 20px 20px;
+
+/* Features starts */
+
+.enteprise-features-section{
+  display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 1-0px;
 }
 
-.second_container_text{
-    font-size: 21px;
-    color: black;
-    padding: 20px 20px 20px 0px;
-    text-align: center;
-}   
+.enteprise-features-section-right{
+  display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 150px;
+    align-items: center;
+
+}
+
+.enteprise-features-section-left{
+  flex: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.feature-body{
+  width: 100%;
+  max-width: 500px;
+}
+
+.feature-body-text-section{
+  margin-bottom: 10px;
+}
+
+.feature-body-header{
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.feature-body-text{
+  font-size: 15px;
+}
+/* festures ends */
+
+/*Statck Sections */
+
+.stack-section{
+  margin: 0 auto;
+    width: 100%;
+    max-width: 1040px;
+    padding: 0 16px;
+    position: relative;
+}
+
+.stack-boxes{
+  display: flex;
+}
+
+.stack-card{
+    overflow: hidden;
+    height: 100%;
+    border-radius: 6px;
+    border: 1px solid #f0f2f3;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    padding: 20px 32px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background: white;
+    position: relative;
+    z-index: 2;
+    margin-right: 20px;
+}
+
+.stack-card-body{
+  display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex: 1;
+    flex: 1;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.stack-card-header{
+  font-size: 25px;
+  color: black;
+  font-weight: 600;
+}
+
+.stack-card-text{
+  font-size: 16px;
+  
+}
+
+/* Stack sections */
+
+/* Compel Section */
+.compel-section{
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1040px;
+  padding: 0 16px;
+  position: relative;
+  
+}
+
+.compel-box{
+  display: flex;
+  padding: 100px 0 0;
+}
+
+.compel-left{
+  width: 100%;
+    max-width: 600px;
+}
+
+.compel-right{
+  -ms-flex: 1;
+    flex: 1;
+    width: 300px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.compel-header{
+  font-size: 36px;
+  line-height: 110%;
+
+}
+
+.compel-text{
+  font-size: 16px;
+}
+
+.compel-button{
+  color: white;
+  border-radius: 5px;
+    height: 50px;
+    line-height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    font-size: 1.6rem;
+    background-color: #41aa5e;
+    transform: translate(0, -1px);
+    box-shadow: 0 6px 2px -6px rgba(42,134,68,0.6);
+}
+
+/* Compel section */
 
 .cards_container{
     display: grid;
@@ -194,39 +364,7 @@ justify-content: center;
     
   }
   
-  /* On mouse-over, add a deeper shadow */
- 
 
-  
-/* section 3 */
-.info3a{
-    flex:50% ;
-    padding-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-bottom: 20px;
-}
-
-.info3b{
-    flex:50% ;
-    padding-top: 20px;
-    
-    padding-bottom: 20px;
-}
-
-.info3c{
-    flex:50% ;
-    padding-top: 20px;
-   
-    padding-bottom: 20px;
-}
-
-.info3d{
-    flex:50% ;
-    padding-top: 20px;
-    
-    padding-bottom: 20px;
-}
 /* Intro Section  Here */
 /* Flexboxes */
 

@@ -17,8 +17,8 @@ const IconText = ({ icon, text }) => (
 
 const { Search } = Input
 
-const post_list_url = 'https://theebs.pythonanywhere.com/core_api/post_list/'
-const latest = 'https://theebs.pythonanywhere.com/core_api/latest_uploads/'
+const post_list_url = 'http://127.0.0.1:8000/core_api/post_list/'
+const latest = 'http://127.0.0.1:8000/core_api/latest_uploads/'
 class All_Uploads extends Component{
     state = {
         'posts' : [] ,
@@ -31,7 +31,7 @@ class All_Uploads extends Component{
       } 
     
       Categories =async()=>{
-        const categories_url = 'https://theebs.pythonanywhere.com/core_api/category_list/'
+        const categories_url = 'http://127.0.0.1:8000/core_api/category_list/'
         await axios.get(categories_url)
         .then(res =>{
           this.setState({
@@ -83,8 +83,9 @@ class All_Uploads extends Component{
                
      
               <div className=" container mx-auto">
-              <div className="grid grid-cols-6   ">
-                <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-4 xl:col-span-4">
+              <div className="grid grid-cols-6 intro_section ">
+
+                <div className="intro_right col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-4 xl:col-span-4">
                   <div className="">
                   <h3 className="intro_header">
                       Welcome to  Enterprise <br/>
@@ -101,7 +102,7 @@ class All_Uploads extends Component{
                   </div> 
                 
                 </div>
-                <div className="col-span-6 sm:col-span-6 sm:ml-3 md:col-span-6 lg:col-span-2 xl:col-span-2 ">
+                <div className=" intro_left col-span-6 sm:col-span-6 sm:ml-3 md:col-span-6 lg:col-span-2 xl:col-span-2 ">
                     <img 
                       className =""
                       style = {{height: 270}}
@@ -111,36 +112,77 @@ class All_Uploads extends Component{
             </div>
               </div>
 
-            <div className="container">
-                <div className="grid grid-cols-12">
-                  <div className="col-span-12  sm:col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6">
-                    <h3 className="intro_header2">
-                        Our Aim
-                    </h3>
-                  <p className="intro_text2">
-                  Enterprise aims at providing a set of tools to develop and deepen
+                    <div className="container">
+                    <div className=" enteprise-features-section">
+                <div className="enteprise-features-section-right">
+                    <div className="feature-body">
+                        <div className="feature-body-text-section">
+                            <h3 className="feature-body-header">
+                            Made for medium and small business
+                            </h3>
+                            <p className="feature-body-text">
+                            Enterprise aims at providing a set of tools to develop and deepen
                    markets for micro/small and medium businesses, providing entrepreneurs 
                    across the sectors an opportunity to reach consumers –  boosting
                     brand names, sales, competitiveness and improving services
-                    </p> 
-                  </div>
+                            </p>
 
+                        </div>
 
-                  <div className="col-span-12  sm:col-span-12 md:col-span126 lg:col-span-6 xl:col-span-6">
-                  <h3 className="intro_header2">
-                        Made for medium and small business
-                    </h3>
-                  <p className="intro_text2">
-                              Enterprise provides  aggregate solutions that Unlock Opportunities
-          for Small Businesses and delivers growth of their product and services
-                    </p> 
                     </div>
                 </div>
 
-            </div>
+                <div className="enteprise-features-section-left">
+                
+                </div>
+
+              </div>
+
+                    </div>
+
+             <div className="container">
+             <div className="stack-section">
+                <div className="stack-boxes">
+
+                  <div className="stack-card">
+                      <div className="stack-card-body">
+                          <h4 className="stack-card-header">
+                            Enterprise for Africa
+                          </h4>
+                          <p className="stack-card-tetxt">
+                          We help global brands  Africa
+                          </p>
+                      </div>        
+                </div>
+
+                <div className="stack-card">
+                      <div className="stack-card-body">
+                          <h4 className="stack-card-header">
+                            Enterprise for Africa
+                          </h4>
+                          <p className="stack-card-tetxt">
+                          We help global brands  Africa
+                          </p>
+                      </div>        
+                </div>
+
+                <div className="stack-card">
+                      <div className="stack-card-body">
+                          <h4 className="stack-card-header">
+                            Enterprise for Africa
+                          </h4>
+                          <p className="stack-card-tetxt">
+                          We help global brands  Africa
+                          </p>
+                      </div>        
+                </div>
+
+                </div>
+              </div>
+             </div>
 
 
-
+            
             
               <div class="py-12 bg-white container">
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">

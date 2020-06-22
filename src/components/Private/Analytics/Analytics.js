@@ -10,7 +10,13 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const Post_Analytics_url = 'https://theebs.pythonanywhere.com/analytics/full_analysis/'
+const Post_Analytics_url = 'http://127.0.0.1:8000/analytics/full_analysis/'
+
+const host = 'http://127.0.0.1:8000'
+const products_analysis_endpoint = host + `/analytics/product_views/`
+
+var Main = []
+
 class User_Analysis extends Component{
     state = {
        
@@ -23,12 +29,217 @@ class User_Analysis extends Component{
         total_post :null ,
         total_views: null,
         user_post : [], 
+
+        results :[],
+        Allocated_products_analysis_data:[]
           }
     
+    Products_Analysis = async(token)=>{
+      
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      await axios.get(products_analysis_endpoint)
+      .then(res=>{
+        this.setState({
+          results : res.data
+        })
+      })
+
+      //Conditions and Mapping starts here
+      if (this.state.results.Electronics.length > 0){
+        var electronics_data = this.state.results.Electronics
+        
+        electronics_data.map((i)=>{
+            var a = {
+                id : i['id'] ,
+            category : i['Category'],
+            Title : i['Title'], Views : i['Views']
+           }
+           JSON.stringify(a)
+           Main.push(a)
+           
+        })
+        this.setState({
+            Allocated_products_analysis_data:Main
+        })
+       
+    }
+
+    if (this.state.results.Fashion.length > 0){
+        var fashion_data = this.state.results.Fashion
+        
+        
+        fashion_data.map((i)=>{
+            var a = {
+                id : i['id'] ,
+            category : i['Category'],
+            Title : i['Title'], 
+            Views : i['Views']
+           }
+           JSON.stringify(a)
+           Main.push(a)
+           
+        })
+        this.setState({
+            Allocated_products_analysis_data:Main
+        })
+
+    }
+
+    if (this.state.results.Services.length > 0){
+        var services_data = this.state.results.Services
+        
+        
+        services_data.map((i)=>{
+            var a = {
+                id : i['id'] ,
+            category : i['Category'],
+            Title : i['Title'], Views : i['Views']
+           }
+           JSON.stringify(a)
+           Main.push(a)
+           
+        })
+        this.setState({
+            Allocated_products_analysis_data:Main
+        })
+
+    }
+
+    if (this.state.results.HomeAppliances.length > 0){
+        var home_app = this.state.results.HomeAppliances
+       
+        home_app.map((i)=>{
+            var a = {
+                id : i['id'] ,
+            category : i['Category'],
+            Title : i['Title'], Views : i['Views']
+           }
+           JSON.stringify(a)
+           Main.push(a)
+           
+        })
+        this.setState({
+            Allocated_products_analysis_data:Main
+        })
+
+
+    }
+    
+    if (this.state.results.Phones.length > 0){
+        var phone_data = this.state.results.Phones
+   
+        phone_data.map((i)=>{
+            var a = {
+                id : i['id'] ,
+            category : i['Category'],
+            Title : i['Title'], Views : i['Views']
+           }
+           JSON.stringify(a)
+           Main.push(a)
+           
+        })
+        this.setState({
+            Allocated_products_analysis_data:Main
+        })
+
+    }
+
+    if (this.state.results.Property.length > 0){
+        var property_data = this.state.results.Property
+ 
+        property_data.map((i)=>{
+            var a = {
+                id : i['id'] ,
+            category : i['Category'],
+            Title : i['Title'], Views : i['Views']
+           }
+           JSON.stringify(a)
+           Main.push(a)
+           
+        })
+        this.setState({
+            Allocated_products_analysis_data:Main
+        })
+
+        
+    }
+    
+    if (this.state.results.Vehicles.length > 0){
+        var vehicle_data = this.state.results.Vehicles
+  
+        
+        vehicle_data.map((i)=>{
+            var a = {
+                id : i['id'] ,
+            category : i['Category'],
+            Title : i['Title'], Views : i['Views']
+           }
+           JSON.stringify(a)
+           Main.push(a)
+           
+        })
+        this.setState({
+            Allocated_products_analysis_data:Main
+        })
+
+        
+    }
+    //Conditions and Mapping ends here
+
+    //Assign Gotten Data into Chart.js for Processing and Visualization
+    var Labels = []
+    var DataPoints = []
+    var Products_for_charts = this.state.Allocated_products_analysis_data;
+    
+    //Maps Data to assigns data point and labels
+     Products_for_charts.map((i)=>{
+       var a = i['Title']
+        var b = i['Views']
+      Labels.push(a)
+      DataPoints.push(b)
+      console.log('The Labels',Labels)
+     })
+
+    this.setState({
+        chartData:{
+          labels: Labels,
+          datasets:[
+            {
+              label:'Impressions',
+              data: DataPoints,
+              backgroundColor:[
+                'rgb(148,0,211)'
+              ]
+            }
+          ]
+        }
+    })
+    console.log('Products Data',Main)
+    console.log('Chart Labels', this.state.Allocated_products_analysis_data)
+
+    //Caculates Average and Total Impressions
+    Products_for_charts.map((i)=>{
+       var b = i['Views']
+     DataPoints.push(b)
+     console.log('The Labels',Labels)
+    })
+    var Average_Impression = DataPoints / DataPoints.length
+    var Total_Impression  = 100
+    console.log('Impressions Here',Average_Impression,Total_Impression)
+    this.setState({
+      average_views :Average_Impression,
+      total_views:Total_Impression
+    })
+
+    //Products Analysis Functions ends here
+    }
+
 
     Analysis = async(token) =>{
-        const Data_Labels = []
-        const Data_Points = []
+       
         axios.defaults.headers = {
           "Content-Type": "application/json",
           Authorization: `Token ${token}`
@@ -84,8 +295,10 @@ class User_Analysis extends Component{
 
         componentDidMount(){
             //this.test_ws()
-              this.Analysis(this.props.token)
+             // this.Analysis(this.props.token)
               this.Insights(this.props.token)
+
+              this.Products_Analysis(this.props.token)
              }
           
          
@@ -93,8 +306,11 @@ class User_Analysis extends Component{
             componentWillReceiveProps(newProps) {
               if (newProps.token !== this.props.token) {
                 if (newProps.token !== undefined && newProps.token !== null) {
-                  this.Analysis(newProps.token)
+                //  this.Analysis(newProps.token)
                   this.Insights(newProps.token)
+                  
+                  this.Products_Analysis(newProps.token)
+
                 }
               }
             }

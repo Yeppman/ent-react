@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router";
 
+//Buyers Access
 import All_Uploads from './components/General/Home'
 import All_Post from './components/General/Market'
 import Enterprise_Showcase from './components/General/Unveil'
@@ -15,6 +16,7 @@ import Filter_Post_Form from './components/containers/Filter_Post'
 import Vendor_View from './components/General/Vendor_Data'
 import Category_Post from './components/General/Categories'
 import Category_Links from './components/General/Products_and_Services'
+
 
 //Sub Categories
 import Electronics_Items from './components/General/SubCategories/Electronics/Electronics_list'
@@ -35,16 +37,20 @@ import Phones_Item_Detail from './components/General/SubCategories/Phones/Phones
 import Property_Items from './components/General/SubCategories/Properties/Property_list'
 import Property_Item_Detail from './components/General/SubCategories/Properties/Property_detail'
 
+import Vehicle_Items from './components/General/SubCategories/Vehicles/Vehicles_list'
+import Vehicles_Item_Detail from './components/General/SubCategories/Vehicles/Vehicles_detail'
+
 // User Admninstration
 import AdminLayout from './components/Private/AdminLayout'
 
-//Creating Post
+//Creating Post for vendors
 import Create_Post_Portal from './components/Private/Create/Portal'
 import Electronics_Item_Create from './components/Private/Create/Electronics'
 import Property_Item_Create from './components/Private/Create/Property'
 import Services_Item_Create from './components/Private/Create/Services'
 import HomeApp_Item_Create from './components/Private/Create/HomeApp'
 import Vehicles_Item_Create from './components/Private/Create/Vehicles'
+import Fashion_Item_Create from './components/Private/Create/Fashion'
 
 
 import User_Post_Conent from './components/Private/User_Post_Content'
@@ -68,15 +74,22 @@ import Edit_Order from './components/Private/Logicstics/Edit_Order'
 import Profile_Edit from './components/Private/UserAction/Edit_Profile'
 import Business_Profile_Edit from './components/Private/Business_Profile/Edit_Business_Profile'
 
+//Inventory
 import Inventory_Store from './components/Private/Inventory/Inventories'
 import Create_Inventory from './components/Private/Inventory/Create_Item'
 
-
+//Email Marketing
 import Contact_Field from './components/Private/Broadcast/Contacts'
 import Message_Contact from './components/Private/Broadcast/Mail_Contacts'
 
+//Create Post
 import Create_Post from './components/Private/UserAction/Create_Post'
+
 import Membership_Select from  './components/Private/UserAction/Select_Memebership'
+
+// Book Keeping
+import BookKeepingList from './components/Private/Book_Keeping/Book_Keeping_Store'
+import New_Book from './components/Private/Book_Keeping/Create_Book'
 
 //Authentication 
 import LoginForm from './authentication/Login'
@@ -105,6 +118,7 @@ const GeneralRouter = () =>(
     <Route exact path="/search/:Title/" component={Search_Results} />{" "}
     <Route exact path = "/services_list" component = {Category_Links} /> {" "}
 
+     {/*Categories Ends here  */}
     <Route exact path = "/category/:categoryID/" component = {Category_Post} /> {" "}
     <Route exact path = "/post_detail/:PostDetailID/" component = {PostDetail} /> {" "} 
     
@@ -126,12 +140,21 @@ const GeneralRouter = () =>(
     <Route exact path = "/categories/property/" component = {Property_Items} /> {" "}
     <Route exact path = "/categories/property/:ItemDetailID/" component = {Property_Item_Detail} /> {" "}    
 
-    {/*Creatting Portals */}
+    
+    <Route exact path = "/categories/vehicles/" component = {Vehicle_Items} /> {" "}
+    <Route exact path = "/categories/vehicles/:ItemDetailID/" component = {Vehicles_Item_Detail} /> {" "} 
+    {/*Categories Ends here  */}
+
+
+    {/*Creating  Item Portals */}
     <Route exact path = "/create/portal/" component = {Create_Post_Portal} /> {" "}   
     <Route exact path = "/create/portal/electronics/:categoryID/" component = {Electronics_Item_Create} /> {" "} 
+    <Route exact path = "/create/portal/fashion/:categoryID/" component = {Fashion_Item_Create} /> {" "} 
+    <Route exact path = "/create/portal/services/:categoryID/" component = {Services_Item_Create} /> {" "}
+    <Route exact path = "/create/portal/property/:categoryID/" component = {Property_Item_Create} /> {" "}  
 
 
-    {/*Creatting Portals */}
+    {/*Creating Portals ends here */}
 
 
 
@@ -159,7 +182,13 @@ const GeneralRouter = () =>(
 
     <Route exact path = "/vendor_quotes/" component = {Quotes_listing} />{""}
     <Route exact path = "/membership_select/" component ={Membership_Select} /> {""}
-     {/*Dashboard Portals */}
+
+     {/*Book Keeping starts here */}
+    <Route exact path = "/book_keeping/" component ={BookKeepingList} /> {""}
+    <Route exact path = "/create_new_record/" component ={New_Book} /> {""}
+     {/*BK ends here */}
+     
+     {/*Dashboard ends here */}
 
     <Route exact path = "/logicstics/" component ={Logicstics_Channel} /> {""}
     <Route exact path = "/create_order/" component ={Create_New_Order} /> {""}

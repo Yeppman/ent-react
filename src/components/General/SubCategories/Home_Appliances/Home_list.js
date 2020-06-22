@@ -11,13 +11,13 @@ import {
 
 import Query_Results from '../../Queried_Results'
 
-import Uploaded_post from '../../Items'
+import Uploaded_Post from '../../Items'
 
  
 const Search = Input.Search;
 const { Option } = Select;
 
-const host = 'https://theebs.pythonanywhere.com';
+const host = 'http://127.0.0.1:8000';
 const slug = 'home_applicances'
 
 const Brands = ['LG','Samsung','Sony', 'Hi-Sense']
@@ -167,9 +167,9 @@ class Home_App_Items extends Component{
                   </Form.Item>
 
                   <Form.Item >
-                    <Button type="primary" htmlType="submit">
+                    <button className="login-button" type="primary" htmlType="submit">
                       Filter
-                    </Button>
+                    </button>
                   </Form.Item>
                 </Form>
           
@@ -181,7 +181,7 @@ class Home_App_Items extends Component{
                 md:col-span-8 lg:col-span-6 xl:col-span-6 gap-3">
                   {
                   show_results ?(
-                    <Uploaded_post slug_class={slug}  Items={items}/>
+                    <Uploaded_Post slug_class={slug}  Items={items}/>
                   ):(
                    <Query_Results Results={search_results}/>
                   )

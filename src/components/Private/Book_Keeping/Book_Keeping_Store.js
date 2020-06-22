@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import TemporaryDrawer from '../Sidebar/SideNav'
 
+import SimpleTable from './table'
 import {PlusCircleOutlined} from '@ant-design/icons'
 
 const host = 'http://127.0.0.1:8000'
@@ -11,7 +12,7 @@ const endpoint = host + '/management/book_keeping_list/'
 class BookKeepingList extends Component {
     
     state = {
-        data: [],
+      book_data: [],
         loading: false
     }
 
@@ -24,7 +25,7 @@ class BookKeepingList extends Component {
         axios.get(endpoint)
         .then(res => {
             this.setState({
-                data:res.data, 
+                book_data:res.data, 
                 loading:false
             })
             console.log(res.data)
@@ -49,6 +50,7 @@ class BookKeepingList extends Component {
       }
 
     render() {
+      const {book_data} =  this.state
         return (
             <>
              <TemporaryDrawer />
@@ -64,6 +66,10 @@ class BookKeepingList extends Component {
                     </div>
 
                 </div>
+            </div>
+
+            <div className="container">
+              <SimpleTable data={book_data}/>
             </div>
 
             </>

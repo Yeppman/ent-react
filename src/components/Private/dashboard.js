@@ -526,12 +526,12 @@ return (
                             
                         <div className="top-card-title">
                             <h3 className="top-card-title">
-                              Post
+                              Products
                             </h3>
                         </div>
                           <div className="top-card-text">
                           <a href={`/user_uploads`}>
-                          View Your Post 
+                          View Your Products 
                           </a>
                           </div>
                         </div>

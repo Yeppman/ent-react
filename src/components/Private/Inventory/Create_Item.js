@@ -42,7 +42,7 @@ class Create_Inventory extends React.Component{
       "Content-Type": "application/json",
       Authorization: `Token ${token}`
     };
-   await axios.get(`http://127.0.0.1:8000/stream/view_post`)
+   await axios.get(`https://theebs.pythonanywhere.com/stream/view_post`)
     .then(res =>{
             this.setState({
                   post_list:res.data
@@ -71,7 +71,7 @@ class Create_Inventory extends React.Component{
               "Content-Type": "application/json",
               Authorization: `Token ${this.props.token}`
             };
-            const host = "http://127.0.0.1:8000"
+            const host = "https://theebs.pythonanywhere.com"
            const endpoint = host + '/management/create_inventory/'
             axios.get(endpoint,
              {

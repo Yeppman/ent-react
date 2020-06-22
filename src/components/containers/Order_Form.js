@@ -30,7 +30,7 @@ const formItemLayout = {
 const { Option } = Select; 
 const {TextArea} = Input
 
-const Quotation_url = 'http://127.0.0.1:8000/core_api/quotation'
+const Quotation_url = 'https://theebs.pythonanywhere.com/core_api/quotation'
 
 class Order_Form extends React.Component{
    

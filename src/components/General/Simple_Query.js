@@ -4,7 +4,7 @@ import axios from "axios";
 import {Rate} from 'antd'
 //import Uploaded_Post from './Items'
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://theebs.pythonanywhere.com'
 const search_url = host + `/retail/search_models/`
 
 

@@ -10,9 +10,9 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const Post_Analytics_url = 'http://127.0.0.1:8000/analytics/full_analysis/'
+const Post_Analytics_url = 'https://theebs.pythonanywhere.com/analytics/full_analysis/'
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://theebs.pythonanywhere.com'
 const products_analysis_endpoint = host + `/analytics/product_views/`
 
 var Main = []

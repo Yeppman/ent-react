@@ -16,7 +16,7 @@ const openNotification = (msg) => {
   }
 
 
-const host = 'http://127.0.0.1:8000/'
+const host = 'https://theebs.pythonanywhere.com/'
 const endpoint = host + 'bk-create';
 
 class New_Book extends Component {

@@ -14,7 +14,7 @@ import Fiter_Results_Form from './Filter_Post'
 
 
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'http://127.0.0.1:8000/stream/profile_view/'
+const profile_url = 'https://theebs.pythonanywhere.com/stream/profile_view/'
 class CustomLayout extends Component{
  
     Try_getting_user_Detail = async() =>{

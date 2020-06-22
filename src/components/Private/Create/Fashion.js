@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'http://127.0.0.1:8000/stream/view_post/'
+const UserPost_url = 'https://theebs.pythonanywhere.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -36,7 +36,7 @@ const formItemLayout = {
   wrapperCol: { span: 12, offset: 6 }
 };
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://theebs.pythonanywhere.com'
 
 
 const Color = ['Blue','Black', 'Red']

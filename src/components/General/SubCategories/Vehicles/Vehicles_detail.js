@@ -8,7 +8,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://theebs.pythonanywhere.com'
 const item_type = 'vehicles'
 
 class Vehicles_Item_Detail extends Component{

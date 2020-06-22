@@ -11,7 +11,7 @@ import User_Uploaded_Post from './uploaded_items'
 import {PlusCircleOutlined} from '@ant-design/icons'
 
 
-const host = 'http://127.0.0.1:8000';
+const host = 'https://theebs.pythonanywhere.com';
 const users_uploads_endpoint = host + `/retail/all_uploads/`
 const Post_Array = []
 const Main  = []

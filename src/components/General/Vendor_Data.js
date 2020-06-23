@@ -6,7 +6,7 @@ import {Rate} from 'antd'
 import { MessageOutlined,} from '@ant-design/icons'
 
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 var Main  = []
 
 const vendor_post_url = host + `/vendors_post/`
@@ -240,7 +240,7 @@ class Vendor_View extends Component{
 
     //Previous Model to get Vendor data
     Vendor_Post = async()=>{
-        axios.get(`http://back-ent.herokuapp.com/core_api/vendors_post/${this.vendor_id}/`)
+        axios.get(`https://back-ent.herokuapp.com/core_api/vendors_post/${this.vendor_id}/`)
         .then(res =>{
             this.setState({
                 vendor_post : res.data ,

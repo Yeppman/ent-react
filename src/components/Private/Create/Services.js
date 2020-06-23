@@ -30,7 +30,7 @@ const openNotification = (msg) => {
 }
 
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 
 const Service_Type = ['Insurance','Mechanic','Pharmacy','Health','Law','Baking']
 const Payment_Type = ['Online','OnDelivery']

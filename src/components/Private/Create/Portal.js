@@ -3,7 +3,7 @@ import {Rate} from 'antd'
 //import { Link, withRouter } from 'react-router-dom';
 import axios from 'axios'
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 
 class Create_Post_Portal extends Component{
     state ={

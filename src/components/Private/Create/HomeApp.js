@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'http://back-ent.herokuapp.com/stream/view_post/'
+const UserPost_url = 'https://back-ent.herokuapp.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -23,7 +23,7 @@ const IconText = ({ icon, text }) => (
   </span>
 );
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 
 
 class HomeApp_Item_Create extends Component{

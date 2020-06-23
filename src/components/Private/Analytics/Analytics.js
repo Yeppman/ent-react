@@ -10,9 +10,9 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const Post_Analytics_url = 'http://back-ent.herokuapp.com/analytics/full_analysis/'
+const Post_Analytics_url = 'https://back-ent.herokuapp.com/analytics/full_analysis/'
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 const products_analysis_endpoint = host + `/analytics/product_views/`
 
 var Main = []

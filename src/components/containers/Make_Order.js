@@ -30,9 +30,9 @@ const formItemLayout = {
 const { Option } = Select; 
 const {TextArea} = Input
 
-const Request_Order_url = 'http://back-ent.herokuapp.com/management/new_order/'
+const Request_Order_url = 'https://back-ent.herokuapp.com/management/new_order/'
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 
 class Make_Order_Form extends React.Component{
    

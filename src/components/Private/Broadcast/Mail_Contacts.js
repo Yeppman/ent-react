@@ -21,7 +21,7 @@ class Message_Contact extends Component{
             "Content-Type": "application/json",
             Authorization: `Token ${token}`
           };
-        await axios.get(`http://back-ent.herokuapp.com/management/contact_detail/${this.contact_id}/`)
+        await axios.get(`https://back-ent.herokuapp.com/management/contact_detail/${this.contact_id}/`)
         .then(res =>{
             this.setState(
                 {
@@ -69,7 +69,7 @@ class Message_Contact extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`http://back-ent.herokuapp.com/management/broadcast/`,
+              axios.get(`https://back-ent.herokuapp.com/management/broadcast/`,
                {
                 params: {
                    Heading, Email ,  Phone ,Message

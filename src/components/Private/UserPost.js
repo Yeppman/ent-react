@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 
 import TemporaryDrawer from './Sidebar/SideNav'
 
-const UserPost_url = 'http://back-ent.herokuapp.com/stream/view_post/'
+const UserPost_url = 'https://back-ent.herokuapp.com/stream/view_post/'
 
 const Search = Input.Search;
 const TextArea = Input.TextArea
@@ -27,8 +27,8 @@ const IconText = ({ icon, text }) => (
 );
 
 
-const category_url = 'http://back-ent.herokuapp.com/core_api/category_list/'  
-const My_User_id_url = "http://back-ent.herokuapp.com/stream/get_my_user_id/"
+const category_url = 'https://back-ent.herokuapp.com/core_api/category_list/'  
+const My_User_id_url = "https://back-ent.herokuapp.com/stream/get_my_user_id/"
 
 class Load_User_Post extends Component {
 
@@ -150,7 +150,7 @@ class Load_User_Post extends Component {
               Authorization: `Token ${this.props.token}`
             };
           
-          axios.post(`http://back-ent.herokuapp.com/stream/create_post/`,form_data, {
+          axios.post(`https://back-ent.herokuapp.com/stream/create_post/`,form_data, {
             headers : {
               "Content-Type": "multitype/form-data",
               Authorization: `Token ${this.props.token}`

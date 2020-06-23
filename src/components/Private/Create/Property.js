@@ -35,7 +35,7 @@ const IconText = ({ icon, text }) => (
   </span>
 );
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 
 const Property_Type = ['House For Sale','House For Rent','House For Purchase','Land For Sale','Land For Purchase']
 const House_Quality = ['New','Old']

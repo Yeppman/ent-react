@@ -64,7 +64,7 @@ class Business_Profile_Edit extends Component{
 
               axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
               axios.defaults.xsrfCookieName = "csrftoken";
-              axios.post(`http://back-ent.herokuapp.com/stream/edit_business_profile/`,fd, {
+              axios.post(`https://back-ent.herokuapp.com/stream/edit_business_profile/`,fd, {
                 headers : {
                   "Content-Type": "multitype/form-data",
                   Authorization: `Token ${this.props.token}`

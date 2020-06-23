@@ -48,7 +48,7 @@ const layout = {
 
 const FormItem = Form.Item
 
-const category_url = 'http://back-ent.herokuapp.com/core_api/category_list/'
+const category_url = 'https://back-ent.herokuapp.com/core_api/category_list/'
 class Create_Post extends React.Component{
       state = {
         results : [] ,

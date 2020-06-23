@@ -4,7 +4,7 @@ import 'react-alice-carousel/lib/alice-carousel.css'
  
 
 
-const post_list_url = 'http://back-ent.herokuapp.com/core_api/post_list/'
+const post_list_url = 'https://back-ent.herokuapp.com/core_api/post_list/'
 class  Gallery extends React.Component{
   handleOnDragStart = (e) => e.preventDefault()
 

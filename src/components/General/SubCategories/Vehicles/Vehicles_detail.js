@@ -8,7 +8,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'http://back-ent.herokuapp.com'
+const host = 'https://back-ent.herokuapp.com'
 const item_type = 'vehicles'
 
 class Vehicles_Item_Detail extends Component{

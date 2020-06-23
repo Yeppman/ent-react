@@ -20,7 +20,7 @@ const  openNotification = (msg) => {
   });
   }
 
-const host = "https://theebs.pythonanywhere.com"
+const host = "back-ent.herokuapp.com"
 
 class Inventory_Store extends Component{
     state ={
@@ -37,7 +37,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get('https://theebs.pythonanywhere.com/management/view_inventory/')
+      await axios.get('back-ent.herokuapp.com/management/view_inventory/')
       .then(res =>{
         this.setState({
           inventory_objects : res.data,

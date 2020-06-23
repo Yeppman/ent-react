@@ -28,11 +28,11 @@ const Search = Input.Search;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
-const category_url = 'https://theebs.pythonanywhere.com/core_api/category_list/'
+const category_url = 'back-ent.herokuapp.com/core_api/category_list/'
 
  //Components Starts here
 class Category_Post extends Component{
-  search_url = 'https://theebs.pythonanywhere.com/core_api/post_filter/'
+  search_url = 'back-ent.herokuapp.com/core_api/post_filter/'
   state = {
     results: [],
     loading: false,
@@ -44,7 +44,7 @@ class Category_Post extends Component{
 
     category_id = this.props.match.params.categoryID
     Category_Post =async()=>{
-        await axios.get(`https://theebs.pythonanywhere.com/core_api/category_related/${this.category_id}/`)
+        await axios.get(`back-ent.herokuapp.com/core_api/category_related/${this.category_id}/`)
         .then(res=>{
             this.setState({
             category_post : res.data

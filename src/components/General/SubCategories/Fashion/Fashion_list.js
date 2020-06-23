@@ -18,7 +18,7 @@ const { Option } = Select;
 
 
 
-const host = 'https://theebs.pythonanywhere.com';
+const host = 'back-ent.herokuapp.com';
 const slug = 'fashion'
 
 const Brands = ['Gucci','D&G','Fendi']

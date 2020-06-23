@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 //import RavePayment from '../../containers/Payment Gateway/RavePay'
 import Paystacker from '../Payment Gateway/Paystack'
 
-const UserMembership_url  = 'https://theebs.pythonanywhere.com/stream/user_membership' 
+const UserMembership_url  = 'back-ent.herokuapp.com/stream/user_membership' 
 
 const openNotification = (msg) => {
   notification.open({
@@ -53,7 +53,7 @@ class Membership_Select extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-       await axios.get('https://theebs.pythonanywhere.com/stream/membership_payment_list/')
+       await axios.get('back-ent.herokuapp.com/stream/membership_payment_list/')
        .then(res =>{
          this.setState({
           Subscriptions : res.data,

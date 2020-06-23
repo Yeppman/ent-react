@@ -29,7 +29,7 @@ class ChangePassword extends Component {
       };
     console.log(user);
     axios
-      .post('https://theebs.pythonanywhere.com/rest-auth/password/change/', user)
+      .post('back-ent.herokuapp.com/rest-auth/password/change/', user)
       .then(res => {
         console.log(user);
         this.props.history.push("/")

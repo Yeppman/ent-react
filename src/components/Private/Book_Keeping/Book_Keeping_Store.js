@@ -6,7 +6,7 @@ import TemporaryDrawer from '../Sidebar/SideNav'
 import SimpleTable from './table'
 import {PlusCircleOutlined} from '@ant-design/icons'
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'back-ent.herokuapp.com'
 const endpoint = host + '/management/book_keeping_list/'
 
 class BookKeepingList extends Component {

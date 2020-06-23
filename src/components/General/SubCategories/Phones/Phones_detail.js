@@ -8,7 +8,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'back-ent.herokuapp.com'
 
 
 const item_type = 'phones'
@@ -26,7 +26,7 @@ class Phones_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`back-ent.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data

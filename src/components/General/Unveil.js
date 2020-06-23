@@ -7,10 +7,10 @@ import { connect } from "react-redux";
 //import Results from "./Results";
 
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'back-ent.herokuapp.com'
 
 class Enterprise_Showcase extends Component{
-  search_url = 'https://theebs.pythonanywhere.com/core_api/post_filter/'
+  search_url = 'back-ent.herokuapp.com/core_api/post_filter/'
   state = {
     results: [],
     loading: false,

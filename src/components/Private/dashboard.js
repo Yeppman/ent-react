@@ -19,7 +19,7 @@ const openNotification = (msg) => {
     },
   });
 }
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'back-ent.herokuapp.com'
 
 const Profile_id_url  = host + `/stream/get_profile_id/`
 const Profile_url = host + `/stream/profile_view/`
@@ -307,7 +307,7 @@ class ProfileDashboard extends Component {
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://theebs.pythonanywhere.com/stream/profile_view/${profile_id}/`)
+          axios.get(`back-ent.herokuapp.com/stream/profile_view/${profile_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data

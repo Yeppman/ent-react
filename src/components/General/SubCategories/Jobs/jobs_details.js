@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 
 
-const host = 'https://theebs.pythonanywhere.com'
+const host = 'back-ent.herokuapp.com'
 class Electronics_Item_Detail extends Component{
     state = {
         item:[],
@@ -16,7 +16,7 @@ class Electronics_Item_Detail extends Component{
     }
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://theebs.pythonanywhere.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`back-ent.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data

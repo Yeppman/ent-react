@@ -32,7 +32,7 @@ class PasswordResetConfirm extends Component {
       };
     console.log(user);
     axios
-      .post('https://theebs.pythonanywhere.com/rest-auth/password/reset/confirm/', user)
+      .post('back-ent.herokuapp.com/rest-auth/password/reset/confirm/', user)
       .then(res => {
         console.log(user);
         this.props.history.push("/")

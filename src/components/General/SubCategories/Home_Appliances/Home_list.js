@@ -17,7 +17,7 @@ import Uploaded_Post from '../../Items'
 const Search = Input.Search;
 const { Option } = Select;
 
-const host = 'https://theebs.pythonanywhere.com';
+const host = 'back-ent.herokuapp.com';
 const slug = 'home_applicances'
 
 const Brands = ['LG','Samsung','Sony', 'Hi-Sense']

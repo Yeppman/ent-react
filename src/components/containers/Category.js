@@ -17,7 +17,7 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 import renderEmpty from "antd/lib/config-provider/renderEmpty";
 const { Meta } = Card; 
 
-const category_url = 'https://theebs.pythonanywhere.com/core_api/category_list/'
+const category_url = 'back-ent.herokuapp.com/core_api/category_list/'
 
 const IconText = ({ icon, text }) => (
     <span>

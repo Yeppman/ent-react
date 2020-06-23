@@ -19,7 +19,7 @@ const { Option } = Select;
 
 
 
-const host = 'back-ent.herokuapp.com';
+const host = 'http://back-ent.herokuapp.com';
 const slug = 'services'
 
 const Brands = ['LG','Samsung','Sony', 'Hi-Sense']

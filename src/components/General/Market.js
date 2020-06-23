@@ -19,12 +19,12 @@ const Search = Input.Search;
 const { Option } = Select;
 
 
-const category_url = 'back-ent.herokuapp.com/core_api/category_list/'
-const search_url  = 'back-ent.herokuapp.com/core_api/post_filter/'
+const category_url = 'http://back-ent.herokuapp.com/core_api/category_list/'
+const search_url  = 'http://back-ent.herokuapp.com/core_api/post_filter/'
 
  //Components Starts here
 class All_Post extends Component{
-  search_url = 'back-ent.herokuapp.com/core_api/post_filter/'
+  search_url = 'http://back-ent.herokuapp.com/core_api/post_filter/'
   state = {
     results: [],
     loading: false,

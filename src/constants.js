@@ -1,4 +1,4 @@
-const localhost = "back-ent.herokuapp.com";
+const localhost = "http://back-ent.herokuapp.com";
 //const localhost = "https://tradeprev.pythonanywhere.com";
 const apiURL = "/api";
 

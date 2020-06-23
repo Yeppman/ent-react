@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 import {notification,message} from 'antd'
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const Profile_id_url  = 'back-ent.herokuapp.com/stream/get_profile_id/'
-const Profile_url = 'back-ent.herokuapp.com/stream/profile_view/'
+const Profile_id_url  = 'http://back-ent.herokuapp.com/stream/get_profile_id/'
+const Profile_url = 'http://back-ent.herokuapp.com/stream/profile_view/'
 
-const Business_Profile_id_url = "back-ent.herokuapp.com/stream/get_business_profile_id/"
-const Business_Profile_url = 'back-ent.herokuapp.com/stream/business_profile/'
+const Business_Profile_id_url = "http://back-ent.herokuapp.com/stream/get_business_profile_id/"
+const Business_Profile_url = 'http://back-ent.herokuapp.com/stream/business_profile/'
 
-const My_User_id_url = "back-ent.herokuapp.com/stream/get_my_user_id/"
+const My_User_id_url = "http://back-ent.herokuapp.com/stream/get_my_user_id/"
 
 
 class User_Profile extends React.Component{
@@ -52,7 +52,7 @@ class User_Profile extends React.Component{
             Authorization: `Token ${token}`
           };
           
-          axios.get(`back-ent.herokuapp.com/stream/profile_view/${parse_user_id}/`)
+          axios.get(`http://back-ent.herokuapp.com/stream/profile_view/${parse_user_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data

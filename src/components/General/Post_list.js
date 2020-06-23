@@ -24,8 +24,8 @@ const formItemLayout = {
   wrapperCol: { span: 12, offset: 6 }
 };
 
-const category_url = 'back-ent.herokuapp.com/core_api/category_list/'
-const post_list_url = 'back-ent.herokuapp.com/core_api/post_list/'
+const category_url = 'http://back-ent.herokuapp.com/core_api/category_list/'
+const post_list_url = 'http://back-ent.herokuapp.com/core_api/post_list/'
 const { Search } = Input;
 
 class Posts extends Component{

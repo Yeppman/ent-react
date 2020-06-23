@@ -14,7 +14,7 @@ import Fiter_Results_Form from './Filter_Post'
 
 
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'back-ent.herokuapp.com/stream/profile_view/'
+const profile_url = 'http://back-ent.herokuapp.com/stream/profile_view/'
 class CustomLayout extends Component{
  
     Try_getting_user_Detail = async() =>{

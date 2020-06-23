@@ -21,7 +21,7 @@ class Search_Results extends React.Component{
     Recieve_Query = async()=>{
         const title = this.props.match.params.Title
         alert(title ,'oo')
-        axios.get('back-ent.herokuapp.com/core_api/post_filter/', {
+        axios.get('http://back-ent.herokuapp.com/core_api/post_filter/', {
             params:{
                 title
             }

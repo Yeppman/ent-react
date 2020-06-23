@@ -11,7 +11,7 @@ import User_Uploaded_Post from './uploaded_items'
 import {PlusCircleOutlined} from '@ant-design/icons'
 
 
-const host = 'back-ent.herokuapp.com';
+const host = 'http://back-ent.herokuapp.com';
 const users_uploads_endpoint = host + `/retail/all_uploads/`
 const Post_Array = []
 const Main  = []

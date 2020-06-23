@@ -5,7 +5,7 @@ import { Form,Select, Input} from 'antd';
 import Query_Results from '../../Queried_Results'
 
 
-const host = 'back-ent.herokuapp.com'
+const host = 'http://back-ent.herokuapp.com'
 class Jobs_Items extends Component{
     state = {
         items : [],

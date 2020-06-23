@@ -36,7 +36,7 @@ class Contact_Field extends Component{
                 "Content-Type": "application/json",
                 Authorization: `Token ${token}`
               };
-        await axios.get('back-ent.herokuapp.com/management/contact_list/')
+        await axios.get('http://back-ent.herokuapp.com/management/contact_list/')
         .then(res =>{
             this.setState({
                 contacts : res.data,
@@ -52,7 +52,7 @@ class Contact_Field extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-        await axios.get(`back-ent.herokuapp.com/management/delete_contact/${id}/`)
+        await axios.get(`http://back-ent.herokuapp.com/management/delete_contact/${id}/`)
         .then(res =>{
           this.openNotification(res.data['Message'])
         })
@@ -105,7 +105,7 @@ class Contact_Field extends Component{
                Authorization: `Token ${this.props.token}`
              };
              
-             axios.get(`back-ent.herokuapp.com/management/broadcast/`,
+             axios.get(`http://back-ent.herokuapp.com/management/broadcast/`,
               {
                params: {
                   Heading,  Phone ,Message, Email
@@ -152,7 +152,7 @@ class Contact_Field extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`back-ent.herokuapp.com/management/save_contact/`,
+              axios.get(`http://back-ent.herokuapp.com/management/save_contact/`,
                {
                 params: {
                    Name, Email ,  Phone ,Address

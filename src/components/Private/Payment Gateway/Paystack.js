@@ -4,7 +4,7 @@ import {notification} from 'antd'
 //import the library
 import PaystackButton from 'react-paystack';
 
-const Payment_Upgrade_Url = 'back-ent.herokuapp.com/stream/process_plan_upgrade/'
+const Payment_Upgrade_Url = 'http://back-ent.herokuapp.com/stream/process_plan_upgrade/'
 class Paystacker extends Component {
 
     state = {

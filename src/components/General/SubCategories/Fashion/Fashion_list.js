@@ -18,7 +18,7 @@ const { Option } = Select;
 
 
 
-const host = 'back-ent.herokuapp.com';
+const host = 'http://back-ent.herokuapp.com';
 const slug = 'fashion'
 
 const Brands = ['Gucci','D&G','Fendi']

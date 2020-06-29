@@ -2,8 +2,8 @@ import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings.js";
-import TeamIllustrationSrc from "images/team-illustration-2.svg";
+import { SectionHeading, Subheading as SubheadingBase } from "../../components/misc/Headings.js";
+import TeamIllustrationSrc from "../../images/team-illustration-2.svg";
 import { ReactComponent as SvgDotPattern } from "images/dot-pattern.svg";
 
 const Container = tw.div`relative`;

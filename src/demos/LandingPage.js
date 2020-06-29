@@ -16,7 +16,6 @@ import GetStarted from "../components/cta/GetStarted";
 import Footer from "../components/footers/FiveColumnDark.js";
 import heroScreenshotImageSrc from "../images/hero-screenshot-1.png";
 import macHeroScreenshotImageSrc from "../images/hero-screenshot-2.png";
-import TeamIllustrationSrc from "../../images/online.png";
 
 import prototypeIllustrationImageSrc from "../images/prototype-illustration.svg";
 import { ReactComponent as BriefcaseIcon } from "feather-icons/dist/icons/briefcase.svg";

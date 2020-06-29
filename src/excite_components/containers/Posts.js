@@ -12,7 +12,7 @@ import Gigs from  '../General/Post_list'
 
 import Results from '../General/Filter_results'
 
-const post_list_url = 'http://127.0.0.1:8000/core_api/post_list/'
+const post_list_url = 'https://backend-ent.herokuapp.com/core_api/post_list/'
   
 const IconText = ({ icon, text }) => (
   <span>
@@ -25,7 +25,7 @@ const formItemLayout = {
   wrapperCol: { span: 12, offset: 6 }
 };
 
-const category_url = 'http://127.0.0.1:8000/core_api/category_list/'
+const category_url = 'https://backend-ent.herokuapp.com/core_api/category_list/'
 const { Search } = Input;
 
 class Load_Posts extends Component{

@@ -6,7 +6,7 @@ import * as actions from '../../store/actions/auth';
 import axios from  'axios';
 
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'http://127.0.0.1:8000/stream/profile_view/'
+const profile_url = 'https://backend-ent.herokuapp.com/stream/profile_view/'
 
 
 class Nav extends Component{

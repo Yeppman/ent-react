@@ -30,7 +30,7 @@ const openNotification = (msg) => {
 }
 
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-ent.herokuapp.com'
 
 const Service_Type = ['Insurance','Mechanic','Pharmacy','Health','Law','Baking']
 const Payment_Type = ['Online','OnDelivery']

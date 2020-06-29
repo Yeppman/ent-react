@@ -21,7 +21,7 @@ const { Option } = Select;
 
 
 
-const host = 'http://127.0.0.1:8000';
+const host = 'https://backend-ent.herokuapp.com';
 const slug = 'services'
 
 const Brands = ['LG','Samsung','Sony', 'Hi-Sense']

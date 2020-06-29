@@ -6,7 +6,7 @@ import TemporaryDrawer from '../Sidebar/SideNav'
 import SimpleTable from './table'
 import New_Book from './Create_Book'
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-ent.herokuapp.com'
 const endpoint = host + '/management/book_keeping_list/'
 
 

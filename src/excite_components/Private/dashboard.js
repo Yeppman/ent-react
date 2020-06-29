@@ -216,7 +216,7 @@ class ProfileDashboard extends Component {
       
               
           }
-          //Conditions and Mapping ends here
+          //Conditions and Mapping ends
       
           //Assign Gotten Data into Chart.js for Processing and Visualization
           var Labels = []

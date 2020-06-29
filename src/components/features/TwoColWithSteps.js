@@ -60,15 +60,15 @@ export default ({
   const defaultSteps = [
     {
       heading: "Register",
-      description: "Create an account with us using Google or Facebook."
+      description: "Create an account on our platform."
     },
     {
-      heading: "Download",
-      description: "Browse and Download the template that you like from the marketplace."
+      heading: "Set-up your Aaccount",
+      description: "2-minute of account setyp."
     },
     {
       heading: "Run",
-      description: "Follow the instructions to setup and customize the template to your needs."
+      description: "Upload your buiness details"
     }
   ];
 

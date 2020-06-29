@@ -3,10 +3,12 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/auth';
 
+import {UserOutlined, LoginOutlined} from '@ant-design/icons'
+
 import axios from  'axios';
 
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'https://backend-ent.herokuapp.com/stream/profile_view/'
+const profile_url = 'http://127.0.0.1:8000/stream/profile_view/'
 
 
 class Nav extends Component{
@@ -47,7 +49,7 @@ class Nav extends Component{
                   is_seller ?(
                     <li className ="navlist">
                     <Link to="/dashboard">
-                    Dashboard
+                   <UserOutlined/> Dashboard
                     </Link>
                     </li>
                   ):(<li></li>)
@@ -79,7 +81,7 @@ class Nav extends Component{
                    
                     <li className ="navlist">
                     <Link onClick={() => this.props.logout()}>
-                Logout
+                    <LoginOutlined />  Logout
               </Link>
                     </li>
 

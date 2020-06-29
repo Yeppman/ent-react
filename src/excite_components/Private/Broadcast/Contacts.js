@@ -29,7 +29,7 @@ const openNotification = (msg) => {
   });
 }
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 
 class Contact_Field extends Component{
     state = {
@@ -72,7 +72,7 @@ class Contact_Field extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-        await axios.get(`https://backend-ent.herokuapp.com/management/delete_contact/${id}/`)
+        await axios.get(`http://127.0.0.1:8000/management/delete_contact/${id}/`)
         .then(res =>{
           this.openNotification(res.data['Message'])
         })
@@ -142,7 +142,7 @@ class Contact_Field extends Component{
                Authorization: `Token ${this.props.token}`
              };
              
-             axios.get(`https://backend-ent.herokuapp.com/management/broadcast/`,
+             axios.get(`http://127.0.0.1:8000/management/broadcast/`,
               {
                params: {
                   Heading,  Phone ,Message, Email
@@ -189,7 +189,7 @@ class Contact_Field extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`https://backend-ent.herokuapp.com/management/save_contact/`,
+              axios.get(`http://127.0.0.1:8000/management/save_contact/`,
                {
                 params: {
                    Name, Email ,  Phone ,Address
@@ -264,53 +264,7 @@ class Contact_Field extends Component{
                       </div>
                   </div>
 
-                    <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-4  xl:col-span-4">
-                          
-                          <div className="login-section">
-                          <Form  onFinish={this.process_query}>
-                              <Form.Item>
-                              <h1 className="ant-form-text">Create Contact</h1>
-                              </Form.Item>
-
-
-                              <Form.Item name ="Name">
-                              
-                                  <Input
-                                  placeholder="Client Name"
-                                  
-                                  enterButton
-                                  />
-                              
-                              </Form.Item>
-                              <Form.Item name ='Email'> 
-                                  <Input
-                                  placeholder="Email"
-                                  enterButton
-                                  />
-                              </Form.Item>
-
-                              <Form.Item name ='Phone'> 
-                                  <Input
-                                  placeholder="Phone Number"
-                                  enterButton
-                                  />
-                              </Form.Item>
-                              
-                    
-                          <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-                              <button
-                       
-                              class="login-button"
-                            htmlType="submit">
-                              Send
-                            </button>
-                              </Form.Item>
-
-                  </Form>
-                      
-                          </div>
-
-                          </div>
+                   
                     </div>
                   </div>
 

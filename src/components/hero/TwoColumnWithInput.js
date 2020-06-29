@@ -54,11 +54,11 @@ export default ({ roundedHeaderButton }) => {
         <TwoColumn>
           <LeftColumn>
             <Heading>
-              Beautiful React Templates <span tw="text-primary-500">for you.</span>
+              Welcome to <span tw="text-primary-500">Excite Enterprise</span>
             </Heading>
             <Paragraph>
-              Our templates are easy to setup, understand and customize. Fully modular components with a variety of
-              pages and components.
+            Excite Enterprise is a virtual market place for small and medium business owners. The advantage of the marketplace has to do with marketing and branding which have a compelling attraction to buyers and users.
+            Excite Enterprise is to create a virtual market place for businesses and sustainably capturing data and insights on the Market.
             </Paragraph>
             <Actions>
               <input type="text" placeholder="Your E-mail Address" />

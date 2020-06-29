@@ -32,7 +32,7 @@ class PasswordResetConfirm extends Component {
       };
     console.log(user);
     axios
-      .post('https://backend-ent.herokuapp.com/rest-auth/password/reset/confirm/', user)
+      .post('http://127.0.0.1:8000/rest-auth/password/reset/confirm/', user)
       .then(res => {
         console.log(user);
         this.props.history.push("/")

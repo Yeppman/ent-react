@@ -110,7 +110,7 @@ export default () => {
         ]}
       />
 
-      <GetStarted/>
+      {/* <GetStarted/> */}
       <Footer />
     </AnimationRevealPage>
   );

@@ -19,7 +19,7 @@ const openNotification = (msg) => {
     },
   });
 }
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 
 const Profile_id_url  = host + `/stream/get_profile_id/`
 const Profile_url = host + `/stream/profile_view/`
@@ -323,7 +323,7 @@ class ProfileDashboard extends Component {
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://backend-ent.herokuapp.com/stream/profile_view/${profile_id}/`)
+          axios.get(`http://127.0.0.1:8000/stream/profile_view/${profile_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data

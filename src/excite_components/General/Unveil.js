@@ -10,7 +10,7 @@ import Nav from '../containers/nav'
 //import latest_items from "./latest_items";
 
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 var Main = []
 
 class Enterprise_Showcase extends Component{
@@ -303,7 +303,7 @@ class Enterprise_Showcase extends Component{
  
   render() {
       const {Allocated_Results, categories, show_res} = this.state;
-      const Latest_Products = Allocated_Results.slice(0,4)
+      const Latest_Products = Allocated_Results
       const formItemLayout = {
         wrapperCol: { span: 12, offset: 3 }
       };
@@ -314,9 +314,9 @@ class Enterprise_Showcase extends Component{
           <Nav/>    
   
                 <div className="container">
-                  <div className="grid grid-cols-10 gap-4">
+                  <div className="grid grid-cols-12 gap-4">
                  
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 
+                  <div className="col-span-2 sm:col-span-2 md:col-span-2 
                     lg:col-span-1 xl:col-span-2">
                       <div className=" category-list-box">
                       <div className="category-list-box-body">
@@ -338,14 +338,14 @@ class Enterprise_Showcase extends Component{
                   </div>
                     </div>
 
-                    <div className="col-span-8 sm:col-span-8 md:col-span-8
-                    lg:col-span-8 xl:col-span-8">
+                    <div className="col-span-9 sm:col-span-9 md:col-span-8
+                    lg:col-span-9 xl:col-span-9">
                     <div className="grid grid-cols-8 gap-3">
                             
                             {
                               Latest_Products.map((item)=>(
                                 <>
-                                <div className="col-span-2 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                                <div className="col-span-2 sm:col-span-4  pt-2 md:col-span-4 lg:col-span-2 xl:col-span-2">
                                     <div className="item-container">
 
                                       <div className="item-box">
@@ -356,10 +356,12 @@ class Enterprise_Showcase extends Component{
                                                 />
                                         </div>
                                         <div className="item-detail-container">
-                                            <h3 
+                                        <h3 
                                             onClick={()=>this.openItem(`/categories/${item.category}/${item.id}`)}
                                             className="item-heading">
-                                              {item.Title}
+                                             {item.Title.length < 30 ? 
+                             `${item.Title}` : `${item.Title.substring(0, 31)}...` }
+                                              
                                             </h3>
 
                                             <p onClick={()=>this.openItem(`/categories/${item.category}/${item.id}`)}

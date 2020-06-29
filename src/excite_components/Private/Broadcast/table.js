@@ -36,7 +36,7 @@ const delete_contact = async (token,id) =>{
     "Content-Type": "application/json",
     Authorization: `Token ${token}`
   };
-    await axios.get(`https://backend-ent.herokuapp.com/management/delete_contact/${id}/`)
+    await axios.get(`http://127.0.0.1:8000/management/delete_contact/${id}/`)
     .then(res =>{
       this.openNotification(res.data['Message'])
     })

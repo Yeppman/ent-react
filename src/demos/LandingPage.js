@@ -39,7 +39,7 @@ export default () => {
       />
       <MainFeature
         subheading={<Subheading>Quality Work</Subheading>}
-        imageSrc={TeamIllustrationSrc}
+        imageSrc={heroScreenshotImageSrc}
         imageBorder={true}
         imageDecoratorBlob={true}
       />

@@ -2,9 +2,10 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 
 const initialState = {
-  mode:null
+  mode:null,
+  error: null,
+  loading: true
 };
-
 
 const getMembershipStart = (state, action) => {
     return updateObject(state, {
@@ -21,13 +22,13 @@ const getMembershipSuccess = (state, action) => {
 
   const getMembershipFail = (state, action) => {
     return updateObject(state, {
-      error: null,
+      error: action.error,
       loading: true
     });
   };
 
 
-  const reducer = (state = initialState, action) => {
+  const membershipReducer = (state = initialState, action) => {
     switch (action.type) {
       case actionTypes.MEMBERSHIP_START:
         return getMembershipStart(state, action);
@@ -40,5 +41,5 @@ const getMembershipSuccess = (state, action) => {
     } 
   };
   
-  export default reducer;
+  export default membershipReducer;
   

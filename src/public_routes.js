@@ -1,95 +1,109 @@
 import React from "react";
 import { Route } from "react-router";
 
+//Home Page
+//import SaaSProductLandingPage from "./homepage/SaaSProductLandingPage.js";
+
 //Buyers Access
-import All_Uploads from './components/General/Home'
-import All_Post from './components/General/Market'
-import Enterprise_Showcase from './components/General/Unveil'
-import Basic_Query from './components/General/Simple_Query'
+import All_Uploads from './excite_components/General/Home'
+import All_Post from './excite_components/General/Market'
+import Enterprise_Showcase from './excite_components/General/Unveil'
+import Basic_Query from './excite_components/General/Simple_Query'
 
-import Search_Results from './components/General/Results'
+import Search_Results from './excite_components/General/Results'
 
-import PostDetail from './components/General/Post_detail'
-import Request_Order_url from './components/containers/Make_Order'
+import PostDetail from './excite_components/General/Post_detail'
+import Request_Order_url from './excite_components/containers/Make_Order'
 
-import Filter_Post_Form from './components/containers/Filter_Post'
-import Vendor_View from './components/General/Vendor_Data'
-import Category_Post from './components/General/Categories'
-import Category_Links from './components/General/Products_and_Services'
+import Filter_Post_Form from './excite_components/containers/Filter_Post'
+import Vendor_View from './excite_components/General/Vendor_Data'
+import Category_Post from './excite_components/General/Categories'
+import Category_Links from './excite_components/General/Products_and_Services'
 
 
 //Sub Categories
-import Electronics_Items from './components/General/SubCategories/Electronics/Electronics_list'
-import Electronics_Item_Detail from './components/General/SubCategories/Electronics/Electronics_details'
+import Electronics_Items from './excite_components/General/SubCategories/Electronics/Electronics_list'
+import Electronics_Item_Detail from './excite_components/General/SubCategories/Electronics/Electronics_details'
 
-import Fashion_Items from './components/General/SubCategories/Fashion/Fashion_list'
-import Fashion_Item_Detail from './components/General/SubCategories/Fashion/Fashion_detail'
+import Fashion_Items from './excite_components/General/SubCategories/Fashion/Fashion_list'
+import Fashion_Item_Detail from './excite_components/General/SubCategories/Fashion/Fashion_detail'
 
-import Home_App_Items from './components/General/SubCategories/Home_Appliances/Home_list'
-import Home_App_Item_Detail from './components/General/SubCategories/Home_Appliances/Home_details'
+import Home_App_Items from './excite_components/General/SubCategories/Home_Appliances/Home_list'
+import Home_App_Item_Detail from './excite_components/General/SubCategories/Home_Appliances/Home_details'
 
-import Services_Item from './components/General/SubCategories/Services/Services_list'
-import Services_Item_Detail from './components/General/SubCategories/Services/Services_detail'
+import Services_Item from './excite_components/General/SubCategories/Services/Services_list'
+import Services_Item_Detail from './excite_components/General/SubCategories/Services/Services_detail'
 
-import Phones_Item from './components/General/SubCategories/Phones/Phones_list'
-import Phones_Item_Detail from './components/General/SubCategories/Phones/Phones_detail'
+import Phones_Item from './excite_components/General/SubCategories/Phones/Phones_list'
+import Phones_Item_Detail from './excite_components/General/SubCategories/Phones/Phones_detail'
 
-import Property_Items from './components/General/SubCategories/Properties/Property_list'
-import Property_Item_Detail from './components/General/SubCategories/Properties/Property_detail'
+import Property_Items from './excite_components/General/SubCategories/Properties/Property_list'
+import Property_Item_Detail from './excite_components/General/SubCategories/Properties/Property_detail'
 
-import Vehicle_Items from './components/General/SubCategories/Vehicles/Vehicles_list'
-import Vehicles_Item_Detail from './components/General/SubCategories/Vehicles/Vehicles_detail'
+import Vehicle_Items from './excite_components/General/SubCategories/Vehicles/Vehicles_list'
+import Vehicles_Item_Detail from './excite_components/General/SubCategories/Vehicles/Vehicles_detail'
 
 // User Admninstration
-import AdminLayout from './components/Private/AdminLayout'
+import AdminLayout from './excite_components/Private/AdminLayout'
 
 //Creating Post for vendors
-import Create_Post_Portal from './components/Private/Create/Portal'
-import Electronics_Item_Create from './components/Private/Create/Electronics'
-import Property_Item_Create from './components/Private/Create/Property'
-import Services_Item_Create from './components/Private/Create/Services'
-import HomeApp_Item_Create from './components/Private/Create/HomeApp'
-import Vehicles_Item_Create from './components/Private/Create/Vehicles'
-import Fashion_Item_Create from './components/Private/Create/Fashion'
+import Create_Post_Portal from './excite_components/Private/Create/Portal'
+import Electronics_Item_Create from './excite_components/Private/Create/Electronics'
+import Property_Item_Create from './excite_components/Private/Create/Property'
+import Services_Item_Create from './excite_components/Private/Create/Services'
+import HomeApp_Item_Create from './excite_components/Private/Create/HomeApp'
+import Vehicles_Item_Create from './excite_components/Private/Create/Vehicles'
+import Fashion_Item_Create from './excite_components/Private/Create/Fashion'
 
-
-import User_Post_Conent from './components/Private/User_Post_Content'
-import Load_User_Post from './components/Private/UserPost'
+import User_Post_Conent from './excite_components/Private/User_Post_Content'
+import Load_User_Post from './excite_components/Private/UserPost'
 
 ///Every User Uploads 
-import User_Posts_Items from './components/Private/Uploads/User_Uploads'
+import User_Posts_Items from './excite_components/Private/Uploads/User_Uploads'
 //ends here
 
-import User_Profile from './components/Private/Business_Profile/Profile'
-import User_Analysis from './components/Private/Analytics/Analytics'
+import User_Profile from './excite_components/Private/Business_Profile/Profile'
+import User_Analysis from './excite_components/Private/Analytics/Analytics'
 
-
-import Quotes_listing from './components/Private/Quotations/Quotes_List'
+//Qoutes
+import Quotes_listing from './excite_components/Private/Quotations/Quotes_List'
 
 //Implementsation 
-import Logicstics_Channel from  './components/Private/Logicstics/Logicstics'
-import Logicstics_Details from './components/Private/Logicstics/Logicstics_Content'
-import Create_New_Order from './components/Private/Logicstics/Create_Order'
-import Edit_Order from './components/Private/Logicstics/Edit_Order'
-import Profile_Edit from './components/Private/UserAction/Edit_Profile'
-import Business_Profile_Edit from './components/Private/Business_Profile/Edit_Business_Profile'
+import Logicstics_Channel from  './excite_components/Private/Logicstics/Logicstics'
+import Logicstics_Details from './excite_components/Private/Logicstics/Logicstics_Content'
+import Create_New_Order from './excite_components/Private/Logicstics/Create_Order'
+import Edit_Order from './excite_components/Private/Logicstics/Edit_Order'
+import Profile_Edit from './excite_components/Private/UserAction/Edit_Profile'
+import Business_Profile_Edit from './excite_components/Private/Business_Profile/Edit_Business_Profile'
 
 //Inventory
-import Inventory_Store from './components/Private/Inventory/Inventories'
-import Create_Inventory from './components/Private/Inventory/Create_Item'
+import Inventory_Store from './excite_components/Private/Inventory/Inventories'
+import Create_Inventory from './excite_components/Private/Inventory/Create_Item'
 
 //Email Marketing
-import Contact_Field from './components/Private/Broadcast/Contacts'
-import Message_Contact from './components/Private/Broadcast/Mail_Contacts'
+import Contact_Field from './excite_components/Private/Broadcast/Contacts'
+import newContact from './excite_components/Private/Broadcast/createContact'
 
 //Create Post
-import Create_Post from './components/Private/UserAction/Create_Post'
+import Create_Post from './excite_components/Private/UserAction/Create_Post'
 
-import Membership_Select from  './components/Private/UserAction/Select_Memebership'
+//Selects Membership
+import Membership_Select from  './excite_components/Private/UserAction/Select_Memebership'
 
 // Book Keeping
-import BookKeepingList from './components/Private/Book_Keeping/Book_Keeping_Store'
-import New_Book from './components/Private/Book_Keeping/Create_Book'
+import BookKeepingList from './excite_components/Private/Book_Keeping/Book_Keeping_Store'
+import New_Book from './excite_components/Private/Book_Keeping/Create_Book'
+
+
+//BUYER FUNCTIONS LIES HERE
+import buyerProfile from './excite_components/Buyers/Profile_Settings'
+import buyerOrders from './excite_components/Buyers/Customer_Orders'
+import Buyer_Orders from './excite_components/Buyers/Customer_Orders_Details'
+//BUYER FUNCTIONS ENDS  HERE
+
+//Excite Admin Control
+import AdminDashboard from './excite_components/ExciteAdmin/dashboard'
+import Admin_Logicstics_Channel from './excite_components/ExciteAdmin/Logicstics/Logicstics'
 
 //Authentication 
 import LoginForm from './authentication/Login'
@@ -103,11 +117,26 @@ import resetPasswordDone from './authentication/resetPasswordDone'
 const GeneralRouter = () =>(
     <div>
 
+    {/* Home Page */}
+    
+
     <Route exact path = "/login/" component = {LoginForm} /> {" "}
     <Route exact path = "/register/" component = {Registration} /> {" "}
     <Route exact path = "/changePassword/" component = {ChangePassword} /> {" "}
     <Route exact path = "/passwordReset/" component = {PasswordReset} /> {" "}
     <Route exact path = "/passwordResetDone/" component = {resetPasswordDone} /> {" "}
+
+     {/*Admin  Portals */}
+    <Route exact path = "/Admin/" component = {AdminDashboard} /> {" "}
+    <Route exact path = "/admin_logistics/" component = {Admin_Logicstics_Channel} /> {" "}
+    <Route exact path = "/logistics_order/:OrderID/" component ={Logicstics_Details} /> {""}
+     {/*Admin  Portals */}
+
+     {/*Buyer Dashboard Starts here */}
+    <Route exact path = "/profile/user/" component ={buyerProfile} /> {""}  
+    <Route exact path = "/my_orders/" component ={buyerOrders} /> {""}      
+    <Route exact path = "/orders_details/:OrderID/" component ={Buyer_Orders} /> {""} 
+    {/*Buyer Dashboard ends here */}
 
     <Route exact path="/" component={All_Uploads} />{" "}
     <Route exact path="/market/" component={All_Post} />{" "}
@@ -146,7 +175,7 @@ const GeneralRouter = () =>(
     {/*Categories Ends here  */}
 
 
-    {/*Creating  Item Portals */}
+    {/*Creating  Item Portals By Vendors */}
     <Route exact path = "/create/portal/" component = {Create_Post_Portal} /> {" "}   
     <Route exact path = "/create/portal/electronics/:categoryID/" component = {Electronics_Item_Create} /> {" "} 
     <Route exact path = "/create/portal/fashion/:categoryID/" component = {Fashion_Item_Create} /> {" "} 
@@ -155,9 +184,6 @@ const GeneralRouter = () =>(
 
 
     {/*Creating Portals ends here */}
-
-
-
 
     <Route exact path = "/make_order/" component = {Request_Order_url} /> {" "} 
      
@@ -190,17 +216,25 @@ const GeneralRouter = () =>(
      
      {/*Dashboard ends here */}
 
+    {/*logistic here */}
     <Route exact path = "/logicstics/" component ={Logicstics_Channel} /> {""}
     <Route exact path = "/create_order/" component ={Create_New_Order} /> {""}
     <Route exact path = "/view_order/:OrderID/" component ={Logicstics_Details} /> {""}
     <Route exact path = "/edit_order/:OrderID/" component ={Edit_Order} /> {""}
- 
+    {/*logistics ends here */}
+
+    {/*IMS  here */}
     <Route exact path = "/inventories/" component ={Inventory_Store} /> {""}
     <Route exact path = "/create_inventory/" component ={Create_Inventory} /> {""}
+    {/*IMS stops here */}
 
+    {/*Email Marketin ends here */}
     <Route exact path = "/contacts/" component ={Contact_Field} /> {""}   
-    <Route exact path = "/message_contact/:ContactID/" component ={Message_Contact} /> {""}    
+    <Route exact path = "/store_client/" component ={newContact} /> {""}    
+    {/*Email Marketing ends here */}
 
+
+    
     
  
  </div>

@@ -1,0 +1,21 @@
+
+.menu-container{
+  background-color: rgb(30, 31, 31);
+  height: 900px;
+}
+
+.menu-link{
+  color: white;
+  margin: 10px 5px 10px 0px;
+}
+
+.menu-link:hover{
+  background-color: white;
+  color: rgb(30, 31, 31);
+  margin: 10px 5px 10px 0px;
+}
+
+.menu-link-text{
+  color: rgb(30, 31, 31)
+}
+

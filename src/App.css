@@ -1,128 +1,52 @@
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #F7F6F6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #00A2FF;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
-.ant-carousel .slick-slide {
-  text-align: center;
-  height: 4000px;
-  line-height: 400px;
-  width: 100%;
-  background: #364d79;
-  overflow: hidden;
-}
-
-.ant-carousel .slick-slide h3 {
-  color: #fff;
-}
-
-.image_fix{
-  height: 200px;
+.j{
+    background-color: rgba(60,13,153,var(--bg-opacity));
 
 }
 
-
-/* tile uploaded pictures */
-.comment-action {
-  padding-left: 8px;
-  cursor: 'auto';
+.dcyFHx{
+    color: rgb(20, 160, 20) !important;
 }
 
-[class*='-col-rtl'] .comment-action {
-  padding-right: 8px;
-  padding-left: 0;
+.jxDMfk {
+    color: rgb(8, 146, 8) !important;
 }
 
-.homepage_h2{
-  align-content: center;
-  display: flex;
-  justify-content: center;
-  font-size: 25px;
-  box-shadow: 1px ;
-
+.bWpQkN{
+    background-color: rgb(20, 160, 20) !important;
 }
 
-.HomeButton{
-  background-color: #00FFA9;
+.eDXjfe{
+    color: rgb(20, 160, 20) !important;
 }
 
-.IntroImg{
-  width: 100%;
-    border: 8px solid #fff;
-    transition: .5s;
-    vertical-align: middl
+.cZCUNp{
+    color: rgb(20, 160, 20) !important;
+}
+
+.bFoJuO {
+    background-color: rgb(20, 160, 20) !important;
 
 }
 
-.IntroCards{
-  position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5 ,
-  
+.ibxZBb{
+    background-color: rgb(20, 160, 20) !important;
 }
 
-.CardHead{
-  textAlign: center
+.fsFrNx {
+    background-color: rgb(20, 160, 20) !important;
 }
 
-#components-layout-demo-custom-trigger .trigger {
-  font-size: 18px;
-  line-height: 64px;
-  padding: 0 24px;
-  cursor: pointer;
-  transition: color 0.3s;
+.ilnraA button:hover{
+    background-color: rgb(20, 160, 20) !important;
+
 }
 
-#components-layout-demo-custom-trigger .trigger:hover {
-  color: #1890ff;
+.ilnraA button{
+    background-color: rgb(20, 160, 20) !important;
+
 }
 
-#components-layout-demo-custom-trigger .logo {
-  height: 32px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-}
+.WKikz{
+    background-color: rgb(20, 160, 20) !important;
 
-.site-layout .site-layout-background {
-  background: #fff;
 }

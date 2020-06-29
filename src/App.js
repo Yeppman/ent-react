@@ -1,62 +1,62 @@
-import React , { useState, Component }from 'react';
+import React, { Component } from 'react'
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { connect } from "react-redux";
 import * as actions from "./store/actions/auth";
-import './assets/enterprise.css'
-import './assets/dashboard.css'
-import './assets/payment.css'
-import './assets/logicstics.css'
-import './assets/inventory.css'
-import './assets/post_item_cards.css'
-import './assets/post_create.css'
 
-//import './assets/payplan.scss'
+// import * as actions from "./store/actions/auth";
+import "tailwindcss/dist/base.css";
+import "styles/globalStyles.css";
 
-//import './assets/sidebar.css'
-//import './App.css';
-//import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import './assets/css/enterprise.css'
+import './assets/css/dashboard.css'
+import './assets/css/payment.css'
+import './assets/css/logicstics.css'
+import './assets/css/inventory.css'
+import './assets/css/post_item_cards.css'
+import './assets/css/post_create.css'
+import './assets/css/Auth.css'
+import './assets/css/unveil.css'
+import './assets/css/sidebar.css'
+import './App.css'
 
+import CustomLayout from "./layout"
+//import CustomLayout from "./excite_components/containers/layout"
+import PageRouter from './routes'
 
-//import  CustomLayout from  './components/containers/layout'
-import CustomLayout from './components/containers/layout'
-import GeneralRouter from './public_routes'
-
-
-class App extends Component{
- 
+class App extends Component {
+  
   componentDidMount() {
     this.props.onTryAutoSignup();
   }
 
     render() {
         return (
-          <div>
-          
+            <div>
             <Router>
-              <CustomLayout  {...this.props}>
-                  <GeneralRouter />
+              <CustomLayout >
+                  <PageRouter />
               </CustomLayout>
             </Router>
-            
-          </div>
-        ); 
+
+            </div>
+        )
     }
 }
 
 const mapStateToProps = state => {
-  return {
-    isAuthenticated: state.auth.token !== null
+    return {
+      isAuthenticated: state.auth.token !== null
+    };
   };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      onTryAutoSignup: () => dispatch(actions.authCheckState())
+    };
   };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App);

@@ -206,6 +206,7 @@ class User_Profile extends React.Component{
 
                               </div>
                         </div>
+                        
                        
 
                         </div>
@@ -276,8 +277,8 @@ class User_Profile extends React.Component{
                             </div>
                         </div>
 
-                </div>
-            </div>
+                </div> 
+         
 
 
            </>

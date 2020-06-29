@@ -1,0 +1,13 @@
+git add .
+git commit -m 'deploy'
+git push -u origin master
+vercel 
+vercel --prod
+
+
+//Heroku 
+
+heroku login
+git add .
+git commit -m 'deploy'
+git push heroku master

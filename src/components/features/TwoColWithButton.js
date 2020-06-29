@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading, Subheading as SubheadingBase } from "../../components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "../../components/misc/Buttons.js";
-import TeamIllustrationSrc from "../../online.png";
+import TeamIllustrationSrc from "../../images/online.png";
 import {ReactComponent as SvgDotPattern } from "../../images/dot-pattern.svg"
 
 const Container = tw.div`relative`;

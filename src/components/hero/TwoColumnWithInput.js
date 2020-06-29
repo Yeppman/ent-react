@@ -64,10 +64,10 @@ export default ({ roundedHeaderButton }) => {
               <input type="text" placeholder="Your E-mail Address" />
               <button>Get Started</button>
             </Actions>
-            <CustomersLogoStrip>
+            {/* <CustomersLogoStrip>
               <p>Our TRUSTED Customers</p>
               <img src={CustomersLogoStripImage} alt="Our Customers" />
-            </CustomersLogoStrip>
+            </CustomersLogoStrip> */}
           </LeftColumn>
           <RightColumn>
             <IllustrationContainer>

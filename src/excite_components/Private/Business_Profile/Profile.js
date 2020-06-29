@@ -164,34 +164,49 @@ class User_Profile extends React.Component{
            <TemporaryDrawer />
                      <div className="container mx-auto my-auto">
                 <div className="grid grid-cols-12 gap-1">
-                    
-                        <div className="col-span-12 sm:col-span-12 md:col-span-12 xl:col-span-4 lg:col-span-4">
-                            
-                        <div className="snip1336 ">
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample87.jpg"
-                      alt="sample87" />
-                      <figcaption>
-                        <img src={profile.ProfilePicture} alt="profile-sample4" className="profile" />
-                        <h2>{profile.User_First_Name} {profile.User_LastName}</h2>
-                        <p>
-                        Username:  {profile.user}
-                        </p>
-                        <p>
-                        Email:  {profile.Email}
-                        </p>
-                        <p>
-                        Phone:  {profile.Phone}
-                        </p>
-                        
-                        <p>
-                        Bio:  {profile.Bio}
-                        </p>
-                        <a href="/edit_profile/" className="follow">
-                          Edit Profile
-                        </a>
-                        
-                      </figcaption>
-                    </div>
+
+                <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-2 xl:col-span-2">
+                      
+                      <div className="profile-card-container">
+                                <div className="profile-image-box">
+                                  <img className="profile-image"
+                                  src={profile.ProfilePicture}/>
+                                </div>
+                                <hr/>
+                                <div className="profile-description">
+                                  <div className="profile-text-container">
+                                  <p  className="profile-text">
+                                  {profile.User_First_Name} {profile.User_Last_Name}
+                                  </p>
+
+                                  </div>
+                                  <hr/>
+                                  <div className="profile-text-container">
+                                    <p className="profile-text">
+                                    {profile.Email}
+                                    </p>
+                                  </div>
+                                  <hr/>
+                                  <div className="profile-text-container">
+                                  <p className="profile-text">
+                                  {profile.Phone}
+                                    </p>
+                                   
+                                  </div>
+                                  <hr/>
+                                 
+
+                                  <hr/>
+                                  <div className="profile-button-box">
+                                      <button className="profile-button">
+                                      Edit Profile
+                                      </button>
+                                  </div>
+                                </div>
+
+                              </div>
+                        </div>
+                       
 
                         </div>
 

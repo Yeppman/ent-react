@@ -50,3 +50,62 @@
     background-color: rgb(20, 160, 20) !important;
 
 }
+
+
+.business-card-section{
+    display: flex;
+justify-content: space-between;
+padding: 20px 15px;
+}
+
+.{
+    width: 85%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding-right: 8px;
+    float: left !important;
+}
+
+.busines-card-logo{
+    width: 26%;
+    padding: 0px 15px 0px 10px;
+}
+
+.busines-card-info{
+    width: 74%;
+}
+
+.business-card-info-name-section{
+    
+    padding-top: 5px;
+    padding-bottom: 11px;
+    
+}
+
+.business-card-info-name-text{
+font-size: 28px;
+    text-align: left;
+    color:
+    #404545;
+display: inline-block;
+}
+
+.business-card-info-description-section{
+    padding-bottom: 11px;
+}
+
+.business-card-info-description-text{
+    font-size: 15px;
+    text-align: left;
+    color:#404545;
+    
+    display: inline-block;
+}
+
+.business-card-right-section{
+    width: 15%;
+    display: flex;
+    justify-content: flex-end;
+    float: right !important;
+}

@@ -229,8 +229,8 @@ class ProfileDashboard extends Component {
               var b = i['Views']
             Labels.push(a)
             DataPoints.push(b)
-            console.log('The Labels',Labels)
-           })
+
+            
       
           this.setState({
               chartData:{
@@ -248,7 +248,9 @@ class ProfileDashboard extends Component {
           })
           console.log('Products Data',Main)
           console.log('Chart Labels', this.state.mini_products_data)
-      
+          
+          
+
           //Caculates Average and Total Impressions
           Products_for_charts.map((i)=>{
              var b = i['Views']
@@ -277,6 +279,9 @@ class ProfileDashboard extends Component {
       //Products Analysis Functions ends here
       }
 
+      edit_redirect(){
+        window.location.replace('/edit_profile/')
+      }
 
 
     //Mini Analysis Ends here
@@ -694,7 +699,9 @@ return (
 
                                   <hr/>
                                   <div className="profile-button-box">
-                                      <button className="profile-button">
+                                      <button
+                                        onClick
+                                       className="profile-button">
                                       Edit Profile
                                       </button>
                                   </div>

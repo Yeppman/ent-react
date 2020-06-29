@@ -63,7 +63,7 @@ export default ({
       description: "Create an account on our platform."
     },
     {
-      heading: "Set-up your Aaccount",
+      heading: "Set-up your account",
       description: "2-minute of account setup."
     },
     {

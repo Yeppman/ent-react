@@ -6,7 +6,7 @@ import * as actions from "./store/actions/auth";
 
 // import * as actions from "./store/actions/auth";
 import "tailwindcss/dist/base.css";
-import "styles/globalStyles.css";
+import "./styles/globalStyles.css";
 
 import './assets/css/enterprise.css'
 import './assets/css/dashboard.css'

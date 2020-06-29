@@ -230,7 +230,8 @@ class ProfileDashboard extends Component {
             Labels.push(a)
             DataPoints.push(b)
 
-            
+            console.log('The Labels',Labels)
+           })
       
           this.setState({
               chartData:{

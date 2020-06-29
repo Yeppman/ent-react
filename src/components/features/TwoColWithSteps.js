@@ -64,7 +64,7 @@ export default ({
     },
     {
       heading: "Set-up your Aaccount",
-      description: "2-minute of account setyp."
+      description: "2-minute of account setup."
     },
     {
       heading: "Run",

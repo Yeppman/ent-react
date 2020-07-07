@@ -36,7 +36,7 @@ const  openNotification = (msg) => {
     });
     }
 
-var host = 'https://backend-ent.herokuapp.com'
+var host = 'https://backend-entr.herokuapp.com'
 
 export default function SimpleTable(props) {
   const classes = useStyles();

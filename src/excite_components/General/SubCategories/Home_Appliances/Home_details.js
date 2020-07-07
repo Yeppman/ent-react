@@ -11,7 +11,7 @@ import Make_Order_Form from '../../../containers/Make_Order'
 
 import Nav from '../../../containers/nav'
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 const slug = 'home_app'
 
 
@@ -32,7 +32,7 @@ class Home_App_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://backend-ent.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`https://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data

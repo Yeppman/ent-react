@@ -30,7 +30,7 @@ const formItemLayout = {
 const { Option } = Select; 
 const {TextArea} = Input
 
-const Quotation_url = 'https://backend-ent.herokuapp.com/core_api/quotation'
+const Quotation_url = 'https://backend-entr.herokuapp.com/core_api/quotation'
 
 class Order_Form extends React.Component{
    

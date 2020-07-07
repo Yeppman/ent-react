@@ -15,7 +15,7 @@ import Services_Item from './Services_list';
 
 const { TabPane } = Tabs;
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 const item_type = 'services'
 
 
@@ -32,7 +32,7 @@ class Services_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://backend-ent.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`https://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data

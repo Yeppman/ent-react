@@ -19,7 +19,7 @@ const  openNotification = (msg) => {
   });
   }
 
-const host = "https://backend-ent.herokuapp.com"
+const host = "https://backend-entr.herokuapp.com"
 
 class Inventory_Store extends Component{
     state ={
@@ -41,7 +41,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get('https://backend-ent.herokuapp.com/management/view_inventory/')
+      await axios.get('https://backend-entr.herokuapp.com/management/view_inventory/')
       .then(res =>{
         this.setState({
           inventory_objects : res.data,

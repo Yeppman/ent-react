@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const UserPost_url = 'https://backend-ent.herokuapp.com/stream/view_post/'
+const UserPost_url = 'https://backend-entr.herokuapp.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -28,7 +28,7 @@ const formItemLayout = {
 };
 
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 const Vehicle_Type = ['Sedan','Truck','Coupe', 'Bus', 'Van', 'Mini-Van']
 const Vehicle_Model = ['Audi', 'Volvo','Ford', 'Mecerdes Benz','Toyota']

@@ -32,7 +32,7 @@ class Logicstics_Details extends React.Component{
             "Content-Type": "application/json",
             Authorization: `Token ${token}`
           };
-        axios.get(`https://backend-ent.herokuapp.com/management/view_channel_content/${this.order_id}/`)
+        axios.get(`https://backend-entr.herokuapp.com/management/view_channel_content/${this.order_id}/`)
         .then(res =>{
            this.setState({
                order_contents: res.data,
@@ -49,7 +49,7 @@ class Logicstics_Details extends React.Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-      await axios.post(`https://backend-ent.herokuapp.com/management/change_delivery_status/${this.order_id}/`)  
+      await axios.post(`https://backend-entr.herokuapp.com/management/change_delivery_status/${this.order_id}/`)  
       .then(res =>{
         openNotification(res.data['Message'])
       })
@@ -61,7 +61,7 @@ class Logicstics_Details extends React.Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-      await axios.post(`https://backend-ent.herokuapp.com/management/delete_logicstics/${this.order_id}/`)
+      await axios.post(`https://backend-entr.herokuapp.com/management/delete_logicstics/${this.order_id}/`)
       .then(res =>{
           openNotification(res.data['Message'])
       })

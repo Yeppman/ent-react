@@ -8,7 +8,7 @@ import {UserOutlined, LoginOutlined} from '@ant-design/icons'
 import axios from  'axios';
 
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'https://backend-ent.herokuapp.com/stream/profile_view/'
+const profile_url = 'https://backend-entr.herokuapp.com/stream/profile_view/'
 
 
 class Nav extends Component{

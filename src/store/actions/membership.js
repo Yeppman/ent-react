@@ -4,7 +4,7 @@ import * as actionTypes from "./actionTypes";
 
 
 import {notification , message} from 'antd'
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 const UserMembership_url  = host + '/stream/user_membership/' 
 
 

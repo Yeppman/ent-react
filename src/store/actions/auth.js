@@ -51,7 +51,7 @@ export const authLogin = (username, password) => {
   return dispatch => {
     dispatch(authStart());
     axios
-      .post("https://backend-ent.herokuapp.com/rest-auth/login/", {
+      .post("https://backend-entr.herokuapp.com/rest-auth/login/", {
         username: username,
         password: password
       })
@@ -92,7 +92,7 @@ export const authSignup = (
       is_seller: !is_buyer
     };
     axios
-      .post("https://backend-ent.herokuapp.com/rest-auth/registration/", user)
+      .post("https://backend-entr.herokuapp.com/rest-auth/registration/", user)
       .then(res => {
         const user = {
           token: res.data.key,

@@ -21,7 +21,7 @@ const openNotification = (msg) => {
     },
   });
 }
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 const orders_endpoint = host + '/management/buyers_orders/'
 
 class buyerOrders extends Component{

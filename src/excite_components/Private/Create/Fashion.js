@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const UserPost_url = 'https://backend-ent.herokuapp.com/stream/view_post/'
+const UserPost_url = 'https://backend-entr.herokuapp.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -36,7 +36,7 @@ const formItemLayout = {
   wrapperCol: { span: 12, offset: 6 }
 };
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 
 const Color = ['Blue','Black', 'Red']

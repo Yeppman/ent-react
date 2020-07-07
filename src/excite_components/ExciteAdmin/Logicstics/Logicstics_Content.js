@@ -16,7 +16,7 @@ notification.open({
 });
 }
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 class Admin_Logicstics_Details extends Component{
 
     state = {

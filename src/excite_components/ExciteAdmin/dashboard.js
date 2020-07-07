@@ -25,7 +25,7 @@ const openNotification = (msg) => {
 
 const { TabPane } = Tabs;
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 const transactions_endpoint = host + '/excite-admin-connect/transactions_list/'
 const logistics_endpoint = host +'/excite-admin-connect/logistics_list/'
@@ -77,7 +77,7 @@ class AdminDashboard extends Component {
              "Content-Type": "application/json",
              Authorization: `Token ${token}`
            };
-        axios.get('https://backend-ent.herokuapp.com/management/admin_logistics_list/')
+        axios.get('https://backend-entr.herokuapp.com/management/admin_logistics_list/')
         .then(res =>{
             const data = res.data
              this.setState({
@@ -97,7 +97,7 @@ class AdminDashboard extends Component {
     //      "Content-Type": "application/json",
     //      Authorization: `Token ${token}`
     //    };
-     axios.get('https://backend-ent.herokuapp.com/excite-admin-connect/admin-c-list/')
+     axios.get('https://backend-entr.herokuapp.com/excite-admin-connect/admin-c-list/')
     .then(res =>{
         const data = res.data
          this.setState({

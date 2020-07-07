@@ -8,7 +8,7 @@ import Category_Fetch from "./Category";
 import Fiter_Results_Form from './Filter_Post'
 
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'https://backend-ent.herokuapp.com/stream/profile_view/'
+const profile_url = 'https://backend-entr.herokuapp.com/stream/profile_view/'
 
 
 class CustomLayout extends Component{

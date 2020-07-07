@@ -17,8 +17,8 @@ const IconText = ({ icon, text }) => (
 
 const { Search } = Input
 
-const post_list_url = 'https://backend-ent.herokuapp.com/core_api/post_list/'
-const latest = 'https://backend-ent.herokuapp.com/core_api/latest_uploads/'
+const post_list_url = 'http://127.0.0.1:8000/core_api/post_list/'
+const latest = 'http://127.0.0.1:8000/core_api/latest_uploads/'
 class All_Uploads extends Component{
     state = {
         'posts' : [] ,
@@ -31,7 +31,7 @@ class All_Uploads extends Component{
       } 
     
       Categories =async()=>{
-        const categories_url = 'https://backend-ent.herokuapp.com/core_api/category_list/'
+        const categories_url = 'http://127.0.0.1:8000/core_api/category_list/'
         await axios.get(categories_url)
         .then(res =>{
           this.setState({

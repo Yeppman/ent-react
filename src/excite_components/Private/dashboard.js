@@ -19,7 +19,7 @@ const openNotification = (msg) => {
     },
   });
 }
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 
 const Profile_id_url  = host + `/stream/get_profile_id/`
 const Profile_url = host + `/stream/profile_view/`
@@ -216,7 +216,7 @@ class ProfileDashboard extends Component {
       
               
           }
-          //Conditions and Mapping ends
+          //Conditions and Mapping ends here
       
           //Assign Gotten Data into Chart.js for Processing and Visualization
           var Labels = []
@@ -229,7 +229,6 @@ class ProfileDashboard extends Component {
               var b = i['Views']
             Labels.push(a)
             DataPoints.push(b)
-
             console.log('The Labels',Labels)
            })
       
@@ -249,9 +248,7 @@ class ProfileDashboard extends Component {
           })
           console.log('Products Data',Main)
           console.log('Chart Labels', this.state.mini_products_data)
-          
-          
-
+      
           //Caculates Average and Total Impressions
           Products_for_charts.map((i)=>{
              var b = i['Views']
@@ -280,9 +277,6 @@ class ProfileDashboard extends Component {
       //Products Analysis Functions ends here
       }
 
-      edit_redirect(){
-        window.location.replace('/edit_profile/')
-      }
 
 
     //Mini Analysis Ends here
@@ -329,7 +323,7 @@ class ProfileDashboard extends Component {
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://backend-ent.herokuapp.com/stream/profile_view/${profile_id}/`)
+          axios.get(`http://127.0.0.1:8000/stream/profile_view/${profile_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data
@@ -700,9 +694,7 @@ return (
 
                                   <hr/>
                                   <div className="profile-button-box">
-                                      <button
-                                        onClick
-                                       className="profile-button">
+                                      <button className="profile-button">
                                       Edit Profile
                                       </button>
                                   </div>

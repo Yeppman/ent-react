@@ -13,7 +13,7 @@ notification.open({
 });
 }
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 class Buyer_Orders extends Component{
 
     state = {

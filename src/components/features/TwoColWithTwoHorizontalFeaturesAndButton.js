@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading, Subheading as SubheadingBase } from "../../components/misc/Headings.js";
 import { PrimaryButton as PrimaryButtonBase } from "../../components/misc/Buttons.js";
-import TeamIllustrationSrc from "../../images/team-illustration-2.svg";
+import TeamIllustrationSrc from "images/team-illustration-2.svg";
 import { ReactComponent as SvgDotPattern } from "../../images/dot-pattern.svg";
 import { ReactComponent as BriefcaseIcon } from "feather-icons/dist/icons/briefcase.svg";
 import { ReactComponent as MoneyIcon } from "feather-icons/dist/icons/dollar-sign.svg";
@@ -66,7 +66,7 @@ export default ({
       Designed & Developed by <span tw="text-primary-500">Professionals.</span>
     </>
   ),
-  description = "Excite Enterprise aims at providing a set of tools to develop and deepen markets for micro/small and medium businesses, providing entrepreneurs across the sectors an opportunity to reach consumers – boosting brand names, sales, competitiveness and improving services",
+  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
   primaryButtonText = "Learn More",
   primaryButtonUrl = "https://timerse.com",
   imageSrc = TeamIllustrationSrc,

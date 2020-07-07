@@ -104,6 +104,13 @@ import Buyer_Orders from './excite_components/Buyers/Customer_Orders_Details'
 //Excite Admin Control
 import AdminDashboard from './excite_components/ExciteAdmin/dashboard'
 import Admin_Logicstics_Channel from './excite_components/ExciteAdmin/Logicstics/Logicstics'
+import adminCampaignDetail from './excite_components/ExciteAdmin/Influencer/CampaignDetailView'
+
+//Influencer Marketing
+import InflunencerMarketingPortal from './excite_components/Private/InfluencerMarketing/Portal'
+import NewCampaign from './excite_components/Private/InfluencerMarketing/CreateCampaign'
+import vendorCampaign from './excite_components/Private/InfluencerMarketing/Campaigns'
+import vendorCampaignDetail from './excite_components/Private/InfluencerMarketing/CampaignDetails'
 
 //Authentication 
 import LoginForm from './authentication/Login'
@@ -129,6 +136,7 @@ const PageRouter= () => (
     <Route exact path = "/Admin/" component = {AdminDashboard} /> {" "}
     <Route exact path = "/admin_logistics/" component = {Admin_Logicstics_Channel} /> {" "}
     <Route exact path = "/logistics_order/:OrderID/" component ={Logicstics_Details} /> {""}
+    <Route exact path = "/admin-campaign-detail/:campaignID/" component ={adminCampaignDetail} /> {""}  
      {/*Admin  Portals */}
 
      {/*Buyer Dashboard Starts here */}
@@ -237,6 +245,14 @@ const PageRouter= () => (
     <Route exact path = "/store_client/" component ={newContact} /> {""}    
     {/*Email Marketing ends here */}
     
+     {/*Influencer Marketing starts here */}
+     <Route exact path = "/influencer-marketing/portal" component ={InflunencerMarketingPortal} /> {""}   
+    <Route exact path = "/create-campaign/" component ={NewCampaign} /> {""}  
+    <Route exact path = "/campaign-list/" component ={vendorCampaign} /> {""}  
+    <Route exact path = "/campaign-detail/:campaignID/" component ={vendorCampaignDetail} /> {""}  
+      
+    {/*Influencer Marketing ends here */}
+
     </div>
 )
 

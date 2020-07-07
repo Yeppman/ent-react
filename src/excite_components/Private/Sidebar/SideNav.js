@@ -89,6 +89,15 @@ export default function TemporaryDrawer() {
             </MenuItem>
           </div>
 
+
+          <div  className = "menu-link">
+            <MenuItem
+            className="menu-link-text"
+             component={Link} to="/campaign-list/">
+            Influencer Marketing
+            </MenuItem>
+            </div>
+
           <div  className = "menu-link">
             <MenuItem component={Link} to="/book_keeping/">
             Book Keeping

@@ -10,6 +10,8 @@ import TemporaryDrawer from './Sidebar/SideNav'
 
 import UsersSimpleTable from './Table/UsersTable'
 import MoneySimpleTable from './Table/TransactionTable'
+import CampaignSimpleTable from './Table/CampaignTable'
+import { DataUsageSharp } from '@material-ui/icons';
 
 const openNotification = (msg) => {
   notification.open({
@@ -23,7 +25,7 @@ const openNotification = (msg) => {
 
 const { TabPane } = Tabs;
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 
 const transactions_endpoint = host + '/excite-admin-connect/transactions_list/'
 const logistics_endpoint = host +'/excite-admin-connect/logistics_list/'
@@ -44,6 +46,7 @@ class AdminDashboard extends Component {
         Transactions:[],
         UsersList : [],
 
+        CampaignsData:[],
         usersTotal:[],
         WebhookTotal:[],
         TransactionTotal:[],
@@ -74,7 +77,7 @@ class AdminDashboard extends Component {
              "Content-Type": "application/json",
              Authorization: `Token ${token}`
            };
-        axios.get('https://backend-ent.herokuapp.com/management/admin_logistics_list/')
+        axios.get('http://127.0.0.1:8000/management/admin_logistics_list/')
         .then(res =>{
             const data = res.data
              this.setState({
@@ -87,7 +90,25 @@ class AdminDashboard extends Component {
 
    };
 
+   
+    CampaignList = () =>{
+    // console.log(token)
+    // axios.defaults.headers = {
+    //      "Content-Type": "application/json",
+    //      Authorization: `Token ${token}`
+    //    };
+     axios.get('http://127.0.0.1:8000/excite-admin-connect/admin-c-list/')
+    .then(res =>{
+        const data = res.data
+         this.setState({
+            CampaignsData : data
+         }); console.log('Campaign Data data' ,res.data);
+            
+        })
 
+    };
+
+  
     TransactionCounter = async(token)=>{
         axios.defaults.headers = {
             "Content-Type": "application/json",
@@ -171,6 +192,8 @@ class AdminDashboard extends Component {
         this.LogisticsCounter(this.props.token)
         this.Profiles(this.props.token)
         this.Transactions(this.props.token)
+        this.CampaignList()
+        
       }
     }
     
@@ -180,9 +203,11 @@ class AdminDashboard extends Component {
             this.UsersCounter(newProps.token)
             this.TransactionCounter(newProps.token)
             this.LogisticsCounter(newProps.token)
-           
             this.Transactions(newProps.token)
             this.Profiles(newProps.token)
+            this.CampaignList()
+
+
        }
       }
     }
@@ -191,7 +216,7 @@ class AdminDashboard extends Component {
     render() {
        
      
-    const {usersTotal,WebhookTotal, ordersCount , UsersList, Transactions ,Profiles} = this.state
+    const {usersTotal,WebhookTotal, ordersCount , CampaignsData, Transactions ,Profiles} = this.state
     const AllowAdmin  = true
         
 
@@ -265,6 +290,32 @@ class AdminDashboard extends Component {
                                 </div>
                     </div>
   
+
+                  
+                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                    <div className="top-card">
+                                
+                                <div className="top-card-title">
+                                    <h3 className="top-card-title">
+                                     Campaigns
+                                    </h3>
+                                </div>
+                                  <div className="grid grid-cols-2">
+                                  <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                        
+                                  </div>  
+                                  <div className="pt-3 
+                                  
+                                  col-span-1
+                                  sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                  <a className="top-card-text"
+                                  href={`/admin_logistics`}>
+                                      Open
+                                      </a>
+                                  </div>
+                                  </div>
+                                </div>
+                    </div>
                    
   
                     </div>
@@ -277,12 +328,19 @@ class AdminDashboard extends Component {
                             
                             <Tabs>
 
-                            <TabPane tab="Transactions" key="1">
-                              <MoneySimpleTable data={Transactions}/>
+                            
+                            <TabPane tab="Users" key="1">
+                            <UsersSimpleTable data={Profiles}/>
                             </TabPane>
 
-                            <TabPane tab="Users" key="2">
-                            <UsersSimpleTable data={Profiles}/>
+                            
+                            <TabPane tab="Campaigns" key="2">
+                            <CampaignSimpleTable data={CampaignsData}/>
+                            </TabPane>
+
+
+                            <TabPane tab="Transactions" key="3">
+                              <MoneySimpleTable data={Transactions}/>
                             </TabPane>
 
                             

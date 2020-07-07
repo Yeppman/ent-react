@@ -28,7 +28,7 @@ const formItemLayout = {
 const states = ['Lagos','Ondo','Oyo']
 const country = ['Nigeria','South-Afirca','Kenya','Ghana','Rwanada']
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 const Profile_id_url  = host + `/stream/get_profile_id/`
 const userData_endpoint = host + '/stream/get_my_user_id_and_email/'
 const accountType_endpoint = host + '/stream/get_my_user_data/'
@@ -107,7 +107,7 @@ class buyerProfile extends Component{
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://backend-ent.herokuapp.com/stream/profile_view/${parse_user_id}/`)
+          axios.get(`http://127.0.0.1:8000/stream/profile_view/${parse_user_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data

@@ -19,6 +19,7 @@ import './assets/css/Auth.css'
 import './assets/css/unveil.css'
 import './assets/css/sidebar.css'
 import './App.css'
+import './assets/css/antd-override.css'
 
 import CustomLayout from "./layout"
 //import CustomLayout from "./excite_components/containers/layout"

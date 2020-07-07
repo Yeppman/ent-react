@@ -11,7 +11,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://backend-ent.herokuapp.com'
+const host = 'http://127.0.0.1:8000'
 const item_type = 'electronics'
 const { TabPane } = Tabs;
 

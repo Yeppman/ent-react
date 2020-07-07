@@ -13,7 +13,7 @@ const { Option } = Select;
 const {TextArea} = Input
  
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-ent.herokuapp.com'
 const Request_Order_url = host + '/management/new_order/'
 
 class Make_Order_Form extends React.Component{

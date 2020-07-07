@@ -21,7 +21,7 @@ const openNotification = (msg) => {
     },
   });
 }
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-ent.herokuapp.com'
 const orders_endpoint = host + '/management/buyers_orders/'
 
 class buyerOrders extends Component{

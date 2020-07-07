@@ -20,7 +20,7 @@ const openNotification = (msg) => {
 }
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-ent.herokuapp.com'
 class CommentForm extends React.Component{
 
   state ={

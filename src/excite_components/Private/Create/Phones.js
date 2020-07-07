@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const UserPost_url = 'http://127.0.0.1:8000/stream/view_post/'
+const UserPost_url = 'https://backend-ent.herokuapp.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -39,7 +39,7 @@ const formItemLayout = {
 };
 
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-ent.herokuapp.com'
 
 const Brand = ['LG','Samsung','Sony', 'Hi-Sense']
 const Color = ['Black','Red','Rose Gold']

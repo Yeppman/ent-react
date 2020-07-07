@@ -10,7 +10,7 @@ import TemporaryDrawer from '../Sidebar/SideNav'
 import {PlusCircleOutlined} from '@ant-design/icons'
 import PayGen from './PayPortal/Paystacker'
 
-const host = 'http://127.0.0.1:8000';
+const host = 'https://backend-ent.herokuapp.com';
 
  
 class vendorCampaignDetail extends Component{

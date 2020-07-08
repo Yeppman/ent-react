@@ -12,11 +12,12 @@ class PayGen extends Component {
     state = {
         key: "pk_test_96deeb613ab8f21138a6d59a1740cb3a3a1bacff", //PAYSTACK PUBLIC KEY
         sec:'sk_test_e05dacc80940b1afcb7fbc038b7ffe1ece96f294',
+        email:'taiwoadebayo4040@gmail.com',
+       //
+        campaignID : this.props.campaignItemID,
         email: this.props.Email,  // customer email
         amount: this.props.pricing * 100 ,//equals NGN100,multiply by 100 to get actual price
-        the_membership : this.props.Membership,
-        the_membership_id : this.props.Membership_id,
-        'paystack_plan': this.props.Plan_Code
+        
 
     }
 
@@ -31,10 +32,22 @@ class PayGen extends Component {
     }
     
     callback = async (response) => {
-        this.initSubscription()
+       // this.initSubscription()
         console.log('This is the response',response)
-        
-      const transactionRespone = response
+        if (response.status ==  'success'){
+
+          const activateCampaignEndpoint = host + `/management/active-campaign/${this.state.campaignID}/`
+          axios.get(activateCampaignEndpoint)
+          .then(res =>{
+            if (res.status == 200){
+
+            }else{
+
+            }
+          })
+          window.location.replace("/campaign-list/")
+        }
+      // const transactionRespone = response
      
     }
 

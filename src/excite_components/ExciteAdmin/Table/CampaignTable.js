@@ -42,8 +42,13 @@ var host = 'https://backend-entr.herokuapp.com'
  
 
 export default function CampaignSimpleTable(props) {
+
+  const redirect = (item_id)=>{
+    props.history.push(`/admin-campaign-detail/${item_id}`)
+  }
   const classes = useStyles();
   const  token = props.token
+  let indexNumber = 0
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -55,18 +60,61 @@ export default function CampaignSimpleTable(props) {
             <TableCell align="left">Status</TableCell>
             <TableCell align="left">Created</TableCell>
             <TableCell align="left">Amount </TableCell>
-
-
+            <TableCell align="left">Paid </TableCell>
+            <TableCell align="left">Open </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {props.data.map((row) => (
             <TableRow key={row.id}>
+            <TableCell align="left" >{indexNumber++}</TableCell>
                <TableCell align="left" >{row.TheVendor}</TableCell>
               <TableCell align="left">{row.CampaignName}</TableCell>
-              <TableCell align="left"> {row.Category}</TableCell>
-              <TableCell align="left">{row.Status}</TableCell>
+              <TableCell align="left">
+                {
+                  row.Status ?(
+                    <>
+                      <p>
+                        Active
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        InActive
+                      </p>
+
+                    </>
+                  )
+                }
+              </TableCell>
+              <TableCell align="left"> {row.Created}</TableCell>
               <TableCell align="left"> {row.Cost}</TableCell>
+              <TableCell align="left">
+                <>
+                {
+                  row.Paid ?(
+                    <>
+                      <p>
+                        Pain
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        Pending
+                      </p>
+
+                    </>
+                  )
+                }
+                </>
+              </TableCell>
+              <TableCell align="left"> <a href={`/admin-campaign-detail/${row.id}`}>
+              View
+              </a>
+
+              </TableCell>
 
             </TableRow>
           ))}

@@ -12,6 +12,15 @@ import {PlusCircleOutlined} from '@ant-design/icons'
 
 const host = 'https://backend-entr.herokuapp.com';
 
+const openNotification = (msg) => {
+    notification.open({
+      message: 'Notification Title',
+      description:msg,
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  }
  
 class adminCampaignDetail extends Component{
     state = {
@@ -37,6 +46,46 @@ class adminCampaignDetail extends Component{
             console.log('Campaign Data', res.data)
         })
     }
+
+    acticateCampaign= async()=>{
+        const item_id =  this.props.match.params.campaignID
+        axios.defaults.headers = {
+            "Content-Type": "application/json",
+            Authorization: `Token ${this.props.token}`
+          };
+          
+        const url = host + `/excite-admin-connect/changeStatus/${item_id}/`
+        await axios.get(url)
+        .then(res =>{
+            if (res.status == 200){
+                openNotification('Campaign Activated Successfully')
+                console.log('', res.data)
+            } else{
+
+            }
+        })
+    }
+
+    deActicateCampaign= async()=>{
+        const item_id =  this.props.match.params.campaignID
+        axios.defaults.headers = {
+            "Content-Type": "application/json",
+            Authorization: `Token ${this.props.token}`
+          };
+          
+        const url = host + `/excite-admin-connect/changeStatus/${item_id}/`
+        await axios.get(url)
+        .then(res =>{
+            if (res.status == 200){
+                openNotification('Campaign Activated Successfully')
+                console.log('', res.data)
+            } else{
+
+            }
+        })
+    }
+
+
 
     Pop =()=>{
         console.log('Works')
@@ -79,14 +128,46 @@ class adminCampaignDetail extends Component{
                             </Descriptions.Item>
                             
                             <Descriptions.Item  span={3} label="Title">{data.CampaignDescription}</Descriptions.Item>
-                            <Descriptions.Item span={3} label="Status ">  <Badge status="processing" text="Running" /> {data.Status} </Descriptions.Item>
+                            <Descriptions.Item span={3} label="Status ">  {
+                                    data.Status ? (
+                                        <Badge status="processing" text="Running" /> 
+                                    ): (
+                                        <Badge status="processing" text="InActive" /> 
+                                    )
+                                } 
+                            </Descriptions.Item>
                             <Descriptions.Item  span={3} label="Description ">{data.CampaignDescription}</Descriptions.Item>
                             <Descriptions.Item  span={3} label="Hashtags ">{data.Hashtags}</Descriptions.Item>
                             <Descriptions.Item  span={3} label="Trend ">{data.Trend}</Descriptions.Item>
 
                             <Descriptions.Item  span={3} label="Paid ? ">{data.Paid}</Descriptions.Item>
 
-                           
+                            <Descriptions.Item  span={3} label="Activate Campaign">
+                           <>
+                           {
+                                    data.Status ? (
+                                        <>
+                                        <button 
+                                        class ="login-button"
+                                        onClick={this.acticateCampaign}>
+                                                Activate
+                                            </button>
+                                        </>
+                                    ): (
+                                        <>
+                                        <button 
+                                        class ="login-button"
+                                        onClick={this.deActicateCampaign}>
+                                                Deactivate
+                                            </button>
+                                        </>     
+                                       
+                                    )
+                                } 
+                           </>
+                                
+                            </Descriptions.Item>
+
                         </Descriptions>
 
                         

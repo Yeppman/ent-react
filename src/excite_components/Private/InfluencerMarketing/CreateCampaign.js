@@ -368,20 +368,10 @@ class NewCampaign extends Component {
                         </Form.Item>
                             
 
-                          <Form.Item 
-                           
-                          name="Image1">
-
-                          <Input  type="file"
-                         
-                            onChange={this.handleImageChange1}
-                           />
-
-                          </Form.Item>
 
                           <div className="clearfix">
                             <Upload
-                              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                             
                               listType="picture-card"
                               fileList={fileList}
                               onPreview={this.handlePreview}

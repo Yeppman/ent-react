@@ -16,10 +16,19 @@ const host = 'https://backend-entr.herokuapp.com';
 class vendorCampaignDetail extends Component{
     state = {
         data : [],
+        vendorEmail : '',
         loading: true,
         error : null ,
         Selected:false,
+
+        modal2Visible: false,
     }
+
+
+    setModal2Visible(modal2Visible) {
+        this.setState({ modal2Visible });
+      }
+      
 
     campaignDetail = async(token)=>{
         const item_id =  this.props.match.params.campaignID
@@ -37,22 +46,43 @@ class vendorCampaignDetail extends Component{
         })
     }
 
-    Pop =()=>{
+    userEmail = async(token)=>{
+        const userData_endpoint = host + '/stream/get_my_user_id_and_email/'
+        axios.defaults.headers = {
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`
+        };
+        await axios.get(userData_endpoint)
+        .then(res =>{
+            const the_id = res.data
+            this.setState({
+          // user_id: res.data.userID,
+          vendorEmail : res.data.Email,
+            })
+            console.log('User Email', res.data.Email)
+        })
+    }
+
+    Pop = async()=>{
         console.log('Works')
+        
         this.setState({
             Selected:true
         })
+        console.log(this.state.Selected)
     }
 
     componentDidMount(){
         //  this.User_Data(this.props.token)
           this.campaignDetail(this.props.token)
+          this.userEmail(this.props.token)
       }
   
       componentWillReceiveProps(newProps) {
           if (newProps.token !== this.props.token) {
             if (newProps.token !== undefined && newProps.token !== null) {
               this.campaignDetail(newProps.token)
+              this.userEmail(newProps.token)
               
             }
           }
@@ -60,7 +90,7 @@ class vendorCampaignDetail extends Component{
 
 
         render(){
-            const {data,Selected}  = this.state
+            const {data,Selected , vendorEmail}  = this.state
             
             return(
                 <>
@@ -88,39 +118,37 @@ class vendorCampaignDetail extends Component{
                            
                         </Descriptions>
 
-                        
-
                         <div className="container">
-                            <button
+                            <div className="grid grid-cols-2">
+                                <div className="col-span-1">
+                                <button
                             onClick={this.Pop}
                              class="login-button">
                                     Pay Now
                             </button>
+                                </div>
+                            </div>
+                        </div>        
+
+                        <div className="container">
+                           
                                 {
                                     Selected ?(
-                                    <Modal
-                                centered
-                                visible={this.state.modal2Visible}
-                                onOk={() => this.setModal2Visible(false)}
-                                onCancel={() => this.setModal2Visible(false)}
-                                >
-                                    <div className="grid grid-cols-4">
-                                        <div className="col-span-4">
-                                        <PayGen 
-                                    pricing 
-                                    Membership 
-                                    Plan_Code 
-                                    Membership_id 
-                                    Email 
-                                    />
+
+                                 <>
+                                 <div className="grid grid-cols-4">
+                                            <div className="col-span-4">
+                                            <PayGen 
+                                            pricing = {data.Cost}
+                                            campaignItemID = {data.id}
+                                            Email ={vendorEmail} 
+                                            />
+                                            </div>
                                         </div>
-                                    </div>
-                                    </Modal>
+                                 </>
                                     ) : (
                                     <div className="grid grid-cols-4">
-                                    <p>
-                                    
-                                    </p>
+                                        
                                     </div>
                                     )
                                 }

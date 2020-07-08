@@ -47,6 +47,8 @@ class AdminDashboard extends Component {
         UsersList : [],
 
         CampaignsData:[],
+
+        CampaignDataCount:0,
         usersTotal:[],
         WebhookTotal:[],
         TransactionTotal:[],
@@ -101,8 +103,11 @@ class AdminDashboard extends Component {
     .then(res =>{
         const data = res.data
          this.setState({
-            CampaignsData : data
-         }); console.log('Campaign Data data' ,res.data);
+            CampaignsData : data ,
+            CampaignDataCount :data.length,
+
+         }); 
+         console.log('Campaign Data data' ,res.data);
             
         })
 
@@ -216,7 +221,8 @@ class AdminDashboard extends Component {
     render() {
        
      
-    const {usersTotal,WebhookTotal, ordersCount , CampaignsData, Transactions ,Profiles} = this.state
+    const {usersTotal,WebhookTotal, ordersCount , 
+      CampaignsData, Transactions ,Profiles ,CampaignDataCount} = this.state
     const AllowAdmin  = true
         
 
@@ -302,15 +308,15 @@ class AdminDashboard extends Component {
                                 </div>
                                   <div className="grid grid-cols-2">
                                   <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                                        
+                                        {CampaignDataCount}
                                   </div>  
                                   <div className="pt-3 
                                   
                                   col-span-1
                                   sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
                                   <a className="top-card-text"
-                                  href={`/admin_logistics`}>
-                                      Open
+                                  >
+                                    
                                       </a>
                                   </div>
                                   </div>

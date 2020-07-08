@@ -105,6 +105,7 @@ import Buyer_Orders from './excite_components/Buyers/Customer_Orders_Details'
 import AdminDashboard from './excite_components/ExciteAdmin/dashboard'
 import Admin_Logicstics_Channel from './excite_components/ExciteAdmin/Logicstics/Logicstics'
 import adminCampaignDetail from './excite_components/ExciteAdmin/Influencer/CampaignDetailView'
+import ProcessVendor from './excite_components/ExciteAdmin/vendorControl/vendorDetails'
 
 //Influencer Marketing
 import InflunencerMarketingPortal from './excite_components/Private/InfluencerMarketing/Portal'
@@ -124,7 +125,7 @@ import resetPasswordDone from './authentication/resetPasswordDone'
 
 const PageRouter= () => (
     <div>
-        <Route exact path = "/" component = {LandingPage} /> {" "}
+        <Route exact path = "/" component = {Enterprise_Showcase} /> {" "}
 
         <Route exact path = "/login/" component = {LoginForm} /> {" "}
     <Route exact path = "/register/" component = {Registration} /> {" "}
@@ -137,6 +138,8 @@ const PageRouter= () => (
     <Route exact path = "/admin_logistics/" component = {Admin_Logicstics_Channel} /> {" "}
     <Route exact path = "/logistics_order/:OrderID/" component ={Logicstics_Details} /> {""}
     <Route exact path = "/admin-campaign-detail/:campaignID/" component ={adminCampaignDetail} /> {""}  
+    
+    <Route exact path = "/review-vendor/:vendorProfileID/" component ={ProcessVendor} /> {""}  
      {/*Admin  Portals */}
 
      {/*Buyer Dashboard Starts here */}

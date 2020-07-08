@@ -58,6 +58,7 @@ export default function UsersSimpleTable(props) {
             <TableCell align="left">Email</TableCell>
             <TableCell align="left">Bank Account</TableCell>
             <TableCell align="left">Verifed</TableCell>
+
             
           </TableRow>
         </TableHead>
@@ -70,8 +71,29 @@ export default function UsersSimpleTable(props) {
               <TableCell align="left"> {row.User_LastName} </TableCell>
               <TableCell align="left"> {row.User_LastName} </TableCell>
                 <TableCell align="left">
-                     {row.Verified}
+                     {
+                      row.Verified ? (
+                        <>
+                          <p>
+                          Verifed
+                          </p>
+                        </>
+                        ):
+                        (
+                          <>
+                          <p>
+                          Pending
+                          </p>
+                          </>
+                        )
+                      
+                     }
                 </TableCell>
+                <TableCell align="left"> 
+                <a href={`/review-vendor/${row.id}`} >
+                  View
+                </a>
+                 </TableCell>
 
             </TableRow>
           ))}

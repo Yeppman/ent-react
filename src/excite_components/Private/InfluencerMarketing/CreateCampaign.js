@@ -21,7 +21,7 @@ const formItemLayout = {
     wrapperCol: { span: 12, offset: 6 }
   };
 
-const host = "http://127.0.0.1:8000"
+const host = "https://backend-entr.herokuapp.com"
 
 
 const openNotification = (msg) => {

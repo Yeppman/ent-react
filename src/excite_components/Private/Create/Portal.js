@@ -4,7 +4,7 @@ import {Rate} from 'antd'
 import axios from 'axios'
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-entr.herokuapp.com'
 
 class Create_Post_Portal extends Component{
     state ={

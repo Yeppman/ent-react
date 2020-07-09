@@ -77,7 +77,7 @@ class Profile_Edit extends Component{
 
               axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
               axios.defaults.xsrfCookieName = "csrftoken";
-              axios.post(`http://127.0.0.1:8000/stream/edit_profile/`,fd, {
+              axios.post(`https://backend-entr.herokuapp.com/stream/edit_profile/`,fd, {
                 headers : {
                   "Content-Type": "multitype/form-data",
                   Authorization: `Token ${this.props.token}`

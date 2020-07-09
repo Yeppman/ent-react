@@ -23,7 +23,7 @@ const  openNotification = (msg) => {
      });
      }
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-entr.herokuapp.com'
 class Logicstics_Channel extends Component{
      state = {
           AllowUser:false,
@@ -42,7 +42,7 @@ class Logicstics_Channel extends Component{
                "Content-Type": "application/json",
                Authorization: `Token ${token}`
              };
-          axios.get('http://127.0.0.1:8000/management/view_logicstics/')
+          axios.get('https://backend-entr.herokuapp.com/management/view_logicstics/')
           .then(res =>{
                this.setState({
                     channels : res.data
@@ -59,7 +59,7 @@ class Logicstics_Channel extends Component{
                "Content-Type": "application/json",
                Authorization: `Token ${token}`
              }
-          await axios.get(`http://127.0.0.1:8000/management/order_counter/`)
+          await axios.get(`https://backend-entr.herokuapp.com/management/order_counter/`)
           .then(res =>{
                this.setState({
                     delivered : res.data.Delivered,

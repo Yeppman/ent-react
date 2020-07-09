@@ -16,7 +16,7 @@ notification.open({
 });
 }
 
-const host = 'http://127.0.0.1:8000'
+const host = 'https://backend-entr.herokuapp.com'
 class Admin_Logicstics_Details extends Component{
 
     state = {

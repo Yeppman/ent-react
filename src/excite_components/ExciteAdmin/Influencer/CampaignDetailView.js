@@ -108,7 +108,7 @@ class adminCampaignDetail extends Component{
                 message.error('Error Updating Campaign')
             }
         })
-    }
+      }
 
     deActicateCampaign= async()=>{
         const item_id =  this.props.match.params.campaignID
@@ -116,7 +116,7 @@ class adminCampaignDetail extends Component{
             "Content-Type": "application/json",
             Authorization: `Token ${this.props.token}`
           };
-          
+        //   jj
         const url = host + `/excite-admin-connect/changeStatus/${item_id}/`
         await axios.get(url)
         .then(res =>{

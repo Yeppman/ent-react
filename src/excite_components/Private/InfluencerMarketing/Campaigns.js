@@ -44,6 +44,13 @@ class vendorCampaign extends Component {
       this.props.history.push('/create-campaign')
      // window.location.replace(endpoint)
      }
+     
+     redirect_page2=()=>{
+    
+      const endpoint = '/create-trend'
+      this.props.history.push(endpoint)
+     // window.location.replace(endpoint)
+     }
 
     componentDidMount(){
       //  this.User_Data(this.props.token)
@@ -72,7 +79,7 @@ class vendorCampaign extends Component {
 
             <div className="container">
                      <div className="grid grid-cols-10">
-                       <div className="col-span-2">
+                       <div className="col-span-3 ">
                        <button
                      onClick={this.redirect_page}
                        class="create-client-button"  >
@@ -82,6 +89,18 @@ class vendorCampaign extends Component {
                     />  Create Campaign
                     </button>
                 </div>
+
+                <div className="col-span-3 ">
+                       <button
+                     onClick={this.redirect_page2}
+                       class="create-client-button"  >
+
+                      <PlusCircleOutlined 
+                       style={{ fontSize: '30px' }} 
+                    />  Create Trend
+                    </button>
+                </div>
+
                 </div>
             </div>
            

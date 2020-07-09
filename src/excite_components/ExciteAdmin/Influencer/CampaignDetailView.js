@@ -3,14 +3,29 @@ import async from 'q'
 import { connect } from "react-redux";
 
 import axios from "axios";
-import { Descriptions, Badge , notification , Modal} from 'antd';
+import {Input ,  Spin ,Card , Form, Button ,
+    List, Avatar , Descriptions, Badge ,
+    Select , DatePicker ,Modal , Upload, message,notification} from 'antd';
 
+import moment from 'moment'
 import TemporaryDrawer from '../Sidebar/SideNav'
+import AdminCampaignTable from './CapaignTable'
 
 import {PlusCircleOutlined} from '@ant-design/icons'
 
 
+const TextArea = Input.TextArea
+const { Option } = Select;
+
+const { RangePicker } = DatePicker;
+
+const dateFormat = 'YYYY/MM/DD';
+const monthFormat = 'YYYY/MM';
+
+
 const host = 'https://backend-entr.herokuapp.com';
+
+
 
 const openNotification = (msg) => {
     notification.open({
@@ -47,7 +62,7 @@ class adminCampaignDetail extends Component{
         })
     }
 
-    acticateCampaign= async()=>{
+    activateCampaign= async()=>{
         const item_id =  this.props.match.params.campaignID
         axios.defaults.headers = {
             "Content-Type": "application/json",
@@ -66,6 +81,35 @@ class adminCampaignDetail extends Component{
         })
     }
 
+
+
+    updateDatesForCampaign= async(values)=>{
+        const CampaignStarts = values['CampaignDate'].format("YYYY-MM-DD")
+        const Deadline = values['DeadLine'].format("YYYY-MM-DD")
+        const Cost = values['Cost']
+
+        const item_id =  this.props.match.params.campaignID
+        axios.defaults.headers = {
+            "Content-Type": "application/json",
+            Authorization: `Token ${this.props.token}`
+          };
+          
+        const url = host + `/excite-admin-connect/update-dates/${item_id}/`
+        await axios.get(url, {
+            params:{
+                Deadline, CampaignStarts, Cost
+            }
+        })
+        .then(res =>{
+            if (res.status == 200){
+                openNotification(res.data['Message'])
+                console.log('', res.data)
+            } else{
+                message.error('Error Updating Campaign')
+            }
+        })
+    }
+
     deActicateCampaign= async()=>{
         const item_id =  this.props.match.params.campaignID
         axios.defaults.headers = {
@@ -77,7 +121,7 @@ class adminCampaignDetail extends Component{
         await axios.get(url)
         .then(res =>{
             if (res.status == 200){
-                openNotification('Campaign Activated Successfully')
+                openNotification('Campaign Deactivated Successfully')
                 console.log('', res.data)
             } else{
 
@@ -117,39 +161,66 @@ class adminCampaignDetail extends Component{
                     <TemporaryDrawer/>
 
                     <div className="container">
-                        <div className="grid grid-cols-3">
-                            <div className="col-span-3">
+                        <div className="">
+                                <div className="">
+                                <AdminCampaignTable  token={this.props.token} data = {data} />
+                                </div>
+                        </div>
+                    </div>
+
+                    <div className="container">
+                        <div className="grid grid-cols-7 gap-4">
+                            <div className="col-span-4 ">
                                 
                             <Descriptions title="User Info" bordered>
-                           
-                            <Descriptions.Item span={3} label="Order time">{data.Created}</Descriptions.Item>
+                            <Descriptions.Item  span={3} label="Hashtags ">{data.Hashtags}</Descriptions.Item>
+                            <Descriptions.Item  span={3} label="Title">{data.CampaignDescription}</Descriptions.Item>
+                            <Descriptions.Item  span={3} label="Number of Influencers ">{data.NumberOfViews}</Descriptions.Item>
+                            <Descriptions.Item span={3} label="Created">{data.Created}</Descriptions.Item>
                             <Descriptions.Item span={3} label="Proposal Date" span={3}>
-                            2019-04-24 18:00:00
+                           {data.ProposalDate}
                             </Descriptions.Item>
                             
-                            <Descriptions.Item  span={3} label="Title">{data.CampaignDescription}</Descriptions.Item>
+                           
                             <Descriptions.Item span={3} label="Status ">  {
                                     data.Status ? (
-                                        <Badge status="processing" text="Running" /> 
+                                        <p>
+                                        Active
+                                        </p>
                                     ): (
-                                        <Badge status="processing" text="InActive" /> 
+                                       <p>InActive</p>
                                     )
                                 } 
                             </Descriptions.Item>
-                            <Descriptions.Item  span={3} label="Description ">{data.CampaignDescription}</Descriptions.Item>
-                            <Descriptions.Item  span={3} label="Hashtags ">{data.Hashtags}</Descriptions.Item>
-                            <Descriptions.Item  span={3} label="Trend ">{data.Trend}</Descriptions.Item>
+                            
+                            
 
-                            <Descriptions.Item  span={3} label="Paid ? ">{data.Paid}</Descriptions.Item>
+                            <Descriptions.Item  span={3} label="Paid ? ">
+                                {
+                                    data.Paid ? (
+                                        <>
+                                            <p>
+                                                Payment Made
+                                            </p>
+                                        </>
+                                    ):(
+                                        <>
+                                            <p>
+                                                Pending Payment
+                                            </p>
+                                        </>
+                                    )
+                                }
+                            </Descriptions.Item>
 
                             <Descriptions.Item  span={3} label="Activate Campaign">
                            <>
                            {
-                                    data.Status ? (
+                                    !data.Status ? (
                                         <>
                                         <button 
                                         class ="login-button"
-                                        onClick={this.acticateCampaign}>
+                                        onClick={this.activateCampaign}>
                                                 Activate
                                             </button>
                                         </>
@@ -169,14 +240,57 @@ class adminCampaignDetail extends Component{
                             </Descriptions.Item>
 
                         </Descriptions>
+                         
+                                 
+                           </div>
 
-                        
+                           <div className="col-span-3">
+                                <Form onFinish={this.updateDatesForCampaign}>
 
-                      
+                                <Form.Item 
+                             rules={[{ required: true }]}
+                            name ="Cost">
                             
-                            </div>
+                                <Input
+                                placeholder="Estimated Cost"
+                                enterButton />
+                            
+                            </Form.Item>
+
+                                <Form.Item 
+                            rules={[{ required: true }]}
+                            name="CampaignDate">
+                              <DatePicker
+                              label="Campaign Starts"
+                               defaultValue={moment('2020/01/01', dateFormat)} format={dateFormat} />
+
+                            </Form.Item>
+
+                            <Form.Item 
+                            rules={[{ required: true }]}
+                            name="DeadLine">
+                              <DatePicker
+                              label="Campaign Deadline"
+                               defaultValue={moment('2020/01/01', dateFormat)} format={dateFormat} />
+
+                            </Form.Item>
+
+                            <Form.Item>
+                                <button className="login-button">
+                                    Submit
+                                </button>
+
+                            </Form.Item>
+                                </Form>
+                                </div>
                         </div>
                     </div>
+
+                  
+
+
+                   
+
                 </>
             )
         }

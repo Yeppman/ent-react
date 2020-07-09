@@ -45,7 +45,7 @@ function getBase64(file) {
   });
 }
 
-class NewCampaign extends Component {
+class NewTrend extends Component {
 
     state = {
         data: [] ,
@@ -200,12 +200,12 @@ class NewCampaign extends Component {
         const description = values['Description']
        // const rangeValue = values['Date'] 
         const contents = values['Contents']
-        const category_Type = 'Handles'
+        const category_Type = 'Trend'
 
         const ProposalDate = values['Date'].format("YYYY-MM-DD") 
 
         const hashtags = String(values['Hashtag'])
-        const trend = String(values['Trend'])
+        const trend = 'trend'
        
         const image1 = this.state.image1
         const image2 = this.state.image2
@@ -222,11 +222,10 @@ class NewCampaign extends Component {
         
         let fd = new FormData()
         fd.append('title',title)
-        fd.append('tier_id', tier_id)
-        
-        fd.append('hashtags',hashtags)
         fd.append('trend', trend)
+        fd.append('tier_id', tier_id)
         fd.append('NumberofInfluencers', NumberofInfluencers)
+        fd.append('hashtags',hashtags)
         fd.append('category_Type',category_Type)
         fd.append('description',description)
         fd.append('ProposalDate',ProposalDate)
@@ -241,7 +240,7 @@ class NewCampaign extends Component {
           Authorization: `Token ${this.props.token}`
         };
         
-        const url = host + '/management/create-campaign/'
+        const url = host + '/management/created-trend/'
         axios.post(url , fd)
         .then(res => {
             if (res.status == 200){
@@ -298,21 +297,7 @@ class NewCampaign extends Component {
                         {...formItemLayout}
                          onFinish={this.CampaignQuery}>
 
-                      <Form.Item name ="Tier">
-                            <Select placeholder ="Select Tier">
-                        {
-                            tiers.map((b)=>(
-                                  <>
-                                  <Option value={b.id}>{b.Level}</Option>
-                                  </>
-                                    ))
-                                }
-                            </Select>
-                         </Form.Item>
-
-                        
-                         
-                            <Form.Item 
+                        <Form.Item 
                              rules={[{ required: true }]}
                             name ="Title">
                             
@@ -321,7 +306,6 @@ class NewCampaign extends Component {
                                 enterButton />
                             
                             </Form.Item>
-
 
                             <Form.Item 
                              rules={[{ required: true }]}
@@ -334,16 +318,6 @@ class NewCampaign extends Component {
                             </Form.Item>
 
 
-                            <Form.Item 
-                             rules={[{ required: true }]}
-                            name ="influencerNumber">
-                            
-                                <Input
-                                placeholder="Number of Influencers"
-                                enterButton
-                                />
-                            
-                            </Form.Item>
 
                             <div className="clearfix">
                             <Upload
@@ -422,4 +396,4 @@ const mapStateToProps = state => {
   export default connect(
     mapStateToProps,
     null,
-  )(NewCampaign)
+  )(NewTrend)

@@ -10,6 +10,8 @@ import TemporaryDrawer from '../Sidebar/SideNav'
 import {PlusCircleOutlined} from '@ant-design/icons'
 import PayGen from './PayPortal/Paystacker'
 
+import CampaignTableDrag from './Table/CampaignTable'
+
 const host = 'https://backend-entr.herokuapp.com';
 
  
@@ -17,6 +19,8 @@ class vendorCampaignDetail extends Component{
     state = {
         data : [],
         vendorEmail : '',
+
+        item: [],
         loading: true,
         error : null ,
         Selected:false,
@@ -40,7 +44,8 @@ class vendorCampaignDetail extends Component{
         await axios.get(url)
         .then(res =>{
             this.setState({
-                data : res.data
+                data : res.data ,
+                item: res.data,
             })
             console.log('Campaign Data', res.data)
         })
@@ -73,9 +78,12 @@ class vendorCampaignDetail extends Component{
     }
 
     componentDidMount(){
-        //  this.User_Data(this.props.token)
-          this.campaignDetail(this.props.token)
+        //  this.User_Data(this.props.token
+          if (this.props.token !== undefined && this.props.token !== null) {
+            this.campaignDetail(this.props.token)
           this.userEmail(this.props.token)
+          
+        }
       }
   
       componentWillReceiveProps(newProps) {
@@ -90,73 +98,72 @@ class vendorCampaignDetail extends Component{
 
 
         render(){
-            const {data,Selected , vendorEmail}  = this.state
+            const {data,Selected , vendorEmail ,item}  = this.state
             
             return(
                 <>
                     <TemporaryDrawer/>
 
-                    <div className="container">
-                        <div className="grid grid-cols-3">
-                            <div className="col-span-3">
-                                
-                            <Descriptions title="User Info" bordered>
+                    
+               <div className="container">
+                                <div className="grid grid-col-6">
+                                <div className=" col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                                    <CampaignTableDrag token={this.props.token} data = {data} />
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div className="container">
                            
-                            <Descriptions.Item span={3} label="Order time">{data.Created}</Descriptions.Item>
-                            <Descriptions.Item span={3} label="Proposal Date" span={3}>
-                            2019-04-24 18:00:00
-                            </Descriptions.Item>
-                            
-                            <Descriptions.Item  span={3} label="Title">{data.CampaignDescription}</Descriptions.Item>
-                            <Descriptions.Item span={3} label="Status ">  <Badge status="processing" text="Running" /> {data.Status} </Descriptions.Item>
-                            <Descriptions.Item  span={3} label="Description ">{data.CampaignDescription}</Descriptions.Item>
-                            <Descriptions.Item  span={3} label="Hashtags ">{data.Hashtags}</Descriptions.Item>
-                            <Descriptions.Item  span={3} label="Trend ">{data.Trend}</Descriptions.Item>
+                           {
+                               Selected ?(
 
-                            <Descriptions.Item  span={3} label="Paid ? ">{data.Paid}</Descriptions.Item>
+                            <>
+                            <div className="grid grid-cols-4">
+                                       <div className="col-span-4">
+                                       <PayGen 
+                                       pricing = {data.Cost}
+                                       campaignItemID = {data.id}
+                                       Email ={vendorEmail} 
+                                       />
+                                       </div>
+                                   </div>
+                            </>
+                               ) : (
+                               <div className="grid grid-cols-4">
+                                   
+                               </div>
+                               )
+                           }
+                           </div>
+                       
 
-                           
-                        </Descriptions>
-
-                        <div className="container">
-                            <div className="grid grid-cols-2">
-                                <div className="col-span-1">
+               <div className="container">
+                            <div className="grid grid-cols-6">
+                                {
+                                    !data.Pending ?(
+                                        <>
+                                        <div className="col-span-1">
                                 <button
                             onClick={this.Pop}
                              class="login-button">
                                     Pay Now
                             </button>
-                                </div>
                             </div>
-                        </div>        
-
-                        <div className="container">
-                           
-                                {
-                                    Selected ?(
-
-                                 <>
-                                 <div className="grid grid-cols-4">
-                                            <div className="col-span-4">
-                                            <PayGen 
-                                            pricing = {data.Cost}
-                                            campaignItemID = {data.id}
-                                            Email ={vendorEmail} 
-                                            />
-                                            </div>
-                                        </div>
-                                 </>
-                                    ) : (
-                                    <div className="grid grid-cols-4">
-                                        
-                                    </div>
+                                        </>
+                                    ):(
+                                        <>
+                                            <p>
+                                            </p>
+                                        </>
                                     )
                                 }
                                 </div>
-                            
                             </div>
-                        </div>
-                    </div>
+                              
+
+                        
+
                 </>
             )
         }

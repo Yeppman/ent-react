@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import {Input ,  Spin ,Card , Form, Button ,
   List, Avatar ,
-  Select , DatePicker , Upload, message,notification} from 'antd';
+  Select , DatePicker ,Modal , Upload, message,notification} from 'antd';
 
-     
+import moment from 'moment'
+
 import axios from "axios";
 import { connect } from "react-redux";
 
@@ -11,7 +12,7 @@ import TemporaryDrawer from '../Sidebar/SideNav'
 
 const UserPost_url = 'https://backend-entr.herokuapp.com/stream/view_post/'
 
-
+const dateFormat = 'YYYY/MM/DD';
 const TextArea = Input.TextArea
 const { Option } = Select;
 
@@ -36,7 +37,7 @@ const Condition = ['New', 'Foriegn Used']
 const Transmission = ['Manual', 'Automatic']
 const Fuel_Type = ['Disel', 'Petrol', 'Electric','Hybrid']
 const Body_Type  = ['Metal','Carbon-Fibre']
-
+const Color = ['Blue','Black','Bespoke']
 
 
 class Vehicles_Item_Create extends Component{
@@ -81,8 +82,10 @@ Create_Query = async(values, err)=>{
           values["Vehicle_Model"] === undefined ? null : values["Vehicle_Model"] ;
         const Transmission =
           values["Transmission"] === undefined ? null : values["Transmission"] ;
+          const Color =  values["Color"] === undefined ? null : values["Color"] ; 
       const Fuel_Type =
           values["Fuel_Type"] === undefined ? null : values["Fuel_Type"] ;  
+        const Year_Made = values['Year_Made'].format("YYYY-MM-DD") 
        const Body_Type =
           values["Body_Type"] === undefined ? null : values["Body_Type"] ;  
      const State =
@@ -99,6 +102,7 @@ Create_Query = async(values, err)=>{
           form_data.append('Category', Category);
           form_data.append('Description',Description);
           form_data.append('Location',Location);
+          form_data.append('Year_Made', Year_Made);
           form_data.append('Price', Price);
           form_data.append('Owner', Original_User_id);
           form_data.append('Vehicle_Type',Vehicle_Type)
@@ -106,6 +110,8 @@ Create_Query = async(values, err)=>{
           form_data.append('Transmission',Transmission)
           form_data.append('Fuel_Type',Fuel_Type)
           form_data.append('Body_Type',Body_Type)
+          form_data.append('Color',Color)
+          form_data.append('Address',Address)
           form_data.append('State',State)
           form_data.append('Country',Country)
           form_data.append('Image_Post',Image_Post);
@@ -180,7 +186,7 @@ Create_Query = async(values, err)=>{
                             name ="Title">
                             
                                 <Input
-                                placeholder="Product Name"
+                                placeholder="Title"
                                 enterButton
                                 />
                             
@@ -198,6 +204,12 @@ Create_Query = async(values, err)=>{
                                 />
                             
                             </Form.Item>
+                            <Form.Item 
+                            rules={[{ required: true }]}
+                            name="Year_Made">
+                              <DatePicker defaultValue={moment('2020/01/01', dateFormat)} format={dateFormat} />
+
+                            </Form.Item>
 
 
                             <Form.Item 
@@ -206,6 +218,23 @@ Create_Query = async(values, err)=>{
                           <TextArea 
                             placeholder="Description" rows={4} />
                           </Form.Item>
+
+                          <Form.Item
+                             rules={[{ required: true }]}
+                             name ="Color" >
+                                
+                                <Select placeholder="Select Color">
+                                {
+                                  Color.map((c)=>(
+                                    <Option 
+                                    value={c}>{c}</Option>
+                                  ))
+                              }
+                              
+                                    </Select>
+                              
+                            </Form.Item>
+
 
                             <Form.Item
                              rules={[{ required: true }]}
@@ -270,7 +299,7 @@ Create_Query = async(values, err)=>{
                                     </Select>
                               
                             </Form.Item>
-
+                            
                             <Form.Item
                              rules={[{ required: true }]}
                              name ="Fuel_Type" >

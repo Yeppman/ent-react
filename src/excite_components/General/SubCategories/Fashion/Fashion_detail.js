@@ -1,6 +1,6 @@
 import React , {  Component }from 'react';
 import axios from 'axios'
-import {Rate, Avatar ,Comment, Tooltip,Tabs , Descriptions} from 'antd'
+import {Rate, Avatar ,Comment, Tooltip,Tabs , Descriptions , message} from 'antd'
 import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
@@ -19,11 +19,13 @@ const { TabPane } = Tabs;
 class Fashion_Item_Detail extends Component{
     state = {
         item_details:[],
+        itemIsProduct : true,
         loading : true,
         error: null ,
         vendor_profile :[],
         comments:[],
         loaded_comments: false,
+        itemIsProduct : true,
     }
 
     
@@ -38,24 +40,62 @@ class Fashion_Item_Detail extends Component{
        })
       }
 
-      
-    Item_Data = async() => {
-        const model_id = this.props.match.params.ItemDetailID
-        const item_endpoint = 'fashion_detail'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/`
+
+      Vendor_Business_Profile = async(Vendor_id) =>{
+        const endpoint = host + `/core_api/vendor_business_data/${Vendor_id}/`
         await axios.get(endpoint)
         .then(res =>{
-            this.setState({
-                item_details : res.data ,
-                loading : false
-                })
-                if (this.state.loading === false){
-                    const parse_vendor = this.state.item_details.Owner_id
-                    console.log('this is the  vendor id', parse_vendor)
-                    // USED THIS FUNCTION RETRIEVE VENDOR'S ID
-                    this.Vendor_Profile(parse_vendor)
+          this.setState({
+            vendor_business_profile: res.data
+        })
+         console.log('ven',this.state.vendor_business_profile)  
+       })
+      }
+
+      addToCart =  async()=>{
+        const item_id = this.props.match.params.ItemDetailID
+        const endpoint = host + `/retail/add-item/${item_id}`
+         await axios.get(endpoint)
+         .then(res =>{
+           if (res.status == 200){
+             message.success('Item Added to cart')
+           }else{
+             message.error('Adding to cart failed')
+           }
+         })
+     }
+    
+      
+      Item_Data = async() => {
+        const model_id = this.props.match.params.ItemDetailID
+      //  const item_endpoint = 'electronics_details'
+        const endpoint = host + `/retail/item-detail/${model_id}/`
+        await axios.get(endpoint)
+        .then(res =>{
+            if (res.status == 200){
+                this.setState({
+                  item_details : res.data ,
+                  loading : false
+                  })
+
+                  if (res.data.isProduct == true){
+                    this.setState({
+                      itemIsProduct: true
+                    })
+                  }
+
+                  console.log('item data', res.data)
+                  if (this.state.loading === false){
+                      const parse_vendor = this.state.item_details.Owner_id
+                      console.log('this is the  vendor id', parse_vendor)
+                      // USED THIS FUNCTION RETRIEVE VENDOR'S ID
+                      this.Vendor_Profile(parse_vendor)
+                      this.Vendor_Business_Profile(parse_vendor)
                 }
-            })
+            }else{
+              message.error('Error getting data')
+            }
+        })
     }
       
     //Fetches comments
@@ -74,7 +114,7 @@ class Fashion_Item_Detail extends Component{
                 
         })
 
-    }; 
+    };  
 
     item_id = this.props.match.params.ItemDetailID
     item_comment_endpoint = `/retail/new_comments_fashion/${this.item_id}/`
@@ -89,7 +129,7 @@ class Fashion_Item_Detail extends Component{
 
     render(){
         const { item_details ,vendor_profile, loaded_comments ,
-          Comments, loading,  rating } = this.state;
+          Comments, loading,  rating ,itemIsProduct } = this.state;
        const model_id = this.props.match.params.ItemDetailID
        console.log('this is the model ID', model_id)
        const  orderMonitorID =  this.state.item_details.Owner_id
@@ -140,16 +180,34 @@ class Fashion_Item_Detail extends Component{
                         Price  ₦ {item_details.Price}
                         </div>
                         
-                         <div className="grid grid-cols-4 gap-4">
-                         <div className=" col-span-4" >
+                        <div className="grid grid-cols-4 gap-4">
+
+                         {
+                           itemIsProduct ? (
+                             <>
+
+                            <div className="col-span-4">
+                              <button 
+                              onClick={this.addToCart}
+                              className="login-button">
+                                Add to Cart
+                              </button>
+                            </div>
+                             </>
+                           ) : (
+                            <div className=" col-span-4" >
                               <Make_Order_Form 
                               item_name = {item_details.Title}
                               item_class = {item_type}
                                share_vendor_email ={vendor_profile.email}
                               vendor_id = {vendor_profile.id} post_id = {model_id} /> 
                           </div> 
+                           )
+                         }
+                         
 
-                         </div>                       
+
+                         </div>                        
 
                     </div>
                   </div>

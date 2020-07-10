@@ -18,8 +18,12 @@ class Jobs_Items extends Component{
     }
 
     Get_Items = async()=>{
-        const endpoint = host + `/retail/jobs_list/`
-        await axios.get(endpoint)
+        const endpoint = host + `/retail/item-category-list/`
+        await axios.get(endpoint,{
+            params:{
+                slug
+            }
+        } )
         .then(res=>{
             this.setState({
                 items: res.data,

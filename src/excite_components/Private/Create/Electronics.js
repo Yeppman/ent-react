@@ -138,9 +138,10 @@ class Electronics_Item_Create extends Component{
               if (res.status == 200){
                 console.log(res.data)
             const take_response = res.data['Message']
-            this.openNotification(take_response)   
+            openNotification(take_response)  
+            this.props.history.push("/user_uploads") 
                 }  else{
-                    this.openNotification('Error Creating Product') 
+                    openNotification('Error Creating Product') 
                 }  
             })
              

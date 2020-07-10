@@ -138,10 +138,14 @@ class vendorCampaignDetail extends Component{
                            </div>
                        
 
-               <div className="container">
-                            <div className="grid grid-cols-6">
+                           <>
                                 {
                                     !data.Pending ?(
+                                        <>
+                                        <div className="container">
+                            <div className="grid grid-cols-6">
+                                {
+                                    !data.Paid ?(
                                         <>
                                         <div className="col-span-1">
                                 <button
@@ -160,6 +164,12 @@ class vendorCampaignDetail extends Component{
                                 }
                                 </div>
                             </div>
+                                        </>
+                                    ): (
+                                        <p></p>
+                                    )
+                                }
+                           </>
                               
 
                         

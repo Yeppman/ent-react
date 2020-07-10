@@ -14,10 +14,14 @@ import Make_Order_Form from '../../../containers/Make_Order'
 const host = 'https://backend-entr.herokuapp.com'
 const item_type = 'electronics'
 const { TabPane } = Tabs;
+ 
+
 
 class Electronics_Item_Detail extends Component{
     state = {
         item_details:[],
+        itemIsProduct : false,
+
         loading : true,
         error: null ,
         vendor_profile :[],
@@ -75,21 +79,32 @@ class Electronics_Item_Detail extends Component{
       
   Item_Data = async() => {
         const model_id = this.props.match.params.ItemDetailID
-        const item_endpoint = 'electronics_details'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/`
+      //  const item_endpoint = 'electronics_details'
+        const endpoint = host + `/retail/item-detail/${model_id}/`
         await axios.get(endpoint)
         .then(res =>{
-            this.setState({
-                item_details : res.data ,
-                loading : false
-                })
-                console.log('item data', res.data)
-                if (this.state.loading === false){
-                    const parse_vendor = this.state.item_details.Owner_id
-                    console.log('this is the  vendor id', parse_vendor)
-                    // USED THIS FUNCTION RETRIEVE VENDOR'S ID
-                    this.Vendor_Profile(parse_vendor)
-                    this.Vendor_Business_Profile(parse_vendor)
+            if (res.status == 200){
+                this.setState({
+                  item_details : res.data ,
+                  loading : false
+                  })
+
+                  if (res.data.isProduct == true){
+                    this.setState({
+                      itemIsProduct: true
+                    })
+                  }
+
+                  console.log('item data', res.data)
+                  if (this.state.loading === false){
+                      const parse_vendor = this.state.item_details.Owner_id
+                      console.log('this is the  vendor id', parse_vendor)
+                      // USED THIS FUNCTION RETRIEVE VENDOR'S ID
+                      this.Vendor_Profile(parse_vendor)
+                      this.Vendor_Business_Profile(parse_vendor)
+                }
+            }else{
+              message.error('Error getting data')
             }
         })
     }
@@ -110,10 +125,19 @@ class Electronics_Item_Detail extends Component{
         })
     }; 
 
-    item_id = this.props.match.params.ItemDetailID
-    item_comment_endpoint = `/retail/new_comments_electronics/${this.item_id}/`
-    comment_endpoint = host + this.item_comment_endpoint
-
+    addToCart =  async()=>{
+       const item_id = this.props.match.params.ItemDetailID
+       const endpoint = host + `/retail/add-item/${item_id}`
+        await axios.get(endpoint)
+        .then(res =>{
+          if (res.status == 200){
+            message.success('Item Added to cart')
+          }else{
+            message.error('Adding to cart failed')
+          }
+        })
+    }
+   
     componentDidMount(){
       
         this.Item_Data()
@@ -130,12 +154,19 @@ class Electronics_Item_Detail extends Component{
       }
     }
 
+    item_id = this.props.match.params.ItemDetailID
+    item_comment_endpoint = `/retail/new_comments_electronics/${this.item_id}/`
+    comment_endpoint = host + this.item_comment_endpoint
+
 
     render(){
       const { item_details ,vendor_profile, loaded_comments ,
-        Comments, loading,  rating } = this.state;
+        Comments, loading,  rating ,  itemIsProduct } = this.state;
+
       const model_id = this.props.match.params.ItemDetailID
+
       const {isAuth,is_seller, is_buyer} = this.props
+
       console.log(isAuth);
       
      console.log('this is the item ID', model_id)
@@ -205,14 +236,27 @@ class Electronics_Item_Detail extends Component{
 
                          <div className="grid grid-cols-4 gap-4">
 
-                         <div className=" col-span-4" >
+                         {
+                           itemIsProduct ? (
+                             <>
+                             <div className="col-span-4">
+                              <button 
+                              onClick={this.addToCart}
+                              className="login-button">
+                                Add to Cart
+                              </button>
+                            </div>
+                             </>
+                           ) : (
+                            <div className=" col-span-4" >
                               <Make_Order_Form 
                               item_name = {item_details.Title}
                               item_class = {item_type}
                                share_vendor_email ={vendor_profile.email}
                               vendor_id = {vendor_profile.id} post_id = {model_id} /> 
                           </div> 
-
+                           )
+                         }
                          
 
 

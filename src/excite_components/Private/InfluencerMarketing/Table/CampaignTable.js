@@ -92,8 +92,10 @@ export default function CampaignTableDrag(props) {
           <TableCell >S/N</TableCell>
 
              <TableCell align="left">Hashtag</TableCell>
+             
               <TableCell align="left">Campaign Title</TableCell>
-              <TableCell align="left">Proposal Date</TableCell>
+              <TableCell align="left">Status</TableCell>
+              <TableCell align="left">Proposed Date</TableCell>
               <TableCell align="left">Cost</TableCell>
               <TableCell align="left">
                 Deadline 
@@ -103,7 +105,7 @@ export default function CampaignTableDrag(props) {
               </TableCell>
        
   
-      
+       
 
           </TableRow>
         </TableHead>
@@ -114,6 +116,24 @@ export default function CampaignTableDrag(props) {
               <TableCell align="left">{row.Hashtags}</TableCell>
               <TableCell align="left">{row.CampaignName}</TableCell>
               <TableCell align="left">{row.ProposalDate}</TableCell>
+              <TableCell align="left">
+              { row.Status ? (
+                  <>
+                    <p>
+                      Activate
+                    </p>
+
+                  </>
+                ): (
+                  <>
+                  <p>
+                    Inactive
+                  </p>
+                  </>
+                )
+                
+                }
+              </TableCell>
               <TableCell align="left">
                 { !row.Pending ? (
                   <>

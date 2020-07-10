@@ -29,7 +29,7 @@ class Electronics_Item_Detail extends Component{
     Item_Detail = async() => {
         const model_id = this.props.match.params.PostDetailID
         const item_endpoint = 'job_detail'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/`
+        const endpoint = host + `/retail/item-detail/${model_id}/`
         await axios.get(endpoint)
         .then(res =>{
             this.setState({

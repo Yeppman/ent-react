@@ -24,6 +24,8 @@ class User_Analysis extends Component{
         chartData : [],
         loading : false ,
         error : null , 
+
+        productsFetched : [],
         post_views_x : [],
         post_name_y :[] ,
         average_views : [],
@@ -47,157 +49,16 @@ class User_Analysis extends Component{
       await axios.get(products_analysis_endpoint)
       .then(res=>{
         this.setState({
-          results : res.data
+          productsFetched : res.data
         })
       })
 
-      //Conditions and Mapping starts here
-      if (this.state.results.Electronics.length > 0){
-        var electronics_data = this.state.results.Electronics
-        
-        electronics_data.map((i)=>{
-            var a = {
-                id : i['id'] ,
-            category : i['Category'],
-            Title : i['Title'], Views : i['Views']
-           }
-           JSON.stringify(a)
-           Main.push(a)
-           
-        })
-        this.setState({
-            Allocated_products_analysis_data:Main
-        })
-       
-    }
-
-    if (this.state.results.Fashion.length > 0){
-        var fashion_data = this.state.results.Fashion
-        
-        
-        fashion_data.map((i)=>{
-            var a = {
-                id : i['id'] ,
-            category : i['Category'],
-            Title : i['Title'], 
-            Views : i['Views']
-           }
-           JSON.stringify(a)
-           Main.push(a)
-           
-        })
-        this.setState({
-            Allocated_products_analysis_data:Main
-        })
-
-    }
-
-    if (this.state.results.Services.length > 0){
-        var services_data = this.state.results.Services
-        
-        
-        services_data.map((i)=>{
-            var a = {
-                id : i['id'] ,
-            category : i['Category'],
-            Title : i['Title'], Views : i['Views']
-           }
-           JSON.stringify(a)
-           Main.push(a)
-           
-        })
-        this.setState({
-            Allocated_products_analysis_data:Main
-        })
-
-    }
-
-    if (this.state.results.HomeAppliances.length > 0){
-        var home_app = this.state.results.HomeAppliances
-       
-        home_app.map((i)=>{
-            var a = {
-                id : i['id'] ,
-            category : i['Category'],
-            Title : i['Title'], Views : i['Views']
-           }
-           JSON.stringify(a)
-           Main.push(a)
-           
-        })
-        this.setState({
-            Allocated_products_analysis_data:Main
-        })
-
-
-    }
-    
-    if (this.state.results.Phones.length > 0){
-        var phone_data = this.state.results.Phones
-   
-        phone_data.map((i)=>{
-            var a = {
-                id : i['id'] ,
-            category : i['Category'],
-            Title : i['Title'], Views : i['Views']
-           }
-           JSON.stringify(a)
-           Main.push(a)
-           
-        })
-        this.setState({
-            Allocated_products_analysis_data:Main
-        })
-
-    }
-
-    if (this.state.results.Property.length > 0){
-        var property_data = this.state.results.Property
- 
-        property_data.map((i)=>{
-            var a = {
-                id : i['id'] ,
-            category : i['Category'],
-            Title : i['Title'], Views : i['Views']
-           }
-           JSON.stringify(a)
-           Main.push(a)
-           
-        })
-        this.setState({
-            Allocated_products_analysis_data:Main
-        })
-
-        
-    }
-    
-    if (this.state.results.Vehicles.length > 0){
-        var vehicle_data = this.state.results.Vehicles
-  
-        
-        vehicle_data.map((i)=>{
-            var a = {
-                id : i['id'] ,
-            category : i['Category'],
-            Title : i['Title'], Views : i['Views']
-           }
-           JSON.stringify(a)
-           Main.push(a)
-           
-        })
-        this.setState({
-            Allocated_products_analysis_data:Main
-        })
-
-        
-    }
-    //Conditions and Mapping ends here
 
     //Assign Gotten Data into Chart.js for Processing and Visualization
     var Labels = []
     var DataPoints = []
-    var Products_for_charts = this.state.Allocated_products_analysis_data;
-    
+    var Products_for_charts = this.state.productsFetched;
+    console.log(Products_for_charts)
     //Maps Data to assigns data point and labels
      Products_for_charts.map((i)=>{
        var a = i['Title']
@@ -209,11 +70,11 @@ class User_Analysis extends Component{
 
     this.setState({
         chartData:{
-          labels: Labels,
+          labels: Labels.slice(0,3),
           datasets:[
             {
               label:'Impressions',
-              data: DataPoints,
+              data: DataPoints.slice(0,3),
               backgroundColor:[
                 'rgb(148,0,211)'
               ]
@@ -240,7 +101,7 @@ class User_Analysis extends Component{
       total_views:Total_Impression ,
       total_post:len
     })
-
+ 
     //Products Analysis Functions ends here
     }
 

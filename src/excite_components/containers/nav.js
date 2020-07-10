@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/auth';
 
-import {UserOutlined, LoginOutlined} from '@ant-design/icons'
+import {UserOutlined, LoginOutlined , ShoppingCartOutlined} from '@ant-design/icons'
 
 import axios from  'axios';
 
@@ -23,7 +23,7 @@ class Nav extends Component{
        };
        axios.get(profile_url).then(res =>{
        console.log(res.data)
-      })
+      }) 
     }
      
     render(){
@@ -74,6 +74,12 @@ class Nav extends Component{
                     </li>
                   ):(<li></li>)
                 }
+
+                <li className ="navlist">
+                    <Link to="/cart/">
+                    <ShoppingCartOutlined /> Cart
+                    </Link>
+                    </li>
 
               {
                 isAuth   ? (

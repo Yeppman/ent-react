@@ -19,6 +19,10 @@ import Vendor_View from './excite_components/General/Vendor_Data'
 import Category_Post from './excite_components/General/Categories'
 import Category_Links from './excite_components/General/Products_and_Services'
 
+//Ecommerce 
+import CartList from './excite_components/General/Ecommerce/CartItems'
+
+
 
 //Sub Categories
 import Electronics_Items from './excite_components/General/SubCategories/Electronics/Electronics_list'
@@ -112,6 +116,7 @@ import InflunencerMarketingPortal from './excite_components/Private/InfluencerMa
 import NewCampaign from './excite_components/Private/InfluencerMarketing/CreateCampaign'
 import vendorCampaign from './excite_components/Private/InfluencerMarketing/Campaigns'
 import vendorCampaignDetail from './excite_components/Private/InfluencerMarketing/CampaignDetails'
+import NewTrend from './excite_components/Private/InfluencerMarketing/CreateTrend'
 
 //Authentication 
 import LoginForm from './authentication/Login'
@@ -142,10 +147,13 @@ const PageRouter= () => (
     <Route exact path = "/review-vendor/:vendorProfileID/" component ={ProcessVendor} /> {""}  
      {/*Admin  Portals */}
 
-     {/*Buyer Dashboard Starts here */}
+     {/*Buyer Accounts and Dashboard Starts here */}
     <Route exact path = "/profile/user/" component ={buyerProfile} /> {""}  
     <Route exact path = "/my_orders/" component ={buyerOrders} /> {""}      
     <Route exact path = "/orders_details/:OrderID/" component ={Buyer_Orders} /> {""} 
+
+    <Route exact path = "/cart/" component ={CartList} /> {""} 
+
     {/*Buyer Dashboard ends here */}
 
     {/*MarketPlace here */}
@@ -251,8 +259,10 @@ const PageRouter= () => (
      {/*Influencer Marketing starts here */}
      <Route exact path = "/influencer-marketing/portal" component ={InflunencerMarketingPortal} /> {""}   
     <Route exact path = "/create-campaign/" component ={NewCampaign} /> {""}  
+    <Route exact path = "/create-trend/" component ={NewTrend} /> {""} 
     <Route exact path = "/campaign-list/" component ={vendorCampaign} /> {""}  
     <Route exact path = "/campaign-detail/:campaignID/" component ={vendorCampaignDetail} /> {""}  
+    
       
     {/*Influencer Marketing ends here */}
 

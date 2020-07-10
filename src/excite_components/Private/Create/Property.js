@@ -122,7 +122,8 @@ class Property_Item_Create extends Component{
             .then(res =>{
                 console.log(res.data)
                 const take_response = res.data['Message']
-                openNotification(take_response)            
+                openNotification(take_response)  
+                this.props.history.push("/user_uploads")          
             })
             .catch(e =>{
                 console.log(e)

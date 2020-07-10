@@ -53,6 +53,7 @@ class ProfileDashboard extends Component {
         disableUpgrade: false,
 
         results:[],
+        productsFetched:[],
         Total_Product_Views:0,
         mini_products_data: []
           }
@@ -62,222 +63,71 @@ class ProfileDashboard extends Component {
     temp_props = this.props
 
       //Mini Analysis
-      Products_Analysis = async(token)=>{
       
-        axios.defaults.headers = {
-          "Content-Type": "application/json",
-          Authorization: `Token ${token}`
-        };
-        await axios.get(products_analysis_endpoint)
-        .then(res=>{
-          if (res.status == 200){
-            this.setState({
-              results : res.data
-            })
-            
-            if (this.state.results !== null){
-                //Iterations starts
-            if (this.state.results.Electronics.length > 0){
-              var electronics_data = this.state.results.Electronics
-              
-              electronics_data.map((i)=>{
-                  var a = {
-                      id : i['id'] ,
-                  category : i['Category'],
-                  Title : i['Title'], Views : i['Views']
-                 }
-                 JSON.stringify(a)
-                 Main.push(a)
-                 
-              })
-              this.setState({
-                  mini_products_data:Main
-              })
-             
-          }
+    Products_Analysis = async(token)=>{
       
-          if (this.state.results.Fashion.length > 0){
-              var fashion_data = this.state.results.Fashion
-              
-              
-              fashion_data.map((i)=>{
-                  var a = {
-                      id : i['id'] ,
-                  category : i['Category'],
-                  Title : i['Title'], 
-                  Views : i['Views']
-                 }
-                 JSON.stringify(a)
-                 Main.push(a)
-                 
-              })
-              this.setState({
-                  mini_products_data:Main
-              })
-      
-          }
-      
-          if (this.state.results.Services.length > 0){
-              var services_data = this.state.results.Services
-              
-              
-              services_data.map((i)=>{
-                  var a = {
-                      id : i['id'] ,
-                  category : i['Category'],
-                  Title : i['Title'], Views : i['Views']
-                 }
-                 JSON.stringify(a)
-                 Main.push(a)
-                 
-              })
-              this.setState({
-                  mini_products_data:Main
-              })
-      
-          }
-      
-          if (this.state.results.HomeAppliances.length > 0){
-              var home_app = this.state.results.HomeAppliances
-             
-              home_app.map((i)=>{
-                  var a = {
-                      id : i['id'] ,
-                  category : i['Category'],
-                  Title : i['Title'], Views : i['Views']
-                 }
-                 JSON.stringify(a)
-                 Main.push(a)
-                 
-              })
-              this.setState({
-                  mini_products_data:Main
-              })
-      
-      
-          }
-          
-          if (this.state.results.Phones.length > 0){
-              var phone_data = this.state.results.Phones
-         
-              phone_data.map((i)=>{
-                  var a = {
-                      id : i['id'] ,
-                  category : i['Category'],
-                  Title : i['Title'], Views : i['Views']
-                 }
-                 JSON.stringify(a)
-                 Main.push(a)
-                 
-              })
-              this.setState({
-                  mini_products_data:Main
-              })
-      
-          }
-      
-          if (this.state.results.Property.length > 0){
-              var property_data = this.state.results.Property
-       
-              property_data.map((i)=>{
-                  var a = {
-                      id : i['id'] ,
-                  category : i['Category'],
-                  Title : i['Title'], Views : i['Views']
-                 }
-                 JSON.stringify(a)
-                 Main.push(a)
-                 
-              })
-              this.setState({
-                  mini_products_data:Main
-              })
-      
-              
-          }
-          
-          if (this.state.results.Vehicles.length > 0){
-              var vehicle_data = this.state.results.Vehicles
-        
-              
-              vehicle_data.map((i)=>{
-                  var a = {
-                      id : i['id'] ,
-                  category : i['Category'],
-                  Title : i['Title'], Views : i['Views']
-                 }
-                 JSON.stringify(a)
-                 Main.push(a)
-                 
-              })
-              this.setState({
-                  mini_products_data:Main
-              })
-      
-              
-          }
-          //Conditions and Mapping ends here
-      
-          //Assign Gotten Data into Chart.js for Processing and Visualization
-          var Labels = []
-          var DataPoints = []
-          var Products_for_charts = this.state.mini_products_data;
-          
-          //Maps Data to assigns data point and labels
-           Products_for_charts.map((i)=>{
-             var a = i['Title']
-              var b = i['Views']
-            Labels.push(a)
-            DataPoints.push(b)
-            console.log('The Labels',Labels)
-           })
-      
-          this.setState({
-              chartData:{
-                labels: Labels.slice(0,3),
-                datasets:[
-                  {
-                    label:'Impressions',
-                    data: DataPoints.slice(0,3),
-                    backgroundColor:[
-                      'rgb(148,0,211)'
-                    ]
-                  }
-                ]
-              }
-          })
-          console.log('Products Data',Main)
-          console.log('Chart Labels', this.state.mini_products_data)
-      
-          //Caculates Average and Total Impressions
-          Products_for_charts.map((i)=>{
-             var b = i['Views']
-           DataPoints.push(b)
-           console.log('The Labels',Labels)
-          })
-          var Average_Impression = DataPoints / DataPoints.length
-          var Total_Impression  = 100
-          console.log('Impressions Here',Average_Impression,Total_Impression)
-          this.setState({
-            average_views :Average_Impression,
-            total_views:Total_Impression
-          })
-            //Mapping And Iterations ends here
-            }
-            
-          }
-          else{
-            message.error('Error fetching analytics data')
-          }
-          
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`
+      };
+      await axios.get(products_analysis_endpoint)
+      .then(res=>{
+        this.setState({
+          productsFetched : res.data
         })
-  
-        //Conditions and Mapping starts here
-        
-      //Products Analysis Functions ends here
-      }
+      })
 
 
+    //Assign Gotten Data into Chart.js for Processing and Visualization
+    var Labels = []
+    var DataPoints = []
+    var Products_for_charts = this.state.productsFetched;
+    console.log(Products_for_charts)
+    //Maps Data to assigns data point and labels
+     Products_for_charts.map((i)=>{
+       var a = i['Title']
+        var b = i['Views']
+      Labels.push(a)
+      DataPoints.push(b)
+      console.log('The Labels',Labels)
+     })
+
+    this.setState({
+        chartData:{
+          labels: Labels,
+          datasets:[
+            {
+              label:'Impressions',
+              data: DataPoints,
+              backgroundColor:[
+                'rgb(148,0,211)'
+              ]
+            }
+          ]
+        }
+    })
+    console.log('Products Data',Main)
+    console.log('Chart Labels', this.state.Allocated_products_analysis_data)
+
+    //Caculates Average and Total Impressions
+    Products_for_charts.map((i)=>{
+       var b = i['Views']
+     DataPoints.push(b)
+     console.log('The Labels',Labels)
+    })
+    
+    const len = DataPoints.length
+    var Average_Impression = Math.round(DataPoints / len)
+    var Total_Impression  = 100
+    console.log('Impressions Here',Average_Impression,Total_Impression ,len)
+    this.setState({
+      average_views :Average_Impression,
+      total_views:Total_Impression ,
+      total_post:len
+    })
+ 
+    //Products Analysis Functions ends here
+    }
 
     //Mini Analysis Ends here
      Analysis = async(token) =>{

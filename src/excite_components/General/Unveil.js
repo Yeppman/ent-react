@@ -27,12 +27,28 @@ class Enterprise_Showcase extends Component{
 
   };
   
-  Latest_Products = async()=>{
+  Latest_Products =  async()=>{
+    const Title = this.props.match.params.Title
+    const endpoint = host + '/retail/latest_uploads/'
+    await axios.get(endpoint)
+    .then(res =>{
+      if (res.status == 200){
+        this.setState({
+          latest_items: res.data
+        })
+        console.log(res.data)
+      }else{
+        console.log()
+      }
+    })
+  }
+
+  Lxatest_Products = async()=>{
     const Title = this.props.match.params.Title
     const endpoint = host + '/retail/latest_uploads/'
     await axios.get(endpoint)
     .then(res=>{
-        this.setState({
+        this.setState({     
             results:res.data
         })
   
@@ -302,7 +318,7 @@ class Enterprise_Showcase extends Component{
     // end of process query function`
  
   render() {
-      const {Allocated_Results, categories, show_res} = this.state;
+      const {Allocated_Results, categories, show_res , latest_items} = this.state;
       const Latest_Products = Allocated_Results
       const formItemLayout = {
         wrapperCol: { span: 12, offset: 3 }
@@ -343,7 +359,7 @@ class Enterprise_Showcase extends Component{
                     <div className="grid grid-cols-8 gap-3">
                             
                             {
-                              Latest_Products.map((item)=>(
+                              latest_items.map((item)=>(
                                 <>
                                 <div className="col-span-2 sm:col-span-4  pt-2 md:col-span-4 lg:col-span-2 xl:col-span-2">
                                     <div className="item-container">
@@ -351,20 +367,20 @@ class Enterprise_Showcase extends Component{
                                       <div className="item-box">
                                         <div className="item-image-container">
                                         <img className="item-image"
-                                              onClick={()=>this.openItem(`/categories/${item.category}/${item.id}`)}
+                                              onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
                                                 src={item.Image1}
                                                 />
                                         </div>
                                         <div className="item-detail-container">
                                         <h3 
-                                            onClick={()=>this.openItem(`/categories/${item.category}/${item.id}`)}
+                                            onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
                                             className="item-heading">
                                              {item.Title.length < 30 ? 
                              `${item.Title}` : `${item.Title.substring(0, 31)}...` }
                                               
                                             </h3>
 
-                                            <p onClick={()=>this.openItem(`/categories/${item.category}/${item.id}`)}
+                                            <p onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
                                              className="item-text">
                                             <TeamOutlined /> {item.Owner}
                                             </p>
@@ -375,15 +391,15 @@ class Enterprise_Showcase extends Component{
                                             <Rate disabled defaultValue={item.Rating} />
                                             </div>
                                             <p 
-                                            onClick={()=>this.openItem(`/categories/${item.category}/${item.id}`)}
+                                            onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
                                              className="item-price">
                                             <span><CreditCardOutlined /></span> {item.Price}
                                             </p>
 
                                             <div className="item-link-container">
                                               <button 
-                                              onClick={()=>this.openItem(`/categories/${item.category}/${item.id}`)}
-                                              href={`/categories/${item.category}/${item.id}`}
+                                              onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
+                                              href={`/categories/${item.Category}/${item.id}`}
                                               className=" item-button">
                                                   Open
                                               </button>  

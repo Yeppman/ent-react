@@ -15,7 +15,7 @@ const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 const dateFormat = 'YYYY/MM/DD';
-const monthFormat = 'YYYY/MM';
+//const monthFormat = 'YYYY/MM';
 
 const formItemLayout = {
     wrapperCol: { span: 12, offset: 6 }

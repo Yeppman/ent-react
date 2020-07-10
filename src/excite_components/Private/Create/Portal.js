@@ -26,7 +26,7 @@ class Create_Post_Portal extends Component{
     redirect_page=(create_slug, category_id)=>{
     
         const endpoint = `/create/portal/${create_slug}/${category_id}/`
-        window.location.replace(endpoint)
+        this.props.history.push(endpoint)
        }
        
 

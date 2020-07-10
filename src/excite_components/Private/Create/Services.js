@@ -109,7 +109,8 @@ class Services_Item_Create extends Component{
             .then(res =>{
                 console.log(res.data)
                 const take_response = res.data['Message']
-                openNotification(take_response)            
+                openNotification(take_response)  
+                this.props.history.push("/user_uploads")           
             })
             .catch(e =>{
                 console.log(e)
@@ -229,7 +230,7 @@ class Services_Item_Create extends Component{
                              
                              name ='State' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Select State">
                                 <Option value="Lagos">Lagos</Option>
                                 <Option   value="Ibadan">Ibadan</Option>
                                 <Option  value="Osun">Osun</Option>
@@ -242,7 +243,7 @@ class Services_Item_Create extends Component{
                              
                              name ='Country' hasFeedback>
                                 
-                                <Select placeholder="Selec Country">
+                                <Select placeholder="Select Country">
                                 <Option value="Lagos">Nigeria</Option>
                                 <Option   value="Ibadan">Ghana</Option>
                                 <Option  value="Osun">Cameroon</Option>
@@ -266,9 +267,11 @@ class Services_Item_Create extends Component{
                          
 
                         <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-                            <Button type="primary" htmlType="submit">
-                                Submit
-                            </Button>
+                        <button
+                            class="login-button"
+                          htmlType="submit">
+                            Create
+                          </button>
                             </Form.Item>
 
                        </Form>

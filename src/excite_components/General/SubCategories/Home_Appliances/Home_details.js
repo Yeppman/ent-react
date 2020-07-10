@@ -1,6 +1,6 @@
 import React , { useState, Component }from 'react';
 import axios from 'axios'
-import {Rate, Avatar ,Comment, Tooltip,Tabs , Descriptions} from 'antd'
+import {Rate, Avatar ,Comment, Tooltip,Tabs , Descriptions ,message} from 'antd'
 import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons' 
@@ -14,14 +14,13 @@ import Nav from '../../../containers/nav'
 const host = 'https://backend-entr.herokuapp.com'
 const slug = 'home_app'
 
-
-
 const item_type = 'home_app'
 const { TabPane } = Tabs;
 
 class Home_App_Item_Detail extends Component{
     state = {
         item_details:[],
+        itemIsProduct : true,
         loading : true,
         error: null ,
         vendor_profile :[],
@@ -42,23 +41,36 @@ class Home_App_Item_Detail extends Component{
       }
 
       
-    Item_Data = async() => {
+      Item_Data = async() => {
         const model_id = this.props.match.params.ItemDetailID
-        const item_endpoint = 'Home_App_Item_Detail'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/`
+      //  const item_endpoint = 'electronics_details'
+        const endpoint = host + `/retail/item-detail/${model_id}/`
         await axios.get(endpoint)
         .then(res =>{
-            this.setState({
-                item_details : res.data ,
-                loading : false
-                })
-                if (this.state.loading === false){
-                    const parse_vendor = this.state.item_details.Owner_id
-                    console.log('this is the  vendor id', parse_vendor)
-                    // USED THIS FUNCTION RETRIEVE VENDOR'S ID
-                    this.Vendor_Profile(parse_vendor)
+            if (res.status == 200){
+                this.setState({
+                  item_details : res.data ,
+                  loading : false
+                  })
+
+                  if (res.data.isProduct == true){
+                    this.setState({
+                      itemIsProduct: true
+                    })
+                  }
+
+                  console.log('item data', res.data)
+                  if (this.state.loading === false){
+                      const parse_vendor = this.state.item_details.Owner_id
+                      console.log('this is the  vendor id', parse_vendor)
+                      // USED THIS FUNCTION RETRIEVE VENDOR'S ID
+                      this.Vendor_Profile(parse_vendor)
+                      this.Vendor_Business_Profile(parse_vendor)
                 }
-            })
+            }else{
+              message.error('Error getting data')
+            }
+        })
     }
       
     //Fetches comments
@@ -86,13 +98,12 @@ class Home_App_Item_Detail extends Component{
     componentDidMount(){
         this.Item_Data()
         this.Comments()
-        
-        
+      
     }
 
     render(){
         const { item_details ,vendor_profile, loaded_comments ,
-          Comments, loading,  rating } = this.state;
+          Comments, loading,  rating, itemIsProduct } = this.state;
        const model_id = this.props.match.params.ItemDetailID
        console.log('this is the model ID', model_id)
        const  orderMonitorID =  this.state.item_details.Owner_id
@@ -142,18 +153,34 @@ class Home_App_Item_Detail extends Component{
                         <div className="contact-card-title">
                         Price  ₦ {item_details.Price}
                         </div>
-                        
-                         <div className="grid grid-cols-4 gap-4">
+                       
+                        <div className="grid grid-cols-4 gap-4">
 
-                         <div className=" col-span-4" >
-                              <Make_Order_Form 
-                              item_name = {item_details.Title}
-                              item_class = {item_type}
-                               share_vendor_email ={vendor_profile.email}
-                              vendor_id = {vendor_profile.id} post_id = {model_id} /> 
-                          </div> 
+                                  {
+                                    itemIsProduct ? (
+                                      <>
+                                      <div className="col-span-4">
+                                      <button 
+                                      onClick={this.addToCart}
+                                      className="login-button">
+                                        Add to Cart
+                                      </button>
+                                    </div>
+                                      </>
+                                    ) : (
+                                    <div className=" col-span-4" >
+                                      <Make_Order_Form 
+                                      item_name = {item_details.Title}
+                                      item_class = {item_type}
+                                        share_vendor_email ={vendor_profile.email}
+                                      vendor_id = {vendor_profile.id} post_id = {model_id} /> 
+                                  </div> 
+                                    )
+                                  }
 
-                         </div>                       
+
+
+                                  </div>                          
 
                     </div>
                   </div>

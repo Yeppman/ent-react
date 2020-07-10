@@ -58,234 +58,22 @@ class User_Posts_Items extends Component {
            
     }
 
-    Vendor_Product = async(token)=>{
-        
-        const vendor_id = this.props.match.params.VendorID
-        const endpoint = host + '/retail/vendor_products'
-
-        axios.defaults.headers = {
-            "Content-Type": "application/json",
-            Authorization: `Token ${token}`
-          };
-        await axios.get(users_uploads_endpoint)
-        .then(res=>{
-            this.setState({
-                results:res.data
-            })
-           
-
-            if (this.state.results.Electronics.length > 0){
-                var electronics_data = this.state.results.Electronics
-                
-                electronics_data.map((i)=>{
-                    var a = {
-                        id : i['id'] ,
-                    category : i['Category'],
-                    Title : i['Title'],
-                    Description: i['Description'],
-                    Owner : i['Owner'],
-                    Owner_id : i['Owner_id'],
-                    PostDate : i['PostDate'],
-                    Price : i['Price'],
-                    Image1  : i['Image1'],
-                    Rating : i['Rating'] ,
-                   }
-                   JSON.stringify(a)
-                   Main.push(a)
-                   
-                })
-                this.setState({
-                    Allocated_Results:Main
-                })
-               
-            }
-
-            if (this.state.results.Fashion.length > 0){
-                var fashion_data = this.state.results.Fashion
-                
-                
-                fashion_data.map((i)=>{
-                    var a = {
-                        id : i['id'] ,
-                    category : i['Category'],
-                    Title : i['Title'],
-                    Description: i['Description'],
-                    Owner : i['Owner'],
-                    Owner_id : i['Owner_id'],
-                    PostDate : i['PostDate'],
-                    Price : i['Price'],
-                    Image1  : i['Image1'],
-                    Rating : i['Rating'] ,
-                   }
-                   JSON.stringify(a)
-                   Main.push(a)
-                   
-                })
-                this.setState({
-                    Allocated_Results:Main
-                })
-
-            }
-
-            if (this.state.results.Services.length > 0){
-                var services_data = this.state.results.Services
-                
-                
-                services_data.map((i)=>{
-                    var a = {
-                        id : i['id'] ,
-                    category : i['Category'],
-                    Title : i['Title'],
-                    Description: i['Description'],
-                    Owner : i['Owner'],
-                    Owner_id : i['Owner_id'],
-                    PostDate : i['PostDate'],
-                    Price : i['Price'],
-                    Image1  : i['Image1'],
-                    Rating : i['Rating'] ,
-                   }
-                   JSON.stringify(a)
-                   Main.push(a)
-                   
-                })
-                this.setState({
-                    Allocated_Results:Main
-                })
-
-            }
-
-            if (this.state.results.HomeAppliances.length > 0){
-                var home_app = this.state.results.HomeAppliances
-               
-                home_app.map((i)=>{
-                    var a = {
-                        id : i['id'] ,
-                    category : i['Category'],
-                    Title : i['Title'],
-                    Description: i['Description'],
-                    Owner : i['Owner'],
-                    Owner_id : i['Owner_id'],
-                    PostDate : i['PostDate'],
-                    Price : i['Price'],
-                    Image1  : i['Image1'],
-                    Rating : i['Rating'] ,
-                   }
-                   JSON.stringify(a)
-                   Main.push(a)
-                   
-                })
-                this.setState({
-                    Allocated_Results:Main
-                })
-
-
-            }
-            
-            if (this.state.results.Phones.length > 0){
-                var phone_data = this.state.results.Phones
-           
-                phone_data.map((i)=>{
-                    var a = {
-                        id : i['id'] ,
-                    category : i['Category'],
-                    Title : i['Title'],
-                    Description: i['Description'],
-                    Owner : i['Owner'],
-                    Owner_id : i['Owner_id'],
-                    PostDate : i['PostDate'],
-                    Price : i['Price'],
-                    Image1  : i['Image1'],
-                    Rating : i['Rating'] ,
-                   }
-                   JSON.stringify(a)
-                   Main.push(a)
-                   
-                })
-                this.setState({
-                    Allocated_Results:Main
-                })
-
-            }
-
-            if (this.state.results.Property.length > 0){
-                var property_data = this.state.results.Property
-         
-                property_data.map((i)=>{
-                    var a = {
-                        id : i['id'] ,
-                    category : i['Category'],
-                    Title : i['Title'],
-                    Description: i['Description'],
-                    Owner : i['Owner'],
-                    Owner_id : i['Owner_id'],
-                    PostDate : i['PostDate'],
-                    Price : i['Price'],
-                    Image1  : i['Image1'],
-                    Rating : i['Rating'] ,
-                   }
-                   JSON.stringify(a)
-                   Main.push(a)
-                   
-                })
-                this.setState({
-                    Allocated_Results:Main
-                })
-
-                
-            }
-            
-            if (this.state.results.Vehicles.length > 0){
-                var vehicle_data = this.state.results.Vehicles
-          
-                
-                vehicle_data.map((i)=>{
-                    var a = {
-                        id : i['id'] ,
-                    category : i['Category'],
-                    Title : i['Title'],
-                    Description: i['Description'],
-                    Owner : i['Owner'],
-                    Owner_id : i['Owner_id'],
-                    PostDate : i['PostDate'],
-                    Price : i['Price'],
-                    Image1  : i['Image1'],
-                    Rating : i['Rating'] ,
-                   }
-                   JSON.stringify(a)
-                   Main.push(a)
-                   
-                })
-                this.setState({
-                    Allocated_Results:Main
-                })
-
-                
-            }
-            //Complies and Append
-            console.log('these are the results data', this.state.Allocated_Results)
-            console.log(res.data)
-        })
-        .catch(e=>{console.log(e)})
-    }
-
-
+   
     
     redirect_page=()=>{
     
       const endpoint = '/create/portal/'
-      window.location.replace(endpoint)
+      this.props.history.push(endpoint)
      }
 
     componentDidMount(){
         this.myProducts(this.props.token)
-        this.Vendor_Product(this.props.token)
+        
     }
 
     componentWillReceiveProps(newProps) {
         if (newProps.token !== this.props.token) {
           if (newProps.token !== undefined && newProps.token !== null) {
-            this.Vendor_Product(newProps.token)
-            
             this.myProducts(newProps.token)
             
           }
@@ -383,8 +171,6 @@ class User_Posts_Items extends Component {
                                        </>
                                         ))
                                     } 
-          
-    
         
                          
                     </div>

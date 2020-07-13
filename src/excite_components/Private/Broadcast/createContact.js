@@ -54,7 +54,7 @@ class newContact extends Component{
                Authorization: `Token ${this.props.token}`
              };
              
-             axios.get(`http://backend-entr.herokuapp.com/management/save_contact/`,
+             axios.get(`https://backend-entr.herokuapp.com/management/save_contact/`,
               {
                params: {
                   Name, Email ,  Phone ,Address

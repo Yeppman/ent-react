@@ -36,7 +36,7 @@ const  openNotification = (msg) => {
     });
     }
 
-var host = 'http://backend-entr.herokuapp.com'
+var host = 'https://backend-entr.herokuapp.com'
 
 export default function New_Book(props) {
   const classes = useStyles();

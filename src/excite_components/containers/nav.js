@@ -8,9 +8,9 @@ import {UserOutlined, LoginOutlined , ShoppingCartOutlined} from '@ant-design/ic
 import axios from  'axios';
 
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'http://backend-entr.herokuapp.com/stream/profile_view/'
+const profile_url = 'https://backend-entr.herokuapp.com/stream/profile_view/'
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 class Nav extends Component{
  
   state= {

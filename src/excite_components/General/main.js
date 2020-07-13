@@ -15,7 +15,7 @@ import Nav from '../containers/nav'
 //import '../assets/home/home.css'
 
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 export default class Homepage extends React.Component{
     state = {
         NewProducts : [] ,

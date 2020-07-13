@@ -13,7 +13,7 @@ notification.open({
 });
 }
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 class Buyer_Orders extends Component{
 
     state = {

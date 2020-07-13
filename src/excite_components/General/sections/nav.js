@@ -11,7 +11,7 @@ import axios from 'axios'
 
 
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 const Search = Input.Search;
 

@@ -22,7 +22,7 @@ const { TextArea } = Input;
 const formItemLayout = {
   wrapperCol: { span: 12, offset: 6 }
 };
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 
   
@@ -106,7 +106,7 @@ class MalingParty extends Component{
                Authorization: `Token ${this.props.token}`
              };
              
-             axios.get(`http://backend-entr.herokuapp.com/management/broadcast/`,
+             axios.get(`https://backend-entr.herokuapp.com/management/broadcast/`,
               {
                params: {
                   Heading ,Message, Email

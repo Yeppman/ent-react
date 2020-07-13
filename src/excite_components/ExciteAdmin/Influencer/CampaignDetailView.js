@@ -23,7 +23,7 @@ const dateFormat = 'YYYY/MM/DD';
 const monthFormat = 'YYYY/MM';
 
 
-const host = 'http://backend-entr.herokuapp.com';
+const host = 'https://backend-entr.herokuapp.com';
 
 
 

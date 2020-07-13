@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 //import TemporaryDrawer from '../Sidebar/SideNav'
 
-const UserPost_url = 'http://backend-entr.herokuapp.com/stream/view_post/'
+const UserPost_url = 'https://backend-entr.herokuapp.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -45,7 +45,7 @@ const Size = ['Large','Medium','Small']
 const Brand = ['Hi-Sense', 'O`Riely', 'LG', 'Samsung']
 const Condition = ['New', 'Foriegn Used']
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 class Electronics_Item_Create extends Component{
     state = {

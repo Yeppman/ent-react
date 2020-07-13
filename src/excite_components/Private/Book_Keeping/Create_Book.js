@@ -18,7 +18,7 @@ const openNotification = (msg) => {
 
 
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 const endpoint = host + '/management/bk-create/';
 
 class New_Book extends Component {

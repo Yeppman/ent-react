@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import {notification,message} from 'antd'
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 const Profile_id_url  = host + '/stream/get_profile_id/'
 const Profile_url = host + '/stream/profile_view/'

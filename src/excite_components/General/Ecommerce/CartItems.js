@@ -18,7 +18,7 @@ const formItemLayout = {
 
 
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 const Request_Order_url = host + '/management/new_order/'
 
   

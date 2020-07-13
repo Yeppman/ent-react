@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const UserPost_url = 'http://backend-entr.herokuapp.com/stream/view_post/'
+const UserPost_url = 'https://backend-entr.herokuapp.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -39,7 +39,7 @@ const openNotification = (msg) => {
 }
 
 
-const host = 'http://backend-entr.herokuapp.com'
+const host = 'https://backend-entr.herokuapp.com'
 
 const Applicanes = ['Kitchen Wares','Air Conditon','Lighiting']
 

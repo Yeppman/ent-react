@@ -1,0 +1,141 @@
+/* CSS Variables */
+:root {
+    --primary: #ddd;
+    --dark: #333;
+    --light: #fff;
+    --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+  }
+
+body {
+    /* background: #ccc; */
+    /* margin: 30px 50px; */
+    line-height: 1.4;
+  }
+  
+
+  .container{
+   margin: 30px 50px;
+  }
+
+  /* Top Container */
+  .top-container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas:
+      'showcase showcase top-box-a top-box-b '
+      'showcase showcase top-box-c top-box-d';
+  }
+  
+  /* Showcase */
+  .showcase {
+    grid-area: showcase;
+    min-height: 400px;
+    /* max-height: 100px; */
+    background: url(https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1591697902/contentservice/BUy-Original-Samsung-.jpg_rkHxfka38.jpg);
+    background-size: cover;
+    background-position: center;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+  }
+  
+  .showcase h1 {
+    font-size: 4rem;
+    margin-bottom: 0;
+    color: var(--light);
+  }
+  
+  .showcase p {
+    font-size: 1.3rem;
+    margin-top: 0;
+    color: var(--light);
+  }
+  
+  /* Top Box */
+  .top-box {
+    background: var(--primary);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    max-height: 100%;
+    border-radius: 10px;
+
+}
+  
+  .top-box .price {
+    font-size: 2.5rem;
+  }
+  
+  .top-box-a {
+    grid-area: top-box-a;
+    background-image: url(https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/v1594374525/contentservice/Carousel-Ads--facemask.png_BJVtKnB1P.png);
+  }
+  
+  .top-box-b {
+    grid-area: top-box-b;
+  }
+
+  .top-box-c {
+    grid-area: top-box-c;
+  }
+  
+  .top-box-d {
+    grid-area: top-box-d;
+  }
+
+    
+  /* Media Queries */
+  @media (max-width: 700px) {
+    .top-container {
+      grid-template-areas:
+        'showcase showcase'
+        'top-box-a top-box-b'
+        'top-box-c top-box-d';
+    }
+    .showcase h1 {
+      font-size: 2rem;
+      margin-bottom: 0;
+      color: var(--light);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .top-container {
+      grid-template-areas:
+        'showcase'
+        'top-box-a'
+        'top-box-b'
+        'top-box-c'
+        'top-box-d'
+        ;
+    }
+  }
+
+  .home-box{
+    display: grid;
+    margin-top: 20px;
+    grid-gap: 20px;
+    list-style: none;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    padding: 20px;
+    /* grid-template-areas:
+      'products products filter'
+      'products products filter'; */
+  }
+
+  .home-card{
+    display: block;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+    padding: 20px;
+    font-size: 1rem;
+    /* height: 20px; */
+    text-align: center;
+  }
+  

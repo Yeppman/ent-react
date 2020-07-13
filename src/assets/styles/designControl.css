@@ -1,0 +1,112 @@
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+}
+
+
+/* Navigation */
+.main-nav ul {
+    display: grid;
+    grid-gap: 20px;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+.main-nav a {
+    background: var(--primary);
+    display: block;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-align: center;
+    color: var(--dark);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+}
+
+.main-nav a:hover {
+    background: var(--dark);
+    color: var(--light);
+}
+
+
+
+/* third starts here */
+.mainBox{
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns:  repeat(2, 1fr);
+  height: 400px;
+  padding: 80px 0px 20px 0px;
+  
+}
+
+.mainBox left{
+  border: 2px solid blue;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  
+}
+
+.mainBox .left h3 {
+  
+  font-size: 30px;
+  font-weight: 500;
+  color:rgb(12, 4, 116);
+  text-align: left;
+  margin-bottom: 20px;
+ 
+
+}
+
+.mainBox .left p{
+  font-size: 16px;
+  font-weight: 300;
+  color:rgb(12, 4, 116);
+  text-align: left;
+  margin-bottom: 20px;
+ 
+}
+
+.mainBox right{
+  border: 2px solid blue;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+/* third end here */
+
+
+
+.productBox-Container{
+  display: grid;
+  grid-gap: 20px;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+
+.productsBoxes{
+  display: block;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-align: center;
+    color: var(--dark);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+}
+
+
+
+.boxes {
+  
+}

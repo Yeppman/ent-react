@@ -21,7 +21,7 @@ import './assets/css/sidebar.css'
 import './App.css'
 import './assets/css/antd-override.css'
 
-import './assets/css/cart.css'
+
 
 import './assets/styles/Navigation.less'
 

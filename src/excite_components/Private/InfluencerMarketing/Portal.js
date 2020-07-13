@@ -4,7 +4,7 @@ import {Rate} from 'antd'
 import axios from 'axios'
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 class InflunencerMarketingPortal extends Component{
     state ={

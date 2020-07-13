@@ -19,7 +19,7 @@ const  openNotification = (msg) => {
   });
   }
 
-const host = "https://backend-entr.herokuapp.com"
+const host = "http://backend-entr.herokuapp.com"
 
 class Inventory_Store extends Component{
     state ={
@@ -41,7 +41,7 @@ class Inventory_Store extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get('https://backend-entr.herokuapp.com/management/view_inventory/')
+      await axios.get('http://backend-entr.herokuapp.com/management/view_inventory/')
       .then(res =>{
         this.setState({
           inventory_objects : res.data,
@@ -152,7 +152,9 @@ class Inventory_Store extends Component{
                       <>
                       <TemporaryDrawer />
 
-                          <div className="container ">
+                        <div className='main'>
+                          
+                        <div className="container ">
                           <div className="grid grid-cols-8">
                           <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
                               <div className="top-card">
@@ -211,11 +213,14 @@ class Inventory_Store extends Component{
 
 
                           </div>
+                        </div>
+
                       </>
                     ) :(
                       <>
                       <TemporaryDrawer/>
-                      <div className="container">
+                     <div className="main">
+                     <div className="container">
                     <div className="grid grid-cols-4">
                         <div className="col-span-4 sm:col-span-4 md:col-span-4 xl:col-span-4 lg:col-span-4">
                         <p>
@@ -224,6 +229,7 @@ class Inventory_Store extends Component{
                         </div>
                     </div>
                   </div>
+                     </div>
                     </>
                     )
                   }

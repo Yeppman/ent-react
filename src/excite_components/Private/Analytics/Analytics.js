@@ -10,9 +10,9 @@ import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const Post_Analytics_url = 'https://backend-entr.herokuapp.com/analytics/full_analysis/'
+const Post_Analytics_url = 'http://backend-entr.herokuapp.com/analytics/full_analysis/'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const products_analysis_endpoint = host + `/analytics/product_views/`
 const views_count_endpoint = host + '/analytics/count_products/'
 
@@ -152,6 +152,7 @@ class User_Analysis extends Component{
 
                         <TemporaryDrawer />
 
+                        <div className="main">
                         <div
                   style={{paddingLeft:20}}
                    className="container mx-auto ">
@@ -267,6 +268,8 @@ class User_Analysis extends Component{
                     </div>
 
                             </div>
+
+                        </div>
 
                     </>
 

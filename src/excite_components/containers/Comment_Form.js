@@ -2,7 +2,6 @@ import React , { createElement } from "react";
 import axios from  'axios';
 import { connect } from "react-redux";
 import { Button , Card, Form, Input, Rate,notification, message} from 'antd';
-const { Meta } = Card; 
 
 const {TextArea} = Input
 
@@ -20,7 +19,7 @@ const openNotification = (msg) => {
 }
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 class CommentForm extends React.Component{
 
   state ={
@@ -43,7 +42,7 @@ class CommentForm extends React.Component{
       // handle form events starts here
     const  token = this.props.token
     const postID = this.props.post_id
-    const comment_endpoint = this.props.comment_url
+    const comment_endpoint = host + `/retail/post-comment/${postID}`
     
     const Name = gotten_postObj['Name']
     const Email = gotten_postObj['Email']
@@ -64,10 +63,13 @@ class CommentForm extends React.Component{
       .then(res => {
           if (res.status === 200) {
               const get_response = res.data['Message']
+              console.log(get_response)
               openNotification(get_response)
+            }else{
+              message.error('Connection Erro')
             }
         })
-      .catch(e =>{ console.log(e)})
+      
             
      //process form values ends here
      

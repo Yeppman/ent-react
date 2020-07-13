@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const UserPost_url = 'https://backend-entr.herokuapp.com/stream/view_post/'
+const UserPost_url = 'http://backend-entr.herokuapp.com/stream/view_post/'
 
 
 const TextArea = Input.TextArea
@@ -36,7 +36,7 @@ const formItemLayout = {
   wrapperCol: { span: 12, offset: 6 }
 };
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 
 const Color = ['Blue','Black', 'Red']
@@ -153,11 +153,11 @@ class Fashion_Item_Create extends Component{
                     <>
 
                     <TemporaryDrawer/>
-                    <div className ="container ">
+                      <div className="main">
+                      <div className ="container ">
                     <div className = "grid grid-cols-6">
-
-                    <div className="login-section col-span-6 
-                sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                    <div className="login-section col-span-3 
+                sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
 
                     <div className="">
                         <Form 
@@ -351,7 +351,8 @@ class Fashion_Item_Create extends Component{
                         </div> 
 
                     </div>
-                
+
+                      </div>                
                     </>
                 )
             }

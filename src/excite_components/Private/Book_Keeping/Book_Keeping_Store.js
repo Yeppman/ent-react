@@ -6,7 +6,7 @@ import TemporaryDrawer from '../Sidebar/SideNav'
 import SimpleTable from './table'
 import New_Book from './Create_Book'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const endpoint = host + '/management/book_keeping_list/'
 
 
@@ -117,58 +117,60 @@ class BookKeepingList extends Component {
                 <>
                 <TemporaryDrawer />
 
-                <div className="container">
+                <div className="main">
+                              <div className="container">
 
-                <div className="grid grid-cols-8">
-                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
-                              <div className="top-card">
-                                  
-                              <div className="top-card-title">
-                                  <h3 className="top-card-title">
-                                    Items
-                                  </h3>
+              <div className="grid grid-cols-8">
+                        <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                            <div className="top-card">
+                                
+                            <div className="top-card-title">
+                                <h3 className="top-card-title">
+                                  Items
+                                </h3>
+                            </div>
+                              <div className="top-card-text">
+                                {Total_Obj}
                               </div>
-                                <div className="top-card-text">
-                                   {Total_Obj}
-                                </div>
-                              </div>
-                          </div> 
+                            </div>
+                        </div> 
 
-                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
-                              <div className="top-card">
-                                  
-                              <div className="top-card-title">
-                                  <h3 className="top-card-title">
-                                    Inventory Finance
-                                  </h3>
+                        <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                            <div className="top-card">
+                                
+                            <div className="top-card-title">
+                                <h3 className="top-card-title">
+                                  Inventory Finance
+                                </h3>
+                            </div>
+                              <div className="top-card-text">
+                              ₦{Price}
                               </div>
-                                <div className="top-card-text">
-                                 ₦{Price}
-                                </div>
-                              </div>
-                          </div> 
+                            </div>
+                        </div> 
 
 
-                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
-                              <div className="top-card">
-                                  
-                              <div className="top-card-title">
-                                  <h3 className="top-card-title">
-                                    Create A Item
-                                  </h3>
+                        <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                            <div className="top-card">
+                                
+                            <div className="top-card-title">
+                                <h3 className="top-card-title">
+                                  Create A Item
+                                </h3>
+                            </div>
+                              <div className="top-card-text">
+                                  <New_Book />
+                                    
                               </div>
-                                <div className="top-card-text">
-                                    <New_Book />
-                                      
-                                </div>
-                              </div>
-                          </div> 
+                            </div>
+                        </div> 
 
-                          </div>
-                </div>
+                        </div>
+              </div>
 
-                <div className="container">
-                <SimpleTable data={book_data}/>
+              <div className="container">
+              <SimpleTable data={book_data}/>
+              </div>
                 </div>
                 </>
                ) :(

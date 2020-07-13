@@ -21,13 +21,13 @@ const Search = Input.Search;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
-const category_url = 'https://backend-entr.herokuapp.com/core_api/category_list/'
+const category_url = 'http://backend-entr.herokuapp.com/core_api/category_list/'
 
 
 
  //Components Starts here
 class Filter_Post_Form extends Component{
-  search_url = 'https://backend-entr.herokuapp.com/core_api/post_filter/'
+  search_url = 'http://backend-entr.herokuapp.com/core_api/post_filter/'
   state = {
     results: [],
     loading: false,

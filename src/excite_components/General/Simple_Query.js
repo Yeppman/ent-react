@@ -4,7 +4,7 @@ import axios from "axios";
 import {Rate} from 'antd'
 //import Uploaded_Post from './Items'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const search_url = host + `/retail/search_models/`
 
 

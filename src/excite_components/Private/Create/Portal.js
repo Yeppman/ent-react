@@ -4,7 +4,7 @@ import {Rate} from 'antd'
 import axios from 'axios'
 import TemporaryDrawer from '../Sidebar/SideNav'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 class Create_Post_Portal extends Component{
     state ={
@@ -42,6 +42,7 @@ class Create_Post_Portal extends Component{
             <>
                 <TemporaryDrawer />
 
+                <div className="main">
                 <div className="container">
                     <div className="grid-cols-4 grid ">
                         <div className="col-span-4">
@@ -79,6 +80,8 @@ class Create_Post_Portal extends Component{
                     }
                 </div>
             </div>
+
+                </div>
 
         </>
         )

@@ -1,6 +1,7 @@
 import React , {  Component }from 'react';
 import axios from 'axios'
-import {Rate, Avatar ,Comment, Tooltip,Tabs , Descriptions , message} from 'antd'
+
+import {Rate, Avatar ,Comment, Tooltip , message ,Tabs ,InputNumber, Descriptions } from 'antd'
 import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
@@ -10,7 +11,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 
 
@@ -31,7 +32,7 @@ class Fashion_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`http://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data
@@ -103,7 +104,7 @@ class Fashion_Item_Detail extends Component{
         const model_id = this.props.match.params.ItemDetailID
         
         const item_endpoint = 'fashion_comments_list'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/` 
+        const endpoint = host + `/retail/item-comments/${model_id}/`
          axios.get(endpoint)
         .then(res =>{
             this.setState({
@@ -121,9 +122,12 @@ class Fashion_Item_Detail extends Component{
     comment_endpoint = host + this.item_comment_endpoint
 
     componentDidMount(){
-        this.Item_Data()
-        this.Comments()
-        
+        //this.Item_Data()
+      //  this.Comments()
+        if(this.props.token !==undefined && this.props.token !== null){
+          this.Item_Data()
+          this.Comments()
+        }
         
     }
 
@@ -179,35 +183,35 @@ class Fashion_Item_Detail extends Component{
                         <div className="contact-card-title">
                         Price  ₦ {item_details.Price}
                         </div>
-                        
                         <div className="grid grid-cols-4 gap-4">
 
-                         {
-                           itemIsProduct ? (
-                             <>
-
-                            <div className="col-span-4">
+                          {
+                            itemIsProduct ? (
+                              <>
+                              <div className="col-span-4">
+                              <p> <InputNumber min={1} max={10} defaultValue={3}  /></p>
                               <button 
                               onClick={this.addToCart}
                               className="login-button">
-                                Add to Cart
+                                Add to Order
+
                               </button>
                             </div>
-                             </>
-                           ) : (
+                              </>
+                            ) : (
                             <div className=" col-span-4" >
                               <Make_Order_Form 
                               item_name = {item_details.Title}
                               item_class = {item_type}
-                               share_vendor_email ={vendor_profile.email}
+                                share_vendor_email ={vendor_profile.email}
                               vendor_id = {vendor_profile.id} post_id = {model_id} /> 
                           </div> 
-                           )
-                         }
-                         
+                            )
+                          }
 
 
-                         </div>                        
+
+                          </div>                        
 
                     </div>
                   </div>

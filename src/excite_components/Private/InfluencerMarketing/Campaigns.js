@@ -9,7 +9,7 @@ import TemporaryDrawer from '../Sidebar/SideNav'
 import {PlusCircleOutlined} from '@ant-design/icons'
 
 
-const host = 'https://backend-entr.herokuapp.com';
+const host = 'http://backend-entr.herokuapp.com';
 
 
 
@@ -77,6 +77,7 @@ class vendorCampaign extends Component {
 
             <TemporaryDrawer/>
 
+            <div className="main">
             <div className="container">
                      <div className="grid grid-cols-10">
                        <div className="col-span-3 ">
@@ -166,6 +167,7 @@ class vendorCampaign extends Component {
                          
                     </div>
                 </div>
+            </div>
 
             </>
         )

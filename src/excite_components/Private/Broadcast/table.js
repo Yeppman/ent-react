@@ -36,9 +36,9 @@ const delete_contact = async (token,id) =>{
     "Content-Type": "application/json",
     Authorization: `Token ${token}`
   };
-    await axios.get(`https://backend-entr.herokuapp.com/management/delete_contact/${id}/`)
+    await axios.get(`http://backend-entr.herokuapp.com/management/delete_contact/${id}/`)
     .then(res =>{
-      this.openNotification(res.data['Message'])
+      openNotification(res.data['Message'])
     })
 
 }
@@ -66,7 +66,7 @@ function SimpleTable(props) {
             <TableRow key={row.id}>
             <TableCell >{row.id}</TableCell>
               <TableCell align="right">{row.ClientName}</TableCell>
-              <TableCell align="right">{row.ClientEmaisl}</TableCell>
+              <TableCell align="right">{row.ClientEmail}</TableCell>
               <TableCell align="right">{row.ClientPhone}</TableCell>
                 <TableCell align="right">
                 <p 

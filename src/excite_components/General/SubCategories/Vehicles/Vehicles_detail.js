@@ -12,7 +12,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const item_type = 'vehicles'
 const { TabPane } = Tabs;
 
@@ -86,7 +86,7 @@ class Vehicles_Item_Detail extends Component{
         const model_id = this.props.match.params.ItemDetailID
         
         const item_endpoint = 'electronics_comments_list'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/` 
+        const endpoint = host + `/retail/item-comments/${model_id}/` 
          axios.get(endpoint)
         .then(res =>{
             this.setState({
@@ -101,7 +101,7 @@ class Vehicles_Item_Detail extends Component{
 
     item_id = this.props.match.params.ItemDetailID
     item_comment_endpoint = `/retail/new_comments_electronics/${this.item_id}/`
-    comment_endpoint = host + this.item_comment_endpoint
+    comment_endpoint= host + `/retail/item-comments/${this.item_id}/`
 
     componentDidMount(){
       

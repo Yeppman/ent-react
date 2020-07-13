@@ -12,7 +12,7 @@ import PayGen from './PayPortal/Paystacker'
 
 import CampaignTableDrag from './Table/CampaignTable'
 
-const host = 'https://backend-entr.herokuapp.com';
+const host = 'http://backend-entr.herokuapp.com';
 
  
 class vendorCampaignDetail extends Component{
@@ -166,7 +166,14 @@ class vendorCampaignDetail extends Component{
                             </div>
                                         </>
                                     ): (
-                                        <p></p>
+                                        <p>
+                                        <button
+                            onClick={this.Pop}
+                             class="login-button">
+                                   Dowload Report
+                            </button>
+
+                                        </p>
                                     )
                                 }
                            </>

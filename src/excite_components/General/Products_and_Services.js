@@ -12,7 +12,7 @@ import {Row, Col,
 } from "antd";
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 
-const categories_url = 'https://backend-entr.herokuapp.com/category_list/'
+const categories_url = 'http://backend-entr.herokuapp.com/category_list/'
 class Category_Links extends Component{
     state= {
         Categories : [],

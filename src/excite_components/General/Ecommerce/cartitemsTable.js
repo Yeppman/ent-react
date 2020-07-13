@@ -1,11 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-
-import axios from "axios";
 import { connect } from "react-redux"; 
-import {InputNumber  ,notification,  } from 'antd';
-
-
+import axios from "axios";
+import { notification } from 'antd';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,7 +11,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-
+import { faTrash, faMailBulk } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const useStyles = makeStyles({
   table: {
@@ -22,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const  openNotification = (msg) => {
+const openNotification = (msg) => {
     notification.open({
       message: 'Notification Title',
       description:msg,
@@ -30,68 +28,69 @@ const  openNotification = (msg) => {
         console.log('Notification Clicked!');
       },
     });
-    }
+  }
 
-var host = 'https://backend-entr.herokuapp.com'
 
-export default function cartTable(props) {
- // const classes = useStyles();
-  const  token = props.token
-  const row = props.data
-   
-  var indexNumber = 0
-  const delete_item = (item_id)=>{ 
-  
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
-      const endpoint = host + `/management/bk-delete/${item_id}/`
-       axios.post(endpoint)
-      .then(res=>{
-          if (res.status == 200){
-            openNotification(res.data['Message'])
-          }else{
-            openNotification('Error deleting item')
-          }
-      })
-    }
-  
-    
-     
+const delete_contact = async (token,id) =>{
+  axios.defaults.headers = {
+    "Content-Type": "application/json",
+    Authorization: `Token ${token}`
+  };
+    await axios.get(`http://backend-entr.herokuapp.com/management/delete_contact/${id}/`)
+    .then(res =>{
+      this.openNotification(res.data['Message'])
+    })
 
+}
+
+
+function orderTable(props) {
+  const classes = useStyles();
+  const token = props.token
   return (
-        <>
-        <TableContainer component={Paper}>
-      <Table className aria-label="simple table">
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
           <TableCell >S/N</TableCell>
-
-             <TableCell align="left">Prodcut Name</TableCell>
-              <TableCell align="left">Quantity </TableCell>
-
-              <TableCell align="left">Remove </TableCell>
-
+          <TableCell align="right">Name</TableCell>
+            
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Phone</TableCell>
+            <TableCell align="right">Delete</TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
-        <TableRow key={row.id}>
-        <TableCell >{indexNumber++}</TableCell>
-
-              <TableCell align="left">{row.Item}</TableCell>
-              <TableCell align="left">{row.Quantity}</TableCell>
-              <TableCell align="left">
-
-              </TableCell>  
-                </TableRow>
+          {props.data.map((row) => (
+            <TableRow key={row.id}>
+            <TableCell >{row.id}</TableCell>
+              <TableCell align="right">{row.ClientName}</TableCell>
+              <TableCell align="right">{row.ClientEmaisl}</TableCell>
+              <TableCell align="right">{row.ClientPhone}</TableCell>
+                <TableCell align="right">
+                <p 
+                onClick={()=>{delete_contact(token,row.id)}}>
+                    <FontAwesomeIcon icon={faTrash} />
+                </p>
+                </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
-
-    
-        </>
   );
 }
 
 
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token ,  
+
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null
+)(orderTable);

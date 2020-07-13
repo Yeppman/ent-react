@@ -13,7 +13,7 @@ const { Option } = Select;
 const {TextArea} = Input
  
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const Request_Order_url = host + '/management/new_order/'
 
 class Make_Order_Form extends React.Component{
@@ -98,8 +98,13 @@ class Make_Order_Form extends React.Component{
                 Country,State, Postal }
       })
       .then(res =>{
-          const response = res.data['Message']
+          if (res.status == 200){
+            const response = res.data['Message']
+          console.log(response)
           this.openNotification(response)
+          } else{
+            message.error('Comment Failed')
+          }
       })
   }
  

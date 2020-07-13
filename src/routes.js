@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router";
 
 import LandingPage from "./demos/LandingPage.js";
+import HomePage from './excite_components/General/main'
 
 //Buyers Access
 import All_Uploads from './excite_components/General/Home'
@@ -87,6 +88,7 @@ import Create_Inventory from './excite_components/Private/Inventory/Create_Item'
 //Email Marketing
 import Contact_Field from './excite_components/Private/Broadcast/Contacts'
 import newContact from './excite_components/Private/Broadcast/createContact'
+import MalingParty from './excite_components/Private/Broadcast/Mailing'
 
 //Create Post
 import Create_Post from './excite_components/Private/UserAction/Create_Post'
@@ -130,7 +132,8 @@ import resetPasswordDone from './authentication/resetPasswordDone'
 
 const PageRouter= () => (
     <div>
-        <Route exact path = "/" component = {Enterprise_Showcase} /> {" "}
+        
+        <Route exact path="/" component={HomePage} />{" "}
 
         <Route exact path = "/login/" component = {LoginForm} /> {" "}
     <Route exact path = "/register/" component = {Registration} /> {" "}
@@ -159,7 +162,7 @@ const PageRouter= () => (
     {/*MarketPlace here */}
     <Route exact path="/upload" component={All_Uploads} />{" "}
     <Route exact path="/market/" component={All_Post} />{" "}
-    <Route exact path="/showcase/" component={Enterprise_Showcase} />{" "}
+    <Route exact path="/showcase/" component={HomePage} />{" "}
     
     <Route exact path="/search_query/:Title/" component={Basic_Query} />{" "}
 
@@ -253,6 +256,8 @@ const PageRouter= () => (
 
     {/*Email Marketin ends here */}
     <Route exact path = "/contacts/" component ={Contact_Field} /> {""}   
+    
+    <Route exact path = "/mailing/" component ={MalingParty} /> {""}  
     <Route exact path = "/store_client/" component ={newContact} /> {""}    
     {/*Email Marketing ends here */}
     

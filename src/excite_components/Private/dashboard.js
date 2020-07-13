@@ -10,6 +10,9 @@ import {notification,message} from 'antd'
 import TemporaryDrawer from './Sidebar/SideNav'
 import { getMembership } from '../../store/actions/membership';
 
+import { CrownOutlined, DollarCircleTwoTone,UserOutlined, MenuFoldOutlined } from '@ant-design/icons';
+
+
 const openNotification = (msg) => {
   notification.open({
     message: 'Notification Title',
@@ -19,7 +22,7 @@ const openNotification = (msg) => {
     },
   });
 }
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 const Profile_id_url  = host + `/stream/get_profile_id/`
 const Profile_url = host + `/stream/profile_view/`
@@ -173,7 +176,7 @@ class ProfileDashboard extends Component {
             Authorization: `Token ${token}`
           };
           
-          axios.get(`https://backend-entr.herokuapp.com/stream/profile_view/${profile_id}/`)
+          axios.get(`http://backend-entr.herokuapp.com/stream/profile_view/${profile_id}/`)
           .then(res =>{
             this.setState({
               profile: res.data
@@ -395,111 +398,114 @@ return (
                 <TemporaryDrawer />
   
                 
+                 <div className="main">
 
-                  <div
+
+                 <div
                 
-                   className="container">
-                    
-                    <div className="grid grid-cols-4">
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                            <div className="top-card membership-box">
-                                
-                            <div className="top-card-title">
-                                <h3 className="top-card-title membership-title">
-                                  Account Type
-                                </h3>
-                            </div>
-                              <div className="grid grid-cols-2">
-                              <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                                <p className="membership-mode">
-                                {membership.membership}   
-                                </p> 
-                              </div>  
-                              
-
-                            {
-                              disableUpgrade ?(
-                                <>
-                                <div className="pt-2
-                              col-span-1
-                              sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                className="container">
+                 
+                 <div className="grid grid-cols-4">
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                         <div className="top-card membership-box">
                              
-                              </div>
-                                </>
-                              ): (
-                                <>
-                                <div className="pt-2
-                              col-span-1
-                              sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                              <a className="top-card-text membership-text"
-                              href={`/membership_select`}>
-                                  Upgrade
-                                  </a>
-                              </div>
-                                </>
-                              )
-                            }
+                         <div className="top-card-title">
+                             <h3 className="top-card-title membership-title">
+                               Account Type
+                             </h3>
+                         </div>
+                           <div className="grid grid-cols-2">
+                           <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                             <p className="membership-mode">
+                             {membership.membership}   
+                             </p> 
+                           </div>  
+                           
 
-                              </div>
-                            </div>
-                        </div>
+                         {
+                           disableUpgrade ?(
+                             <>
+                             <div className="pt-2
+                           col-span-1
+                           sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                          
+                           </div>
+                             </>
+                           ): (
+                             <>
+                             <div className="pt-2
+                           col-span-1
+                           sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                           <a className="top-card-text membership-text"
+                           href={`/membership_select`}>
+                               Upgrade
+                               </a>
+                           </div>
+                             </>
+                           )
+                         }
+
+                           </div>
+                         </div>
+                     </div>
+
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                     <div className="top-card">
+                         
+                     <div className="top-card-title">
+                         <h3 className="top-card-title">
+                           Impressions
+                         </h3>
+                     </div>
+                       <div className="top-card-text">
+                       {Total_Product_Views} 
+                       </div>
+                     </div>
+                 </div> 
+
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                     <div className="top-card">
+                         
+                     <div className="top-card-title">
+                         <h3 className="top-card-title">
+                           Products
+                         </h3>
+                     </div>
+                       <div className="top-card-text">
+                       <a href={`/user_uploads`}>
+                       View Your Products 
+                       </a>
+                       </div>
+                     </div>
+                 </div>
+
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                     <div className="top-card">
+                         
+                     <div className="top-card-title">
+                         <h3 className="top-card-title">
+                           Quotes
+                         </h3>
+                     </div>
+                       <div className="top-card-text">
+                       <a href={`/vendor_quotes/`}>
+                       Click
+                       </a>
+                       </div>
+                     </div>
+                 </div>
+
+                 </div>
+
+               </div>   
+                 
+                 
   
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                              Impressions
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                          {Total_Product_Views} 
-                          </div>
-                        </div>
-                    </div> 
-   
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                              Products
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                          <a href={`/user_uploads`}>
-                          View Your Products 
-                          </a>
-                          </div>
-                        </div>
-                    </div>
-  
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                              Quotes
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                          <a href={`/vendor_quotes/`}>
-                          Click
-                          </a>
-                          </div>
-                        </div>
-                    </div>
-  
-                    </div>
-  
-                  </div>   
-  
-                    <div className="container mx-auto">
-                    <div className="grid grid-cols-6">
+                    <div className="section-box">
+                   
                       
-                      <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-2 xl:col-span-2">
-                      
-                      <div className="profile-card-container">
+                            <div className="s-box-left">
+                            <div className="profile-card-container">
                                 <div className="profile-image-box">
                                   <img className="profile-image"
                                   src={profile.ProfilePicture}/>
@@ -528,6 +534,7 @@ return (
                                   <hr/>
                                   <div className="profile-text-container">
                                   {
+
                                     isVerified? (
                                       <p className="profile-text">
                                       Verified
@@ -551,10 +558,11 @@ return (
                                 </div>
 
                               </div>
-                        </div>
+
+                            </div>
                         
-                    
-                      <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-4 xl:col-span-4">
+                     
+                      <div className="s-box-right">
                  
                       <div 
                      className="base-card ">
@@ -582,9 +590,11 @@ return (
   
   
                   </div> 
-                    </div>
+                
 
-                   
+
+
+                    </div>
          
               </>
 

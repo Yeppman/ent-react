@@ -1,6 +1,6 @@
 import React , { useState, Component }from 'react';
 import axios from 'axios'
-import {Rate, Avatar ,Comment, Tooltip , message ,Tabs , Descriptions } from 'antd'
+import {Rate, Avatar ,Comment, Tooltip , message ,Tabs ,InputNumber, Descriptions } from 'antd'
 import { connect } from "react-redux";
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
 import { Link, withRouter } from 'react-router-dom';
@@ -11,7 +11,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const item_type = 'electronics'
 const { TabPane } = Tabs;
  
@@ -59,14 +59,14 @@ class Electronics_Item_Detail extends Component{
       }
 
 
-    Buyer_Data = async(token)=>{
+    Buyer_Data = async()=>{
       const user_id_endpoint = host + `/stream/get_my_user_id_and_email/`
       let user_id = null 
       
-      axios.defaults.headers = {
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`
-      };
+      // axios.defaults.headers = {
+      //   "Content-Type": "application/json",
+      //   Authorization: `Token ${token}`
+      // };
       axios.get(user_id_endpoint)
       .then(res=>{
 
@@ -113,7 +113,8 @@ class Electronics_Item_Detail extends Component{
     Comments = async() =>{
         const model_id = this.props.match.params.ItemDetailID        
         const item_endpoint = 'electronics_comments_list'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/` 
+        
+        const endpoint = host + `/retail/item-comments/${model_id}/`
         
         axios.get(endpoint)
         .then(res =>{
@@ -140,8 +141,13 @@ class Electronics_Item_Detail extends Component{
    
     componentDidMount(){
       
-        this.Item_Data()
+      this.Item_Data()
+      this.Comments()
+      this.Buyer_Data()   
+        if(this.props.token !==undefined && this.props.token !== null){
+          this.Item_Data()
         this.Comments()
+        }
        // this.Buyer_Data(this.props.token)
         
     }
@@ -149,15 +155,16 @@ class Electronics_Item_Detail extends Component{
     componentWillReceiveProps(newProps) {
       if (newProps.token !== this.props.token) {
         if (newProps.token !== undefined && newProps.token !== null) {
-        //  this.Buyer_Data(newProps.token)         
+       this.Buyer_Data(newProps.token)         
         }
       }
     }
 
     item_id = this.props.match.params.ItemDetailID
     item_comment_endpoint = `/retail/new_comments_electronics/${this.item_id}/`
-    comment_endpoint = host + this.item_comment_endpoint
+    //comment_endpoint = host + this.item_comment_endpoint
 
+    comment_endpoint= host + `/retail/item-comments/${this.item_id}/`
 
     render(){
       const { item_details ,vendor_profile, loaded_comments ,
@@ -176,6 +183,11 @@ class Electronics_Item_Detail extends Component{
             <>
 
             <Nav/>
+
+
+          
+         
+
             <div className="container mx-auto">
                 <div className="grid grid-cols-6">
                 <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-4 xl:col-span-4 ">
@@ -240,10 +252,12 @@ class Electronics_Item_Detail extends Component{
                            itemIsProduct ? (
                              <>
                              <div className="col-span-4">
+                             <p> <InputNumber min={1} max={10} defaultValue={3}  /></p>
                               <button 
                               onClick={this.addToCart}
                               className="login-button">
-                                Add to Cart
+                                Add to Order
+
                               </button>
                             </div>
                              </>

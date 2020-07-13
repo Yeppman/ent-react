@@ -1,6 +1,8 @@
 import React , { useState, Component }from 'react';
 import axios from 'axios'
-import {Rate, Avatar ,Comment, Tooltip , Tabs , Descriptions} from 'antd'
+
+import {Rate, Avatar ,Comment, Tooltip , message ,Tabs ,InputNumber, Descriptions } from 'antd'
+
 import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons' 
@@ -15,7 +17,7 @@ import Services_Item from './Services_list';
 
 const { TabPane } = Tabs;
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const item_type = 'services'
 
 
@@ -32,7 +34,7 @@ class Services_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`http://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data
@@ -66,7 +68,7 @@ class Services_Item_Detail extends Component{
         const model_id = this.props.match.params.ItemDetailID
         
         const item_endpoint = 'services_comment_list'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/` 
+        const endpoint = host + `/retail/item-comments/${model_id}/`
          axios.get(endpoint)
         .then(res =>{
             this.setState({

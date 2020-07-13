@@ -30,7 +30,7 @@ const openNotification = (msg) => {
 }
 
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 const Service_Type = ['Insurance','Mechanic','Pharmacy','Health','Law','Baking']
 const Payment_Type = ['Online','OnDelivery']
@@ -135,11 +135,12 @@ class Services_Item_Create extends Component{
                 return(
                     <>
                     <TemporaryDrawer/>
+                    <div className="main">
                     <div className ="container mx-auto">
                     <div className = "grid grid-cols-6">
 
-                    <div className="login-section col-span-6 
-                sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                    <div className="login-section col-span-3 
+                sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
                     <div className="">
                         <Form  onFinish={this.Create_Query}>
                             
@@ -287,6 +288,7 @@ class Services_Item_Create extends Component{
 
                     </div>
                 
+                    </div>
                     </>
                 )
             }

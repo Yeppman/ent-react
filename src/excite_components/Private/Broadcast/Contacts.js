@@ -29,7 +29,7 @@ const openNotification = (msg) => {
   });
 }
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 class Contact_Field extends Component{
     state = {
@@ -72,7 +72,7 @@ class Contact_Field extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${this.props.token}`
       };
-        await axios.get(`https://backend-entr.herokuapp.com/management/delete_contact/${id}/`)
+        await axios.get(`http://backend-entr.herokuapp.com/management/delete_contact/${id}/`)
         .then(res =>{
           this.openNotification(res.data['Message'])
         })
@@ -142,7 +142,7 @@ class Contact_Field extends Component{
                Authorization: `Token ${this.props.token}`
              };
              
-             axios.get(`https://backend-entr.herokuapp.com/management/broadcast/`,
+             axios.get(`http://backend-entr.herokuapp.com/management/broadcast/`,
               {
                params: {
                   Heading,  Phone ,Message, Email
@@ -151,7 +151,7 @@ class Contact_Field extends Component{
              }).then(res =>{
                  console.log(res.data)
                  const take_response = res.data['Message']
-                 this.openNotification(take_response)            
+                 openNotification(take_response)            
              }).catch(e =>{
                  console.log(e)
              })
@@ -189,7 +189,7 @@ class Contact_Field extends Component{
                 Authorization: `Token ${this.props.token}`
               };
               
-              axios.get(`https://backend-entr.herokuapp.com/management/save_contact/`,
+              axios.get(`http://backend-entr.herokuapp.com/management/save_contact/`,
                {
                 params: {
                    Name, Email ,  Phone ,Address
@@ -226,7 +226,7 @@ class Contact_Field extends Component{
         
     }
 
-    
+     
     render(){
         const {contacts , loading , error ,AllowUser } = this.state
         return(
@@ -240,9 +240,89 @@ class Contact_Field extends Component{
                       
                                 <TemporaryDrawer />
 
-                    <div className="container">
+                               
+
+                            <div className="main">
+
+                            <div className="container ">
+                          <div className="grid grid-cols-8">
+                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                              <div className="top-card">
+                                  
+                              <div className="top-card-title">
+                                  <h3 className="top-card-title">
+                                   Mail List
+                                  </h3>
+                              </div>
+                                <div className="top-card-text">
+                                    {6}
+                                </div>
+                              </div>
+                          </div> 
+
+                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                              <div className="top-card">
+                                  
+                              <div className="top-card-title">
+                                  <h3 className="top-card-title">
+                                    Sent
+                                  </h3>
+                              </div>
+                                <div className="top-card-text">
+                                  {45}
+                                </div>
+                              </div>
+                          </div> 
+
+
+                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                              <div className="top-card">
+                                  
+                              <div className="top-card-title">
+                                  <h3 className="top-card-title">
+                                    Callbacks
+                                  </h3>
+                              </div>
+                                <div className="top-card-text">
+
+                                <p>
+                                  {45}
+                                </p>
+                                      
+                                </div>
+                              </div>
+                          </div> 
+
+
+                      
+                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-2 xl:col-span-2">
+                              <div className="top-card">
+                                  
+                              <div className="top-card-title">
+                                  <h3 className="top-card-title">
+                                    Send 
+                                  </h3>
+                              </div>
+                                <div className="top-card-text">
+
+                                <p>
+                                  {45}
+                                </p>
+                                      
+                                </div>
+                              </div>
+                          </div> 
+
+                          </div>
+
+
+                          </div>
+
+                       
+
+                            <div className="container">
                      <div className="grid grid-cols-10">
-                       <div className="col-span-2">
+                       <div className="col-span-4">
                        
                        <button
                         onClick={this.create_client}
@@ -367,14 +447,16 @@ class Contact_Field extends Component{
                   </div>        
                     </div>
 
+                  </div>  
+                    
                   </div>
-
 
                     </>
                   ):(
                     <>
                       <TemporaryDrawer/>
-                      <div className="container">
+                     <div className="main">
+                     <div className="container">
                     <div className="grid grid-cols-4">
                         <div className="col-span-4 sm:col-span-4 md:col-span-4 xl:col-span-4 lg:col-span-4">
                         <p>
@@ -383,6 +465,7 @@ class Contact_Field extends Component{
                         </div>
                     </div>
                   </div>
+                     </div>
                     </>
                   )
                 }

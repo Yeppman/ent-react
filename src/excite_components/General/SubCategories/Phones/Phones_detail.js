@@ -1,6 +1,7 @@
 import React , { useState, Component }from 'react';
 import axios from 'axios'
-import {Rate, Avatar ,Comment, Tooltip,Tabs , Descriptions} from 'antd'
+
+import {Rate, Avatar ,Comment, Tooltip , message ,Tabs ,InputNumber, Descriptions } from 'antd'
 import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
@@ -9,7 +10,7 @@ import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 
 
 const item_type = 'phones'
@@ -17,6 +18,7 @@ const { TabPane } = Tabs;
 class Phones_Item_Detail extends Component{
     state = {
         item_details:[],
+        itemIsProduct:true,
         loading : true,
         error: null ,
         vendor_profile :[],
@@ -27,7 +29,7 @@ class Phones_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`http://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data
@@ -61,7 +63,7 @@ class Phones_Item_Detail extends Component{
         const model_id = this.props.match.params.ItemDetailID
         
         const item_endpoint = 'phones_comments_list'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/` 
+        const endpoint = host + `/retail/item-comments/${model_id}/`
          axios.get(endpoint)
         .then(res =>{
             this.setState({
@@ -76,7 +78,7 @@ class Phones_Item_Detail extends Component{
 
     item_id = this.props.match.params.ItemDetailID
     item_comment_endpoint = `/retail/new_comments_phones/${this.item_id}/`
-    comment_endpoint = host + this.item_comment_endpoint
+    comment_endpoint= host + `/retail/item-comments/${this.item_id}/`
 
     componentDidMount(){
         this.Item_Data()
@@ -87,7 +89,7 @@ class Phones_Item_Detail extends Component{
 
     render(){
         const { item_details ,vendor_profile, loaded_comments ,
-          Comments, loading,  rating } = this.state;
+          Comments, loading,  rating , itemIsProduct } = this.state;
        const model_id = this.props.match.params.ItemDetailID
        console.log('this is the model ID', model_id)
        const  orderMonitorID =  this.state.item_details.Owner_id
@@ -137,18 +139,35 @@ class Phones_Item_Detail extends Component{
                         Price  ₦ {item_details.Price}
                         </div>
                         
-                         <div className="grid grid-cols-4 gap-4">
+                        <div className="grid grid-cols-4 gap-4">
 
-                         <div className=" col-span-4" >
-                              <Make_Order_Form 
-                              item_name = {item_details.Title}
-                              item_class = {item_type}
-                               share_vendor_email ={vendor_profile.email}
-                              vendor_id = {vendor_profile.id} post_id = {model_id} /> 
-                          </div> 
+                                    {
+                                      itemIsProduct ? (
+                                        <>
+                                        <div className="col-span-4">
+                                        <p> <InputNumber min={1} max={10} defaultValue={3}  /></p>
+                                        <button 
+                                        onClick={this.addToCart}
+                                        className="login-button">
+                                          Add to Order
+
+                                        </button>
+                                      </div>
+                                        </>
+                                      ) : (
+                                      <div className=" col-span-4" >
+                                        <Make_Order_Form 
+                                        item_name = {item_details.Title}
+                                        item_class = {item_type}
+                                          share_vendor_email ={vendor_profile.email}
+                                        vendor_id = {vendor_profile.id} post_id = {model_id} /> 
+                                    </div> 
+                                      )
+                                    }
 
 
-                         </div>                       
+
+                                    </div>                       
 
                     </div>
                   </div>

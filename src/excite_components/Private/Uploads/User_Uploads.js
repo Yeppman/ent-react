@@ -13,7 +13,7 @@ import User_Uploaded_Post from './uploaded_items'
 import {PlusCircleOutlined} from '@ant-design/icons'
 
 
-const host = 'https://backend-entr.herokuapp.com';
+const host = 'http://backend-entr.herokuapp.com';
 const users_uploads_endpoint = host + `/retail/my_uploads/`
 const Post_Array = []
 const Main  = []
@@ -89,7 +89,9 @@ class User_Posts_Items extends Component {
 
             <TemporaryDrawer/>
 
-            <div className="container">
+
+                <div className="main">
+                <div className="container">
                      <div className="grid grid-cols-10">
                        <div className="col-span-2">
                        <button
@@ -174,6 +176,8 @@ class User_Posts_Items extends Component {
         
                          
                     </div>
+                </div>
+
                 </div>
 
             </>

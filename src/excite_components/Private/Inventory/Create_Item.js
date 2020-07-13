@@ -32,7 +32,7 @@ class Create_Inventory extends React.Component{
       "Content-Type": "application/json",
       Authorization: `Token ${token}`
     };
-   await axios.get(`https://backend-entr.herokuapp.com/stream/view_post`)
+   await axios.get(`http://backend-entr.herokuapp.com/stream/view_post`)
     .then(res =>{
             this.setState({
                   post_list:res.data
@@ -61,7 +61,7 @@ class Create_Inventory extends React.Component{
               "Content-Type": "application/json",
               Authorization: `Token ${this.props.token}`
             };
-            const host = "https://backend-entr.herokuapp.com"
+            const host = "http://backend-entr.herokuapp.com"
            const endpoint = host + '/management/create_inventory/'
             axios.get(endpoint,
              {
@@ -104,6 +104,7 @@ class Create_Inventory extends React.Component{
           
             <>
          
+              <div className="main">
               <div
                style={{paddingBottom:10}}
               >
@@ -183,6 +184,7 @@ class Create_Inventory extends React.Component{
                  </Modal>
               </div>
 
+              </div>
             </>
         )
     }

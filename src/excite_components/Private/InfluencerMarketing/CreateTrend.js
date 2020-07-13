@@ -5,8 +5,11 @@ import {Input ,  Spin ,Card , Form, Button ,
     List, Avatar ,
     Select , DatePicker ,Modal , Upload, message,notification} from 'antd';
  import TemporaryDrawer from '../Sidebar/SideNav'
- import { PlusOutlined } from '@ant-design/icons';
+
 import moment from 'moment'
+
+
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 
 const TextArea = Input.TextArea
@@ -17,11 +20,8 @@ const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';
 const monthFormat = 'YYYY/MM';
 
-const formItemLayout = {
-    wrapperCol: { span: 12, offset: 6 }
-  };
 
-const host = "https://backend-entr.herokuapp.com"
+const host = "http://backend-entr.herokuapp.com"
 
 
 const openNotification = (msg) => {
@@ -31,6 +31,23 @@ const openNotification = (msg) => {
       
     });
   }
+
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 4 },
+    },
+    wrapperCol: {
+      wrapperCol: { span: 12, offset: 6 }
+    },
+  };
+  const formItemLayoutWithOutLabel = {
+    wrapperCol: {
+      xs: { span: 24, offset: 0 },
+      sm: { span: 20, offset: 4 },
+    },
+  };
+
 
 const Tier=  ['Teir1','Teir2','Teir3']
 const Hashtags = ['#BlackLives' ,'#Girl', '#Fashion']
@@ -64,6 +81,8 @@ class NewTrend extends Component {
         image2 : null,
         image3: null,
         }
+
+    
 
     getTiers = async(token)=>{
         const url = host + '/management/tier-list/'
@@ -191,7 +210,33 @@ class NewTrend extends Component {
   //Image HanldeENDS HERE
       
 
-      CampaignQuery = async(values) =>{
+  CreateCampaign = async(values) =>{
+        alert('erioo')
+        console.log(values['CampaignContent'])
+        let ca1 = values['CampaignContent']
+
+        let content1 = ca1[0]
+        let content2 = ca1[1]
+        let content3 = ca1[2]
+
+        if (content1 != null){
+          console.log('nlet')
+        }else{
+          content1 = ''
+        }
+
+        if (content2 != null){
+          console.log('not empty')
+        }else{
+          content2 = ''
+        }
+
+        if (content3 != null){
+            console.log('not empty')
+        }else{
+          content3 = ''
+        }
+
 
         const title = values['Title']
         const tier_id = values['Tier']
@@ -250,6 +295,7 @@ class NewTrend extends Component {
                 openNotification('Task Failed')
             }
         })
+     
          //regex valiadtions
         }else{ 
           message.error('Number of influencers must be a Number')
@@ -286,7 +332,9 @@ class NewTrend extends Component {
         return (
             <>
         <TemporaryDrawer />
-                
+
+              <div className="main">
+                                
     <div className ="container mx-auto">
                     <div className = "grid grid-cols-6">
 
@@ -295,7 +343,7 @@ class NewTrend extends Component {
                     <div className="">
                         <Form 
                         {...formItemLayout}
-                         onFinish={this.CampaignQuery}>
+                         onFinish={this.CreateCampaign}>
 
                         <Form.Item 
                              rules={[{ required: true }]}
@@ -357,7 +405,67 @@ class NewTrend extends Component {
                             rows={4} />
                         </Form.Item>
 
-                          <Form.Item >
+                        <Form.List name="CampaignContent">
+                      {(fields, { add, remove }) => {
+                              return (
+                                <div>
+                                  {fields.map((field, index) => (
+                                    <Form.Item
+                                      {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                                      label={index === 0 ? 'Content' : ''}
+                                      required={false}
+                                      key={field.key}
+                                    >
+                                      <Form.Item
+                                        {...field}
+                                        validateTrigger={['onChange', 'onBlur']}
+                                        rules={[
+                                          {
+                                            required: true,
+                                            
+                                          },
+                                        ]}
+                                        noStyle
+                                          >
+                                                  
+                                                  <TextArea 
+                                placeholder = 'Campaign Text'
+                                rules={[{ required: true }]}
+                                rows={2}
+                                style={{ width: '50%' }}
+                                 />
+                                    </Form.Item>
+                                    {fields.length > 1 ? (
+                                      <MinusCircleOutlined
+                                        className="dynamic-delete-button"
+                                        style={{ margin: '0 8px' }}
+                                        onClick={() => {
+                                          remove(field.name);
+                                        }}
+                                      />
+                                    ) : null}
+                                  </Form.Item>
+                                ))}
+                                <Form.Item>
+                                  <Button
+                                    type="dashed"
+                                    onClick={() => {
+                                      add();
+                                    }}
+                                    style={{ width: '60%' }}
+                                  >
+                                    <PlusOutlined /> Add Content
+                                  </Button>
+                                </Form.Item>
+                              </div>
+                            );
+                          }}
+                        </Form.List>
+
+
+                       </Form>
+                       
+                       <Form.Item >
                           <button
                             class="login-button"
                           htmlType="submit">
@@ -365,8 +473,6 @@ class NewTrend extends Component {
                           </button>
                         </Form.Item>
 
-                       </Form>
-                    
 
 
                         </div>
@@ -378,6 +484,7 @@ class NewTrend extends Component {
 
                     </div>
                 
+              </div>
 
             </>
         )

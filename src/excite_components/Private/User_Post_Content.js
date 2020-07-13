@@ -14,8 +14,8 @@ import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/ico
 const { Meta } = Card; 
 const { TabPane } = Tabs;
 
-const users_post_detail_url = 'https://backend-entr.herokuapp.com/stream/view_post_contents/'
-const user_delete_post_url = 'https://backend-entr.herokuapp.com/stream/delete_post/'
+const users_post_detail_url = 'http://backend-entr.herokuapp.com/stream/view_post_contents/'
+const user_delete_post_url = 'http://backend-entr.herokuapp.com/stream/delete_post/'
 
 const openNotification = (msg) => {
   notification.open({
@@ -74,7 +74,7 @@ class User_Post_Conent extends Component{
 
     Get_Comments = () =>{
       const model_id = this.model_id
-       axios.get(`https://backend-entr.herokuapp.com/core_api/comment_list/${model_id}/`)
+       axios.get(`http://backend-entr.herokuapp.com/core_api/comment_list/${model_id}/`)
       .then(res =>{
           this.setState({
               comments_made : res.data ,
@@ -91,7 +91,7 @@ class User_Post_Conent extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get(`https://backend-entr.herokuapp.com/core_api/post_rating/${parse_id}/`)
+      await axios.get(`http://backend-entr.herokuapp.com/core_api/post_rating/${parse_id}/`)
       .then( res =>{
         const ra = res.data['Rating']
         this.setState({
@@ -107,7 +107,7 @@ class User_Post_Conent extends Component{
         "Content-Type": "application/json",
         Authorization: `Token ${token}`
       };
-      await axios.get(`https://backend-entr.herokuapp.com/stream/quotations/${parse_id}/`)
+      await axios.get(`http://backend-entr.herokuapp.com/stream/quotations/${parse_id}/`)
       .then( res =>{
         this.setState({
           quotes : res.data

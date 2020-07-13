@@ -10,7 +10,7 @@ import Nav from '../containers/nav'
 //import latest_items from "./latest_items";
 
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 var Main = []
 
 class Enterprise_Showcase extends Component{

@@ -5,7 +5,8 @@ import {Input ,  Spin ,Card , Form, Button ,
     List, Avatar ,
     Select , DatePicker ,Modal , Upload, message,notification} from 'antd';
  import TemporaryDrawer from '../Sidebar/SideNav'
- import { PlusOutlined } from '@ant-design/icons';
+
+ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import moment from 'moment'
 
 
@@ -17,11 +18,9 @@ const { RangePicker } = DatePicker;
 const dateFormat = 'YYYY/MM/DD';
 //const monthFormat = 'YYYY/MM';
 
-const formItemLayout = {
-    wrapperCol: { span: 12, offset: 6 }
-  };
 
-const host = "https://backend-entr.herokuapp.com"
+
+const host = "http://backend-entr.herokuapp.com"
 
 
 const openNotification = (msg) => {
@@ -31,6 +30,24 @@ const openNotification = (msg) => {
       
     });
   }
+
+
+  const formItemLayout = {
+    labelCol: {
+      xs: { span: 24 },
+      sm: { span: 4 },
+    },
+    wrapperCol: {
+      xs: { span: 24 },
+      sm: { span: 20 },
+    },
+  };
+  const formItemLayoutWithOutLabel = {
+    wrapperCol: {
+      xs: { span: 24, offset: 0 },
+      sm: { span: 20, offset: 4 },
+    },
+  };
 
 const Tier=  ['Teir1','Teir2','Teir3']
 const Hashtags = ['#BlackLives' ,'#Girl', '#Fashion']
@@ -193,6 +210,31 @@ class NewCampaign extends Component {
 
       CampaignQuery = async(values) =>{
 
+        console.log(values['CampaignContent'])
+        let ca1 = values['CampaignContent']
+
+        let content1 = ca1[0]
+        let content2 = ca1[1]
+        let content3 = ca1[2]
+
+        if (content1 != null){
+          console.log('nlet')
+        }else{
+          content1 = ''
+        }
+
+        if (content2 != null){
+          console.log('not empty')
+        }else{
+          content2 = ''
+        }
+
+        if (content3 != null){
+            console.log('not empty')
+        }else{
+          content3 = ''
+        }
+
         const title = values['Title']
         const tier_id = values['Tier']
         
@@ -234,6 +276,10 @@ class NewCampaign extends Component {
         fd.append('image1' ,image1)
         fd.append('image2' ,image2)
         fd.append('image3' ,image3)
+
+        fd.append('content1', content1)
+        fd.append('content2', content2)
+        fd.append('content3',content3)
        // console.log(fd)
 
         axios.defaults.headers = {
@@ -256,8 +302,14 @@ class NewCampaign extends Component {
           message.error('Number of influencers must be a Number')
         }
         
-
+        alert('works')
     }
+
+    gettr(values){
+      console.log(values)
+    }
+    
+
 
     componentDidMount() {
         if (this.props.token !== undefined && this.props.token !== null) {
@@ -287,7 +339,10 @@ class NewCampaign extends Component {
         return (
             <>
         <TemporaryDrawer />
-                
+  
+
+            <div className="main">
+                            
     <div className ="container mx-auto">
                     <div className = "grid grid-cols-6">
 
@@ -383,6 +438,62 @@ class NewCampaign extends Component {
                             rows={4} />
                         </Form.Item>
 
+
+                        <Form.List name="CampaignContent">
+                      {(fields, { add, remove }) => {
+                              return (
+                                <div>
+                                  {fields.map((field, index) => (
+                                    <Form.Item
+                                      {...(index === 0 ? formItemLayout : formItemLayoutWithOutLabel)}
+                                      label={index === 0 ? 'Content' : ''}
+                                      required={false}
+                                      key={field.key}
+                                    >
+                                      <Form.Item
+                                        {...field}
+                                        validateTrigger={['onChange', 'onBlur']}
+                                        rules={[
+                                          {
+                                            required: true,
+                                            
+                                          },
+                                        ]}
+                                        noStyle
+                                          >
+                                                  
+                                                  <TextArea 
+                                placeholder = 'Campaign Text'
+                                rules={[{ required: true }]}
+                                rows={4} />
+                                    </Form.Item>
+                                    {fields.length > 1 ? (
+                                      <MinusCircleOutlined
+                                        className="dynamic-delete-button"
+                                        style={{ margin: '0 8px' }}
+                                        onClick={() => {
+                                          remove(field.name);
+                                        }}
+                                      />
+                                    ) : null}
+                                  </Form.Item>
+                                ))}
+                                <Form.Item>
+                                  <Button
+                                    type="dashed"
+                                    onClick={() => {
+                                      add();
+                                    }}
+                                    style={{ width: '60%' }}
+                                  >
+                                    <PlusOutlined /> Add Content
+                                  </Button>
+                                </Form.Item>
+                              </div>
+                            );
+                          }}
+                        </Form.List>
+
                           <Form.Item >
                           <button
                             class="login-button"
@@ -403,6 +514,9 @@ class NewCampaign extends Component {
                         </div> 
 
                     </div>
+            </div>
+
+                   
                 
 
             </>

@@ -23,7 +23,7 @@ const dateFormat = 'YYYY/MM/DD';
 const monthFormat = 'YYYY/MM';
 
 
-const host = 'https://backend-entr.herokuapp.com';
+const host = 'http://backend-entr.herokuapp.com';
 
 
 
@@ -279,7 +279,7 @@ class adminCampaignDetail extends Component{
                                 <button className="login-button">
                                     Submit
                                 </button>
-
+ 
                             </Form.Item>
                                 </Form>
                                 </div>

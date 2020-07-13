@@ -1,6 +1,7 @@
 import React , { useState, Component }from 'react';
 import axios from 'axios'
-import {Rate, Avatar ,Comment, Tooltip,Tabs , Descriptions ,message} from 'antd'
+
+import {Rate, Avatar ,Comment, Tooltip , message ,Tabs ,InputNumber, Descriptions } from 'antd'
 import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons' 
@@ -11,7 +12,7 @@ import Make_Order_Form from '../../../containers/Make_Order'
 
 import Nav from '../../../containers/nav'
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const slug = 'home_app'
 
 const item_type = 'home_app'
@@ -31,7 +32,7 @@ class Home_App_Item_Detail extends Component{
     
 
     Vendor_Profile = async(Vendor_id) =>{
-        await axios.get(`https://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
+        await axios.get(`http://backend-entr.herokuapp.com/core_api/vendors_profile_public/${Vendor_id}/`)
         .then(res =>{
           this.setState({
             vendor_profile: res.data
@@ -78,7 +79,7 @@ class Home_App_Item_Detail extends Component{
         const model_id = this.props.match.params.ItemDetailID
         
         const item_endpoint = 'home_appliance_comments_list'
-        const endpoint = host + `/retail/${item_endpoint}/${model_id}/` 
+        const endpoint = host + `/retail/item-comments/${model_id}/` 
          axios.get(endpoint)
         .then(res =>{
             this.setState({
@@ -93,12 +94,15 @@ class Home_App_Item_Detail extends Component{
 
     item_id = this.props.match.params.ItemDetailID
     item_comment_endpoint = `/retail/new_comments_home_appliance/${this.item_id}/`
-    comment_endpoint = host + this.item_comment_endpoint
+    comment_endpoint= host + `/retail/item-comments/${this.item_id}/`
 
     componentDidMount(){
-        this.Item_Data()
-        this.Comments()
-      
+        
+        if(this.props.token !==undefined && this.props.token !== null){
+          this.Item_Data()
+          this.Comments()
+        }
+
     }
 
     render(){
@@ -160,10 +164,12 @@ class Home_App_Item_Detail extends Component{
                                     itemIsProduct ? (
                                       <>
                                       <div className="col-span-4">
+                                      <p> <InputNumber min={1} max={10} defaultValue={3}  /></p>
                                       <button 
                                       onClick={this.addToCart}
                                       className="login-button">
-                                        Add to Cart
+                                        Add to Order
+
                                       </button>
                                     </div>
                                       </>
@@ -178,10 +184,7 @@ class Home_App_Item_Detail extends Component{
                                     )
                                   }
 
-
-
-                                  </div>                          
-
+                                  </div>   
                     </div>
                   </div>
                 </div>

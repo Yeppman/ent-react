@@ -5,7 +5,7 @@ import {notification} from 'antd'
 import PaystackButton from 'react-paystack';
 const https = require('https')
 
-const host = 'https://backend-entr.herokuapp.com'
+const host = 'http://backend-entr.herokuapp.com'
 const Payment_Upgrade_Url = host + '/stream/process_plan_upgrade/'
 class Paystacker extends Component {
 

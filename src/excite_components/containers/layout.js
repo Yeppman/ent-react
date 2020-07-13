@@ -7,8 +7,10 @@ import axios from  'axios';
 import Category_Fetch from "./Category";
 import Fiter_Results_Form from './Filter_Post'
 
+
+
 ///Basic Navbar with Body Conent for wrapping List of gigs
-const profile_url = 'https://backend-entr.herokuapp.com/stream/profile_view/'
+const profile_url = 'http://backend-entr.herokuapp.com/stream/profile_view/'
 
 
 class CustomLayout extends Component{
@@ -24,6 +26,12 @@ class CustomLayout extends Component{
        axios.get(profile_url).then(res =>{
        console.log(res.data)
       })
+    }
+
+    handleLogout = () =>{
+      window.reload()
+      this.props.logout();
+     
     }
      
     render(){
@@ -81,24 +89,42 @@ class CustomLayout extends Component{
                   <>
                    
                     <li className ="navlist">
-                    <Link onClick={() => this.props.logout()}>
+                    <a onClick={ this.handleLogout()}>
                 Logout
-              </Link>
+              </a>
                     </li>
 
                   </>
                 ) : (
                   <>
                   <li className ="navlist">
-                  <Link to="/login">
+                  <a href="/login">
                 Login
-                </Link>
+                </a>
                   </li>
 
                   </>
                 )
               }
             </ul>
+
+            <div className="cat-box">
+
+{
+    categories.map((c)=>(
+        <>
+        <div className="cat-link">
+        <a
+         onClick={()=>{this.redirect_page(c.CategoryKey)}}
+         href> {c.CategoryName}</a>
+        </div>
+        </>
+    ))
+}
+
+
+</div>
+</div>
 
             
           {this.props.children}

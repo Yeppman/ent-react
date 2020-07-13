@@ -33,7 +33,7 @@ import './assets/excite_style/nav.css'
 
 import './assets/excite_style/shop.css'
 import CustomLayout from "./layout"
-//import CustomLayout from "./excite_components/containers/layout"
+
 import PageRouter from './routes'
 
 class App extends Component {

@@ -8,6 +8,7 @@
     border-radius: 5px;
     margin: 2px 20px 20px 2px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 100%;
 }
 
 .orders-card{

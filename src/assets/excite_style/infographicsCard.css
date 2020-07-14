@@ -1,0 +1,67 @@
+.infograph-card ul {
+    display: grid;
+    grid-gap: 20px;
+    margin: 5px 10px 0px ;
+
+
+    list-style: none;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+.infograph-card li {
+    display: block;
+    text-decoration: none; 
+    padding: 0.8rem;
+    text-align: left;
+   
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin: 2px 20px 2px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 120px;
+    
+}
+
+
+.infograph-card li .Header{
+    font-size : 16px;
+    font-weight: 600;
+}
+
+.infograph-card li .subHeader{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.infograph-card li .subHeader .left{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+
+.infograph-card li .subHeader .right{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 16px;
+}
+.infograph-card li a{
+    padding: 0px;
+    color: black;
+}
+
+.infograph-card li a:hover:not(.active) {
+    background-color: white;
+  }
+
+.infograph-card .card1{
+    background-color: rgb(224, 88, 224);
+    color: white;
+
+}
+
+

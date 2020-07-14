@@ -16,7 +16,7 @@
 .main-nav a {
     background: var(--primary);
     display: block;
-    text-decoration: none;
+    text-decoration: none; 
     padding: 0.8rem;
     text-align: center;
     color: var(--dark);

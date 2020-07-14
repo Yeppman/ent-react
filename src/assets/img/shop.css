@@ -15,7 +15,9 @@
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-   
+    /* grid-template-areas:
+      'products products filter'
+      'products products filter'; */
   }
 
 .filter{
@@ -29,46 +31,28 @@
     display: grid;
     /* grid-area: products; */
     grid-gap: 10px;
-    grid-template-columns: repeat(4, 1fr);;
-    padding: 10px 10px 10px 10px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     /* grid-column: 2/ 5; */
   }
 
   .card {
-   
+    /* background: var(--primary); */
+    /* text-align: center; */
+    /* padding: 1.5rem 2rem; */
     box-shadow: var(--shadow);
-   
+    /* width: 100%; */
   }
 
-
-
-  .card-img{ 
-      width: 100%;
+  .card-img{
+      width: 70%;
       height: 150px;
-      height: 180px;
-  
+    /* box-sizing: border-box;
+    border: 2 solid #e2e8f0; */
   }
   .card-content{padding: 10px;}
-  .p-title{
-    color: #495057;
-    font-size: 17px;
-    margin-bottom: 0;
-    font-weight: 500;
-    padding-bottom: 5px;
-    text-align: center;
-    }
-  .p-owner{
-    font-size: 16px;
-    margin-bottom: 10px;
-    text-align: center;
-
-  }
-  .p-price{
-    font-size: 16px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-weight: bold;
-  }
+  .p-title{font-size: 1rem; color: rgb(34, 32, 32);}
+  .p-owner{}
+  .p-price{}
   
   .btn {
     background: #07a52e;;
@@ -120,6 +104,5 @@
 
 .s-text{
   font-weight: 500;
-  font-size:24px;
   border-bottom: 1px solid #ccc;
 }

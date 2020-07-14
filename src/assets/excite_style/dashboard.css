@@ -37,6 +37,35 @@ body {
     color: #000000;
   }
 
+
+  
+.edit-profile-button{
+  background-color: rgb(34, 177, 34); /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px 10px 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 15px;
+}
+
+.sidenav-image-container{
+  margin: 0px 0px 0px 60px;
+}
+
+.sidenav-text-container{
+
+
+}
+
+.sidenav-image{
+  height: 120px;
+  border-radius: 100%;
+  width: 50%;
+}
   
   .main {
     margin-left: 230px; /* Same as the width of the sidenav */
@@ -78,14 +107,17 @@ body {
       'products products filter'
       'products products filter'; */
   }
-
+ 
 .info-card{
   display: block;
   border: 1px solid #ccc;
   box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
   padding: 20px;
-  font-size: 1rem;
+  font-size: 17px;
   height: 100px;
+
+  
+
 }
 
 .info-card-1 {
@@ -173,14 +205,13 @@ a {
 
 .section-box{
   display: grid;
-  margin-top: 20px;
+  margin-top: 10px;
   grid-gap: 10px;
   list-style: none;
 
   margin:5px;
   grid-template-columns:  repeat(2, 1fr);
   padding: 20px;
-
   grid-gap: 0px;
  
   height: 100px;
@@ -190,8 +221,6 @@ a {
     'products products filter'
     'products products filter'; */
 }
-
-
 
 .s-box-left{
   border: 0px solid blue;
@@ -211,6 +240,33 @@ a {
     align-items: start;
     justify-content: center;
 }
+
+
+.oneBox-section{
+  display: grid;
+  margin-top: 10px;
+  grid-gap: 10px;
+  list-style: none;
+
+  margin:5px;
+  grid-template-columns:  repeat(1, 1fr);
+  padding: 20px;
+  grid-gap: 0px;
+ 
+  height: 100px;
+  padding: 00px 10px 20px 10px;
+}
+
+.oneBox-section .box{
+  border: 0px solid blue;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: auto;
+}
+
 
 /* Add an active class to the active dropdown button */
 /* .active {

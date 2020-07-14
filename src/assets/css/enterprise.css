@@ -6,9 +6,19 @@
   padding: 30px 40px 30px 40px;
 }
 
+.fitter{
+  margin: 5px 10px 5px 10px;
+  padding: 20px 30px 20px 30px;
+}
+
 .demo-option-label-item > span {
   margin-right: 6px;
 }
+
+.table-head{
+  font-size: 16px;
+}
+
 /* Navbar Components */
 
 .navblock {
@@ -21,7 +31,7 @@
 }
 
 .navlist {
-  float: left;
+  float: left; 
 }
 
 .navlist a {
@@ -546,13 +556,14 @@ text-align: left;
 .post-text{
   padding-top: 2px;
   padding-bottom: 2px;
-  
+  font-size:14px;
 }
 
 .post-date{
   font-weight: bold;
   padding-top: 10px;
   padding-bottom: 10px;
+  font-size:14px;
 }
 
 .post-price{
@@ -560,6 +571,7 @@ text-align: left;
   font-size: 16px;
   padding-top: 10px;
   padding-bottom: 10px;
+  font-size:14px;
   
 }
 
@@ -576,6 +588,7 @@ text-align: left;
   margin-top: 10px;
   height: 48px;
   width: 100%;
+  font-size:14px;
   
 }
 
@@ -592,7 +605,7 @@ text-align: left;
   margin-top: 20px;
   height: 48px;
   width: 100%;
- 
+  font-size:14px;
 }
 
 .comment-card{

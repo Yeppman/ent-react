@@ -114,11 +114,11 @@ class ExciteNav extends React.Component{
                 </>
                     ) : (
                     <>
-                        <div className="nav-list-link link-b" style={{float:'right'}}>
+                    <div className="nav-list-link link-b" style={{float:'right'}}>
                         <a href="/login">Login</a>
                         </div>
                         <div className="nav-list-link link-b"  style={{float:'right'}}>
-                            <a href="#">Sign up</a>
+                            <a href="/register/">Sign up</a>
                         </div>
                     </>
                 )}

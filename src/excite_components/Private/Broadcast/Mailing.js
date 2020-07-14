@@ -5,8 +5,7 @@ import {Input , Form, Button ,Select, notification } from 'antd';
 import axios from "axios";
 import { connect } from "react-redux";
 import SimpleTable from './table'
-import TemporaryDrawer from 'excite_components/ExciteAdmin/Sidebar/SideNav';
-
+import TemporaryDrawer from '../Sidebar/SideNav'
 
 
 

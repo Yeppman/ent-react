@@ -9,6 +9,8 @@ import {
     Button, 
   } from "antd";
 
+  import ExciteNav from '../../sections/nav'
+
   import Nav from '../../../containers/nav'
 
 import Query_Results from '../../Queried_Results'
@@ -108,7 +110,7 @@ class Services_Item extends Component{
         const query_results = search_results
         return(
             <>
-        <Nav/>
+        <ExciteNav/>
 
 <div
     style={{paddingTop:50}}

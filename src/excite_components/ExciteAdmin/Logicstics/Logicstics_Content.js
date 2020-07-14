@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import TemporaryDrawer from '../Sidebar/SideNav'
 import { Button , notification ,Switch} from 'antd';
 
-import TemporaryDrawer from '../Sidebar/SideNav'
 
 const openNotification = (msg) => {
 notification.open({
@@ -111,126 +110,129 @@ class Admin_Logicstics_Details extends Component{
                   this.GrantUser ? (
                     <>
                     <TemporaryDrawer />
-           
+                    <div className="main">
+                         
            <div className="container mx-auto my-auto">
 
-           <div className="grid grid-cols-12 
-           sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-12 xl:grid-cols-12 ">
-              <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
-                   <div className="top-card">
-                       
-                   <div className="top-card-title">
-                       <h3 className="top-card-title">
-                         Delivery Status
-                       </h3>
-                   </div>
-                     <div className="top-card-text">
-                         {delivery_status}  
-                         {
-                           delivery_status == 'Pending'?(
-                             <Switch checked={false} onChange={this.Change_Delivery_Status} />
-                           ):(
-                             <Switch checked={true} onChange={this.Change_Delivery_Status} />
-                           )
-                         }
-                     </div>
-                   </div>
-               </div> 
+<div className="grid grid-cols-12 
+sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-12 xl:grid-cols-12 ">
+   <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
+        <div className="top-card">
+            
+        <div className="top-card-title">
+            <h3 className="top-card-title">
+              Delivery Status
+            </h3>
+        </div>
+          <div className="top-card-text">
+              {delivery_status}  
+              {
+                delivery_status == 'Pending'?(
+                  <Switch checked={false} onChange={this.Change_Delivery_Status} />
+                ):(
+                  <Switch checked={true} onChange={this.Change_Delivery_Status} />
+                )
+              }
+          </div>
+        </div>
+    </div> 
 
-              <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
-                   <div className="top-card">
-                       
-                   <div className="top-card-title">
-                       <h3 className="top-card-title">
-                         Date Ordered
-                       </h3>
-                   </div>
-                     <div className="top-card-text">
-                           {created}
-                     </div>
-                   </div>
-               </div> 
+   <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
+        <div className="top-card">
+            
+        <div className="top-card-title">
+            <h3 className="top-card-title">
+              Date Ordered
+            </h3>
+        </div>
+          <div className="top-card-text">
+                {created}
+          </div>
+        </div>
+    </div> 
 
-               <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
-                   <div className="top-card">
-                       
-                   <div className="top-card-title">
-                       <h3 className="top-card-title">
-                         Date Delivered
-                       </h3>
-                   </div>
-                     <div className="top-card-text">
-                             {date_delivered}
-                     </div>
-                   </div>
-               </div> 
+    <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
+        <div className="top-card">
+            
+        <div className="top-card-title">
+            <h3 className="top-card-title">
+              Date Delivered
+            </h3>
+        </div>
+          <div className="top-card-text">
+                  {date_delivered}
+          </div>
+        </div>
+    </div> 
 
-              <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
-                   <div className="top-card">
-                       
-                   <div className="top-card-title">
-                       <h3 className="top-card-title">
-                         Delete Order
-                       </h3>
-                   </div>
-                     <div className="top-card-text">
-                     <Button 
-                     onClick={this.Delete_Order}
-                     type="danger">
-                         Delete
-                     </Button>
-                     </div>
-                   </div>
-               </div> 
+   <div className="col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-3 xl:col-span-3">
+        <div className="top-card">
+            
+        <div className="top-card-title">
+            <h3 className="top-card-title">
+              Delete Order
+            </h3>
+        </div>
+          <div className="top-card-text">
+          <Button 
+          onClick={this.Delete_Order}
+          type="danger">
+              Delete
+          </Button>
+          </div>
+        </div>
+    </div> 
 
-         </div>
-
-
-           </div>
-         <div className="container mx-auto  my-auto ">
-                 <div className="flex flex-wrap">
-                     <div className= "w-full md:w-12/12 ">
-
-                     <div className="logictics-card">
-                         <div className="card-container">
-                             <div style={{textAlign:"center"}} className="card-title">
-                                 Order
-                             </div>
-
-                             <table>
-                                     <tr>
-                                     <th>First Name</th>
-                                     
-                                     <th>Email</th>
-                                     <th>Phone</th>
-                                     <th>Address</th>
-                                     <th>Address 2</th>
-                                     <th>City</th>
-                                     <th>Country</th>
-                                     </tr>
-                                     <tr>
-                                     <td>{order_contents.Client_Name}</td>
-                                     <td>{order_contents.Client_Email}</td>
-                                     
-                                     <td>{order_contents.Client_Phone}</td>
-                                     <td>{order_contents.Client_Adress}</td>
-                                     <td>{order_contents.Client_Adress2}</td>
-                                     <td>{order_contents.City}</td>
-                                     <td>{order_contents.Country}</td>
-                                     
-                                     </tr>
-                                     
-                                     </table>
-
-                         </div>
+</div>
 
 
-                         
-                     </div>
+</div>
+<div className="container mx-auto  my-auto ">
+      <div className="flex flex-wrap">
+          <div className= "w-full md:w-12/12 ">
 
-                 </div>
-                 </div>
-         </div>
+          <div className="logictics-card">
+              <div className="card-container">
+                  <div style={{textAlign:"center"}} className="card-title">
+                      Order
+                  </div>
+
+                  <table>
+                          <tr>
+                          
+                          <th className="table-head">First Name</th>
+                          
+                          <th className="table-head">Email</th>
+                          <th className="table-head">Phone</th>
+                          <th className="table-head">Address</th>
+                          <th className="table-head">Address 2</th>
+                          <th className="table-head">City</th>
+                          <th className="table-head">Country</th>
+                          </tr>
+                          <tr>
+                          <td className="table-head">{order_contents.Client_Name}</td>
+                          <td className="table-head"> {order_contents.Client_Email}</td>
+                          
+                          <td className="table-head">{order_contents.Client_Phone}</td>
+                          <td className="table-head">{order_contents.Client_Adress}</td>
+                          <td className="table-head">{order_contents.Client_Adress2}</td>
+                          <td className="table-head">{order_contents.City}</td>
+                          <td className="table-head">{order_contents.Country}</td>
+                          
+                          </tr>
+                          
+                          </table>
+
+              </div>
+
+
+              
+          </div>
+
+      </div>
+      </div>
+</div>
+                    </div>
                     </>
                   ) :(
 

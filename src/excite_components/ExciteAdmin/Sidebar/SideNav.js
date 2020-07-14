@@ -1,4 +1,9 @@
-import React from 'react';
+import React from 'react'
+
+import axios from "axios";
+import {notification,message} from 'antd'
+import { connect } from "react-redux";
+
 import { Link, withRouter } from 'react-router-dom';
 import clsx from 'clsx';
 import {MenuItem, MenuList} from '@material-ui/core'
@@ -16,69 +21,113 @@ import MailIcon from '@material-ui/icons/Mail';
 import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
+const host = 'https://backend-entr.herokuapp.com'
 
-export default function TemporaryDrawer() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+const Profile_id_url  = host + `/stream/get_profile_id/`
+const Profile_url = host + `/stream/profile_view/`
+const UserMembership_url  = host + '/stream/user_membership/'
+const Membership_url = host + '/stream/list_membership/'
+const Post_Analytics_url = host + '/analytics/rankings/'
 
-    setState({ ...state, [anchor]: open });
-  };
+const UserPost_url = host + '/stream/view_post/'
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
+const products_analysis_endpoint = host + `/analytics/product_views/`
 
-          <MenuList>
-            <MenuItem component={Link} to="/Admin/" >
+
+
+ class TempoaryDrawer extends React.Component{
+    
+
+    render(){
+     
+      return(
+        <>
+           <div class="sidenav">
+                
+
+                <MenuList>
+              <div  className = "menu-link">
+              <MenuItem 
+            className="menu-link-text"
+            component={Link} to="/Admin/" >
             Dashboard
             </MenuItem>
+              </div>
 
-          <MenuItem component={Link} to="/admin_logistics/" >
+
+          
+              <div  className = "menu-link">
+            <MenuItem 
+            className="menu-link-text"
+            component={Link} to="/admin/user-management/" >
+            User Management
+            </MenuItem>
+          </div>
+
+              <div  className = "menu-link">
+          <MenuItem 
+          className="menu-link-text"
+          component={Link} to="/admin_logistics/" >
             Logistics
             </MenuItem>
+            </div>
+
+            <div  className = "menu-link">
+            <MenuItem 
+            className="menu-link-text"
+            component={Link} to="/admin/campaigns/" >
+            Campaigns
+            </MenuItem>
+          </div>
+          
+          <div  className = "menu-link">
+            <MenuItem component={Link} to="/campaign-list/">
+           Influencer Marketing
+            </MenuItem>
+            </div>
+
+          <div  className = "menu-link">
+            <MenuItem
+            className="menu-link-text"
+             component={Link} to="/user_uploads/" >
+              Products 
+            </MenuItem>
+          </div>
+
+          
             
+
+
           </MenuList>
          
-    </div>
-  );
+            
+        </div>
+        </>
+      )
+    }
 
-  return (
-    <div>
-      {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <button className="sidebar_button" onClick={toggleDrawer(anchor, true)}>
-                
-            <FontAwesomeIcon icon={faHamburger} />
-          </button>
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
-  );
+
 }
+
+
+
+const mapStateToProps = state => {
+  return {
+    token: state.auth.token ,
+    isAuth: state.auth.token !== null ,
+    is_seller: state.auth.is_seller ,
+    membership_type: state.membership.mode,
+  };
+};
+
+// const mapDispatchToProps = dispatch => {
+// return {
+//   member: (token) => dispatch(getMembership(token))
+// }
+// }
+
+export default connect(
+  mapStateToProps,
+  
+)(TempoaryDrawer) 

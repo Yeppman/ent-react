@@ -8,12 +8,13 @@ import {
     Input,
     Button, 
   } from "antd";
-
+  import ExciteNav from '../../sections/nav'
   import Nav from '../../../containers/nav'
 
 import Query_Results from '../../Queried_Results'
 
 import Uploaded_Post from '../../Items'
+
 
  
 const Search = Input.Search;
@@ -110,7 +111,7 @@ class Phones_Item extends Component{
         const query_results = search_results
         return(
             <>
-    <Nav/>
+    <ExciteNav/>
 <div
     style={{paddingTop:50}}
     className="container mx-auto ">

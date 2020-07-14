@@ -6,11 +6,14 @@ import { connect } from "react-redux";
 import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
  
+import ExciteNav from '../../sections/nav'
+
 import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
 
 const host = 'https://backend-entr.herokuapp.com'
+
 
 
 const item_type = 'phones'
@@ -96,6 +99,7 @@ class Phones_Item_Detail extends Component{
         return(
             
             <>
+            <ExciteNav />
             <div className="container mx-auto">
                 <div className="grid grid-cols-6">
                 <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-4 xl:col-span-4 ">

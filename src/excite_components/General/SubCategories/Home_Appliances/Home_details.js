@@ -9,11 +9,14 @@ import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design
 import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
+import ExciteNav from '../../sections/nav'
 
 import Nav from '../../../containers/nav'
 
 const host = 'https://backend-entr.herokuapp.com'
 const slug = 'home_app'
+
+
 
 const item_type = 'home_app'
 const { TabPane } = Tabs;
@@ -114,7 +117,7 @@ class Home_App_Item_Detail extends Component{
         return(
             
             <>
-            <Nav/>
+            <ExciteNav/>
             <div className="container mx-auto">
                 <div className="grid grid-cols-6">
                 <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-4 xl:col-span-4 ">

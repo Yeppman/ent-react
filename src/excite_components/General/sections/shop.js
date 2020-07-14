@@ -5,7 +5,11 @@ export default function Shop() {
         <div>
             <div class="wrapper">
         <section class="shop">
-            <div class="products">
+           <div className="s-card">
+           <h1 className="s-text"><b>Products</b></h1>
+
+           <div class="products">
+
                 <div class="card">
                     <div class="">
                         <img class="card-img" src="https://www-konga-com-res.cloudinary.com/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/A/P/105800_1591627564.jpg" />
@@ -66,6 +70,7 @@ export default function Shop() {
                     </div>
                 </div>
             </div>
+           </div>
         </section>
     </div>
         </div>

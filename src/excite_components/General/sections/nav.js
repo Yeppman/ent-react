@@ -16,7 +16,7 @@ const host = 'https://backend-entr.herokuapp.com'
 const Search = Input.Search;
 
 
-class Nav extends React.Component{
+class ExciteNav extends React.Component{
     state = {
         categories : [],
         loading:true,
@@ -33,7 +33,6 @@ class Nav extends React.Component{
             });console.log(res.data)
                 });  
        };
-    
        
    redirect_page=(category_slug)=>{
     const endpoint = `/categories/${category_slug}/`
@@ -49,7 +48,28 @@ class Nav extends React.Component{
 
     componentDidMount(){
         this.Categories()
+        console.log(this.props.token);
+
     }
+
+    // componentDidMount(){
+
+    //     if (this.props.token !== undefined && this.props.token !== null) {
+    //       this.Categories() 
+    //     }
+    //   }
+      
+    //   componentWillReceiveProps(newProps) {
+    //     if (newProps.token !== this.props.token) {
+    //       if (newProps.token !== undefined && newProps.token !== null) {
+    //         this.Categories(newProps.token)
+    //         this.Latest_Products(newProps.token)
+    //        // this.Account_Type(this.props.token)
+    //           this.Latest_Products(newProps.token)
+    //      }
+    //     }
+    //   }
+    
 
     render(){
         const {categories} = this.state
@@ -68,63 +88,40 @@ class Nav extends React.Component{
                  <div>
             <div className="nav">
                 <div className="nav-box">
-                    <div className="nav-list-link " ><a href="#home"><span className="link-a">Excite</span></a></div>
-                    <div className="nav-list-link"><a  href="#news">News</a></div>
-                    <div className="nav-list-link"><a  href="#news">About</a></div>
+                    <div className="nav-list-link " ><a href="#home"><span className="">Excite</span></a></div>
+                
                     <div className="nav-list-link link-k">
                         <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
                     </div>
                     
-                    {
-                 is_seller ?(
-                    <div className="nav-list-link link-b" style={{float:"right"}}
-                            >
-                           <Link to="/dashboard">
-                    Dashboard
-                    </Link>
-                             </div>
 
-                  ):
-                  (
-                      <li></li>
-                      )
-                }
-
-                    {
-                        isAuth ? (
-                             <>
-                            <div className="nav-list-link link-b" style={{float:"right"}}
-                            ><a 
-                             onClick={ this.handleLogout()}
-                             href="#contact">Logout</a>
-                             </div>
-                            </>
-                        ) : (
-
-                            <>
-                            <div className="nav-list-link link-b" style={{float:"right"}}><a href="/login">Login</a></div>
-                    <div className="nav-list-link link-b" style={{float:"right"}}><a   href="/register">Register</a></div>
-                            </>        
-                    
+                {isAuth ? (
+                    <>
+                        {
+                            is_seller ?(
+                                <div className="nav-list-link link-b"  style={{float:'right'}}>
+                                    <Link to="/dashboard">
+                                    Dashboard
+                                    </Link>
+                                </div>
+                        ):(
+                            <li> </li>
                         )
-                    }
-                
-                    {
-                        isAuth ? (
-                            <>
-                            <div >
-                        <a  href="#contact" style={{float:"right"}}> 
-                            <span className=" cart">My Cart</span>
-                        </a>
+                        }
+                    <div className="nav-list-link link-b"  style={{float:'right'}}>
+                        <a href='#'onClick={this.props.logout} >Logout</a>
                     </div>
-                            </>
-                        ) : (
-                                <>
-                                    <p></p>
-                                </>
-                        )
-                    }
-                    
+                </>
+                    ) : (
+                    <>
+                        <div className="nav-list-link link-b" style={{float:'right'}}>
+                        <a href="/login">Login</a>
+                        </div>
+                        <div className="nav-list-link link-b"  style={{float:'right'}}>
+                            <a href="#">Sign up</a>
+                        </div>
+                    </>
+                )}
 
                 </div>
 
@@ -140,7 +137,7 @@ class Nav extends React.Component{
                             </div>
                             </>
                         ))
-                    }
+                    } 
 
             
                 </div>
@@ -170,4 +167,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ExciteNav));

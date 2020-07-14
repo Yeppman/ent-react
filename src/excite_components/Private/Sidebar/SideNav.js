@@ -119,20 +119,29 @@ const products_analysis_endpoint = host + `/analytics/product_views/`
         <>
            <div class="sidenav">
                 <div class="sidenav-header">
-                    <img
-                    style={{marginLeft:'-10'}}
+                      <div className="sidenav-image-container">
+                      <img
+                      className="sidenav-image"
                      src={profile.ProfilePicture}
-                      style={{width:'80px', borderRadius: '50%'}} />
-                    <p><h3>
+                     />
+                      </div>
+                  
+                    <div className="sidenav-text-container"><h3>
                       {profile.User_First_Name}  {profile.User_First_Name} 
-                    </h3></p>
-                    <p>
+                    </h3>
+                    </div>
+
+                  <div className="sidenav-text-containe">
+                  
+                  <p>
                     {profile.Email} 
                     </p>
+                  </div>
+
                     <span>
                     <button
                     href="/edit_profile"
-                    className="profile-button login-button">Edit Profile</button></span>
+                    className="edit-profile-button ">Edit Profile</button></span>
                 </div>
 
                 <MenuList>

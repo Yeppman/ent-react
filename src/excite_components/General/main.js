@@ -6,11 +6,10 @@ import {Rate} from 'antd'
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
 
 
-
-//import Nav from './sections/nav'
+import Nav from './sections/nav'
 import Header from './sections/header'
 import Boxes from './sections/boxes'
-import Nav from '../containers/nav'
+//import Nav from '../containers/nav'
 
 //import '../assets/home/home.css'
 
@@ -68,12 +67,31 @@ export default class Homepage extends React.Component{
     //    }
 
       componentDidMount(){
+        
         this.Categories()
         this.Latest_Products()
-       // this.Account_Type(this.props.token)
+   
           this.Latest_Products()
-        
+        if (this.props.token !== undefined && this.props.token !== null) {
+          this.Categories(this.props.token)
+        this.Latest_Products(this.props.token)
+       
+          this.Latest_Products(this.props.token)
+              
+        }
       }
+      
+      componentWillReceiveProps(newProps) {
+        if (newProps.token !== this.props.token) {
+          if (newProps.token !== undefined && newProps.token !== null) {
+            this.Categories(newProps.token)
+            this.Latest_Products(newProps.token)
+           // this.Account_Type(this.props.token)
+              this.Latest_Products(newProps.token)
+         }
+        }
+      }
+    
     
       render(){
           const {NewProducts}  = this.state
@@ -89,12 +107,30 @@ export default class Homepage extends React.Component{
                     </div>
  
 
-                            <div className="wrapper">
+                            <div className="fitter">
                                 <div className="shop">
                                     <div className="products">
-                                    {
+                                  
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div>
+
+            <div class="fitter">
+        <section class="shop">
+           <div className="s-card">
+           <h1 
+           
+           className="s-text"><b>Latest Products</b></h1>
+
+           <div class="products">
+
+           {
                                         NewProducts.map((item)=>(
                                             <>
+                                            
                                             <div class="card">
                     <div class="">
                         <img class="card-img"
@@ -104,8 +140,13 @@ export default class Homepage extends React.Component{
                     </div>
                     <div class="card-content">
                         <p class="p-title">{item.Title}</p>
-                        <p class="p-owner">Sold by <small>{item.Owner}</small></p>
-                        <p class="p-price">Price: <sup>$</sup>{item.Price}</p>
+                        <p class="p-owner">Sold by {item.Owner} </p>
+                        
+                        <div className="item-rating">
+                                            <Rate disabled defaultValue={item.Rating} />
+                                            </div>
+                                          
+                        <p class="p-price">Price:₦{item.Price}</p>
                         <button 
                         onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
                         class="btn">Open</button>
@@ -114,9 +155,13 @@ export default class Homepage extends React.Component{
                                             </>
                                         ))
                                     }
-                                    </div>
-                                </div>
-                            </div>
+
+
+            </div>
+           </div>
+        </section>
+    </div>
+        </div>
 
 
 

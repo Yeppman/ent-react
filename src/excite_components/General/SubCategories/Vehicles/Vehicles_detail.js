@@ -6,6 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
 
 import Nav from '../../../containers/nav'
+ import ExciteNav from '../../sections/nav'
 
 
 import CommentForm from '../../../containers/Comment_Form'
@@ -129,7 +130,7 @@ class Vehicles_Item_Detail extends Component{
         return(
             
             <>
-            <Nav/>
+           <ExciteNav/>
             <div className="container mx-auto">
                 <div className="grid grid-cols-6">
                 <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-4 xl:col-span-4 ">

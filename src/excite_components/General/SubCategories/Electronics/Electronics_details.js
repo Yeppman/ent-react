@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import {EnvironmentOutlined ,TeamOutlined, CreditCardOutlined} from '@ant-design/icons'
 import { Link, withRouter } from 'react-router-dom';
  
-import Nav from '../../../containers/nav'
+//import Nav from '../../../containers/nav'
+//import Nav from '../sections/nav'
+
+import ExciteNav from '../../sections/nav'
+
 
 import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
@@ -182,7 +186,7 @@ class Electronics_Item_Detail extends Component{
             
             <>
 
-            <Nav/>
+            <ExciteNav/>
 
 
           

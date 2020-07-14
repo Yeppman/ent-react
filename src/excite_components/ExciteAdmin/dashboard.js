@@ -235,127 +235,129 @@ class AdminDashboard extends Component {
                 <TemporaryDrawer />
   
             
+                  <div className="main">
                   <div
                 
-                   className="container">
-                    
-                    <div className="grid grid-cols-4">
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                            <div className="top-card">
-                                
-                            <div className="top-card-title">
-                                <h3 className="top-card-title">
-                                  Registered Users
-                                </h3>
-                            </div>
-                              <div className="grid grid-cols-2">
-                              <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                                {usersTotal}
-                              </div>  
-                              
-                              </div>
-                            </div>
-                        </div>
-  
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                              Transactions
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                              {WebhookTotal}
-                          </div>
-                        </div>
-                    </div> 
-   
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                    <div className="top-card">
-                                
-                                <div className="top-card-title">
-                                    <h3 className="top-card-title">
-                                      Logistics Orders
-                                    </h3>
-                                </div>
-                                  <div className="grid grid-cols-2">
-                                  <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                                      {ordersCount}   
-                                  </div>  
-                                  <div className="pt-3 
-                                  
-                                  col-span-1
-                                  sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                                  <a className="top-card-text"
-                                  href={`/admin_logistics`}>
-                                      Open
-                                      </a>
-                                  </div>
-                                  </div>
-                                </div>
-                    </div>
-  
+                className="container">
+                 
+                 <div className="grid grid-cols-4">
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                         <div className="top-card">
+                             
+                         <div className="top-card-title">
+                             <h3 className="top-card-title">
+                              Users
+                             </h3>
+                         </div>
+                           <div className="grid grid-cols-2">
+                           <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                             {usersTotal}
+                           </div>  
+                           
+                           </div>
+                         </div>
+                     </div>
 
-                  
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                    <div className="top-card">
-                                
-                                <div className="top-card-title">
-                                    <h3 className="top-card-title">
-                                     Campaigns
-                                    </h3>
-                                </div>
-                                  <div className="grid grid-cols-2">
-                                  <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                                        {CampaignDataCount}
-                                  </div>  
-                                  <div className="pt-3 
-                                  
-                                  col-span-1
-                                  sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                                  <a className="top-card-text"
-                                  >
-                                    
-                                      </a>
-                                  </div>
-                                  </div>
-                                </div>
-                    </div>
-                   
-  
-                    </div>
-  
-                  </div>   
-  
-                <div className="container">
-                    <div className="grid grid-cols-6">
-                        <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
-                            
-                            <Tabs>
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                     <div className="top-card">
+                         
+                     <div className="top-card-title">
+                         <h3 className="top-card-title">
+                           Transactions
+                         </h3>
+                     </div>
+                       <div className="top-card-text">
+                           {WebhookTotal}
+                       </div>
+                     </div>
+                 </div> 
 
-                            
-                            <TabPane tab="Users" key="1">
-                            <UsersSimpleTable data={Profiles}/>
-                            </TabPane>
-
-                            
-                            <TabPane tab="Campaigns" key="2">
-                            <CampaignSimpleTable data={CampaignsData}/>
-                            </TabPane>
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                 <div className="top-card">
+                             
+                             <div className="top-card-title">
+                                 <h3 className="top-card-title">
+                                   Logistics Orders
+                                 </h3>
+                             </div>
+                               <div className="grid grid-cols-2">
+                               <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                   {ordersCount}   
+                               </div>  
+                               <div className="pt-3 
+                               
+                               col-span-1
+                               sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                               <a className="top-card-text"
+                               href={`/admin_logistics`}>
+                                   Open
+                                   </a>
+                               </div>
+                               </div>
+                             </div>
+                 </div>
 
 
-                            <TabPane tab="Transactions" key="3">
-                              <MoneySimpleTable data={Transactions}/>
-                            </TabPane>
+               
+                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
+                 <div className="top-card">
+                             
+                             <div className="top-card-title">
+                                 <h3 className="top-card-title">
+                                  Campaigns
+                                 </h3>
+                             </div>
+                               <div className="grid grid-cols-2">
+                               <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                                     {CampaignDataCount}
+                               </div>  
+                               <div className="pt-3 
+                               
+                               col-span-1
+                               sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
+                               <a className="top-card-text"
+                               >
+                                 
+                                   </a>
+                               </div>
+                               </div>
+                             </div>
+                 </div>
+                
 
-                            
+                 </div>
 
-                            </Tabs>
+               </div>   
 
-                        </div>
-                    </div>
-                </div>
+             <div className="container">
+                 <div className="grid grid-cols-6">
+                     <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
+                         
+                         <Tabs>
+
+                         
+                         <TabPane tab="Users" key="1">
+                         <UsersSimpleTable data={Profiles}/>
+                         </TabPane>
+
+                         
+                         <TabPane tab="Campaigns" key="2">
+                         <CampaignSimpleTable data={CampaignsData}/>
+                         </TabPane>
+
+
+                         <TabPane tab="Transactions" key="3">
+                           <MoneySimpleTable data={Transactions}/>
+                         </TabPane>
+
+                         
+
+                         </Tabs>
+
+                     </div>
+                 </div>
+             </div>
+                  </div>
 
                   
               </>

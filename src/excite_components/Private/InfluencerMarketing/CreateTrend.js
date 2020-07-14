@@ -4,11 +4,9 @@ import { connect } from "react-redux";
 import {Input ,  Spin ,Card , Form, Button ,
     List, Avatar ,
     Select , DatePicker ,Modal , Upload, message,notification} from 'antd';
- import TemporaryDrawer from '../Sidebar/SideNav'
-
 import moment from 'moment'
 
-
+import TemporaryDrawer from '../Sidebar/SideNav'
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 
@@ -464,7 +462,7 @@ class NewTrend extends Component {
 
 
                        </Form>
-                       
+
                        <Form.Item >
                           <button
                             class="login-button"

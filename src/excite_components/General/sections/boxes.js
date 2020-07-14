@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    HomeOutlined, CarOutlined
+    HomeOutlined, CarOutlined, MailOutlined
   } from '@ant-design/icons';
 
 
@@ -10,24 +10,21 @@ export default function Boxes() {
             <div class="home-box">
 
                 <div class="home-card">
-                    <span style={{fontSize: '25px'}}  className="box-color"><HomeOutlined />Store</span>
+                    <span className="box-color"><HomeOutlined /><b>Store</b></span>
                 </div>
 
                 <div class="home-card">
-                    <span style={{fontSize: '25px'}}  className="box-color"><CarOutlined /> Delivery</span>
+                    <span   className="box-color"><CarOutlined /> <b>Delivery</b></span>
                 </div>
 
                 <div class="home-card">
-                    <span className="box-color"><b>Nokia</b></span>
+                    <span className="box-color"><CarOutlined /> <b>Logistics</b></span>
                 </div>
 
                 <div class="home-card">
-                    <span className="box-color" style={{fontSize: '25px'}}><b>Phillips</b></span>
+                    <span className="box-color" ><MailOutlined /><b> Email Marketing</b></span>
                 </div>
                 
-                <div class="home-card">
-                    <span className="box-color" style={{fontSize: '25px'}}><b>Samsung</b></span>
-                </div>
 
             </div>
         </div>

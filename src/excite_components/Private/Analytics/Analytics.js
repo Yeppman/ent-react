@@ -153,96 +153,117 @@ class User_Analysis extends Component{
                         <TemporaryDrawer />
 
                         <div className="main">
-                        <div
-                  style={{paddingLeft:20}}
-                   className="container mx-auto ">
-                    
-                    <div className="grid grid-cols-4 ">
-                    
-  
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                            Average  Inmpressions
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                         <Statistic
-                            title
-                            value={Average_Product_Views} 
-                            precision={2}
-                            valueStyle={{ color: '#3f8600' }}
-                            prefix={<ArrowUpOutlined />}
-                            suffix="views"
-                        />       
-                          </div>
-                        </div>
-                    </div> 
-   
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                              Total Impressions
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                         <Statistic
-                            title
-                            value={Total_Product_Views} 
-                            precision={2}
-                            valueStyle={{ color: '#3f8600' }}
-                            prefix={<ArrowUpOutlined />}
-                            suffix="views"
-                        />       
-                          </div>
-                        </div>
-                    </div> 
-   
-  
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                              Quotes
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                          <a href={`/vendor_quotes/`}>
-                          Click
-                          </a>
-                          </div>
-                        </div>
-                    </div>
 
 
-                    <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                        <div className="top-card">
-                            
-                        <div className="top-card-title">
-                            <h3 className="top-card-title">
-                              Uploads
-                            </h3>
-                        </div>
-                          <div className="top-card-text">
-                            {Count_Products}
-                          </div>
-                        </div>
-                    </div>
-
+                        <div className="fitter">
+                        
+                        <div className="infograph-card">
   
-                    </div>
+                                  <ul>
+                                    
   
-                  </div>   
+                                    <li className="">
+                                    <div className="">
+                                        <p className="Header">
+                                        Average  Inmpressions
+                                        </p>
+  
+                                        <div className="subHeader">
+                                          <div className="left">
+                                        
+                                        <p>
+                                        {Average_Product_Views} 
+                                        </p>
+  
+                                          </div>
+  
+                                          <div className="right">
+                                          
+                                          </div>
+  
+                                        </div>
+  
+                                      </div>
+                                    </li>
+  
+                                    <li className="">
+                                    <div className="">
+                                        <p className="Header">
+                                        Total Impressions
+                                        </p>
+  
+                                        <div className="subHeader">
+                                          <div className="left">
+                                         <p>{Total_Product_Views}</p> 
+                                          </div>
+  
+                                          <div className="right">
+                                          
+                                          </div>
+  
+                                        </div>
+  
+                                      </div>
+                                    </li>
+  
+                                    <li className="">
+                                      <div className="">
+                                          <p className="Header">
+                                            Account Type
+                                          </p>
+  
+                                          <div className="subHeader">
+                                            <div className="left">
+                                               
+                                            <a href={`/vendor_quotes/`}>
+                                                Click
+                                                </a>
+  
+                                            </div>
+  
+                                            <div className="right">
+                                            
+                                            </div>
+  
+                                          </div>
+  
+                                      </div>
+                                    </li>
 
+                                    <li className="">
+                                      <div className="">
+                                          <p className="Header">
+                                           Products
+                                          </p>
+  
+                                          <div className="subHeader">
+                                            <div className="left">
+                                               
+                                            {Count_Products}
+
+                                            </div>
+  
+                                            <div className="right">
+                                            
+                                            </div>
+  
+                                          </div>
+  
+                                      </div>
+                                    </li>
+  
+  
+                                  </ul>
+  
+  
+                                  </div>
+  
+                        </div>
+  
                    
-                   <div className="container mx-auto">
-                            <div className="grid grid-cols-10">
-                        <div className="col-span-10  sm:col-span-10 md:col-span-10 lg:col-span-10 xl:col-span-10 ">
+                   <div className="fitter">
+                            <div className="oneBox-section">
+                        <div className=".box ">
                         <div 
                      className="base-card ">
                      <Bar
@@ -268,6 +289,8 @@ class User_Analysis extends Component{
                     </div>
 
                             </div>
+
+
 
                         </div>
 

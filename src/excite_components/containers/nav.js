@@ -16,7 +16,7 @@ class Nav extends Component{
   state= {
     categories:[] ,
   }
-
+ 
   Try_getting_user_Detail = async() =>{
 
       axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -149,7 +149,7 @@ class Nav extends Component{
  
 const mapStateToProps = state => {
     return {
-      token: state.auth.token,
+      // token: state.auth.token,
       isAuth: state.auth.token !== null ,
       is_seller: state.auth.is_seller ,
       is_buyer:state.auth.is_buyer,

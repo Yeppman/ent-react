@@ -9,7 +9,7 @@ import {Input ,  Spin ,Card , Form, Button ,
 
 import moment from 'moment'
 import TemporaryDrawer from '../Sidebar/SideNav'
-import AdminCampaignTable from './CapaignTable'
+import AdminCampaignTable from './CampaignTable'
 
 import {PlusCircleOutlined} from '@ant-design/icons'
 
@@ -185,7 +185,7 @@ class adminCampaignDetail extends Component{
                             <Descriptions.Item span={3} label="Status ">  {
                                     data.Status ? (
                                         <p>
-                                        Active
+                                        Actived
                                         </p>
                                     ): (
                                        <p>InActive</p>

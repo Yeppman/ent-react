@@ -110,6 +110,10 @@ import Buyer_Orders from './excite_components/Buyers/Customer_Orders_Details'
 //Excite Admin Control
 import AdminDashboard from './excite_components/ExciteAdmin/dashboard'
 import Admin_Logicstics_Channel from './excite_components/ExciteAdmin/Logicstics/Logicstics'
+import Admin_Logicstics_Details from './excite_components/ExciteAdmin/Logicstics/Logicstics_Content'
+
+import userListView from './excite_components/ExciteAdmin/UserManagement/userList'
+import adminCampaigns from './excite_components/ExciteAdmin/Influencer/CampaignList'
 import adminCampaignDetail from './excite_components/ExciteAdmin/Influencer/CampaignDetailView'
 import ProcessVendor from './excite_components/ExciteAdmin/vendorControl/vendorDetails'
 
@@ -130,6 +134,7 @@ import resetPasswordDone from './authentication/resetPasswordDone'
 
 
 
+
 const PageRouter= () => (
     <div>
         
@@ -143,8 +148,14 @@ const PageRouter= () => (
 
      {/*Admin  Portals */}
     <Route exact path = "/Admin/" component = {AdminDashboard} /> {" "}
+    
+    <Route exact path = "/admin/user-management/" component = {userListView} /> {" "}
     <Route exact path = "/admin_logistics/" component = {Admin_Logicstics_Channel} /> {" "}
-    <Route exact path = "/logistics_order/:OrderID/" component ={Logicstics_Details} /> {""}
+
+
+    <Route exact path = "/logistics_order/:OrderID/" component ={Admin_Logicstics_Details} /> {""}
+
+    <Route exact path = "/admin/campaigns/" component ={adminCampaigns} /> {""} 
     <Route exact path = "/admin-campaign-detail/:campaignID/" component ={adminCampaignDetail} /> {""}  
     
     <Route exact path = "/review-vendor/:vendorProfileID/" component ={ProcessVendor} /> {""}  

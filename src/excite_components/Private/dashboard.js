@@ -400,197 +400,224 @@ return (
                 
                  <div className="main">
 
+                      <div className="fitter">
+                        
+                      <div className="infograph-card">
 
-                 <div
-                
-                className="container">
-                 
-                 <div className="grid grid-cols-4">
-                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                         <div className="top-card membership-box">
-                             
-                         <div className="top-card-title">
-                             <h3 className="top-card-title membership-title">
-                               Account Type
-                             </h3>
-                         </div>
-                           <div className="grid grid-cols-2">
-                           <div className="top-card-text col-span-1 sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                             <p className="membership-mode">
-                             {membership.membership}   
-                             </p> 
-                           </div>  
-                           
+                                <ul>
+                                  <li className="">
+                                    <div className="">
+                                      <p className="Header">
+                                        Account Type
+                                      </p>
 
-                         {
-                           disableUpgrade ?(
-                             <>
-                             <div className="pt-2
-                           col-span-1
-                           sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                          
-                           </div>
-                             </>
-                           ): (
-                             <>
-                             <div className="pt-2
-                           col-span-1
-                           sm:col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1">
-                           <a className="top-card-text membership-text"
-                           href={`/membership_select`}>
-                               Upgrade
-                               </a>
-                           </div>
-                             </>
-                           )
-                         }
+                                      <div className="subHeader">
+                                        <div className="left">
+                                            <p>
+                                            {membership.membership} 
+                                            </p>
 
-                           </div>
-                         </div>
-                     </div>
+                                        </div>
 
-                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                     <div className="top-card">
-                         
-                     <div className="top-card-title">
-                         <h3 className="top-card-title">
-                           Impressions
-                         </h3>
-                     </div>
-                       <div className="top-card-text">
-                       {Total_Product_Views} 
-                       </div>
-                     </div>
-                 </div> 
+                                        <div className="right">
+                                        {
+                                            disableUpgrade ?(
+                                              <>
+                                              <div className="">
+                                          
+                                            </div>
+                                              </>
+                                            ): (
+                                              <>
+                                              <div className="">
+                                            <a className=""
+                                            href={`/membership_select`}>
+                                                Upgrade
+                                                </a>
+                                            </div>
+                                              </>
+                                            )
+                                          }
+                                        </div>
 
-                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                     <div className="top-card">
-                         
-                     <div className="top-card-title">
-                         <h3 className="top-card-title">
-                           Products
-                         </h3>
-                     </div>
-                       <div className="top-card-text">
-                       <a href={`/user_uploads`}>
-                       View Your Products 
-                       </a>
-                       </div>
-                     </div>
-                 </div>
+                                      </div>
 
-                 <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-1 xl:col-span-1">
-                     <div className="top-card">
-                         
-                     <div className="top-card-title">
-                         <h3 className="top-card-title">
-                           Quotes
-                         </h3>
-                     </div>
-                       <div className="top-card-text">
-                       <a href={`/vendor_quotes/`}>
-                       Click
-                       </a>
-                       </div>
-                     </div>
-                 </div>
+                                    </div>
+                                  </li>
 
-                 </div>
+                                  <li className="">
+                                  <div className="">
+                                      <p className="Header">
+                                      Impressions
+                                      </p>
 
-               </div>   
-                 
+                                      <div className="subHeader">
+                                        <div className="left">
+                                            <p>
+                                            {Total_Product_Views} 
+                                            </p>
+
+                                        </div>
+
+                                        <div className="right">
+                                        
+                                        </div>
+
+                                      </div>
+
+                                    </div>
+                                  </li>
+
+                                  <li className="">
+                                  <div className="">
+                                      <p className="Header">
+                                        Products
+                                      </p>
+
+                                      <div className="subHeader">
+                                        <div className="left">
+                                        <a href={`/user_uploads`}>
+                                            View Your Products 
+                                            </a>
+                                        </div>
+
+                                        <div className="right">
+                                        
+                                        </div>
+
+                                      </div>
+
+                                    </div>
+                                  </li>
+
+                                  <li className="">
+                                    <div className="">
+                                        <p className="Header">
+                                          Account Type
+                                        </p>
+
+                                        <div className="subHeader">
+                                          <div className="left">
+                                              <p>
+                                              {membership.membership} 
+                                              </p>
+
+                                          </div>
+
+                                          <div className="right">
+                                          
+                                          </div>
+
+                                        </div>
+
+                                    </div>
+                                  </li>
+
+
+                                </ul>
+
+
+                                </div>
+
+                      </div>
+
+               
                  
   
-                    <div className="section-box">
+                    <div className="fitter">
+                            
+                    <div className="section-box fitter">
                    
                       
-                            <div className="s-box-left">
-                            <div className="profile-card-container">
-                                <div className="profile-image-box">
-                                  <img className="profile-image"
-                                  src={profile.ProfilePicture}/>
-                                </div>
-                                <hr/>
-                                <div className="profile-description">
-                                  <div className="profile-text-container">
-                                  <p  className="profile-text">
-                                  {profile.User_First_Name} {profile.User_Last_Name}
-                                  </p>
+                   <div className="s-box-left">
+                   <div className="profile-card-container">
+                       <div className="profile-image-box">
+                         <img className="profile-image"
+                         src={profile.ProfilePicture}/>
+                       </div>
+                       <hr/>
+                       <div className="profile-description">
+                         <div className="profile-text-container">
+                         <p  className="profile-text">
+                         {profile.User_First_Name} {profile.User_Last_Name}
+                         </p>
 
-                                  </div>
-                                  <hr/>
-                                  <div className="profile-text-container">
-                                    <p className="profile-text">
-                                    {profile.Email}
-                                    </p>
-                                  </div>
-                                  <hr/>
-                                  <div className="profile-text-container">
-                                  <p className="profile-text">
-                                  {profile.Phone}
-                                    </p>
-                                   
-                                  </div>
-                                  <hr/>
-                                  <div className="profile-text-container">
-                                  {
+                         </div>
+                         <hr/>
+                         <div className="profile-text-container">
+                           <p className="profile-text">
+                           {profile.Email}
+                           </p>
+                         </div>
+                         <hr/>
+                         <div className="profile-text-container">
+                         <p className="profile-text">
+                         {profile.Phone}
+                           </p>
+                          
+                         </div>
+                         <hr/>
+                         <div className="profile-text-container">
+                         {
 
-                                    isVerified? (
-                                      <p className="profile-text">
-                                      Verified
-                                      </p>
-                                 
-                                    ):(
-                                      <p className="profile-text">
-                                     Not Verified
-                                      </p>
-                                    )
-                                  }
-                                  
-                                  </div>
-
-                                  <hr/>
-                                  <div className="profile-button-box">
-                                      <button className="profile-button">
-                                      Edit Profile
-                                      </button>
-                                  </div>
-                                </div>
-
-                              </div>
-
-                            </div>
+                           isVerified? (
+                             <p className="profile-text">
+                             Verified
+                             </p>
                         
-                     
-                      <div className="s-box-right">
-                 
-                      <div 
-                     className="base-card ">
-                     <Bar
-                           className =""
-                           data={this.state.chartData}
-                           options={{
-                            responsive: true,
-                           maintainAspectRatio : true,
-                           title:{
-                           display:this.props.displayTitle,
-                           text:'Largest Cities In '+this.props.location,
-                           fontSize:25
-                           },
-                           legend:{
-                           display:this.props.displayLegend,
-                           position:this.props.legendPosition
-                           
-                           }
-                           }}
-                      />
+                           ):(
+                             <p className="profile-text">
+                            Not Verified
+                             </p>
+                           )
+                         }
+                         
+                         </div>
+
+                         <hr/>
+                         <div className="profile-button-box">
+                             <button className="profile-button">
+                             Edit Profile
+                             </button>
+                         </div>
+                       </div>
+
                      </div>
-  
-                     </div>
-  
-  
-                  </div> 
-                
+
+                   </div>
+               
+            
+             <div className="s-box-right">
+        
+             <div 
+            className="base-card ">
+            <Bar
+                  className =""
+                  data={this.state.chartData}
+                  options={{
+                   responsive: true,
+                  maintainAspectRatio : true,
+                  title:{
+                  display:this.props.displayTitle,
+                  text:'Largest Cities In '+this.props.location,
+                  fontSize:25
+                  },
+                  legend:{
+                  display:this.props.displayLegend,
+                  position:this.props.legendPosition
+                  
+                  }
+                  }}
+             />
+            </div>
+
+            </div>
+
+
+         </div> 
+       
+
+                    </div>
 
 
 

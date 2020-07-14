@@ -165,7 +165,7 @@ class Property_Item_Create extends Component{
                             name ="Title">
                             
                                 <Input
-                                placeholder="Product or Service name"
+                                placeholder="Property Title"
                                 enterButton
                                 />
                             
@@ -272,19 +272,6 @@ class Property_Item_Create extends Component{
                             
                             </Form.Item>
                         
-                            <Form.Item
-                             rules={[{ required: true }]}
-                             
-                             name ='Bathrooms' hasFeedback>
-                                
-                                <Select placeholder="How Many Bathroona">
-                                    <Option value="0">0</Option>
-                                    <Option   value="1">1</Option>
-                                    <Option  value="2">2</Option>
-                                    <Option  value="3">3</Option>
-                                </Select>
-                              
-                            </Form.Item>
 
                           <Form.Item 
                            rules={[{ required: true }]}

@@ -39,6 +39,15 @@ class ExciteNav extends React.Component{
     window.location.replace(endpoint)
    }
 
+   promptSearch = async(e)=>{
+    e.preventDefault()
+    
+    const search_input = e.target.elements.searching_box.value;
+    const endpoint = `/search_query/${search_input}/`
+   window.location.replace(endpoint)
+
+    }
+
    handleLogout = () =>{
     window.location.reload()
     this.props.logout();
@@ -88,17 +97,23 @@ class ExciteNav extends React.Component{
                  <div>
             <div className="nav">
                 <div className="nav-box">
-                    <div className="nav-list-link " ><a href="#home"><span className="">Excite</span></a></div>
+                    <div className="nav-list-link " ><a href="#home"><span className="ent-link">Enterprise</span></a></div>
                 
                     <div className="nav-list-link link-k">
-                        <Search placeholder="input search text" onSearch={value => console.log(value)} enterButton />
+                   
+                    <input 
+                    className="nav-search"
+                    value=""
+                    type="text" placeholder="Search Products or Services" /> 
+                    
+
                     </div>
                     
 
                 {isAuth ? (
                     <>
                         {
-                            is_seller ?(
+                             is_seller ?(
                                 <div className="nav-list-link link-b"  style={{float:'right'}}>
                                     <Link to="/dashboard">
                                     Dashboard
@@ -107,10 +122,14 @@ class ExciteNav extends React.Component{
                         ):(
                             <li> </li>
                         )
+
+
                         }
                     <div className="nav-list-link link-b"  style={{float:'right'}}>
                         <a href='#'onClick={this.props.logout} >Logout</a>
                     </div>
+
+                    
                 </>
                     ) : (
                     <>
@@ -120,7 +139,7 @@ class ExciteNav extends React.Component{
                         <div className="nav-list-link link-b"  style={{float:'right'}}>
                             <a href="/register/">Sign up</a>
                         </div>
-                    </>
+                     </>
                 )}
 
                 </div>

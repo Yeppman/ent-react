@@ -112,9 +112,9 @@ class HomeApp_Item_Create extends Component{
               if (res.status == 200){
                 console.log(res.data)
             const take_response = res.data['Message']
-            this.openNotification(take_response)   
+            openNotification(take_response)   
             }  else{
-                this.openNotification('Error Creating Product') 
+               openNotification('Error Creating Product') 
             }           
             })
             
@@ -265,33 +265,6 @@ class HomeApp_Item_Create extends Component{
                               
                             </Form.Item>
 
-
-                            <Form.Item
-                             rules={[{ required: true }]}
-                             
-                             name ='State' hasFeedback>
-                                
-                                <Select placeholder="Select State">
-                                <Option value="Lagos">Lagos</Option>
-                                <Option   value="Ibadan">Ibadan</Option>
-                                <Option  value="Osun">Osun</Option>
-                                </Select>
-                              
-                            </Form.Item>
-
-                            <Form.Item
-                             rules={[{ required: true }]}
-                             
-                             name ='Country' hasFeedback>
-                                
-                                <Select placeholder="Select Country">
-                                <Option value="Lagos">Nigeria</Option>
-                                <Option   value="Ibadan">Ghana</Option>
-                                <Option  value="Osun">Cameroon</Option>
-                                </Select>
-                              
-                            </Form.Item>
-
                           <Form.Item 
                            rules={[{ required: true }]}
                           name="Image_Post">
@@ -303,11 +276,7 @@ class HomeApp_Item_Create extends Component{
 
                           </Form.Item>
 
-
-
-                          
-
-                          <Form.Item >
+                        <Form.Item >
                           <button
                             class="login-button"
                           htmlType="submit">

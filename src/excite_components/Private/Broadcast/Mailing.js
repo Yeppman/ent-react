@@ -132,15 +132,18 @@ class MalingParty extends Component{
         if (newProps.token !== this.props.token) {
           if (newProps.token !== undefined && newProps.token !== null) {
             this.Contact_List(newProps.token)
-            this.accountType(newProps.token)
+            this.Mail_Clients(newProps.token)
           }
         }
       }
 
   componentDidMount(){
     
-    this.accountType(this.props.token)
+    if (this.props.token !== undefined && this.props.token !== null) {
       this.Contact_List(this.props.token)
+      this.Mail_Clients(this.props.token)
+    }
+
       
   }
 
@@ -151,57 +154,57 @@ class MalingParty extends Component{
             <TemporaryDrawer />
 
             <div className="main">
-            <div className="container">
-                  <div className="grid grid-cols-10">
-                  <div className="login-section col-span-4
-                  sm:col-span-4 md:col-span-4 lg:col-span-4 xl:col-span-4">
+                  <div className="container">
+                        <div className="grid grid-cols-10">
+                        <div className="login-section col-span-4
+                        sm:col-span-4 md:col-span-4 lg:col-span-4 xl:col-span-4">
 
-                  <h4 
-                  style={{fontSize:20}}
-                  className="text-center">
-                  Send Mail
-                  </h4>
+                        <h4 
+                        style={{fontSize:20}}
+                        className="text-center">
+                        Send Mail
+                        </h4>
 
-                  <Form 
-                  onFinish={this.Mail_Clients}>
+                        <Form 
+                        onFinish={this.Mail_Clients}>
 
 
-                  <Form.Item name ="Heading">
-                              
-                    <Input
-                    placeholder="Heading"
-                    enterButton
-                    />
+                        <Form.Item name ="Heading">
+                                    
+                          <Input
+                          placeholder="Heading"
+                          enterButton
+                          />
 
-                  </Form.Item>
+                        </Form.Item>
 
-                  <Form.Item
-                      rules={[{ required: true }]}
-                      name="Mail_Message">
-                    <TextArea 
-                    placeholder ="Your text here"
-                    rows={4} />
-                    
-                  </Form.Item>
-                    
-                  <Form.Item >
-                        <button
-                       
-                          class="login-button"
-                        htmlType="submit">
-                          Send
-                        </button>
-                      </Form.Item>
+                        <Form.Item
+                            rules={[{ required: true }]}
+                            name="Mail_Message">
+                          <TextArea 
+                          placeholder ="Your text here"
+                          rows={4} />
+                          
+                        </Form.Item>
+                          
+                        <Form.Item >
+                              <button
+                            
+                                class="login-button"
+                              htmlType="submit">
+                                Send
+                              </button>
+                            </Form.Item>
 
-                  </Form>
-                  </div>
+                        </Form>
+                        </div>
 
-                  <div className="login-section col-span-6 
-                  sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
-                  </div>        
-                    </div>
+                        <div className="login-section col-span-6 
+                        sm:col-span-6 md:col-span-6 lg:col-span-3 xl:col-span-3">
+                        </div>        
+                          </div>
 
-                  </div>
+                        </div>
             </div>
 
             </>

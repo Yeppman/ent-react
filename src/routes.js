@@ -264,7 +264,7 @@ const PageRouter= () => (
     <Route exact path = "/inventories/" component ={Inventory_Store} /> {""}
     <Route exact path = "/create_inventory/" component ={Create_Inventory} /> {""}
     {/*IMS stops here */}
-
+ 
     {/*Email Marketin ends here */}
     <Route exact path = "/contacts/" component ={Contact_Field} /> {""}   
     

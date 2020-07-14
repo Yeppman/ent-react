@@ -98,59 +98,62 @@ class newContact extends Component{
                 <>
                 <TemporaryDrawer />
 
-                <div className="container mx-auto my-auto py-4">
-                    <div className="grid grid-cols-6">
-                        
-                    
-
-                    <div className="col-span-6 sm:col-span-6 md:col-span-6 lg:col-span-4  xl:col-span-4">
+            <div className="main">
+                  <div className="container mx-auto my-auto py-4">
+                          <div className="grid grid-cols-6">
+                              
                           
-                          <div className="login-section">
-                          <Form  onFinish={this.process_query}>
-                              <Form.Item>
-                              <h1 className="ant-form-text">Create Contact</h1>
-                              </Form.Item>
+
+                          <div className="col-span-4 sm:col-span-4 md:col-span-4 lg:col-span-4  xl:col-span-4">
+                                
+                                <div className="login-section">
+                                <Form  onFinish={this.process_query}>
+                                    <Form.Item>
+                                    <h1 className="ant-form-text">Create Contact</h1>
+                                    </Form.Item>
 
 
-                              <Form.Item name ="Name">
-                              
-                                  <Input
-                                  placeholder="Client Name"
-                                  
-                                  enterButton
-                                  />
-                              
-                              </Form.Item>
-                              <Form.Item name ='Email'> 
-                                  <Input
-                                  placeholder="Email"
-                                  enterButton
-                                  />
-                              </Form.Item>
+                                    <Form.Item name ="Name">
+                                    
+                                        <Input
+                                        placeholder="Client Name"
+                                        
+                                        enterButton
+                                        />
+                                    
+                                    </Form.Item>
+                                    <Form.Item name ='Email'> 
+                                        <Input
+                                        placeholder="Email"
+                                        enterButton
+                                        />
+                                    </Form.Item>
 
-                              <Form.Item name ='Phone'> 
-                                  <Input
-                                  placeholder="Phone Number"
-                                  enterButton
-                                  />
-                              </Form.Item>
-                              
-                    
-                          <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
-                              <button
-                       
-                              class="login-button"
-                            htmlType="submit">
-                              Send
-                            </button>
-                              </Form.Item>
+                                    <Form.Item name ='Phone'> 
+                                        <Input
+                                        placeholder="Phone Number"
+                                        enterButton
+                                        />
+                                    </Form.Item>
+                                    
+                          
+                                <Form.Item wrapperCol={{ span: 12, offset: 6 }}>
+                                    <button
+                            
+                                    class="login-button"
+                                  htmlType="submit">
+                                    Send
+                                  </button>
+                                    </Form.Item>
 
-                  </Form>
-                        </div>
-                          </div>
+                        </Form>
+                              </div>
+                                </div>
 
-                    </div>  
-                </div>
+                          </div>  
+                      </div>
+
+            </div>
 
                 </>
         )

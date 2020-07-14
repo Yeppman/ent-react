@@ -34,7 +34,7 @@
     padding-top: 25px;
     padding-bottom: 25px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 17px;
   }
   
   .nav-list-link a:hover:not(.active) {
@@ -47,6 +47,10 @@
   .link-k{
     padding-top:20px;
     /* float: right; */
+  }
+  
+  .ent-link{
+    font-size: 25px;
   }
   
   .cart{
@@ -95,4 +99,22 @@
 
 .cat-link a:hover:not(.active) {
   background-color: #111;
+}
+
+.nav-list-link .link-k {
+  margin:8px 16px 8px 16px;
+}
+
+.nav-list-link input {
+  height: 48px;
+  padding: 6px 0px 6px 0px;
+
+  font-size: 17px; 
+
+  width: 400px;
+  margin-bottom: 30px;
+}
+
+.nav-search{
+  border: 2px solid grey
 }

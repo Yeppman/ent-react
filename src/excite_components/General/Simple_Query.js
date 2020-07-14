@@ -26,6 +26,20 @@ export default class Basic_Query  extends Component {
         
         Allocated_Results:[],
 
+        searchResult:[] ,
+
+    }
+
+    searchItems = async()=>{
+        const Title = this.props.match.params.Title
+        await axios.get(search_url, {'params':{Title}})
+        .then(res=>{
+            this.setState({
+                searchResult:res.data
+            })
+            console.log(res.data)
+        })
+           
     }
     
     
@@ -233,12 +247,13 @@ export default class Basic_Query  extends Component {
     }
 
     componentDidMount(){
-        this.Query()
+       // this.Query()
+        this.searchItems()
 
     }
 
     render(){
-        const {Allocated_Results} = this.state
+        const {Allocated_Results , searchResult} = this.state
         console.log(Main)
         
         return(

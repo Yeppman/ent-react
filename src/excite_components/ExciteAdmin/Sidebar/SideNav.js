@@ -80,23 +80,7 @@ const products_analysis_endpoint = host + `/analytics/product_views/`
             Campaigns
             </MenuItem>
           </div>
-          
-          <div  className = "menu-link">
-            <MenuItem component={Link} to="/campaign-list/">
-           Influencer Marketing
-            </MenuItem>
-            </div>
-
-          <div  className = "menu-link">
-            <MenuItem
-            className="menu-link-text"
-             component={Link} to="/user_uploads/" >
-              Products 
-            </MenuItem>
-          </div>
-
-          
-            
+        
 
 
           </MenuList>

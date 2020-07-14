@@ -17,53 +17,40 @@ const Uploaded_Post = props =>{
       
       <>
                    
-       
-                   {
-          items_props.map((item)=>(
-              <div className="post-box">
-              <div className="post-image">
-                  <img className="post-image-render"
-                    href={`/categories/${slug}/${item.id}`}
-                    src={item.Image1}
-                    />
-              </div>    
-              <div className="post-content-prime">
-                  <div className="post-content-header">
-                  <a  
-                  style={{color:"#434343"}}
-                  href={`/categories/${slug}/${item.id}`}>
-                  {item.Title}
-                  </a>
-                  
-                  </div>
-                  <div className="post-content-star-rating">
-                  <Rate disabled defaultValue={item.Rating} />
-                  </div>
-                  <div className="post-content-body">
-                      <p>
-                      <a 
-                      href={`/categories/${slug}/${item.id}`}
-                      style={{color:"#434343"}} >
-                      {item.Description.length < 50 ? 
-                       `${item.Description}` : `${item.Description.substring(0, 300)}...` }
-                      </a>
-                      </p>
-                  </div>
-                  <div className="post-content-price">
-                  <a  
-                  style={{color:"#434343"}}
-                  href={`/categories/${slug}/${item.id}`}>
-                  ₦{item.Price}
-                  </a>
-                      
-                  </div>
-              </div>
-          </div>
+                   <div class="products">
 
-             ))
-         } 
-          
-    
+                            {
+                                items_props.map((item)=>(
+                                                            <>
+                                                            
+                                                            <div class="card">
+                                    <div class="">
+                                        <img class="card-img"
+                                        src={item.Image1} 
+
+                                        />
+                                    </div>
+                                    <div class="card-content">
+                                        <p class="p-title">{item.Title}</p>
+                                        <p class="p-owner">Sold by {item.Owner} </p>
+                                        
+                                        <div className="item-rating">
+                                                            <Rate disabled defaultValue={item.Rating} />
+                                                            </div>
+                                                        
+                                        <p class="p-price">Price:₦{item.Price}</p>
+                                        <button 
+                                        onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
+                                        class="btn">Open</button>
+                                    </div>
+                                </div>
+                                                            </>
+                                                        ))
+                                                    }
+
+
+                            </div>
+                                
               </>
               
     );

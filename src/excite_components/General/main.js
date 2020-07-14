@@ -134,7 +134,7 @@ export default class Homepage extends React.Component{
                                             <div class="card">
                     <div class="">
                         <img class="card-img"
-                        src={item.Image1}
+                        src={item.Image1} 
 
                         />
                     </div>

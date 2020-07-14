@@ -10,7 +10,7 @@ import {
   } from "antd";
 
   import Nav from '../../../containers/nav'
-
+  import ExciteNav from '../../sections/nav'
 import Query_Results from '../../Queried_Results'
 
 import Uploaded_Post from '../../Items'
@@ -109,7 +109,7 @@ class Property_Items extends Component{
         const query_results = search_results
         return(
             <>
-  <Nav/>
+  <ExciteNav/>
 <div
     style={{paddingTop:50}}
     className="container mx-auto ">

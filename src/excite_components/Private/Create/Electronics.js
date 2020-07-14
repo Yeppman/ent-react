@@ -78,8 +78,8 @@ class Electronics_Item_Create extends Component{
         
         const Price =  
           values["Price"] === undefined ? null : values["Price"] ; 
-        const Location = 
-           values["Location"] === undefined ? null : values["Location"] ; 
+        const Address = 
+           values["Address"] === undefined ? null : values["Address"] ; 
         const Description =
           values["Description"] === undefined ? null : values["Description"] ;
       const  Color =
@@ -112,6 +112,7 @@ class Electronics_Item_Create extends Component{
           //form_data.append('Owner', Original_User_id);
           form_data.append('Electronic_Category', Electronic_Category)
 
+          form_data.append('Address',Address)
           form_data.append('Image_Post',Image_Post);
           form_data.append('Color',Color);
           form_data.append('Brand',Brand);
@@ -120,7 +121,7 @@ class Electronics_Item_Create extends Component{
 
           form_data.append('Country',Country)
           form_data.append('State', State)
-
+ 
   
           
               axios.defaults.headers = {
@@ -301,6 +302,16 @@ class Electronics_Item_Create extends Component{
                               
                             </Form.Item>
 
+                            <Form.Item
+                             rules={[{ required: true }]}
+                             name ='Address' hasFeedback>
+
+                               <Input
+                                placeholder="Address"
+                                enterButton
+                                />
+                              
+                            </Form.Item>
                             
 
                             <Form.Item
@@ -308,7 +319,7 @@ class Electronics_Item_Create extends Component{
                              
                              name ='State' hasFeedback>
                                 
-                                <Select placeholder="Select a Location">
+                                <Select placeholder="Select a State">
                                 <Option value="Lagos">Lagos</Option>
                                 <Option   value="Ibadan">Ibadan</Option>
                                 <Option  value="Osun">Osun</Option>
@@ -329,16 +340,7 @@ class Electronics_Item_Create extends Component{
                               
                             </Form.Item>
 
-                            <Form.Item
-                             rules={[{ required: true }]}
-                             name ='Location' hasFeedback>
-
-                               <Input
-                                placeholder="Address"
-                                enterButton
-                                />
-                              
-                            </Form.Item>
+                            
 
 
                           <Form.Item 

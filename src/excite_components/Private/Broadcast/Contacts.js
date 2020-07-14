@@ -47,6 +47,9 @@ class Contact_Field extends Component{
       window.location.replace('/store_client/')
     }
 
+    redirectPage(){
+      window.location.replace('/mailing/')
+    }
 
     Contact_List  = async(token) =>{
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
@@ -322,13 +325,23 @@ class Contact_Field extends Component{
 
                             <div className="container">
                      <div className="grid grid-cols-10">
-                       <div className="col-span-4">
+                       <div className="col-span-2">
                        
                        <button
                         onClick={this.create_client}
                               class="create-client-button"
                             htmlType="submit">
                               Create Client
+                            </button>
+                       </div>
+
+                       <div className="col-span-2">
+                       
+                       <button
+                        onClick={this.redirectPage}
+                              class="create-client-button"
+                            htmlType>
+                              Send Mail
                             </button>
                        </div>
                      </div>

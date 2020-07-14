@@ -21,6 +21,7 @@ const host = 'https://backend-entr.herokuapp.com'
 const item_type = 'services'
 
 
+
 class Services_Item_Detail extends Component{
     state = {
         item_details:[],

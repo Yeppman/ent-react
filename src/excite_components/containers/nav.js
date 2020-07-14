@@ -97,7 +97,7 @@ class Nav extends Component{
                     <ShoppingCartOutlined /> Cart
                     </Link>
                     </li>
-
+ 
               {
                 isAuth   ? (
                   <>

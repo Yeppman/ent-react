@@ -5,7 +5,12 @@ import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom';
 
 import {  Rate} from 'antd';
-    
+
+
+const openItem= (endpoint)=>{
+    window.location.replace(endpoint)
+}
+
 const Uploaded_Post = props =>{
   const items_props = props.Items
   const slug = props.slug_class
@@ -30,7 +35,7 @@ const Uploaded_Post = props =>{
 
                                         />
                                     </div>
-                                    <div class="card-content">
+                                     <div class="card-content">
                                         <p class="p-title">{item.Title}</p>
                                         <p class="p-owner">Sold by {item.Owner} </p>
                                         
@@ -40,7 +45,7 @@ const Uploaded_Post = props =>{
                                                         
                                         <p class="p-price">Price:₦{item.Price}</p>
                                         <button 
-                                        onClick={()=>this.openItem(`/categories/${item.Category}/${item.id}`)}
+                                        onClick={()=>openItem(`/categories/${item.Category}/${item.id}`)}
                                         class="btn">Open</button>
                                     </div>
                                 </div>

@@ -5,6 +5,8 @@ import {Modal,notification} from 'antd';
 import axios from "axios";
 import { connect } from "react-redux";
 
+import TemporaryDrawer from '../Sidebar/SideNav'
+
 //import RavePayment from '../../containers/Payment Gateway/RavePay'
 import Paystacker from '../Payment Gateway/Paystack'
 const host = 'https://backend-entr.herokuapp.com'
@@ -160,101 +162,144 @@ class Membership_Select extends Component{
             return(
 
                <>
+               
+               <TemporaryDrawer />
+
+            
+                <div className="main">
+
+                <div className="fitter">
+                        <div className="priceCard-container">
+
+                          <ul className="">
+
+                          <div className="priceCard-Box">
+                          <li className="">
+                              <div className="">
+                                <div className="price-Name">
+                                  <p>Free</p>
+                                </div>
+
+                                <div className="price-Amount">
+                                  <p>#1000</p>
+                                </div>
+
+                                <div className="price-content">
+                                  <p>Server</p>
+                                  <p>Server</p>
+                                  
+
+                                  <button onClick>
+                                    Select
+                                  </button>
+                                </div>
+                              </div>
+                            </li>
+                          </div>
+
+                          <div className="priceCard-Box">
+                          <li className="">
+                              <div className="">
+                                <div className="price-Name">
+                                  <p> Basic</p>
+                                </div>
+
+                                <div className="price-Amount">
+                                  <p>#1000</p>
+                                </div>
+
+                                <div className="price-content">
+                                <p>Analytics</p>
+                          <p> Inventory Management System</p>
+                          <p>Email and SMS marketing</p>
+                          <p>Logistics</p>
+                          <p> Live Notification</p>
+                          <p>
+                          Content Creation with Canva
+                          </p>
+                          <p> 
+                          Products and Services are Advertised
+                          </p>
+
+                                  <button onClick={this.Basic_Plan_init} >
+                                    Select
+                                  </button>
+                                </div>
+                              </div>
+                            </li>
+                          </div>
+
+                          <div className="priceCard-Box">
+                          <li className="">
+                              <div className="">
+                                <div className="price-Name">
+                                  <p>Premium</p>
+                                </div>
+
+                                <div className="price-Amount">
+                                  <p>#5000</p>
+                                </div>
+
+                                <div className="price-content">
+                                <p>Analytics</p>
+                                    <p> Inventory Management System</p>
+                                    <p>Email and SMS marketing</p>
+                                    <p>Logistics</p>
+                                    <p> Live Notification</p>
+                                    <p>
+                                    Content Creation with Canva
+                                    </p>
+                                    <p> 
+                                    Products and Services are Advertised
+                                    </p>
+
+                                  <button onClick={this.Premium_Plan_init} >
+                                    Select
+                                  </button>
+                                </div>
+                              </div>
+                            </li>
+                          </div>
+
+                  </ul>
+                  </div>
+                </div>
                   
  
-                  <div className="container">
-                    <div className="flex">
-                    <div className="columns">
-                        <ul className="price">
-                          <li className="header" >Free</li>
-                          <li className="grey">₦0/Mth</li>
-                          <li>Analytics</li>
-                          <li> Inventory Management System</li>
-                          <li>Email and SMS marketing</li>
-                          <li>Logistics</li>
-                          <li className="grey">
-                          <a disabled className="button">
-                            Select Plan
-                          </a>
-                          </li>
-                        </ul>
-                      </div>
-
-                    <div className="columns">
-                        <ul className="price">
-                          <li className="header" >Basic</li>
-                          <li className="grey">₦{Basic_Plan.price}/Mth</li>
-                          <li>Analytics</li>
-                          <li> Inventory Management System</li>
-                          <li>Email and SMS marketing</li>
-                          <li>Logistics</li>
-                          <li className="grey">
-                          <a  onClick={this.Basic_Plan_init} className="button">
-                            Select Plan
-                          </a>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className="columns">
-                        <ul className="price">
-                          <li className="header">{Premium_Plan.membership_type}</li>
-                          <li className="grey">₦{Premium_Plan.price}/Mth</li>
-                          <li>Analytics</li>
-                          <li> Inventory Management System</li>
-                          <li>Email and SMS marketing</li>
-                          <li>Logistics</li>
-                          <li> Live Notification</li>
-                          <li>
-                          Content Creation with Canva
-                          </li>
-                          <li> 
-                          Products and Services are Advertised
-                          </li>
-                          <li className="grey"><a 
-                          onClick={this.Premium_Plan_init}
-                          
-                          className="button">
-                            Select Plan
-                          </a>
-                          </li>
-                        </ul>
-                      </div>
                 
-                    </div>
-                  </div>
 
-
-              <div className="container">
-              {
-                Selected ?(
-                  <Modal
-              centered
-              visible={this.state.modal2Visible}
-              onOk={() => this.setModal2Visible(false)}
-              onCancel={() => this.setModal2Visible(false)}
-              >
-                  <div className="grid grid-cols-4">
-                    <div className="col-span-4">
-                    <Paystacker 
-                  pricing = {Plan_type.price} 
-                  Membership = {Plan_type.membership_type}
-                  Plan_Code = {Plan_type.Paystack_Plan}
-                  Membership_id  = {Plan_type.id}
-                  Email = {this.state.vendorEmail}
-                   />
-                    </div>
-                  </div>
-                  </Modal>
-                ) : (
-                 <div className="grid grid-cols-4">
-                 <p>
-                  
-                  </p>
-                 </div>
-                )
-              }
+                          <div className="container">
+                          {
+                            Selected ?(
+                              <Modal
+                          centered
+                          visible={this.state.modal2Visible}
+                          onOk={() => this.setModal2Visible(false)}
+                          onCancel={() => this.setModal2Visible(false)}
+                          >
+                              <div className="grid grid-cols-4">
+                                <div className="col-span-4">
+                                <Paystacker 
+                              pricing = {Plan_type.price} 
+                              Membership = {Plan_type.membership_type}
+                              Plan_Code = {Plan_type.Paystack_Plan}
+                              Membership_id  = {Plan_type.id}
+                              Email = {this.state.vendorEmail}
+                              />
+                                </div>
+                              </div>
+                              </Modal>
+                            ) : (
+                            <div className="grid grid-cols-4">
+                            <p>
+                              
+                              </p>
+                            </div>
+                            )
+                          }
               </div>
+
+                </div>
 
 
                   

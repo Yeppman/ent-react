@@ -22,6 +22,7 @@ import Category_Links from './excite_components/General/Products_and_Services'
 
 //Ecommerce 
 import CartList from './excite_components/General/Ecommerce/CartItems'
+import BillingInformation from './excite_components/General/Ecommerce/billingForm'
 
 
 
@@ -167,6 +168,7 @@ const PageRouter= () => (
     <Route exact path = "/orders_details/:OrderID/" component ={Buyer_Orders} /> {""} 
 
     <Route exact path = "/cart/" component ={CartList} /> {""} 
+    <Route exact path = "/checkout/:vendorID/:buyerID/:cartID" component ={CartList} /> {""} 
 
     {/*Buyer Dashboard ends here */}
 

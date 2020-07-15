@@ -14,6 +14,7 @@ import ExciteNav from '../../sections/nav'
 import CommentForm from '../../../containers/Comment_Form'
 import Order_Form from '../../../containers/Order_Form'
 import Make_Order_Form from '../../../containers/Make_Order'
+import { LensTwoTone } from '@material-ui/icons';
 
 const host = 'https://backend-entr.herokuapp.com'
 const item_type = 'electronics'
@@ -25,6 +26,8 @@ class Electronics_Item_Detail extends Component{
     state = {
         item_details:[],
         itemIsProduct : false,
+
+        productQuantity: 1,
 
         loading : true,
         error: null ,
@@ -122,18 +125,46 @@ class Electronics_Item_Detail extends Component{
         
         axios.get(endpoint)
         .then(res =>{
-            this.setState({
+           if (res.status == 200){
+             if (res.data > 1){
+              this.setState({
                 Comments : res.data ,
                 loaded_comments: true
             })
-          console.log('this are the comments', res.data)           
+             }
+        console.log('this are the comments', res.data) 
+
+           }  else{
+             this.setState({
+              loaded_comments: false
+             })
+           }      
         })
     }; 
 
+
+
+    //Eccomerce Sysstem here
+
+     handleQuantity= (value)=> {
+      
+      this.setState({
+        productQuantity : value
+      })
+      console.log(value)
+
+    }
+    
+
     addToCart =  async()=>{
+      const quantity =  this.state.productQuantity
        const item_id = this.props.match.params.ItemDetailID
        const endpoint = host + `/retail/add-item/${item_id}`
-        await axios.get(endpoint)
+        await axios.get(endpoint,{
+          params:{
+            quantity
+          }
+        })
         .then(res =>{
           if (res.status == 200){
             message.success('Item Added to cart')
@@ -189,106 +220,74 @@ class Electronics_Item_Detail extends Component{
             <ExciteNav/>
 
 
-          
-         
-
-            <div className="container mx-auto">
-                <div className="grid grid-cols-6">
-                <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-4 xl:col-span-4 ">
-                
-                <div className="item_image_container">
-                <img 
-                    className="item_image"
+            <div className="fitter">
+            
+            <div className="product-detail">
+                <div className="p-info">
+                    <img 
                     alt ='Image Appears here'
-                    src={item_details.Image1} />
+                    src={item_details.Image1}
+                     />
                 </div>
-                    
-                </div>
- 
-              <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-2 xl:col-span-2">
-                  <div 
-                
-                  className="contact-card">
-                    <div className="card-container">
-                    
-                    <span>
-                     <h4>
-                     <a 
-                     style={{color:'#565656'}}
-                     className="contact-card-title"
-                      href={`/Vendor_Profile/${vendor_profile.id}`}>
-                     Posted by   {vendor_profile.user}
-                      </a>
-                     </h4>
-                    </span>
+                <div className="p-info">
+                <div class="p-content">
+
+            
+                    <h2 >   {item_details.Title}</h2>
                     <hr/>
-                        <div className="contact-title-container">
-                        <p className="contact-card-title">
-                          {item_details.Title}
-                         </p>
-                        </div>
-                        <hr/>
 
-                        <div className="contact-title-container" >
-                        <p className="contact-card-title">
-                        {item_details.Address} {item_details.State} {item_details.Country}
-                        </p>
-                        </div>
-                        <hr/>
+                    <p >Sold by    {item_details.Owner}</p>
+                    
+                    <hr/>
+                    <div className="description-card-text">
+                          <Rate disabled defaultValue={3} />
+                      </div>
+                      <hr/>
+                    
+                   
+                    <p  >
+                    {item_details.Address} {item_details.State} {item_details.Country}
+                    </p>
 
-                        <div   className="contact-title-container" >
-                        <p className="contact-card-title">
-                          {item_details.PostDate}
-                         </p>
-                        </div>
-                        <hr/>
+                    <hr/>
 
-                        <div  className="contact-title-container" >
-                         <p className="contact-card-title">
-                         ₦{item_details.Price}
-                         </p>
-                        </div>
-                        <hr/>
+                    
+                    {
+                      itemIsProduct ? (
+                        <>
+                        <p>
+                    <InputNumber 
+                    onChange={this.handleQuantity}
 
-                         <div className="grid grid-cols-4 gap-4">
-
-                         {
-                           itemIsProduct ? (
-                             <>
-                             <div className="col-span-4">
-                             <p> <InputNumber min={1} max={10} defaultValue={3}  /></p>
-                              <button 
-                              onClick={this.addToCart}
-                              className="login-button">
-                                Add to Order
-
-                              </button>
-                            </div>
-                             </>
-                           ) : (
-                            <div className=" col-span-4" >
-                              <Make_Order_Form 
+                    min={1} max={1000} defaultValue={1} />
+                    </p>
+                    
+                    <button
+                    onClick = {this.addToCart}
+                    class="btn">Add to cart</button>
+                        </>
+                      ):(
+                          <>
+                          <Make_Order_Form 
                               item_name = {item_details.Title}
                               item_class = {item_type}
                                share_vendor_email ={vendor_profile.email}
                               vendor_id = {vendor_profile.id} post_id = {model_id} /> 
-                          </div> 
-                           )
-                         }
-                         
-
-
-                         </div>                       
-
-                    </div>
-                  </div>
+                          </>
+                      )
+                    }
+                   
                 </div>
-                
-            </div> 
+                </div>
             </div>
+            
+              
+        </div>
+         
 
+           
 
-          <div className="container">
+          <div className="fitter">
           <Tabs defaultActiveKey="1" >
                 <TabPane tab="Rating and Description " key="1">
                 <div className="grid grid-cols-6">
@@ -296,12 +295,6 @@ class Electronics_Item_Detail extends Component{
                       <div className="description-card">
                           <div className="description-header">
 
-                          <h2 className="description-card-heading" >
-                          Rating 
-                          </h2>
-                          <div className="description-card-text">
-                          <Rate disabled defaultValue={3} />
-                          </div>
                             <h2 className="description-card-heading" >
                               Description
                             </h2>
@@ -361,15 +354,16 @@ class Electronics_Item_Detail extends Component{
           </div>
 
             
+                    
 
           
-                <div className="container mx-auto ">
-                <div className="grid grid-cols-6 gap-4 ">
+                <div className="fitter">
+                <div className=" page-grid ">
                
                {
                  loaded_comments ?(
 
-                   <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-3 xl:col-span-3">
+                   <div className="left">
                       <span>
                         <h3 className="" style={{fontSize:17}}>
                           Reviews
@@ -408,7 +402,7 @@ class Electronics_Item_Detail extends Component{
                   </div>
 
                       ):(
-                        <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-3 xl:col-span-3">
+                        <div className="left">
                             <h3 style={{fontSize:20}}>
                               No Comments Yet
                             </h3>
@@ -416,7 +410,7 @@ class Electronics_Item_Detail extends Component{
                       )
                     }
 
-               <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-3 xl:col-span-3">
+               <div className="right">
                <span>
                <h3 style={{fontSize:17}}>
                         Comment

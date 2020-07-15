@@ -55,6 +55,15 @@ class Fashion_Item_Detail extends Component{
        })
       }
 
+      handleQuantity= (value)=> {
+      
+        this.setState({
+          productQuantity : value
+        })
+        
+  
+      }
+
       addToCart =  async()=>{
         const item_id = this.props.match.params.ItemDetailID
         const endpoint = host + `/retail/add-item/${item_id}`
@@ -143,84 +152,67 @@ class Fashion_Item_Detail extends Component{
             
             <>
             <ExciteNav/>
-            <div className="container mx-auto">
-                <div className="grid grid-cols-6">
-                <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-4 xl:col-span-4 ">
-                <div className="item_image_container">
-                <img 
-                    className="item_image"
+            
+            <div className="fitter">
+            
+            <div className="product-detail">
+                <div className="p-info">
+                    <img 
                     alt ='Image Appears here'
-                    src={item_details.Image1} />
+                    src={item_details.Image1}
+                     />
                 </div>
-                </div>
- 
-              <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-2 xl:col-span-2">
-                  <div 
-                
-                  className="contact-card">
-                    <div className="card-container">
+                <div className="p-info">
+                <div class="p-content">
+
+            
+                    <h2 >   {item_details.Title}</h2>
+                    <hr/>
+
+                    <p >Sold by    {item_details.Owner}</p>
                     
-                    <span>
-                     <h4>
-                     <a 
-                     className="contact-card-title"
-                      href={`/Vendor_Profile/${vendor_profile.id}`}>
-                     Posted by   {vendor_profile.user}
-                      </a>
-                     </h4>
-                    </span>
-                        <div className="contact-card-title">
-                        
-                          {item_details.Title}
-                        </div>
-                        
-                        <div className="contact-card-title">
-                         Location: {item_details.Location}
-                        </div>
+                    <hr/>
+                    <div className="description-card-text">
+                          <Rate disabled defaultValue={3} />
+                      </div>
+                      <hr/>
+                    
+                   
+                    <p  >
+                    {item_details.Address} {item_details.State} {item_details.Country}
+                    </p>
 
-                        <div className="contact-card-title">
-                        Posted on:  {item_details.PostDate}
-                        </div>
+                    <hr/>
 
-                        <div className="contact-card-title">
-                        Price  ₦ {item_details.Price}
-                        </div>
-                        <div className="grid grid-cols-4 gap-4">
-
-                          {
-                            itemIsProduct ? (
-                              <>
-                              <div className="col-span-4">
-                              <p> <InputNumber min={1} max={10} defaultValue={3}  /></p>
-                              <button 
-                              onClick={this.addToCart}
-                              className="login-button">
-                                Add to Order
-
-                              </button>
-                            </div>
-                              </>
-                            ) : (
-                            <div className=" col-span-4" >
-                              <Make_Order_Form 
+                    
+                    {
+                      itemIsProduct ? (
+                        <>
+                        <p>
+                    <InputNumber min={1} max={10} defaultValue={3} />
+                    </p>
+                    
+                    <button href="#" class="btn">Add to cart</button>
+                        </>
+                      ):(
+                          <>
+                          <Make_Order_Form 
                               item_name = {item_details.Title}
                               item_class = {item_type}
-                                share_vendor_email ={vendor_profile.email}
+                               share_vendor_email ={vendor_profile.email}
                               vendor_id = {vendor_profile.id} post_id = {model_id} /> 
-                          </div> 
-                            )
-                          }
-
-
-
-                          </div>                        
-
-                    </div>
-                  </div>
+                          </>
+                      )
+                    }
+                   
                 </div>
-                
-            </div> 
+                </div>
             </div>
+            
+              
+        </div>
+         
+
 
             <div className="container">
           <Tabs defaultActiveKey="1" >
@@ -298,13 +290,13 @@ class Fashion_Item_Detail extends Component{
             
 
           
-                <div className="container mx-auto ">
-                <div className="grid grid-cols-6 ">
+                <div className="fitter ">
+                <div className="page-grid">
                
                {
                  loaded_comments ?(
 
-                   <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-3 xl:col-span-3">
+                   <div className="left">
                       {
                         Comments.map((c)=>(
                         <>
@@ -336,7 +328,7 @@ class Fashion_Item_Detail extends Component{
                   </div>
 
                       ):(
-                        <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-3 xl:col-span-3">
+                        <div className="left">
                             <h3 style={{fontSize:20}}>
                               No Comments Yet
                             </h3>
@@ -344,7 +336,7 @@ class Fashion_Item_Detail extends Component{
                       )
                     }
 
-               <div className="col-span-6 sm:col-span-6  md:col-span-6 lg:col-span-3 xl:col-span-3">
+               <div className="right">
                  <CommentForm comment_url={this.comment_endpoint} post_id = {model_id} />
                </div>
 

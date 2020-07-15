@@ -19,6 +19,7 @@ class Paystacker extends Component {
         
         
     }
+     
 
     openNotification = (msg) => {
       notification.open({
@@ -31,7 +32,9 @@ class Paystacker extends Component {
     }
     
     callback = async (response) => {
-        this.initSubscription()
+       // this.initSubscription()
+
+        const billingOrder = this.props.redirect_billing
         console.log('This is the response',response)
         console.log('this is selected membership',this.state.the_membership); // card charged successfully, get reference here
         const Paid_Membership = this.state.the_membership
@@ -42,22 +45,30 @@ class Paystacker extends Component {
       console.log('Membership ID ', Membership_Query_id)
 
       const transactionRespone = response
-       await axios.get(Payment_Upgrade_Url,{
-          params:{
-            Paid_Membership ,Membership_Query_id ,transactionRespone , plan_code
-          }
-        })
-        .then(res =>{
-          if (res.status == 200 || res.status == 201){
-            this.openNotification(res.data['Message'])
-            console.log(res.data)
-          }else{
-            this.openNotification('Payment Failed')
-          }
-        })
-        .then(res =>{
-          console.log('Paid for')
-        })
+
+      if (response['status'] == 'success'){
+        window.location.replace(billingOrder)
+      }
+
+      //  await axios.get(Payment_Upgrade_Url,{
+      //     params:{
+      //       Paid_Membership ,Membership_Query_id ,transactionRespone , plan_code
+      //     }
+      //   })
+      //   .then(res =>{
+      //     if (res.status == 200 || res.status == 201){
+      //       this.openNotification(res.data['Message'])
+          
+           
+            
+      //       console.log(res.data)
+      //     }else{
+      //       this.openNotification('Payment Failed')
+      //     }
+      //   })
+      //   .then(res =>{
+      //     console.log('Paid for')
+      //   })
     }
 
     close = () => {

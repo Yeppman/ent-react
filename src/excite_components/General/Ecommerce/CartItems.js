@@ -1,13 +1,19 @@
-import React , {Component} from "react";
+import React , {Component,  createElement, useState } from "react";
 import { connect } from "react-redux";
 import async from 'q'
 import axios from "axios";
 
 import { Form, Input, InputNumber, Button, Select,Modal, notification , Slider, message} from 'antd';
+
 import Nav from '../../containers/nav'
 import Paystacker from './Paystack'
+//import orderTable from './Table'
+import BillingInformation from './billingForm'
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faHamburger } from "@fortawesome/free-solid-svg-icons";
  
+
 const Search = Input.Search;
 const { Option } = Select;
 const {TextArea} = Input
@@ -37,8 +43,12 @@ class CartList extends Component{
     state = {
 
       email : '' ,
+
         cartData : [],
         cartID : 0,
+
+        orderId:0,
+
         cartLength : 0,
         loading : true, 
         error : null ,
@@ -50,14 +60,13 @@ class CartList extends Component{
 
 
      //Control Modal
-     setModal2Visible() {
-      this.setState({
-         modal2Visible : true
-         });
+     setModal2Visible(modal2Visible) {
+      this.setState({ modal2Visible });
     }
+    
 
     proceedPayment = async()=>{
-      this.setModal2Visible()
+      this.setModal2Visible(true)
       this.setState({
         Selected : true
         });
@@ -107,77 +116,63 @@ class CartList extends Component{
         })
     }
 
-    // Order Query
-    create_order = async( values) =>{
-    
-      const cartOrderID = this.state.cartID
 
-      //const Post_id = this.props.post_id
-      const Vendor_Email = this.props.share_vendor_email
-      const Post_Owner = this.props.vendor_id
-      const Buyer_id = this.state.BuyerID
-      const item_class = this.props.item_class
-      const item_name = this.props.item_name
-  
-      console.log('this is the post id for quotes', Vendor_Email )
+    getOrder = async(token)=>{
+      const endpoint = host + `/retail/customer-orders/`
       
-   
-      const Quantity =  
-          values["Quantity"] === undefined ? null : values["Quantity"] ;
-      const Name =  
-          values["Name"] === undefined ? null : values["Name"] ;
-      const Email = 
-          values['Email'] === undefined ? null : values['Email'] ;
-     const Note = 
-          values['Note'] === undefined ? null : values['Note'] ;
-      const Phone = 
-        values['Phone'] === undefined ? null : values['Phone'] ;
-      const Address1 = 
-        values['Address1'] === undefined ? null : values['Address1'] ;
-       const Address2 = 
-        values['Address2'] === undefined ? null : values['Address2'] ;
-      const Postal = 
-        values['Postal'] === undefined ? null : values['Postal'] ;
-      const State = 
-        values['State'] === undefined ? null : values['State'] ;
-      const Country = 
-        values['Country'] === undefined ? null : values['Country'] ;
-        
-        axios.defaults.headers = {
+      axios.defaults.headers = {
           "Content-Type": "application/json",
-            Authorization: `Token ${this.props.token}`
-            };
-        await axios.get(Request_Order_url, {
-          params:{  
-            cartOrderID,
-            item_class, Buyer_id,
-                    Post_Owner, Name ,item_name,
-                   Email, Note,  Phone,
-                    Vendor_Email, Quantity ,Address1,Address2, 
-                  Country,State, Postal }
-        })
-        .then(res =>{
-            if (res.status == 200){
-              const response = res.data['Message']
-            console.log(response)
-            openNotification(response)
-            } 
-            else if(res.status == 401){
-              message.error('Login to create order')
-            }
-            else{
-              message.error('Order Failed')
-            }
-        })
-    }
+          Authorization: `Token ${token}`
+        };
+        
+      await axios.get(endpoint)
+      .then(res=>{
+          if (res.status ==  200){
+              this.setState({
+                  
+                  orderId : res.data[0].id,
+                  
+              })
+              console.log('the order', res.data)
+          }else{  
+            //  message.error('') 
+          }
+      })
+  }
 
     //Ends here
+    removeItem = async (id) =>{
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${this.props.token}`
+      };
+      console.log()
+     
+        await axios.get(`https://backend-entr.herokuapp.com/retail/remove-item/${id}/`)
+        .then(res =>{
+          if (res.status == 200){
+            this.openNotification(res.data['Message'])
+          }else{
 
+          }
+        })
+    
+    }
+    
+    
+
+    promptOrder = async()=>{
+      this.setState({
+        isPaid : true,
+      })
+    }
 
     componentDidMount = () =>{
         
         if (this.props.token !== undefined && this.props.token !== null) {
             this.getCart(this.props.token)  
+            this.getOrder(this.props.token)  
+            this.userEmail(this.props.token)
          }    
    };
 
@@ -185,6 +180,8 @@ class CartList extends Component{
         if (newProps.token !== this.props.token) {
           if (newProps.token !== undefined && newProps.token !== null) {
              this.getCart(newProps.token)
+             this.getOrder(newProps.token)
+             this.userEmail(newProps.token)
           }
         }
       }
@@ -192,12 +189,18 @@ class CartList extends Component{
       
       render(){
           const {cartData , isPaid , Selected , email} = this.state
+          const {orderId} = this.state.orderId
+          const billingEndpoint = `/chechout/${orderId}/`
           
+
           let indexNumber = 0
           return(
               <>
                 <Nav />
-                <div className="container">
+
+
+              
+                <div className="fitter">
                     <div className="grid grid-cols-6">
                         <div className="col-span-3">
                         <table>
@@ -232,8 +235,14 @@ class CartList extends Component{
                                                   </div>
                                           </td>
 
-                                          <td>
-                                            X
+                                          <td >
+                                            <p >
+                                            
+                                                              <FontAwesomeIcon 
+                                      onClick={()=>{this.removeItem(c.id)}}
+                                      icon={faTrash} />
+                                            </p>
+
                                           </td>
                                          </tr>
                                          </>
@@ -264,138 +273,23 @@ class CartList extends Component{
                     </div>
           
 
-                                      <div className="container">
-                                      <div className="grid grid-cols-8">
-                      <div className="col-span-2">
-                      <Form onFinish={this.create_order}>
-              <Form.Item>
-              <h1 
-              style={{fontSize:19}}
-              className>Create Order</h1>
-              </Form.Item>
+  
+                    <div className="fitter">
+                      <div className="left">
+                                     {
+                                       isPaid ?(
+                                          <BillingInformation />
+                                       ):(  
+                                          <>
+                                          <p>
 
-
-
-              <Form.Item
-               rules={[{ required: true, message:'Full Name is required' }]}
-               name ="Name">
-
-                <Input
-                  placeholder="Full Name" 
-                  enterButton
-                />
-
-              </Form.Item>
-              <Form.Item 
-               rules={[{ required: true, message:'Email Address is required' }]}
-              name ='Email'> 
-
-                <Input
-                  placeholder="Email"
-                  enterButton
-                />
-
-              </Form.Item>
-
-              <Form.Item
-               rules={[{ required: true, message:'Select  Quantity' }]}
-               name ="Quantity">
-              <Slider defaultValue={1} tooltipVisible />
-              </Form.Item>
-
-              <Form.Item
-               rules={[{ required: true, message:'Phone Number is required' }]}
-               name ='Phone'> 
-
-                <Input
-                  placeholder="Phone"
-                  enterButton
-                />
-
-              </Form.Item>
-                  
-              <Form.Item 
-              
-              rules={[{ required: true, message:'Address is required' }]}
-              name ='Address1'> 
-
-                <Input
-                  placeholder="Address"
-                  enterButton
-                />
-
-                </Form.Item>
-
-                <Form.Item 
-                 
-                name ='Address2'> 
-
-                <Input
-                  placeholder="Second Address (Optional)"
-                  enterButton
-                />
-
-                </Form.Item>
-
-
-                
-                <Form.Item
-                 
-                 name ='Postal'> 
-
-                <Input
-                  placeholder="Postal Code"
-                  enterButton
-                />
-
-                </Form.Item>
-
-                <Form.Item 
-                 rules={[{ required: true, message:'State is required' }]}
-                name ='State'> 
-
-                <Input
-                  placeholder="State"
-                  enterButton
-                />
-
-                </Form.Item>
-
-                <Form.Item 
-                 rules={[{ required: true, message:'Country is required' }]}
-                name = "Country">
-                <Select placeholder ="Select Country">
-                <Option value="Lagos">Nigeria
-                </Option>
-                <Option value="Calabar">Calabar</Option>
-                <Option value="Uyo">Uyo</Option>
-                </Select>
-               </Form.Item>
-
-              <Form.Item 
-               rules={[{ required: true, message:'Note is required' }]}
-               name="Note">
-              
-              <TextArea 
-              placeholder ="Send us a short note of any extra info you'd like us 
-                          to have"
-              rows={4} />
-              </Form.Item>
-
-              
-
-              <Form.Item >
-              <button
-              className="login-button"
-               type="primary" htmlType="submit">
-                Order 
-              </button>
-              </Form.Item>
-
-                </Form>
+                                          </p>
+                                          </>
+                                       )
+                                     }
                       </div>
                     </div>
-                                      </div>
+
 
                   
               <div className="container">
@@ -409,7 +303,9 @@ class CartList extends Component{
               >
                   <div className="grid grid-cols-4">
                     <div className="col-span-4">
-                    <Paystacker 
+                    <Paystacker
+                  redirect_billing ={billingEndpoint}
+                  changePay={this.promptOrder} 
                   pricing = {100}
                   Email = {this.state.email}
                    />

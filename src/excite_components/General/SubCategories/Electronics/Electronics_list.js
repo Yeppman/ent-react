@@ -223,7 +223,7 @@ class Electronics_Items extends Component{
                    <Query_Results  slug_class={slug} Results={search_results}/>
                   )
                 }
- 
+  
               </div>
             </div>
         </div>

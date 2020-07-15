@@ -20,7 +20,7 @@ body {
   /* Top Container */
   .top-container {
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 6px;
     grid-template-areas:
       'showcase showcase top-box-a'
       'showcase showcase top-box-b';
